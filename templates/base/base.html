@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %} {% endblock title %}</title>
+    {% include 'base/header.html' %}
+
+</head>
+<body class="bg-theme bg-theme2">
+
+    <!--wrapper-->
+    <div class="wrapper">
+
+
+
+        <!--sidebar wrapper -->
+        {% include 'base/slider.html' %}
+        <!--end sidebar wrapper -->
+
+
+        <!--start header & navbar -->
+        {% include 'base/navbar.html' %}
+        <!--end header & navbar -->
+
+
+
+        <!--start page wrapper --> 
+        {% block body %}
+                
+        {% endblock body %}
+        <!--end page wrapper -->
+
+
+
+		<!--start overlay-->
+		<div class="overlay toggle-icon">
+        </div>
+        <!--end overlay-->
+
+
+
+        <!--Start Back To Top Button--> 
+        <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+        <!--End Back To Top Button-->
+
+
+        <!--start footer-->
+        {% include 'base/footer.html' %}
+        <!--end footer-->
+
+
+    </div>
+    <!--end wrapper-->
+
+
+
+    <!--start switcher-->
+    {% include 'base/switcher.html' %}
+    <!--end switcher-->
+
+
+    {% include 'base/js.html' %}
+</body>
+</html>

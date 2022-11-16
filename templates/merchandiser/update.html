@@ -1,0 +1,113 @@
+{% extends 'base/base.html' %} 
+{% block title %}merchandiser Update{% endblock title %} 
+{% block body %} 
+{% load crispy_forms_tags %}
+{% load static %}		
+        
+
+<!--start page wrapper -->
+<div class="page-wrapper">
+	<div class="page-content">
+		<!--breadcrumb-->
+		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+			<div class="breadcrumb-title pe-3">Forms</div>
+			<div class="ps-3">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-0 p-0">
+						<li class="breadcrumb-item">
+							<a href="#">
+								<i class="bx bx-home-alt"></i>
+							</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Update Merchandiser</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="ms-auto">
+				<div class="btn-group">
+					<button type="button" class="btn btn-light">Settings</button>
+					<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+						<span class="visually-hidden">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Separated link</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!---end breadcrumb--->
+		<div class="row">
+			<div class="col-xl-9 mx-auto">
+				<div class="ms-auto">
+					<a href="{% url 'merchandiser_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
+						<i class="bx bx-grid-alt"></i>Merchandiser Table
+					</a>
+				</div>
+						{% comment %} 
+				<h6 class="mb-0 text-uppercase">Text Inputs</h6> {% endcomment %}
+						
+				<hr/>
+				<div class="card">
+					<div class="card-body">
+						<form method="POST">
+							{% csrf_token %}
+							<div class="form-row">
+								<div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.office_id|as_crispy_field }}
+									</div>
+							    </div> <br>
+
+                                <div class="form-group col-md-12 mb-0">
+                                    <div class="controls">
+                                        {{ form.name|as_crispy_field }}
+                                    </div>
+							    </div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+                                    <div class="controls">
+                                        {{ form.designation|as_crispy_field }}
+                                    </div>
+							    </div><br>
+                                <div class="form-group col-md-12 mb-0">
+                                    <div class="controls">
+                                        {{ form.joining_date|as_crispy_field }}
+                                    </div>
+							    </div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+                                    <div class="controls">
+                                        {{ form.email|as_crispy_field }}
+                                    </div>
+							    </div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+                                    <div class="controls">
+                                        {{ form.phone|as_crispy_field }}
+                                    </div>
+							    </div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+                                    <div class="controls">
+                                        {{ form.access_area|as_crispy_field }}
+                                    </div>
+							    </div><br>
+							</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-light">Update changes</button>
+									<button type="reset" class="btn">Cancel</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end row-->
+		</div>
+	</div>
+	<!--end page wrapper -->
+{% endblock body %}

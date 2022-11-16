@@ -32,6 +32,20 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
+				<div class="col-md-9">
+					<form class="float-md-end">
+						<div class="row row-cols-md-auto g-lg-3">
+							<label for="inputFromDate" class="col-md-2 col-form-label text-md-end">From Date</label>
+							<div class="col-md-4">
+								<input type="date" class="form-control" id="inputFromDate">
+							</div>
+							<label for="inputToDate" class="col-md-2 col-form-label text-md-end">To Date</label>
+							<div class="col-md-4">
+								<input type="date" class="form-control" id="inputToDate">
+							</div>
+						</div>
+					</form>
+				</div>
                 <div class="ms-auto"><a href="/category/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Category</a></div>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				<hr/>
@@ -85,30 +99,5 @@
 				</div>
 			</div>
 		</div>
-
-
-		<script>
-	  
-			$(document).ready(function() {
-			$('#example').DataTable()
-		  });
-			
-		  </script>
-		  
-		  
-		  <script>
-			  $(document).ready(function() {
-				  var table = $('#example2').DataTable( {
-					  lengthChange: false,
-					  buttons: [ 'copy', 'excel', 'pdf', 'print']
-				  } );
-			   
-				  table.buttons().container()
-					  .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
-			  } );
-		  </script>
-
-
-
 
 {% endblock body %}

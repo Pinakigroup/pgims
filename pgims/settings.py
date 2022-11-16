@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     # app 
     'category',
+    'product',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),
 ]
+
 STATIC_ROOT = os.path.join(BASE_DIR,'assets')
 
 MEDIA_URL = '/media/'

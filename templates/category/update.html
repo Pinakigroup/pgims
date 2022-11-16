@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %} 
-{% block title %}Create Store{% endblock title %} 
+{% block title %}Update Store{% endblock title %} 
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
@@ -15,7 +15,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="{% static 'javascript:;' %}"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Add New Category</li>
+								<li class="breadcrumb-item active" aria-current="page">Form Elements</li>
 							</ol>
 						</nav>
 					</div>
@@ -36,7 +36,6 @@
 				<div class="row">
 					<div class="col-xl-9 mx-auto">
 						<div class="ms-auto"><a href="{% url 'category_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bx-grid-alt"></i>Category Table</a></div>
-						{% comment %} <h6 class="mb-0 text-uppercase">Text Inputs</h6> {% endcomment %}
 						<hr/>
 						<div class="card">
 							<div class="card-body">
@@ -57,10 +56,10 @@
 												<br>
 												</div>
 												<div class="form-actions">
-													<button type="submit" class="btn btn-light">Save changes</button>
+													<button type="submit" class="btn btn-light">Update changes</button>
 													<button type="reset" class="btn">Cancel</button>
 												</div>
-										</div>
+											</div>
 								</form>
 							</div>
 						</div>

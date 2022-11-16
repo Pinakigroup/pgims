@@ -3,7 +3,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="{% static 'assets/images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
+					<img src="{% static 'images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
 					<h4 class="logo-text">Dashtrans</h4>
@@ -26,6 +26,20 @@
 						</li>
 					</ul>
 				</li>
+
+
+
+
+				<li>
+					<a href="{% url 'category_read' %}">
+						<div class="parent-icon"><i class='bx bx-cookie'></i>
+						</div>
+						<div class="menu-title">Category</div>
+					</a>
+				</li>
+
+
+
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-category"></i>

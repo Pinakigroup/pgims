@@ -1,14 +1,14 @@
 {% load static %}
 <!-- Bootstrap JS -->
-<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <!--plugins-->
-<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'assets/plugins/simplebar/js/simplebar.min.js' %}"></script>
-<script src="{% static 'assets/plugins/metismenu/js/metisMenu.min.js' %}"></script>
-<script src="{% static 'assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
-<script src="{% static 'assets/plugins/apexcharts-bundle/js/apexcharts.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatable/js/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatable/js/dataTables.bootstrap5.min.js' %}"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'plugins/simplebar/js/simplebar.min.js' %}"></script>
+<script src="{% static 'plugins/metismenu/js/metisMenu.min.js' %}"></script>
+<script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'plugins/apexcharts-bundle/js/apexcharts.min.js' %}"></script>
+<script src="{% static 'plugins/datatable/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatable/js/dataTables.bootstrap5.min.js' %}"></script>
 <script>
     $(document).ready(function() {
         $('#Transaction-History').DataTable({
@@ -16,10 +16,35 @@
         });
       } );
 </script>
-<script src="{% static 'assets/js/index.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
 <!--app JS-->
-<script src="{% static 'assets/js/app.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
 <script>
     new PerfectScrollbar('.product-list');
     new PerfectScrollbar('.customers-list');
 </script>
+
+
+
+
+
+<script>
+	  
+    $(document).ready(function() {
+    $('#example').DataTable()
+  });
+    
+  </script>
+  
+  
+  <script>
+      $(document).ready(function() {
+          var table = $('#example2').DataTable( {
+              lengthChange: false,
+              buttons: [ 'copy', 'excel', 'pdf', 'print']
+          } );
+       
+          table.buttons().container()
+              .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+      } );
+  </script>

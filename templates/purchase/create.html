@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %} 
-{% block title %}create Merchandiser{% endblock title %} 
+{% block title %}create Purchase{% endblock title %} 
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
@@ -14,11 +14,11 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item">
-							<a href="{% static 'javascript:;' %}">
+							<a href="#">
 								<i class="bx bx-home-alt"></i>
 							</a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Add New Merchandiser</li>
+						<li class="breadcrumb-item active" aria-current="page">Add New Purchase</li>
 					</ol>
 				</nav>
 			</div>
@@ -29,11 +29,11 @@
 						<span class="visually-hidden">Toggle Dropdown</span>
 					</button>
 					<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-						<a class="dropdown-item" href="{% static 'javascript:;' %}">Action</a>
-						<a class="dropdown-item" href="{% static 'javascript:;' %}">Another action</a>
-						<a class="dropdown-item" href="{% static 'javascript:;' %}">Something else here</a>
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{% static 'javascript:;' %}">Separated link</a>
+						<a class="dropdown-item" href="#">Separated link</a>
 					</div>
 				</div>
 			</div>
@@ -42,8 +42,8 @@
 		<div class="row">
 			<div class="col-xl-9 mx-auto">
 				<div class="ms-auto">
-					<a href="{% url 'merchandiser_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
-						<i class="bx bx-grid-alt"></i>Merchandiser Table
+					<a href="{% url 'purchase_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
+						<i class="bx bx-grid-alt"></i>Purchase Table
 					</a>
 				</div>
 						{% comment %} 
@@ -57,36 +57,66 @@
 							<div class="form-row">
 								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
-										{{ form.office_id|as_crispy_field }}
+										{{ form.merchandiser_name|as_crispy_field }}
 									</div>
 								</div><br>
 								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
-										{{ form.name|as_crispy_field }}
-									</div>
-								</div><br>
-
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.designation|as_crispy_field }}
+										{{ form.product_name|as_crispy_field }}
 									</div>
 								</div><br>
 
 								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
-										{{ form.joining_date|as_crispy_field }}
+										{{ form.category_name|as_crispy_field }}
 									</div>
 								</div><br>
 
 								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
-										{{ form.email|as_crispy_field }}
+										{{ form.supplier_name|as_crispy_field }}
 									</div>
 								</div><br>
 
 								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
-										{{ form.phone|as_crispy_field }}
+										{{ form.booking_qty|as_crispy_field }}
+									</div>
+								</div><br>
+
+								<div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.style_detail|as_crispy_field }}
+									</div>
+								</div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.color|as_crispy_field }}
+									</div>
+								</div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.po_date|as_crispy_field }}
+									</div>
+								</div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.atten|as_crispy_field }}
+									</div>
+								</div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.file_no|as_crispy_field }}
+									</div>
+								</div><br>
+
+                                <div class="form-group col-md-12 mb-0">
+									<div class="controls">
+										{{ form.uom|as_crispy_field }}
 									</div>
 								</div><br>
 

@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %}merchandiser Table{% endblock title %}
+{% block title %}purchase Table{% endblock title %}
 {% block body %}
 {% load static %}		
 
@@ -48,7 +48,7 @@
 					</form>
 				</div>
                 
-                <div class="ms-auto"><a href="/merchandiser/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Merchandiser</a></div>
+                <div class="ms-auto"><a href="/purchase/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Purchase</a></div>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				<hr/>
 				<div class="card">
@@ -57,39 +57,49 @@
 							<table id="example2" class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>ID</th>
-										<th>Office ID</th>
-										<th>Name</th>
-										<th>Designation</th>
-										<th>Joining Date</th>
-										<th>Email</th>
-										<th>Phone</th>
-										<th>Actions</th>
+                                        <th>ID</th>
+                                        <th>Merchandiser Name</th>
+                                        <th>Product Name</th>
+                                        <th>Category Name</th>
+                                        <th>Supplier Name</th>
+                                        <th>Booking Qty</th>
+                                        <th>UOM</th>
+                                        <th>Style Detail</th>
+                                        <th>Color</th>
+                                        <th>PO Date</th>
+                                        <th>Atten</th>
+                                        <th>File No</th>
+                                        <th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
-									{% for data in merchandiser_data %}
+									{% for data in purchase_data %}
 									<tr>
                                         <td>{{ data.id }}</td>
-                                        <td>{{ data.office_id }}</td> 
-                                        <td>{{ data.name }}</td>
-                                        <td>{{ data.designation }}</td>   
-										<td>{{ data.joining_date }}</td> 
-										<td>{{ data.email }}</td> 
-										<td>{{ data.phone }}</td>                           
+                                        <td>{{ data.merchandiser_name }}</td> 
+                                        <td>{{ data.product_name }}</td>
+                                        <td>{{ data.category_name }}</td> 
+                                        <td>{{ data.supplier_name }}</td>
+                                        <td>{{ data.booking_qty }}</td>
+                                        <td>{{ data.uom }}</td> 
+                                        <td>{{ data.style_detail }}</td>
+                                        <td>{{ data.color }}</td>
+                                        <td>{{ data.po_date }}</td>
+                                        <td>{{ data.atten }}</td>
+                                        <td>{{ data.file_no }}</td>                            
 									   <td class="center">
 										<div class="d-flex order-actions">
-											<a class="" href="{% url 'merchandiser_update' data.id %}">
+											<a class="" href="{% url 'purchase_update' data.id %}">
 												<i class='bx bxs-edit'></i>
 											</a>
-											<a class="ms-3" href="{% url 'merchandiser_delete' data.id %}" onclick="return confirm('Are you sure?');">
+											<a class="ms-3" href="{% url 'purchase_delete' data.id %}" onclick="return confirm('Are you sure?');">
 												<i class='bx bxs-trash'></i>
 											</a>
 										</div>
 									   </td>
 									</tr>
 								 {% endfor %}
-								 {% if not merchandiser_data %}
+								 {% if not purchase_data %}
 								 <tr>
 									 <td colspan="10" class="text-center">No Data available</td>
 								 </tr>
@@ -97,14 +107,19 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th>ID</th>
-										<th>Office ID</th>
-										<th>Name</th>
-										<th>Designation</th>
-										<th>Joining Date</th>
-										<th>Email</th>
-										<th>Phone</th>
-										<th>Actions</th>
+                                        <th>ID</th>
+                                        <th>Merchandiser Name</th>
+                                        <th>Product Name</th>
+                                        <th>Category Name</th>
+                                        <th>Supplier Name</th>
+                                        <th>Booking Qty</th>
+                                        <th>UOM</th>
+                                        <th>Style Detail</th>
+                                        <th>Color</th>
+                                        <th>PO Date</th>
+                                        <th>Atten</th>
+                                        <th>File No</th>
+                                        <th>Actions</th>
 									</tr>
 								</tfoot>
 							</table>

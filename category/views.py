@@ -2,10 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category
 from .forms import CategoryForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 # Create
+@login_required
 def create(request):
     form = CategoryForm()
     if request.method == 'POST':
@@ -21,6 +23,7 @@ def create(request):
 
 
 # Read
+@login_required
 def category_read(request):
     
     category_data = Category.objects.all().order_by('-id')
@@ -30,6 +33,7 @@ def category_read(request):
     return render(request, 'category/read.html', context)
 
 # Update
+@login_required
 def category_update(request, pk):
     get_category_data = get_object_or_404(Category, pk=pk)
     form = CategoryForm(instance=get_category_data)
@@ -45,6 +49,7 @@ def category_update(request, pk):
     return render(request, 'category/update.html', context)
 
 # Delete
+@login_required
 def category_delete(request, pk):
     get_category = get_object_or_404(Category, pk=pk)
     get_category.delete()

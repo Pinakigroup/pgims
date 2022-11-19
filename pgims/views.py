@@ -31,6 +31,7 @@ def home(request):
         'stores': stores
     }
     return render(request, 'home.html', context)
+
 # Login
 def login_view(request):
     if request.method == 'POST':

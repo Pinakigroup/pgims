@@ -12,7 +12,7 @@
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								<li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
 								</li>
 								<li class="breadcrumb-item active" aria-current="page">Category Table</li>
 							</ol>
@@ -23,30 +23,40 @@
 							<button type="button" class="btn btn-light">Settings</button>
 							<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
 							</button>
-							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-								<a class="dropdown-item" href="javascript:;">Another action</a>
-								<a class="dropdown-item" href="javascript:;">Something else here</a>
-								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="#">Something else here</a>
+								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="#">Separated link</a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!--end breadcrumb-->
+
+
+
+
 				
 				<div class="col-md-9">
-					<form class="float-md-end">
+					<form class="float-md-end" method="POST">
+						{% csrf_token %}
 						<div class="row row-cols-md-auto g-lg-3">
-							<label for="inputFromDate" class="col-md-2 col-form-label text-md-end">From Date</label>
+							<label for="fromdate" class="col-md-2 col-form-label text-md-end">From Date</label>
 							<div class="col-md-4">
-								<input type="date" class="form-control" id="inputFromDate">
+								<input type="date" name= "fromdate" class="form-control" id="fromdate">
 							</div>
-							<label for="inputToDate" class="col-md-2 col-form-label text-md-end">To Date</label>
+							<label for="todate" class="col-md-2 col-form-label text-md-end">To Date</label>
 							<div class="col-md-4">
-								<input type="date" class="form-control" id="inputToDate">
-							</div>
+								<input type="date" name= "todate" class="form-control" id="todate">
+							</div>							
 						</div>
+						
 					</form>
 				</div>
+
+
+
+
 
                 <div class="ms-auto"><a href="/category/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Category</a></div>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}

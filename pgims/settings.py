@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'supplier',
     'purchase',
     'store',
+    'store_receiver',
+    'store_requisition',
 ]
 
 MIDDLEWARE = [

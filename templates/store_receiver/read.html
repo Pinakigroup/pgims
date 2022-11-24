@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %}read Category{% endblock title %}
+{% block title %}read StoreReceiver{% endblock title %}
 {% block body %}
 {% load static %}		
 
@@ -14,7 +14,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Category Table</li>
+								<li class="breadcrumb-item active" aria-current="page">StoreReceiver Table</li>
 							</ol>
 						</nav>
 					</div>
@@ -32,32 +32,6 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
-
-				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
-					{% csrf_token %}
-				  <div class="col-md-12">
-					<div class="row">
-					  <div class="col-md-3">
-						<label for="" class="white">From Year</label>
-						<select name="from_date" id="fromdate" class="dp-list">
-						  <option disabled selected="true" value="">--select Year--</option>
-						  {% for mfd in manfd %}
-						  <option value="{{car.CarID}}">{{mfd.ManufacturingDate|date:'Y'}}</option>
-						  {% endfor %}
-						</select>
-					  </div>
-					  <div class="col-md-3">
-						<label for="" class="white">To Year</label>
-						<select name="to_date" id="todate" class="dp-list">
-						  <option disabled selected="true" value="">--select Year--</option>
-						  {% for mfd in manfd %}
-						  <option value="{{car.CarID}}">{{mfd.ManufacturingDate|date:'Y'}}</option>
-						  {% endfor %}
-						</select>
-					  </div>
-					  </div>
-					  </div>
-
 
 				
 				<div class="col-md-9">
@@ -78,10 +52,7 @@
 				</div>
 
 
-
-
-
-                <div class="ms-auto"><a href="/category/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Category</a></div>
+                <div class="ms-auto"><a href="/store_receiver/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New StoreReceiver</a></div>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				<hr/>
 				<div class="card">
@@ -91,30 +62,34 @@
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Category Name</th>
-										<th>Date</th>
+										<th>Name</th>
+										<th>Designation</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
-									{% for data in category_data %}
+									{% for data in storeRec_data %}
 									<tr>
 									   <td>{{ data.id }}</td>
 									   <td>{{ data.name }}</td> 
-									   <td>{{ data.created_at }}</td>                               
+									   <td>{{ data.designation }}</td> 
+                                       <td>{{ data.email }}</td>
+                                       <td>{{ data.phone }}</td>                        
 									   <td class="center">
 										<div class="d-flex order-actions">
-											<a class="" href="{% url 'category_update' data.id %}">
+											<a class="" href="{% url 'storeRec_update' data.id %}">
 												<i class='bx bxs-edit'></i>
 											</a>
-											<a class="ms-3" href="{% url 'category_delete' data.id %}" onclick="return confirm('Are you sure?');">
+											<a class="ms-3" href="{% url 'storeRec_delete' data.id %}" onclick="return confirm('Are you sure?');">
 												<i class='bx bxs-trash'></i>
 											</a>
 										</div>
 									   </td>
 									</tr>
 								 {% endfor %}
-								 {% if not category_data %}
+								 {% if not storeRec_data %}
 								 <tr>
 									 <td colspan="10" class="text-center">No Data available</td>
 								 </tr>
@@ -123,8 +98,10 @@
 								<tfoot>
 									<tr>
 										<th>ID</th>
-										<th>Category Name</th>
-										<th>Date</th>
+										<th>Name</th>
+										<th>Designation</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
 										<th>Actions</th>
 									</tr>
 								</tfoot>

@@ -52,86 +52,85 @@
 				<hr/>
 				<div class="card">
 					<div class="card-body">
-						<form method="POST">
+						<form class="row g-3" method="POST">
 							{% csrf_token %}	
-							<div class="form-row">
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.company|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.report|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.company|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.report_no|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.report|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.report_date|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.report_no|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.file_no|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.report_date|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.lc|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.file_no|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.qty|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.lc|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.unit_price|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.product_item|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.uom|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.qty|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.product_item|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.unit_price|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.buyer_name|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.uom|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.style|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.buyer_name|as_crispy_field }}
+								</div>
+							</div><br>
 
-							</div>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.style_no|as_crispy_field }}
+								</div>
+							</div><br>
 
-							<div class="form-actions">
-								<button type="submit" class="btn btn-light">Update changes</button>
-								<button type="reset" class="btn">Cancel</button>
-							</div>
+
+						<div class="form-actions">
+							<button type="submit" class="btn btn-light">Update changes</button>
+							<button type="reset" class="btn">Cancel</button>
+						</div>
 						</form>
 					</div>
 				</div>

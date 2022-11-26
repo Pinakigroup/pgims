@@ -82,7 +82,7 @@
                                         <td>{{ data.supplier_name }}</td>
                                         <td>{{ data.booking_qty }}</td>
                                         <td>{{ data.uom }}</td> 
-                                        <td>{{ data.style_detail }}</td>
+                                        <td>{{ data.style_no }}</td>
                                         <td>{{ data.color }}</td>
                                         <td>{{ data.po_date }}</td>
                                         <td>{{ data.atten }}</td>
@@ -101,7 +101,7 @@
 								 {% endfor %}
 								 {% if not purchase_data %}
 								 <tr>
-									 <td colspan="10" class="text-center">No Data available</td>
+									 <td colspan="12" class="text-center">No Data available</td>
 								 </tr>
 								 {% endif %}
 								</tbody>

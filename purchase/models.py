@@ -13,7 +13,7 @@ class Purchase(models.Model):
     category_name = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     supplier_name = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False)
     booking_qty = models.PositiveIntegerField(default=1)
-    style_detail = models.TextField()
+    style_no = models.CharField(max_length=32, null=True, blank=True)
     color = models.CharField(max_length=64, null=True, blank=True)
     po_date = models.DateField(default= now)
     atten = models.CharField(max_length=64, null=True, blank=True)
@@ -35,4 +35,4 @@ class Purchase(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.product_name 
+        return self.product_name.name 

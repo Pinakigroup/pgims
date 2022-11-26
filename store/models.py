@@ -37,7 +37,7 @@ class Store(models.Model):
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
     product_item = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
-    style = models.TextField()
+    style_no = models.CharField(max_length=32, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):

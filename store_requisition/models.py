@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
+from product.models import Product
 
 # Create your models here.
 
@@ -12,7 +13,7 @@ class StoreRequisition(models.Model):
     line_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     date = models.DateField(default= now)
-    description = models.TextField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
     SIZE = (
         ('', 'Select'),
         ('S', 'S'),

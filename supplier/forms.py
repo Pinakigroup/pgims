@@ -5,7 +5,7 @@ from .models import Supplier
 
 class SupplierForm(forms.ModelForm):
     supplier_name = forms.CharField(label='Supplier Name', widget=forms.TextInput(attrs={'class': 'form-control'}), required=True, error_messages={'required':'Must Enter Supplier Name'})
-    company_name = forms.CharField(label="Company name", widget=forms.TextInput({'class': 'form-control', 'rows':8, 'cols':256}), required=True, error_messages={'required':'Must Enter Company name'})
+    company_name = forms.CharField(label="Company Name", widget=forms.TextInput({'class': 'form-control', 'rows':8, 'cols':256}), required=True, error_messages={'required':'Must Enter Company name'})
     class Meta:
         model = Supplier
         fields = ['id', 'date', 'supplier_name', 'company_name', 'office_address', 'office_postal_code', 'office_country', 'office_tphone', 'factory_address', 'factory_postal_code', 'factory_country', 'factory_tphone', 'vat_identi_no', 'expiry_date', 'trade_license_no', 'owner_name', 'owner_phone', 'owner_email', 'first_cp_name', 'first_cp_position', 'first_cp_phone', 'first_cp_email', 'sec_cp_name', 'sec_cp_position', 'sec_cp_phone', 'sec_cp_email', 'account_name', 'account_no', 'bank_name', 'bank_address', 'swift']
@@ -44,4 +44,41 @@ class SupplierForm(forms.ModelForm):
             'bank_name': forms.TextInput(attrs={'class': 'form-control'}),
             'bank_address': forms.TextInput(attrs={'class': 'form-control'}),
             'swift': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+        labels = {
+            'office_address': 'Address',
+            'office_postal_code': 'Postal Code',
+            'office_country': 'Country',
+            'office_tphone': 'Tphone No',
+            
+            'factory_address': 'Address',
+            'factory_postal_code': 'Postal Code',
+            'factory_country': 'Country',
+            'factory_tphone': 'Tphone No',
+            
+            'vat_identi_no': 'Vat Identification No',
+            'expiry_date': 'Expiry Date',
+            'trade_license_no': 'Trade License No',
+            
+            'owner_name': 'Name',
+            'owner_phone': 'Contact No',
+            'owner_email': 'Email',
+            
+            'first_cp_name': 'Name',
+            'first_cp_position': 'Position',
+            'first_cp_phone': 'Contact No',
+            'first_cp_email': 'Email',
+            
+            'sec_cp_name': 'Name',
+            'sec_cp_position': 'Position',
+            'sec_cp_phone': 'Contact No',
+            'sec_cp_email': 'Email',
+            
+            'account_name': 'Account Name',
+            'account_no': 'Account No',
+            'bank_name': 'Bank Name',
+            'bank_address': 'Bank Address',   
+            'swift': 'SWIFT',           
         }

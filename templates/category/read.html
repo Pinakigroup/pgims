@@ -35,31 +35,7 @@
 
 				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
 					{% csrf_token %}
-				  <div class="col-md-12">
-					<div class="row">
-					  <div class="col-md-3">
-						<label for="" class="white">From Year</label>
-						<select name="from_date" id="fromdate" class="dp-list">
-						  <option disabled selected="true" value="">--select Year--</option>
-						  {% for mfd in manfd %}
-						  <option value="{{car.CarID}}">{{mfd.ManufacturingDate|date:'Y'}}</option>
-						  {% endfor %}
-						</select>
-					  </div>
-					  <div class="col-md-3">
-						<label for="" class="white">To Year</label>
-						<select name="to_date" id="todate" class="dp-list">
-						  <option disabled selected="true" value="">--select Year--</option>
-						  {% for mfd in manfd %}
-						  <option value="{{car.CarID}}">{{mfd.ManufacturingDate|date:'Y'}}</option>
-						  {% endfor %}
-						</select>
-					  </div>
-					  </div>
-					  </div>
-
-
-				
+									
 				<div class="col-md-9">
 					<form class="float-md-end" method="POST">
 						{% csrf_token %}

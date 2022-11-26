@@ -52,187 +52,174 @@
 				<hr/>
 				<div class="card">
 					<div class="card-body">
-						<form method="POST">
+						<form class="row g-3" method="POST">
 							{% csrf_token %}	
-							<div class="form-row">
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.date|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.supplier_name|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">General Detail</h4>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.date|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.supplier_name|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.company_name|as_crispy_field }}
+								</div>
+							</div>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.company_name|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">Office Info</h4>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.office_address|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.office_postal_code|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.office_country|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.office_tphone|as_crispy_field }}
+								</div>
+							</div>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.office_address|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">Factory Info</h4>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.factory_address|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.factory_postal_code|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.factory_country|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.factory_tphone|as_crispy_field }}
+								</div>
+							</div>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.office_postal_code|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">Vat Tax Info</h4>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.vat_identi_no|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.expiry_date|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.trade_license_no|as_crispy_field }}
+								</div>
+							</div>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.office_country|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">Owner Info</h4>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.owner_name|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.owner_phone|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.owner_email|as_crispy_field }}
+								</div>
+							</div>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.office_tphone|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">First Contact</h4>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.first_cp_name|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.first_cp_position|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.first_cp_phone|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.first_cp_email|as_crispy_field }}
+								</div>
+							</div>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.factory_address|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">Second Contact</h4>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.sec_cp_name|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.sec_cp_position|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.sec_cp_phone|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.sec_cp_email|as_crispy_field }}
+								</div>
+							</div>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.factory_postal_code|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.factory_country|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.factory_tphone|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.vat_identi_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.expiry_date|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.trade_license_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.owner_name|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.owner_phone|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.owner_email|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.first_cp_name|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.first_cp_position|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.first_cp_phone|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.first_cp_email|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.sec_cp_name|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.sec_cp_position|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.sec_cp_phone|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.sec_cp_email|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.account_name|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.account_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.bank_name|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.bank_address|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.swift|as_crispy_field }}
-									</div>
-								</div><br>
+							<h4 class="mb-0 text-uppercase">Payment Details</h4>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.account_name|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.account_no|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.bank_name|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.bank_address|as_crispy_field }}
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.swift|as_crispy_field }}
+								</div>
+							</div>
+							
 							</div>
 
 							<div class="form-actions">

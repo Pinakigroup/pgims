@@ -5,4 +5,4 @@ from .models import Purchase
 
 @admin.register(Purchase)
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ['merchandiser_name', 'product_name', 'category_name', 'supplier_name', 'booking_qty', 'style_detail', 'color', 'po_date', 'atten', 'file_no', 'uom']
+    list_display = ['merchandiser_name', 'product_name', 'category_name', 'supplier_name', 'booking_qty', 'style_no', 'color', 'po_date', 'atten', 'file_no', 'uom']

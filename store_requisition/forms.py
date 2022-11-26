@@ -9,7 +9,7 @@ class StoreRequisitionForm(forms.ModelForm):
     name = forms.CharField(label='StoreRequisition Name', widget=forms.TextInput(attrs={'class': 'form-control'}), required=True, error_messages={'required':'Must Enter a Correct Store Requisition Name'})
     class Meta:
         model = StoreRequisition
-        fields = ['id', 'name', 'sr_designation', 'order_no', 'style_no', 'line_no', 'card_no', 'date', 'description', 'size', 'required_qty', 'supply_qty', 'remarks']
+        fields = ['id', 'name', 'sr_designation', 'order_no', 'style_no', 'line_no', 'card_no', 'date', 'product', 'size', 'required_qty', 'supply_qty', 'remarks']
         widgets = {
             'sr_designation': forms.Select(attrs={'class':'form-control'}),
             'order_no': forms.TextInput(attrs={'class': 'form-control'}),
@@ -17,7 +17,7 @@ class StoreRequisitionForm(forms.ModelForm):
             'line_no': forms.TextInput(attrs={'class': 'form-control'}),
             'card_no': forms.TextInput(attrs={'class': 'form-control'}),
             'date': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'product': forms.Select(attrs={'class': 'form-control'}),
             'size': forms.Select(attrs={'class': 'form-control'}),
             'required_qty': forms.NumberInput(attrs={'class': 'form-control'}),
             'supply_qty': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -30,7 +30,7 @@ class StoreRequisitionForm(forms.ModelForm):
             'line_no': 'Line No',
             'card_no': 'Card No',
             'date': 'Date',
-            'description': 'Description',
+            'product': 'Product',
             'size': 'Size',
             'required_qty': 'Required Qty',
             'supply_qty': 'Supply Qty',

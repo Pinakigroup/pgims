@@ -52,75 +52,73 @@
 				<hr/>
 				<div class="card">
 					<div class="card-body">
-						<form method="POST">
+						<form class="row g-3" method="POST">
 							{% csrf_token %}	
-							<div class="form-row">
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.merchandiser_name|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.product_name|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.merchandiser_name|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.category_name|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.supplier_name|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.supplier_name|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.category_name|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.booking_qty|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.product_name|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.style_detail|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.booking_qty|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.color|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.uom|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.po_date|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.style_no|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.atten|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.file_no|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.file_no|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.atten|as_crispy_field }}
+								</div>
+							</div><br>
 
-                                <div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.uom|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.color|as_crispy_field }}
+								</div>
+							</div><br>
 
-							</div>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.po_date|as_crispy_field }}
+								</div>
+							</div><br>
 
 							<div class="form-actions">
 								<button type="submit" class="btn btn-light">Update changes</button>

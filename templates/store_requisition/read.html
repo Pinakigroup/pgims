@@ -74,6 +74,7 @@
 										<th>Required Qty</th>
 										<th>Supply Qty</th>
 										<th>Remarks</th>
+										<th>View Details</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -81,7 +82,8 @@
 									{% for data in storeRequis_data %}
 									<tr>
 									   <td>{{ data.id }}</td>
-									   <td>{{ data.name }}</td> 
+									   {% comment %}   | title  --->>use for First letter show always capital letter {% endcomment %}
+									   <td>{{ data.name | title}}</td> 
 									   <td>{{ data.sr_designation }}</td> 
                                        <td>{{ data.order_no }}</td>
                                        <td>{{ data.style_no }}</td> 
@@ -92,9 +94,11 @@
 									   <td>{{ data.size }}</td> 
 									   <td>{{ data.required_qty }}</td> 
 									   <td>{{ data.supply_qty }}</td> 
-									   <td>{{ data.remarks }}</td>                        
+									   <td>{{ data.remarks }}</td>    
+									   <td><button type="button" class="btn btn-light btn-sm radius-30 px-4">View</button></td>                    
 									   <td class="center">
 										<div class="d-flex order-actions">
+											{% comment %} <td><button type="button" class="btn btn-light btn-sm radius-30 px-4">View</button></td> {% endcomment %}
 											<a class="" href="{% url 'storeRequis_update' data.id %}">
 												<i class='bx bxs-edit'></i>
 											</a>

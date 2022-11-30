@@ -6,6 +6,7 @@ from product.models import Product
 from supplier.models import Supplier
 
 # Create your models here.
+
 class Store(models.Model):
     company = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False)
     REPORT = (
@@ -18,7 +19,9 @@ class Store(models.Model):
     report_date = models.DateField(default= now)
     file_no = models.CharField(max_length=64, blank=False, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)
-    qty = models.PositiveIntegerField(default=1)
+    purc_qty = models.ForeignKey(Purchase, on_delete=models.CASCADE, blank=False)
+    rec_qty = models.PositiveIntegerField(default=1)
+    due_qty = models.PositiveIntegerField(editable=False, default=0)
     unit_price = models.FloatField()
     total_price=models.FloatField(editable=False, default=0)
     UOM = (
@@ -45,4 +48,8 @@ class Store(models.Model):
     
     def save(self,*args, **kwargs):
         self.total_price = self.qty * self.unit_price
-        super(Store, self).save(*args, **kwargs)    
+        super(Store, self).save(*args, **kwargs)   
+
+    def save(self,*args, **kwargs):
+        self.due_qty = self.purc_qty.booking_qty - self.rec_qty
+        super(Store, self).save(*args, **kwargs)          

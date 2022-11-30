@@ -1,185 +1,183 @@
-import asyncio
-import logging
-import sys
-from functools import wraps
-
-from asgiref.sync import sync_to_async
-
-from django.conf import settings
-from django.core import signals
-from django.core.exceptions import (
-    BadRequest,
-    PermissionDenied,
-    RequestDataTooBig,
-    SuspiciousOperation,
-    TooManyFieldsSent,
-)
-from django.http import Http404
-from django.http.multipartparser import MultiPartParserError
-from django.urls import get_resolver, get_urlconf
-from django.utils.log import log_response
-from django.views import debug
+{% extends bill_base %}
+{% load static %}
 
 
-def convert_exception_to_response(get_response):
-    """
-    Wrap the given get_response callable in exception-to-response conversion.
-
-    All exceptions will be converted. All known 4xx exceptions (Http404,
-    PermissionDenied, MultiPartParserError, SuspiciousOperation) will be
-    converted to the appropriate response, and all other exceptions will be
-    converted to 500 responses.
-
-    This decorator is automatically applied to all middleware to ensure that
-    no middleware leaks an exception and that the next middleware in the stack
-    can rely on getting a response instead of an exception.
-    """
-    if asyncio.iscoroutinefunction(get_response):
-
-        @wraps(get_response)
-        async def inner(request):
-            try:
-                response = await get_response(request)
-            except Exception as exc:
-                response = await sync_to_async(
-                    response_for_exception, thread_sensitive=False
-                )(request, exc)
-            return response
-
-        return inner
-    else:
-
-        @wraps(get_response)
-        def inner(request):
-            try:
-                response = get_response(request)
-            except Exception as exc:
-                response = response_for_exception(request, exc)
-            return response
-
-        return inner
+{% block title %} Sale Bill No : {{ bill.billno }}{% endblock title %}
 
 
-def response_for_exception(request, exc):
-    if isinstance(exc, Http404):
-        if settings.DEBUG:
-            response = debug.technical_404_response(request, exc)
-        else:
-            response = get_exception_response(
-                request, get_resolver(get_urlconf()), 404, exc
-            )
+{% block content %}
+    
+    <div style="color:#575757; font-style: bold; font-size: 3rem;  border-bottom: 1px solid white;">Sale Bill No : {{ bill.billno }}</div>
 
-    elif isinstance(exc, PermissionDenied):
-        response = get_exception_response(
-            request, get_resolver(get_urlconf()), 403, exc
-        )
-        log_response(
-            "Forbidden (Permission denied): %s",
-            request.path,
-            response=response,
-            request=request,
-            exception=exc,
-        )
+    <!-- <br><br> -->
 
-    elif isinstance(exc, MultiPartParserError):
-        response = get_exception_response(
-            request, get_resolver(get_urlconf()), 400, exc
-        )
-        log_response(
-            "Bad request (Unable to parse request body): %s",
-            request.path,
-            response=response,
-            request=request,
-            exception=exc,
-        )
+    <form method="post">
+    {% csrf_token %}
 
-    elif isinstance(exc, BadRequest):
-        if settings.DEBUG:
-            response = debug.technical_500_response(
-                request, *sys.exc_info(), status_code=400
-            )
-        else:
-            response = get_exception_response(
-                request, get_resolver(get_urlconf()), 400, exc
-            )
-        log_response(
-            "%s: %s",
-            str(exc),
-            request.path,
-            response=response,
-            request=request,
-            exception=exc,
-        )
-    elif isinstance(exc, SuspiciousOperation):
-        if isinstance(exc, (RequestDataTooBig, TooManyFieldsSent)):
-            # POST data can't be accessed again, otherwise the original
-            # exception would be raised.
-            request._mark_post_parse_error()
+        <div class="bg">
 
-        # The request logger receives events for any problematic request
-        # The security logger receives events for all SuspiciousOperations
-        security_logger = logging.getLogger(
-            "django.security.%s" % exc.__class__.__name__
-        )
-        security_logger.error(
-            str(exc),
-            exc_info=exc,
-            extra={"status_code": 400, "request": request},
-        )
-        if settings.DEBUG:
-            response = debug.technical_500_response(
-                request, *sys.exc_info(), status_code=400
-            )
-        else:
-            response = get_exception_response(
-                request, get_resolver(get_urlconf()), 400, exc
-            )
+            <br>
 
-    else:
-        signals.got_request_exception.send(sender=None, request=request)
-        response = handle_uncaught_exception(
-            request, get_resolver(get_urlconf()), sys.exc_info()
-        )
-        log_response(
-            "%s: %s",
-            response.reason_phrase,
-            request.path,
-            response=response,
-            request=request,
-            exception=exc,
-        )
+            <div id="printArea" class="bg">
 
-    # Force a TemplateResponse to be rendered.
-    if not getattr(response, "is_rendered", True) and callable(
-        getattr(response, "render", None)
-    ):
-        response = response.render()
+                <table class="outer-box inner-box" style="width: 840px; margin-left: auto; margin-right: auto;">
+                    <tbody>
+                    
+                        <tr style="height: 1px;">
+                            <td> <p style="text-align: center;">TAX INVOICE - SALE</p> </td>
+                        </tr>
+                    
+                        <tr style="text-align: center;">
+                            <td >
+                                <span style="font-size: 350%;">PINAKI GROUP</span> <br>
+                                <span style="font-size: 120%; font-weight: bold;">DEALERS IN : Products</span> <br>
+                                <span style="font-weight: bold;">REGD ADDRESS :</span> 971 Center Street<br>Dhaka, OR 97882<br>
+                                <span style="font-weight: bold;">EMAIL : pinakigroup@mail.com</span> <br><br>
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>
+                            <table class="outer-box" style="width: 800px; margin-left: auto; margin-right: auto;">
+                                <tbody>
+                                    <tr>
+                                        <td class="inner-box" style="width: 50%; font-weight: bold;">&nbsp;NAME OF CONSIGNEE / BUYER</td>
+                                        <td class="inner-box" style="width: 25%; font-weight: bold;">&nbsp;INVOICE NO</td>
+                                        <td class="inner-box" style="width: 25%;">&nbsp;{{ bill.billno }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="width: 50%;">&nbsp;{{ bill.name }}</td>
+                                        <td class="inner-box" style="width: 25%; font-weight: bold;">&nbsp;DATE</td>
+                                        <td class="inner-box" style="width: 25%;">&nbsp;{{ bill.time.date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="width: 50%;" rowspan="3">{{ bill.address|linebreaks }}</td>
+                                        <td class="inner-box" style="width: 25%; font-weight: bold;">&nbsp;EWAY NO</td>
+                                        <td class="inner-box align-middle" style="width: 25%;"> <input type="text" name="eway" class="align-middle" style="border: 0; overflow: hidden;" value="{% if billdetails.eway %}{{ billdetails.eway }}{% endif %}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="width: 25%; font-weight: bold;">&nbsp;VEH NO</td>
+                                        <td class="inner-box align-middle" style="width: 25%;"> <input type="text" name="veh" class="align-middle" style="border: 0; overflow: hidden;" value="{% if billdetails.veh %}{{ billdetails.veh }}{% endif %}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="width: 25%; font-weight: bold;">&nbsp;DESTINATION</td>
+                                        <td class="inner-box align-middle" style="width: 25%;"> <input type="text" name="destination" class="align-middle" style="border: 0; overflow: hidden;" value="{% if billdetails.destination %}{{ billdetails.destination }}{% endif %}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="font-weight: bold;">&nbsp;GSTIN No : {{ bill.gstin }} </td>
+                                        <td class="inner-box" style="width: 25%; font-weight: bold;">&nbsp;PO NO &amp; DATE</td>
+                                        <td class="inner-box align-middle" style="width: 25%;"> <input type="text" name="po" class="align-middle" style="border: 0; overflow: hidden;" value="{% if billdetails.po %}{{ billdetails.po }}{% endif %}"> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                            <table class="outer-box" style="width: 800px; margin-left: auto; margin-right: auto;">
+                                <tbody>
+                                    <tr>
+                                        <td class="inner-box" style="width: 5%; font-weight: bold; text-align: center;">&nbsp;SL</td>
+                                        <td class="inner-box" style="width: 30%; font-weight: bold; text-align: center;">GOODS</td>
+                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">&nbsp;HSN/SAC</td>
+                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">QTY MTS</td>
+                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">RATE PMT</td>
+                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">AMOUNT $</td>
+                                        <td class="inner-box" style="width: 5%; font-weight: bold; text-align: center;">PS</td>
+                                    </tr>
+                                    {% for item in items %}
+                                        <tr style="height: auto;">
+                                            <td class="inner-box" style="width: 5%;">&nbsp; {{ forloop.counter }}</td>
+                                            <td class="inner-box" style="width: 30%;">&nbsp; {{ item.stock.name }}</td>
+                                            <td class="inner-box" style="width: 12%;"></td>
+                                            <td class="inner-box" style="width: 12%;">&nbsp; {{ item.quantity }}</td>
+                                            <td class="inner-box" style="width: 12%;">&nbsp; {{ item.perprice }}</td>
+                                            <td class="inner-box" style="width: 12%;">&nbsp;{{ item.totalprice }}</td>
+                                            <td class="inner-box" style="width: 5%;">&nbsp;0</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                            <table class="outer-box inner-box" style="width: 800px; margin-left: auto; margin-right: auto;">
+                                <tbody>
+                                    <tr>
+                                        <td class="inner-box" style="width: 35%; text-align: center;" rowspan="6">
+                                            <p> <span style="font-weight: bold;">BANK DETAILS <br> CodeAstro</span> <br>
+                                                City Bank <br> AC NO-54A7 6S31 4T85 0RO3 <br> IFSC CODE - ABCD 010 0110 <br> CORPORATE BRANCH <br> PH NO - 016-1020-2717</p>
+                                        </td>
+                                        <td class="inner-box" style="width: 30%; font-weight: bold;">&nbsp;CGST @ 2.5%</td>
+                                        <td class="inner-box align-middle" style="width: 30%;">&nbsp; <input type="text" name="cgst" class="align-middle" pattern="[0-9]+\.[0-9]+" style="border: 0; overflow: hidden;" value="{% if billdetails.cgst %}{{ billdetails.cgst }}{% endif %}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="font-weight: bold;">&nbsp;SGST @ 2.5%</td>
+                                        <td class="inner-box align-middle">&nbsp; <input type="text" name="sgst" class="align-middle" pattern="[0-9]+\.[0-9]+" style="border: 0; overflow: hidden;" value="{% if billdetails.sgst %}{{ billdetails.sgst }}{% endif %}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="font-weight: bold;">&nbsp;IGST @ 5% </td>
+                                        <td class="inner-box align-middle">&nbsp; <input type="text" name="igst" class="align-middle" pattern="[0-9]+\.[0-9]+" style="border: 0; overflow: hidden;" value="{% if billdetails.igst %}{{ billdetails.igst }}{% endif %}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="font-weight: bold;">&nbsp;CESS @ 400/PMT </td>
+                                        <td class="inner-box align-middle">&nbsp; <input type="text" name="cess" class="align-middle" pattern="[0-9]+\.[0-9]+" style="border: 0; overflow: hidden;" value="{% if billdetails.cess %}{{ billdetails.cess }}{% endif %}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="font-weight: bold;">&nbsp;TCS @ 1%</td>
+                                        <td class="inner-box align-middle">&nbsp; <input type="text" name="tcs" class="align-middle" pattern="[0-9]+\.[0-9]+" style="border: 0; overflow: hidden;" value="{% if billdetails.tcs %}{{ billdetails.tcs }}{% endif %}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-box" style="font-weight: bold;">&nbsp;TOTAL</td>
+                                        <td class="inner-box align-middle">&nbsp; <input type="text" name="total" class="align-middle" pattern="[0-9]+\.[0-9]+" style="border: 0; overflow: hidden;" value="{% if billdetails.total %}{{ billdetails.total }}{% endif %}"> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </td>
+                        </tr>
 
-    return response
+                        <tr>
+                            <td style="text-align: right;">
+                                <span style="font-weight: bold;">FOR COMPANY <br><br><br><br> Signature</span>
+                            </td>
+                        </tr>
 
+                        <tr>
+                            <td style="text-align: center;">
+                                <!-- FINAL TEXT -->
+                            </td>
+                        </tr>
 
-def get_exception_response(request, resolver, status_code, exception):
-    try:
-        callback = resolver.resolve_error_handler(status_code)
-        response = callback(request, exception=exception)
-    except Exception:
-        signals.got_request_exception.send(sender=None, request=request)
-        response = handle_uncaught_exception(request, resolver, sys.exc_info())
+                    </tbody>
+                </table>
 
-    return response
+            </div>
 
+            <!-- <br><br> -->
 
-def handle_uncaught_exception(request, resolver, exc_info):
-    """
-    Processing for any otherwise uncaught exceptions (those that will
-    generate HTTP 500 responses).
-    """
-    if settings.DEBUG_PROPAGATE_EXCEPTIONS:
-        raise
+        </div>
 
-    if settings.DEBUG:
-        return debug.technical_500_response(request, *exc_info)
+        <br><br>
 
-    # Return an HttpResponse that displays a friendly error message.
-    callback = resolver.resolve_error_handler(500)
-    return callback(request)
+        <div class="wrapper">
+            <button class="center btn btn-primary" onclick="printpage('printArea')">Print</button>
+            <button class="center btn btn-success" type="submit">Save Draft</button>
+            <a href="{% url 'sales-list' %}" class="btn center btn-secondary">Go Back</a>
+        </div>
+    
+    </form>
+    
+    <script>
+        function printpage(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }       
+        </script>
+
+{% endblock %}

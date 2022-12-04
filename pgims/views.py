@@ -9,6 +9,8 @@ from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from purchase.models import Purchase
 from store.models import Store
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 @login_required
@@ -64,3 +66,13 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+# User Profile
+@login_required
+def profile(request):
+    user_data = User.objects.all()
+    context = {
+        'user_data': user_data
+    } 
+    return render(request, 'users/profile.html', context)
+

@@ -13,9 +13,8 @@
 			</div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
-				
 				<li>
-					<a href="{% url 'home' %}" class="has-arrow">
+					<a href="{% url 'category_read' %}">
 						<div class="parent-icon"><i class='bx bx-home-circle'></i>
 						</div>
 						<div class="menu-title">Dashboard</div>
@@ -29,6 +28,7 @@
 						<div class="menu-title">Category</div>
 					</a>
 				</li>
+
 				<li>
 					<a href="{% url 'product_read' %}">
 						<div class="parent-icon"><i class='bx bx-cookie'></i>
@@ -79,41 +79,9 @@
 					</a>
 				</li>
 
-				<li class="menu-label">UI Elements</li>
-				<li>
-					<a href="#">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Widgets</div>
-					</a>
-				</li>
 
-				<li class="menu-label">Charts & Maps</li>
-				<li>
-					<a class="has-arrow" href="#">
-						<div class="parent-icon"><i class="bx bx-line-chart"></i>
-						</div>
-						<div class="menu-title">Charts</div>
-					</a>
-					<ul>
-						<li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Highcharts</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a class="has-arrow" href="#">
-						<div class="parent-icon"><i class="bx bx-map-alt"></i>
-						</div>
-						<div class="menu-title">Maps</div>
-					</a>
-					<ul>
-						<li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Google Maps</a>
-						</li>
-					</ul>
-				</li>
 				
-				<li class="menu-label">Others</li>
+				{% comment %} <li class="menu-label">Others</li>
 				<li>
 					<a class="has-arrow" href="#">
 						<div class="parent-icon"><i class="bx bx-menu"></i>
@@ -133,7 +101,7 @@
 						</li>
 					</ul>
 				</li>
-				<li>
+				<li> {% endcomment %}
 					<a href="https://codervent.com/dashtreme/documentation/index.html" target="_blank">
 						<div class="parent-icon"><i class="bx bx-folder"></i>
 						</div>

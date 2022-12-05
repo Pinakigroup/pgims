@@ -71,16 +71,29 @@
 						<div class="menu-title">StoreReceiver</div>
 					</a>
 				</li>
-				<li>
+				{% comment %} <li>
 					<a href="{% url 'storeRequis_read' %}">
 						<div class="parent-icon"><i class='bx bx-cookie'></i>
 						</div>
 						<div class="menu-title">StoreRequisition</div>
 					</a>
+				</li> {% endcomment %}
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-cookie'></i>
+						</div>
+						<div class="menu-title">Requisition</div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'storeRequis_read' %}"><i class="bx bx-right-arrow-alt"></i>StoreRequisition</a>
+						</li>
+						<li> <a href="{% url 'fabricRequis_read' %}"><i class="bx bx-right-arrow-alt"></i>FabricRequisition</a>
+						</li>
+					</ul>
 				</li>
-
-
-				
+				<li>
+					
 				{% comment %} <li class="menu-label">Others</li>
 				<li>
 					<a class="has-arrow" href="#">

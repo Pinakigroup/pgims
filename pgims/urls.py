@@ -35,4 +35,5 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('store_receiver/', include('store_receiver.urls')),
     path('store_requisition/', include('store_requisition.urls')),
+    path('fabric_requisition/', include('fabric_requisition.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

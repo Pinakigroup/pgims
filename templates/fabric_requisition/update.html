@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %} 
-{% block title %}create StoreRequisition{% endblock title %} 
+{% block title %}update FabricRequisition{% endblock title %} 
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
@@ -15,7 +15,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Add New StoreRequisition</li>
+								<li class="breadcrumb-item active" aria-current="page">Update FabricRequisition</li>
 							</ol>
 						</nav>
 					</div>
@@ -35,7 +35,7 @@
 				<!---end breadcrumb--->
 				<div class="row">
 					<div class="col-xl-9 mx-auto">
-						<div class="ms-auto"><a href="{% url 'storeRequis_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bx-grid-alt"></i>StoreRequisition Table</a></div>
+						<div class="ms-auto"><a href="{% url 'fabricRequis_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bx-grid-alt"></i>FabricRequisition Table</a></div>
 						{% comment %} <h6 class="mb-0 text-uppercase">Text Inputs</h6> {% endcomment %}
 						<hr/>
 						<div class="card">
@@ -49,7 +49,17 @@
                                     </div><br>
                                     <div class="col-sm-12">
                                         <div class="controls">
-                                            {{ form.sr_designation|as_crispy_field }}
+                                            {{ form.srf_designation|as_crispy_field }}
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-12">
+                                        <div class="controls">
+                                            {{ form.buyer_name|as_crispy_field }}
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-3">
+                                        <div class="controls">
+                                            {{ form.po_no|as_crispy_field }}
                                         </div>
                                     </div><br>
                                     <div class="col-sm-3">
@@ -64,12 +74,17 @@
                                     </div><br>
                                     <div class="col-sm-3">
                                         <div class="controls">
-                                            {{ form.line_no|as_crispy_field }}
+                                            {{ form.card_no|as_crispy_field }}
                                         </div>
                                     </div><br>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="controls">
-                                            {{ form.card_no|as_crispy_field }}
+                                            {{ form.colour|as_crispy_field }}
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-6">
+                                        <div class="controls">
+                                            {{ form.floor|as_crispy_field }}
                                         </div>
                                     </div><br>
                                     <div class="col-sm-12">
@@ -78,29 +93,45 @@
                                         </div>
                                     </div><br>
 
-									<div class="col-sm-12">
-                                        <div class="controls">
-                                            {{ form.supply_qty|as_crispy_field }}
-                                        </div>
-                                    </div><br>
-								
                                     <div class="col-sm-4">
                                         <div class="controls">
                                             {{ form.product|as_crispy_field }}
                                         </div>
                                     </div><br>
-
-									<div class="col-sm-4">
+                                    <div class="col-sm-4">
                                         <div class="controls">
-                                            {{ form.size|as_crispy_field }}
+                                            {{ form.order_qty|as_crispy_field }}
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-4">
+                                        <div class="controls">
+                                            {{ form.uom|as_crispy_field }}
+                                        </div>
+                                    </div><br>
+                                    <div class="col-sm-3">
+                                        <div class="controls">
+                                            {{ form.cutting_qty|as_crispy_field }}
                                         </div>
                                     </div><br>
 
-									<div class="col-sm-4">
+									<div class="col-sm-3">
                                         <div class="controls">
-                                            {{ form.required_qty|as_crispy_field }}
+                                            {{ form.consumption|as_crispy_field }}
                                         </div>
                                     </div><br>
+								
+                                    <div class="col-sm-3">
+                                        <div class="controls">
+                                            {{ form.req_qty|as_crispy_field }}
+                                        </div>
+                                    </div><br>
+
+									<div class="col-sm-3">
+                                        <div class="controls">
+                                            {{ form.supply_qty|as_crispy_field }}
+                                        </div>
+                                    </div><br>
+
 									<div class="col-sm-12">
                                         <div class="controls">
                                             {{ form.remarks|as_crispy_field }}
@@ -155,7 +186,7 @@
                                     
 
 									<div class="form-actions">
-										<button type="submit" class="btn btn-light">Save changes</button>
+										<button type="submit" class="btn btn-light">Update changes</button>
 										<button type="reset" class="btn">Cancel</button>
 									</div>
 								</form>

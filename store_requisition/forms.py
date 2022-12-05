@@ -21,7 +21,7 @@ class StoreRequisitionForm(forms.ModelForm):
             'size': forms.Select(attrs={'class': 'form-control'}),
             'required_qty': forms.NumberInput(attrs={'class': 'form-control'}),
             'supply_qty': forms.NumberInput(attrs={'class': 'form-control'}),
-            'remarks': forms.TextInput(attrs={'class': 'form-control'}),
+            'remarks': forms.Textarea(attrs={'class': 'form-control'}),
         }
         labels = {
             'sr_designation': 'Designation',

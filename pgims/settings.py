@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'store',
     'store_receiver',
     'store_requisition',
+    'fabric_requisition',
 ]
 
 MIDDLEWARE = [

@@ -55,12 +55,18 @@ def register_view(request):
         form =RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Registration successfully, you can login now...')
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
             return redirect('login')
+        
+        else:
+            messages.error(request, 'Form is not valid')
     context = {
         'form': form
     }    
     return render(request, 'register.html', context)
+
+
 
 #  logout
 def logout_view(request):
@@ -68,7 +74,6 @@ def logout_view(request):
     return redirect('login')
 
 # User Profile
-@login_required
 def profile(request):
     user_data = User.objects.all()
     context = {

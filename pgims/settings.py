@@ -51,7 +51,10 @@ INSTALLED_APPS = [
     'store_receiver',
     'store_requisition',
     'fabric_requisition',
+    'accounts',
 ]
+
+# AUTH_USER_MODEL = 'useraccounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

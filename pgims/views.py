@@ -1,19 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 from category.models import Category
-from pgims.forms import RegisterForm
 from product.models import Product
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from purchase.models import Purchase
 from store.models import Store
-from django.contrib.auth.models import User
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def home(request):
     total_category = Category.objects.count()
     total_product = Product.objects.count()
@@ -33,51 +31,3 @@ def home(request):
         'stores': stores
     }
     return render(request, 'home.html', context)
-
-# Login
-def login_view(request):
-    if request.method == 'POST':
-        u = request.POST['username']
-        p = request.POST['password']
-        user_auth = authenticate(username = u, password = p)
-        if user_auth is not None:
-            login(request, user_auth)
-            messages.success(request, 'Login Successfully')
-            return redirect('home')
-        else:
-            messages.warning(request, 'Invalid username and password')
-    return render(request, 'login.html')    
-
-# Registration
-def register_view(request):
-    form = RegisterForm()
-    if request.method == 'POST':
-        form =RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
-            return redirect('login')
-        
-        else:
-            messages.error(request, 'Form is not valid')
-    context = {
-        'form': form
-    }    
-    return render(request, 'register.html', context)
-
-
-
-#  logout
-def logout_view(request):
-    logout(request)
-    return redirect('login')
-
-# User Profile
-def profile(request):
-    user_data = User.objects.all()
-    context = {
-        'user_data': user_data
-    } 
-    return render(request, 'users/profile.html', context)
-

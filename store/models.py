@@ -19,6 +19,9 @@ class Store(models.Model):
     report_date = models.DateField(default= now)
     file_no = models.CharField(max_length=64, blank=False, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)
+    
+    
+    
     purc_qty = models.ForeignKey(Purchase, on_delete=models.CASCADE, blank=False)
     rec_qty = models.PositiveIntegerField(default=1)
     due_qty = models.PositiveIntegerField(editable=False, default=0)
@@ -37,9 +40,13 @@ class Store(models.Model):
         ('dg', 'dg'),
         ('1000 pcs', '1000 pcs'),
     )
+    
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
+    
     product_item = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
+    
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
+    
     style_no = models.CharField(max_length=32, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -47,9 +54,9 @@ class Store(models.Model):
         return self.company
     
     def save(self,*args, **kwargs):
-        self.total_price = self.qty * self.unit_price
+        self.total_price = self.rec_qty * self.unit_price
         super(Store, self).save(*args, **kwargs)   
 
-    def save(self,*args, **kwargs):
-        self.due_qty = self.purc_qty.booking_qty - self.rec_qty
-        super(Store, self).save(*args, **kwargs)          
+    # def save(self,*args, **kwargs):
+    #     self.due_qty = self.purc_qty.booking_qty - self.rec_qty
+    #     super(Store, self).save(*args, **kwargs)          

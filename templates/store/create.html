@@ -90,6 +90,13 @@
 									</div>
 								</div><br>
 
+								<div class="col-sm-12">
+									<div class="controls">
+										{{ form.purc_qty|as_crispy_field }}
+									</div>
+								</div><br>
+
+
 								<div class="col-sm-6">
 									<div class="controls">
 										{{ form.product_item|as_crispy_field }}
@@ -104,13 +111,25 @@
 
                                 <div class="col-sm-2">
 									<div class="controls">
-										{{ form.unit_price|as_crispy_field }}
+										{{ form.uom|as_crispy_field }}
 									</div>
 								</div><br>
 
                                 <div class="col-sm-2">
 									<div class="controls">
-										{{ form.uom|as_crispy_field }}
+										{{ form.unit_price|as_crispy_field }}
+									</div>
+								</div><br>
+
+								<div class="col-sm-12">
+									<div class="controls">
+										{{ form.rec_qty|as_crispy_field }}
+									</div>
+								</div><br>
+
+								<div class="col-sm-12">
+									<div class="controls">
+										{{ form.due_qty|as_crispy_field }}
 									</div>
 								</div><br>
 

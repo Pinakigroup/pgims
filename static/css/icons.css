@@ -6796,7 +6796,8 @@ File: icons.css
 
 .bxs-edit:before {
 
-	content: "\ecf0"
+	content: "\ecf0";
+    color: rgb(22, 22, 22);
 
 }
 
@@ -8656,7 +8657,8 @@ File: icons.css
 
 .bxs-trash:before {
 
-	content: "\ee26"
+	content: "\ee26";
+	color: rgb(22, 22, 22);
 
 }
 

@@ -1,7 +1,5 @@
 from django.db import models
-from django.forms import CharField
 from django.utils.timezone import now
-from purchase.models import Purchase
 from product.models import Product
 from supplier.models import Supplier
 
@@ -19,14 +17,8 @@ class Store(models.Model):
     report_date = models.DateField(default= now)
     file_no = models.CharField(max_length=64, blank=False, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)
-    
-    
-    
-    purc_qty = models.ForeignKey(Purchase, on_delete=models.CASCADE, blank=False)
+    product_item = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
     rec_qty = models.PositiveIntegerField(default=1)
-    due_qty = models.PositiveIntegerField(editable=False, default=0)
-    unit_price = models.FloatField()
-    total_price=models.FloatField(editable=False, default=0)
     UOM = (
         ('', 'Select'),
         ('kg', 'kg'),
@@ -40,18 +32,16 @@ class Store(models.Model):
         ('dg', 'dg'),
         ('1000 pcs', '1000 pcs'),
     )
-    
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
-    
-    product_item = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
-    
+    unit_price = models.FloatField()
+    total_price=models.FloatField(editable=False, default=0)
+    due_qty = models.PositiveIntegerField(default=0)
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
-    
     style_no = models.CharField(max_length=32, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.company
+        return self.company.company_name
     
     def save(self,*args, **kwargs):
         self.total_price = self.rec_qty * self.unit_price

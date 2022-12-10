@@ -17,6 +17,8 @@ def create(request):
             form.save()
             messages.success(request, 'Store create successfully')
             return redirect('store_read')
+        else:
+            messages.error(request, 'Store form is not valide')
     context = {
         'form': form
     }    

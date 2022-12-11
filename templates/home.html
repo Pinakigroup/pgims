@@ -143,13 +143,14 @@
                                             <th>File No</th>
                                             <th>LC</th>
                                             <th>Product Name</th>
-                                            <th>Qty</th>
+                                            <th>Rec Qty</th>
                                             <th>UOM</th>
-                                            <th>Price</th>
+                                            <th>Price</th>										
                                             <th>Total Price</th>
+                                            <th>Due Qty</th>
                                             <th>Buyer Name</th>
                                             <th>Style</th>
-                                            <th>Actions</th>
+                                            {% comment %} <th>Actions</th> {% endcomment %}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -164,13 +165,14 @@
                                             <td>{{ data.file_no }}</td>
                                             <td>{{ data.lc }}</td>
                                             <td>{{ data.product_item }}</td>
-                                            <td>{{ data.qty }}</td>
+                                            <td>{{ data.rec_qty }}</td>
                                             <td>{{ data.uom }}</td>
                                             <td>{{ data.unit_price }}</td>
                                             <td>{{ data.total_price }}</td>
+                                            <td>{{ data.due_qty }}</td>                    
                                             <td>{{ data.buyer_name }}</td>
-                                            <td>{{ data.style }}</td>                           
-                                           <td class="center">
+                                            <td>{{ data.style_no }}</td>                            
+                                           {% comment %} <td class="center">
                                             <div class="d-flex order-actions">
                                                 <a class="" href="{% url 'store_update' data.id %}">
                                                     <i class='bx bxs-edit'></i>
@@ -179,7 +181,7 @@
                                                     <i class='bx bxs-trash'></i>
                                                 </a>
                                             </div>
-                                           </td>
+                                           </td> {% endcomment %}
                                         </tr>
                                      {% endfor %}
                                      {% if not stores %}

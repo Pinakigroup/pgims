@@ -4324,7 +4324,8 @@ File: icons.css
 
 .bx-search:before {
 
-	content: "\eb54"
+	content: "\eb54";
+	color: #000000;
 
 }
 

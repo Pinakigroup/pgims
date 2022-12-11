@@ -6,12 +6,13 @@ from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from purchase.models import Purchase
 from store.models import Store
-from accounts.decorators import allowed_users
+from accounts.decorators import allowed_users, admin_only
 
 # Create your views here.
 
 @login_required
-@allowed_users(allowed_roles=['admin'])
+@admin_only
+# @allowed_users(allowed_roles=['admin'])
 def home(request):
     total_category = Category.objects.count()
     total_product = Product.objects.count()

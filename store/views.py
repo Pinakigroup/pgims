@@ -36,7 +36,7 @@ def store_read(request):
 
 # Update 
 @login_required
-# @allowed_users(allowed_roles=['admin'])
+@allowed_users(allowed_roles=['admin'])
 def store_update(request, pk):
     get_store_data = get_object_or_404(Store, pk=pk)
     form = StoreForm(instance=get_store_data)
@@ -53,7 +53,7 @@ def store_update(request, pk):
 
 # Delete 
 @login_required
-# @allowed_users(allowed_roles=['admin'])
+@allowed_users(allowed_roles=['admin'])
 def store_delete(request, pk):
     get_store = get_object_or_404(Store, pk=pk)
     get_store.delete()

@@ -3,11 +3,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from pgims.forms import RegisterForm
 from django.contrib.auth.models import User
-from .decorators import unauthenticated_user
+from django.contrib.auth.models import Group
+from .decorators import unauthenticated_user, allowed_users, admin_only
 
 # Create your views here.
 
 # Login
+@unauthenticated_user
 def login_view(request):
     if request.method == 'POST':
         u = request.POST['username']
@@ -28,9 +30,13 @@ def register_view(request):
     if request.method == 'POST':
         form =RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            
+            group = Group.objects.get(name="customer")
+            user.groups.add(group)
+             
+            messages.success(request, 'Account was created for ' + username)
             return redirect('login')
         
         else:
@@ -39,8 +45,6 @@ def register_view(request):
         'form': form
     }    
     return render(request, 'register.html', context)
-
-
 
 #  logout
 def logout_view(request):

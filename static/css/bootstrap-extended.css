@@ -178,7 +178,7 @@ a:hover {
 }
 
 .page-item.disabled .page-link {
-    color: #ffffff;
+    color: #000000;
 	background-color: rgb(255 255 255 / 42%);
 	border-color: rgb(255 255 255 / 15%);
 }
@@ -261,7 +261,7 @@ a:hover {
 
 .dropdown-menu {
     color: #ffffff;
-    background-color: #1e1e1e;
+    background-color: #363636;
     border: 1px solid rgba(0, 0, 0, .15);
     top: 100%;
 	right: 0;

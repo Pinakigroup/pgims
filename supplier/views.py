@@ -3,11 +3,13 @@ from .models import Supplier
 from .forms import SupplierForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def create(request):
     form = SupplierForm()
     if request.method == 'POST':
@@ -23,6 +25,7 @@ def create(request):
 
 # Read 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def supplier_read(request):
     supplier_data = Supplier.objects.all().order_by('-id')
     context = {
@@ -32,6 +35,7 @@ def supplier_read(request):
 
 # Update 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def supplier_update(request, pk):
     get_supplier_data = get_object_or_404(Supplier, pk=pk)
     form = SupplierForm(instance=get_supplier_data)
@@ -48,6 +52,7 @@ def supplier_update(request, pk):
 
 # Delete
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def supplier_delete(request, pk):
     get_supplier = get_object_or_404(Supplier, pk=pk)
     get_supplier.delete()

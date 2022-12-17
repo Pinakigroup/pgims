@@ -8,6 +8,7 @@ from supplier.models import Supplier
 # Create your models here.
 
 class Purchase(models.Model):
+    
     merchandiser_name = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False)
     product_name = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
     category_name = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)

@@ -33,7 +33,7 @@ def register_view(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             
-            group = Group.objects.get(name="customer")
+            group = Group.objects.get(name="merchandiser")
             user.groups.add(group)
              
             messages.success(request, 'Account was created for ' + username)

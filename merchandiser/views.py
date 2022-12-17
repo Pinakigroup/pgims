@@ -3,11 +3,13 @@ from .models import Merchandiser
 from .forms import MerchandiserForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def create(request):
     form = MerchandiserForm()
     if request.method == 'POST':
@@ -22,6 +24,7 @@ def create(request):
     return render(request, 'merchandiser/create.html', context)
 
 # Read 
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 @login_required
 def merchandiser_read(request):
     merchandiser_data = Merchandiser.objects.all().order_by('-id')
@@ -31,6 +34,7 @@ def merchandiser_read(request):
     return render(request, 'merchandiser/read.html', context)
 
 # Update 
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 @login_required
 def merchandiser_update(request, pk):
     get_merchandiser_data = get_object_or_404(Merchandiser, pk=pk)
@@ -47,6 +51,7 @@ def merchandiser_update(request, pk):
     return render(request, 'merchandiser/update.html', context)
 
 # Delete 
+@allowed_users(allowed_roles=['admin'])
 @login_required
 def merchandiser_delete(request, pk):
     get_merchandiser = get_object_or_404(Merchandiser, pk=pk)

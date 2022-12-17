@@ -3,11 +3,13 @@ from .forms import PurchaseForm
 from .models import Purchase
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def create(request):
     form = PurchaseForm()
     if request.method == 'POST':
@@ -23,6 +25,7 @@ def create(request):
 
 # Read 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def purchase_read(request):
     purchase_data = Purchase.objects.all().order_by('-id')
     context = {
@@ -32,6 +35,7 @@ def purchase_read(request):
 
 # Update 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def purchase_update(request, pk):
     get_purchase_data = get_object_or_404(Purchase, pk=pk)
     form = PurchaseForm(instance=get_purchase_data)
@@ -48,6 +52,7 @@ def purchase_update(request, pk):
 
 # Delete 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def purchase_delete(request, pk):
     get_purchase = get_object_or_404(Purchase, pk=pk)
     get_purchase.delete()

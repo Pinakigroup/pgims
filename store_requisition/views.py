@@ -3,11 +3,13 @@ from .models import StoreRequisition
 from .forms import StoreRequisitionForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def create(request):
     form = StoreRequisitionForm()
     if request.method == 'POST':
@@ -24,6 +26,7 @@ def create(request):
 
 # Read
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def storeRequis_read(request):
     
     storeRequis_data = StoreRequisition.objects.all().order_by('-id')
@@ -34,6 +37,7 @@ def storeRequis_read(request):
 
 # Update
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def storeRequis_update(request, pk):
     get_storeRequis_data = get_object_or_404(StoreRequisition, pk=pk)
     form = StoreRequisitionForm(instance=get_storeRequis_data)
@@ -50,6 +54,7 @@ def storeRequis_update(request, pk):
 
 # Delete
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def storeRequis_delete(request, pk):
     get_storeRequis = get_object_or_404(StoreRequisition, pk=pk)
     get_storeRequis.delete()

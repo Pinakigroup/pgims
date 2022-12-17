@@ -3,11 +3,13 @@ from .models import FabricRequisition
 from .forms import FabricRequisitionForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def create(request):
     form = FabricRequisitionForm()
     if request.method == 'POST':
@@ -24,6 +26,7 @@ def create(request):
 
 # Read
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def fabricRequis_read(request):
     
     fabricRequis_data = FabricRequisition.objects.all().order_by('-id')
@@ -34,6 +37,7 @@ def fabricRequis_read(request):
 
 # Update
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def fabricRequis_update(request, pk):
     get_fabricRequis_data = get_object_or_404(FabricRequisition, pk=pk)
     form = FabricRequisitionForm(instance=get_fabricRequis_data)
@@ -50,6 +54,7 @@ def fabricRequis_update(request, pk):
 
 # Delete
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def fabricRequis_delete(request, pk):
     get_fabricRequis = get_object_or_404(FabricRequisition, pk=pk)
     get_fabricRequis.delete()

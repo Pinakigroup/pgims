@@ -32,10 +32,10 @@ def admin_only(view_func):
         if request.user.groups.exists():
             group = request.user.groups.all()[0].name
             
-        if group == "customer":
+        if group == "merchandiser":
             return redirect("/store_requisition/")
-        if group == "supplier":
-            return redirect("/supplier/")
+        if group == "store":
+            return redirect("/store/")
         if group == "admin":
             return view_func(request, *args, **kwargs)
     

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.timezone import now
 from product.models import Product
 from supplier.models import Supplier
+from purchase.models import Purchase
 
 # Create your models here.
 
@@ -48,5 +49,5 @@ class Store(models.Model):
         super(Store, self).save(*args, **kwargs)   
 
     # def save(self,*args, **kwargs):
-    #     self.due_qty = self.purc_qty.booking_qty - self.rec_qty
+    #     self.due_qty = self.id.booking_qty - self.rec_qty
     #     super(Store, self).save(*args, **kwargs)          

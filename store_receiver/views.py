@@ -3,11 +3,13 @@ from .models import StoreReceiver
 from .forms import StoreReceiverForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def create(request):
     form = StoreReceiverForm()
     if request.method == 'POST':
@@ -24,6 +26,7 @@ def create(request):
 
 # Read
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def storeRec_read(request):
     storeRec_data = StoreReceiver.objects.all().order_by('-id')
     context = {
@@ -33,6 +36,7 @@ def storeRec_read(request):
 
 # Update
 @login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 def storeRec_update(request, pk):
     get_storeRec_data = get_object_or_404(StoreReceiver, pk=pk)
     form = StoreReceiverForm(instance=get_storeRec_data)
@@ -49,6 +53,7 @@ def storeRec_update(request, pk):
 
 # Delete
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def storeRec_delete(request, pk):
     get_storeRec = get_object_or_404(StoreReceiver, pk=pk)
     get_storeRec.delete()

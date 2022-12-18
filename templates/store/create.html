@@ -89,8 +89,20 @@
 										{{ form.lc|as_crispy_field }}
 									</div>
 								</div><br>
+								
+								<div class="col-sm-12">
+									<div class="controls">
+										{{ form.buyer_name|as_crispy_field }}
+									</div>
+								</div><br>
 
-								<div class="col-sm-6">
+                                <div class="col-sm-12">
+									<div class="controls">
+										{{ form.style_no|as_crispy_field }}
+									</div>
+								</div><br>
+
+								<div class="col-sm-5">
 									<div class="controls">
 										{{ form.product_item|as_crispy_field }}
 									</div>
@@ -114,24 +126,23 @@
 									</div>
 								</div><br>
 
+
+
+								<div class="form-group col-md-1">
+									<label class="panel-body-text" style="color: #000">.</label>
+									<button class="form-control btn btn-danger remove-form-row">-</button>
+								</div>
+								<div style="text-align: right;">                    
+									<a href="#" class="add-form-row">+ Add More</a>
+								</div>
+
+
+
 								<div class="col-sm-12">
 									<div class="controls">
 										{{ form.due_qty|as_crispy_field }}
 									</div>
 								</div><br>
-
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.buyer_name|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.style_no|as_crispy_field }}
-									</div>
-								</div><br>
-
 
 							<div class="form-actions">
 								<button type="submit" class="btn btn-light">Save changes</button>

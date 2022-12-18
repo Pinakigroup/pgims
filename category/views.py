@@ -3,11 +3,13 @@ from .models import Category
 from .forms import CategoryForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def create(request):
     form = CategoryForm()
     if request.method == 'POST':
@@ -24,6 +26,7 @@ def create(request):
 
 # Read
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def category_read(request):
     
     category_data = Category.objects.all().order_by('-id')
@@ -34,6 +37,7 @@ def category_read(request):
 
 # Update
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def category_update(request, pk):
     get_category_data = get_object_or_404(Category, pk=pk)
     form = CategoryForm(instance=get_category_data)
@@ -50,6 +54,7 @@ def category_update(request, pk):
 
 # Delete
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def category_delete(request, pk):
     get_category = get_object_or_404(Category, pk=pk)
     get_category.delete()

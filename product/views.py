@@ -3,11 +3,13 @@ from .models import Product
 from .forms import ProductForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
 # Create 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def create(request):
     form = ProductForm()
     if request.method == 'POST':
@@ -23,6 +25,7 @@ def create(request):
 
 # Read 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def product_read(request):
     product_data = Product.objects.all().order_by('-id')
     context = {
@@ -32,6 +35,7 @@ def product_read(request):
 
 # Update 
 @login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def product_update(request, pk):
     get_product_data = get_object_or_404(Product, pk=pk)
     form = ProductForm(instance=get_product_data)
@@ -48,6 +52,7 @@ def product_update(request, pk):
 
 # Delete
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def product_delete(request, pk):
     get_product = get_object_or_404(Product, pk=pk)
     get_product.delete()

@@ -33,7 +33,8 @@ class Purchase(models.Model):
         ('1000 pcs', '1000 pcs'),
     )
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     
     def __str__(self):
         return self.product_name.name 

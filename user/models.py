@@ -9,6 +9,8 @@ class Profile(models.Model):
     email = models.EmailField(max_length=64, blank=True, unique=True)
     phone_no = models.CharField(max_length=16, null=True, blank=False, unique=True)
     designation = models.CharField("Designation", max_length=50, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
 
     def __str__(self):
         return f'{self.user.username} Profile'

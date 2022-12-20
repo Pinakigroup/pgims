@@ -68,7 +68,6 @@
 									<tr>
 										<th>ID</th>
 										<th>Category Name</th>
-										<th>Date</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -76,8 +75,7 @@
 									{% for data in category_data %}
 									<tr>
 									   <td>{{ data.id }}</td>
-									   <td>{{ data.name }}</td> 
-									   <td>{{ data.created_at }}</td>                               
+									   <td>{{ data.name }}</td>                           
 									   <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="">
@@ -103,7 +101,6 @@
 									<tr>
 										<th>ID</th>
 										<th>Category Name</th>
-										<th>Date</th>
 										<th>Actions</th>
 									</tr>
 								</tfoot>

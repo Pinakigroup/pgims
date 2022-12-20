@@ -54,9 +54,16 @@
 					<div class="card-body">
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
+
 							<div class="col-sm-12">
 								<div class="controls">
 									{{ form.company|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.buyer_name|as_crispy_field }}
 								</div>
 							</div><br>
 
@@ -78,9 +85,9 @@
 								</div>
 							</div><br>
 
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="controls">
-									{{ form.file_no|as_crispy_field }}
+									{{ form.po_no|as_crispy_field }}
 								</div>
 							</div><br>
 
@@ -92,13 +99,55 @@
 
 							<div class="col-sm-6">
 								<div class="controls">
+									{{ form.style_no|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.file_no|as_crispy_field }}
+								</div>
+							</div><br>
+							
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.lot_no|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-12">
+								<div class="controls">
 									{{ form.product_item|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.fabric_color|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.fabric_detail|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.store_location|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-5">
+								<div class="controls">
+									{{ form.order_qty|as_crispy_field }}
 								</div>
 							</div><br>
 
 							<div class="col-sm-2">
 								<div class="controls">
-									{{ form.rec_qty|as_crispy_field }}
+									{{ form.receive_qty|as_crispy_field }}
 								</div>
 							</div><br>
 
@@ -113,25 +162,7 @@
 									{{ form.unit_price|as_crispy_field }}
 								</div>
 							</div><br>
-
-							<div class="col-sm-12">
-								<div class="controls">
-									{{ form.due_qty|as_crispy_field }}
-								</div>
-							</div><br>
-
-							<div class="col-sm-12">
-								<div class="controls">
-									{{ form.buyer_name|as_crispy_field }}
-								</div>
-							</div><br>
-
-							<div class="col-sm-12">
-								<div class="controls">
-									{{ form.style_no|as_crispy_field }}
-								</div>
-							</div><br>
-
+							
 
 						<div class="form-actions">
 							<button type="submit" class="btn btn-light">Update changes</button>

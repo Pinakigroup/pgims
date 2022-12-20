@@ -26,7 +26,8 @@ class StoreRequisition(models.Model):
     required_qty = models.PositiveIntegerField(default=1)
     supply_qty = models.PositiveIntegerField(default=1)
     remarks = models.TextField()
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     
     def __str__(self):
         return self.name

@@ -42,7 +42,8 @@ class Supplier(models.Model):
     bank_name = models.CharField(max_length=64, null=True, blank=False)
     bank_address = models.CharField(max_length=64, null=True, blank= False)
     swift = models.CharField(max_length=64, null=True, blank=False)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     
     def __str__(self):
         return self.company_name

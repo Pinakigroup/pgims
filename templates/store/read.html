@@ -58,20 +58,25 @@
 								<thead>
 									<tr>
                                         <th>ID</th>
-                                        <th>Company Name</th>
-                                        <th>Invoice/DC</th>
+                                        <th>Company</th>
+										<th>Buyer Name</th>
+                                        <th>Inv/DC</th>
                                         <th>Inv/DC No</th>
                                         <th>Inv/DC Date</th>
-                                        <th>File No</th>
-                                        <th>LC</th>
-										<th>Product Name</th>
-										<th>Rec Qty</th>
+                                        <th>Po No</th>
+										<th>LC</th>
+										<th>Style No</th>
+										<th>File No</th>
+										<th>Lot No</th>
+										<th>Product</th>
+										<th>Fabric Color</th>
+										<th>Fabric Detail</th>
+										<th>Store Loca</th>
+										<th>Order Qty</th>
+										<th>Receive Qty</th>
 										<th>UOM</th>
 										<th>Price</th>										
-										<th>Total Price</th>
-                                        <th>Due Qty</th>
-                                        <th>Buyer Name</th>
-                                        <th>Style</th>
+										<th>Total Price</th>                                        
                                         <th>Actions</th>
 									</tr>
 								</thead>
@@ -80,19 +85,25 @@
 									<tr>
                                         <td>{{ data.id }}</td>
                                         <td>{{ data.company }}</td> 
+										<td>{{ data.buyer_name }}</td>
                                         <td>{{ data.report }}</td>
                                         <td>{{ data.report_no }}</td> 
                                         <td>{{ data.report_date }}</td>
-                                        <td>{{ data.file_no }}</td>
-                                        <td>{{ data.lc }}</td>
+                                        <td>{{ data.po_no }}</td>
+										<td>{{ data.lc }}</td>
+                                        <td>{{ data.style_no }}</td>
+										<td>{{ data.file_no }}</td>
+										<td>{{ data.lot_no }}</td>
 										<td>{{ data.product_item }}</td>
-                                        <td>{{ data.rec_qty }}</td>
+										<td>{{ data.fabric_color }}</td>
+										<td>{{ data.fabric_detail }}</td>
+										<td>{{ data.store_location }}</td>
+                                        <td>{{ data.order_qty }}</td>
+										<td>{{ data.receive_qty }}</td>
                                         <td>{{ data.uom }}</td>
                                         <td>{{ data.unit_price }}</td>
-										<td>{{ data.total_price }}</td>
-										<td>{{ data.due_qty }}</td>                    
-                                        <td>{{ data.buyer_name }}</td>
-                                        <td>{{ data.style_no }}</td>                           
+										<td>{{ data.total_price }}</td>                   
+
 									   <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="{% url 'store_update' data.id %}">
@@ -114,19 +125,25 @@
 								<tfoot>
 									<tr>
                                         <th>ID</th>
-                                        <th>Company Name</th>
-                                        <th>Invoice/DC</th>
+                                        <th>Company</th>
+										<th>Buyer Name</th>
+                                        <th>Inv/DC</th>
                                         <th>Inv/DC No</th>
                                         <th>Inv/DC Date</th>
-                                        <th>File No</th>
-                                        <th>LC</th>
-										<th>Product Name</th>
-                                        <th>Qty</th>
-                                        <th>UOM</th>
-                                        <th>Price</th>
-                                        <th>Total Price</th>
-                                        <th>Buyer Name</th>
-                                        <th>Style</th>
+                                        <th>Po No</th>
+										<th>LC</th>
+										<th>Style No</th>
+										<th>File No</th>
+										<th>Lot No</th>
+										<th>Product</th>
+										<th>Fabric Color</th>
+										<th>Fabric Detail</th>
+										<th>Store Loca</th>
+										<th>Order Qty</th>
+										<th>Receive Qty</th>
+										<th>UOM</th>
+										<th>Price</th>										
+										<th>Total Price</th>                                        
                                         <th>Actions</th>
 									</tr>
 								</tfoot>

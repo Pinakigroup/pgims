@@ -1,7 +1,7 @@
 body {
 
     color: #000000;
-	background-color: #e3e3e3;
+	background-color: #eee;
  }
 
  .h1,
@@ -31,9 +31,9 @@ a:hover {
 .table {
 	--bs-table-bg: transparent;
 	--bs-table-striped-color: #000000;
-	--bs-table-striped-bg: rgb(255 255 255 / 12%);
-	--bs-table-active-color: rgb(255 255 255 / 27%);
-	--bs-table-active-bg: rgb(255 255 255 / 10%);
+	--bs-table-striped-bg: rgba(12, 145, 41, 0.12);
+	--bs-table-active-color: rgba(17, 117, 70, 0.27);
+	--bs-table-active-bg: rgba(231, 235, 5, 0.1);
 	--bs-table-hover-color: #000000;
 	--bs-table-hover-bg: rgba(0, 0, 0, 0.075);
 	width: 100%;

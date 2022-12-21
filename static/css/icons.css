@@ -4457,7 +4457,8 @@ File: icons.css
 
 .bx-show-alt:before {
 
-	content: "\eb6a"
+	content: "\eb6a";
+	color: rgb(22, 22, 22);
 
 }
 

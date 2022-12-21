@@ -1,7 +1,7 @@
 body {
 
-    color: rgb(255 255 255 / 70%);
-	background-color: #151313;
+    color: #000000;
+	background-color: #e3e3e3;
  }
 
  .h1,
@@ -16,29 +16,29 @@ h3,
 h4,
 h5,
 h6 {
-	color: rgb(255 255 255);
+	color: #000000;
 }
 
 a {
-	color: #fff;
+	color: #000000;
 	text-decoration: underline
 }
 a:hover {
-	color: #fff
+	color: #000000
 }
 
 
 .table {
 	--bs-table-bg: transparent;
-	--bs-table-striped-color: rgb(255 255 255 / 85%);
+	--bs-table-striped-color: #000000;
 	--bs-table-striped-bg: rgb(255 255 255 / 12%);
 	--bs-table-active-color: rgb(255 255 255 / 27%);
 	--bs-table-active-bg: rgb(255 255 255 / 10%);
-	--bs-table-hover-color: rgb(255 255 255);
+	--bs-table-hover-color: #000000;
 	--bs-table-hover-bg: rgba(0, 0, 0, 0.075);
 	width: 100%;
 	margin-bottom: 1rem;
-	color: rgb(255 255 255 / 85%);
+	color: #000000;
 	vertical-align: top;
 	border-color: rgb(255 255 255 / 15%);
 }
@@ -46,13 +46,13 @@ a:hover {
 
 .table-light {
     --bs-table-bg: rgb(255 255 255 / 15%);
-    color: #fff;
+    color: #000000;
 	border-color: rgb(255 255 255 / 15%)
 }
 
 
 .form-control  {
-    color: #ffffff;
+    color: #000000;
 	background-color: rgb(0 0 0 / 15%);
     border: 1px solid rgb(255 255 255 / 15%);
 }
@@ -100,19 +100,19 @@ a:hover {
 }
 
 .input-group-text {
-    color: #ffffff;
+    color: #000;
     background-color: rgb(0 0 0 / 20%);
 	border: 1px solid rgb(255 255 255 / 20%);
 }
 
 .btn-light {
-	color: #fff;
-	background-color: rgb(255 255 255 / 15%);
+	color: #444444;
+	background-color: #c2c2c2;
 	border-color: rgb(255 255 255 / 35%);
 }
 .btn-light:hover {
-	color: #fff;
-	background-color: rgb(255 255 255 / 20%);
+	color: #333;
+	background-color: rgba(90, 139, 247, 0.2);
 	border-color: rgb(255 255 255 / 40%);
 }
 
@@ -134,13 +134,13 @@ a:hover {
 }
 
 .accordion-button {
-    color: #ffffff;
+    color: #000000;
     border: 1px solid rgba(255, 255, 255, .125);
     background-color: rgb(255 255 255 / 12%);
 }
 
 .accordion-button:not(.collapsed) {
-	color: #ffffff;
+	color: #000000;
 	background-color: rgb(255 255 255 / 15%);
 }
 
@@ -150,7 +150,7 @@ a:hover {
 }
 
 .breadcrumb-item.active {
-	color: #ffffff
+	color: #000000
 }
 
 .page-link {
@@ -178,7 +178,7 @@ a:hover {
 }
 
 .page-item.disabled .page-link {
-    color: #ffffff;
+    color: #000000;
 	background-color: rgb(255 255 255 / 42%);
 	border-color: rgb(255 255 255 / 15%);
 }
@@ -217,7 +217,7 @@ a:hover {
 }
 
 .border {
-	border: 1px solid rgb(255 255 255 / 15%)!important
+	border: 2px solid rgba(65, 65, 65, 0.15)!important
 }
 
 .border-top {
@@ -261,7 +261,7 @@ a:hover {
 
 .dropdown-menu {
     color: #ffffff;
-    background-color: #1e1e1e;
+    background-color: #363636;
     border: 1px solid rgba(0, 0, 0, .15);
     top: 100%;
 	right: 0;

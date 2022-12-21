@@ -51,7 +51,7 @@ class Store(models.Model):
         return self.company.company_name
     
     def save(self,*args, **kwargs):
-        self.total_price = self.rec_qty * self.unit_price
+        self.total_price = self.receive_qty * self.unit_price
         super(Store, self).save(*args, **kwargs)   
 
     # def save(self,*args, **kwargs):

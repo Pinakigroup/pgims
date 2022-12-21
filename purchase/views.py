@@ -17,7 +17,7 @@ def create(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Purchase created successfully')
-            return redirect('create')
+            return redirect('purchase_read')
     context = {
         'form': form
     }

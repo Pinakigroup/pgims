@@ -80,7 +80,7 @@
 										<th>Required Qty</th>
 										<th>Supply Qty</th>
 										<th>Remarks</th>
-										<th>View Details</th>
+										{% comment %} <th>View Details</th> {% endcomment %}
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -107,7 +107,7 @@
                                        <td>{{ data.req_qty }}</td> 
                                        <td>{{ data.supply_qty }}</td> 
 									   <td>{{ data.remarks }}</td>    
-									   <td><button type="button" class="btn btn-light btn-sm radius-30 px-4">View</button></td>                    
+									   {% comment %} <td><button type="button" class="btn btn-light btn-sm radius-30 px-4">View</button></td>                     {% endcomment %}
 									   <td class="center">
 										<div class="d-flex order-actions">
 											{% comment %} <td><button type="button" class="btn btn-light btn-sm radius-30 px-4">View</button></td> {% endcomment %}
@@ -148,7 +148,7 @@
 										<th>Required Qty</th>
 										<th>Supply Qty</th>
 										<th>Remarks</th>
-										<th>View Details</th>
+										{% comment %} <th>View Details</th> {% endcomment %}
 										<th>Actions</th>
 									</tr>
 								</tfoot>

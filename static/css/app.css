@@ -654,7 +654,7 @@ height: 100vh;
 
 	font-size: 20px;
 
-	border-right: 1.5px solid #000000;
+	border-right: 1.5px solid #333;
 
 }
 
@@ -3112,7 +3112,7 @@ input::placeholder {
 
 	font-weight: 500;
 
-	color: #000000
+	color: #333
 
 }
 

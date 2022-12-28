@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Third party app
     'crispy_forms',
     # app 
+    'stock',
     'category',
     'product',
     'merchandiser',
@@ -82,6 +83,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'libraries':{
+            #     'my_templatetag': 'app.templatetags.my_templatetag',
+            # }
         },
     },
 ]

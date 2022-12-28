@@ -99,7 +99,7 @@ a {
 
 	z-index: 5;
 
-	background: rgb(255 255 255 / 12%);
+	background: #000000;
 
     border-bottom: 1px solid rgb(255 255 255 / 12%);
 
@@ -123,7 +123,7 @@ a {
 
 	letter-spacing: 1px;
 
-	color: #000000
+	color: #FFFF00
 
 }
 
@@ -149,7 +149,7 @@ a {
 
 	height: 60px;
 
-	background: rgb(0 0 0 / 20%);
+	background: #000000;
 
 	border-bottom: 1px solid rgb(255 255 255 / 15%);
 
@@ -191,7 +191,7 @@ a {
 
 .page-footer {
 
-	background: rgb(0 0 0 / 20%);
+	background: #3A3A3A;
 
 	position: absolute;
 
@@ -203,7 +203,7 @@ a {
 
 	padding: 7px;
 
-	color: #000000;
+	color: #ffffff;
 
 	font-size: 14px;
 
@@ -3091,19 +3091,13 @@ input::placeholder {
 }
 
 .user-img {
-
-	width: 42px;
-
-	height: 42px;
-
-	border-radius: 50%;
-
-	border: 0 solid #000000;
-
-	padding: 0;
-	
-	margin-left:1rem
-
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 0 solid #ffffff;
+    padding: 0;
+    background: #ffffff;
+    margin-left: 1rem;
 }
 
 .user-info .user-name {
@@ -3112,7 +3106,7 @@ input::placeholder {
 
 	font-weight: 500;
 
-	color: #333
+	color: #ffffff
 
 }
 
@@ -3120,7 +3114,7 @@ input::placeholder {
 
 	font-size: 13px;
 
-	color: #000000;
+	color: #ffffff;
 
 }
 

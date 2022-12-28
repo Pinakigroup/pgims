@@ -1,0 +1,108 @@
+{% extends 'base/base.html' %}
+{% block title %}read Stock{% endblock title %}
+{% block body %}
+{% load static %}		
+
+        <!--start page wrapper -->
+		<div class="page-wrapper">
+			<div class="page-content">
+				<!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">Tables</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">Stock Table</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-light">Settings</button>
+							<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="#">Something else here</a>
+								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="#">Separated link</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end breadcrumb-->
+
+				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
+					{% csrf_token %}
+									
+				<div class="col-md-9">
+					<form class="float-md-end" method="POST">
+						{% csrf_token %}
+						<div class="row row-cols-md-auto g-lg-3">
+							<label for="fromdate" class="col-md-2 col-form-label text-md-end">From Date</label>
+							<div class="col-md-4">
+								<input type="date" name= "fromdate" class="form-control" id="fromdate">
+							</div>
+							<label for="todate" class="col-md-2 col-form-label text-md-end">To Date</label>
+							<div class="col-md-4">
+								<input type="date" name= "todate" class="form-control" id="todate">
+							</div>							
+						</div>
+						
+					</form>
+				</div>
+
+                <div class="ms-auto"><a href="/stock/new/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Stock</a></div>
+				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
+				<hr/>
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example2" class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Category</th>
+										<th>Name</th>
+                                        <th>Qty</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for data in stocks %}
+									<tr>
+									   <td>{{ data.id }}</td>
+									   <td>{{ data.category }}</td>  
+									   <td>{{ data.name }}</td>     
+                                       <td>{{ data.quantity }}</td>                    
+									   <td class="center">
+										<div class="d-flex order-actions">
+											<a class="" href="#">
+												<i class="fadeIn animated bx bx-show-alt"></i>
+											</a>
+
+											<a class="" href="{% url 'stock_update' data.id %}">
+												<i class='bx bxs-edit'></i>
+											</a>
+											
+											<a class="ms-3" href="{% url 'stock_delete' data.id %}" onclick="return confirm('Are you sure?');">
+												<i class='bx bxs-trash'></i>
+											</a>
+										</div>
+									   </td>
+									</tr>
+								 {% endfor %}
+								 {% if not stocks %}
+								 <tr>
+									 <td colspan="10" class="text-center">No Data available</td>
+								 </tr>
+								 {% endif %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock body %}

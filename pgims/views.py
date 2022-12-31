@@ -5,22 +5,23 @@ from product.models import Product
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from purchase.models import Purchase
-from store.models import Store
+from stock.models import Stock
+from store.models import StoreBill, StoreItem
 from accounts.decorators import allowed_users, admin_only
 
 # Create your views here.
 
 @login_required
 @admin_only
-# @allowed_users(allowed_roles=['admin'])
+@allowed_users(allowed_roles=['admin', 'merchandiser'])
 def home(request):
     total_category = Category.objects.count()
     total_product = Product.objects.count()
     total_merchandiser = Merchandiser.objects.count()
     total_supplier = Supplier.objects.count()
     total_purchase = Purchase.objects.count()
-    total_store = Store.objects.count()
-    stores = Store.objects.all().order_by('-id')
+    total_stock = Stock.objects.count()
+    stocks = Stock.objects.all().order_by('-id')
     
     context = {
         'name': total_category,
@@ -28,7 +29,7 @@ def home(request):
         'office_id': total_merchandiser,
         'supplier_name': total_supplier,
         'style_detail': total_purchase,
-        'style': total_store,
-        'stores': stores
+        'billno': total_stock,
+        'stocks': stocks
     }
     return render(request, 'home.html', context)

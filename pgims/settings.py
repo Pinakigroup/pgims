@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'store_requisition',
     'fabric_requisition',
     'accounts',
+    'acces_requisition',
 ]
 
 # AUTH_USER_MODEL = 'useraccounts.User'

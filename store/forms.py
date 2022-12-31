@@ -1,36 +1,34 @@
-from pyexpat import model
 from django import forms
-from django.db import models
-from django.forms import fields, widgets
-from .models import Store
+from django.forms import formset_factory
+from .models import StoreBill, StoreItem, StoreBillDetails
+from stock.models import Stock
 
-# Code
-
+# form used to get customer details
 class StoreForm(forms.ModelForm):
-    style_no = forms.CharField(label="Style No", widget=forms.TextInput({'class': 'form-control', 'rows':8, 'cols':256}), required=True, error_messages={'required':'Must Enter Style'})
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['supplier'].widget.attrs.update({'class': 'textinput form-control'})
+        # self.fields['name'].widget.attrs.update({'class': 'textinput form-control', 'pattern' : '[a-zA-Z\s]{1,50}', 'title' : 'Alphabets and Spaces only', 'required': 'true'})
+        # self.fields['phone'].widget.attrs.update({'class': 'textinput form-control', 'maxlength': '10', 'pattern' : '[0-9]{10}', 'title' : 'Numbers only', 'required': 'true'})
+        # self.fields['email'].widget.attrs.update({'class': 'textinput form-control'})
+        
     class Meta:
-        model = Store
-        fields = ['id', 'company', 'buyer_name', 'report', 'report_no', 'report_date', 'po_no', 'lc', 'style_no', 'file_no', 'lot_no', 'product_item', 'fabric_color', 'fabric_detail', 'store_location', 'order_qty', 'receive_qty', 'uom', 'unit_price']
+        model = StoreBill
+        fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'po_no', 'lc', 'style_no', 'file_no', 'lot_no', 'fabric_detail', 'store_location', 'order_qty']
         widgets = {
-            'company': forms.Select(attrs={'class': 'form-control'}),
-            'buyer_name': forms.TextInput(attrs={'class':'form-control'}),
-            'report': forms.Select(attrs={'class': 'form-control'}),
-            'report_no': forms.TextInput(attrs={'class':'form-control'}),
-            'report_date': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'po_no': forms.TextInput(attrs={'class':'form-control'}),
-            'lc': forms.TextInput(attrs={'class':'form-control'}),
-            'style_no': forms.TextInput(attrs={'class':'form-control'}),
-            'file_no': forms.TextInput(attrs={'class':'form-control'}),
-            'lot_no': forms.TextInput(attrs={'class':'form-control'}),
-            'product_item': forms.Select(attrs={'class': 'form-control'}),
-            'fabric_color': forms.TextInput(attrs={'class':'form-control'}),
-            'fabric_detail': forms.Textarea(attrs={'class':'form-control'}),
-            'store_location': forms.TextInput(attrs={'class':'form-control'}),
-            'order_qty': forms.NumberInput(attrs={'class': 'form-control'}),
-            'receive_qty': forms.NumberInput(attrs={'class': 'form-control'}),
-            'uom': forms.Select(attrs={'class': 'form-control'}),
-            'unit_price': forms.NumberInput(attrs={'class': 'form-control'}),
             
+            'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'report' : forms.Select(attrs = {'class' : 'textinput form-control'}),
+            'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'report_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
+            'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'lc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'lot_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'order_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
+            'fabric_detail' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
+            'store_location' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
             'company': 'Company',
@@ -52,3 +50,27 @@ class StoreForm(forms.ModelForm):
             'uom': 'UOM',
             'unit_price': 'Uprice',
         }
+
+
+class StoreItemForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
+        self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'false'})
+        self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'false'})
+        self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'false'})
+        self.fields['uom'].widget.attrs.update({'class': 'textinput form-control', 'required': 'false'})
+        self.fields['fabric_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'false'})
+    class Meta:
+        model = StoreItem
+        fields = ['stock', 'quantity', 'unit_price', 'uom', 'fabric_color']
+
+# formset used to render multiple 'StoreItemForm'
+StoreItemFormset = formset_factory(StoreItemForm, extra=1)
+
+
+# form used to accept the other details for Store bill
+class StoreDetailsForm(forms.ModelForm):
+    class Meta:
+        model = StoreBillDetails
+        fields = ['eway','veh', 'destination', 'po', 'cgst', 'sgst', 'igst', 'cess', 'tcs', 'total']

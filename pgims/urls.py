@@ -33,5 +33,6 @@ urlpatterns = [
     path('store_receiver/', include('store_receiver.urls')),
     path('store_requisition/', include('store_requisition.urls')),
     path('fabric_requisition/', include('fabric_requisition.urls')),
+    path('acces_requisition/', include('acces_requisition.urls')),
     path('accounts/', include('accounts.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -36,7 +36,7 @@
 				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
 					{% csrf_token %}
 									
-				<div class="col-md-9">
+				{% comment %} <div class="col-md-9">
 					<form class="float-md-end" method="POST">
 						{% csrf_token %}
 						<div class="row row-cols-md-auto g-lg-3">
@@ -51,7 +51,7 @@
 						</div>
 						
 					</form>
-				</div>
+				</div> {% endcomment %}
 
                 <div class="ms-auto"><a href="/stock/new/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Stock</a></div>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}

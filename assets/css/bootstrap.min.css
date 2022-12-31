@@ -1533,7 +1533,7 @@ progress{
     border-top-width:0
 }
 .table-striped>tbody>tr:nth-of-type(odd)>*{
-    --bs-table-accent-bg:var(--bs-table-striped-bg);
+    --bs-table-accent-bg:#eee;
     color:var(--bs-table-striped-color)
 }
 .table-striped-columns>:not(caption)>tr>:nth-child(2n){

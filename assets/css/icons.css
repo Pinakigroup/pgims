@@ -2986,7 +2986,8 @@ File: icons.css
 
 .bx-home-alt:before {
 
-	content: "\ea75"
+	content: "\ea75";
+	color: #000000;
 
 }
 
@@ -4325,7 +4326,7 @@ File: icons.css
 .bx-search:before {
 
 	content: "\eb54";
-	color: #000000;
+	color: #ffffff;
 
 }
 
@@ -4457,7 +4458,8 @@ File: icons.css
 
 .bx-show-alt:before {
 
-	content: "\eb6a"
+	content: "\eb6a";
+	background: #00A300;
 
 }
 
@@ -6798,7 +6800,7 @@ File: icons.css
 .bxs-edit:before {
 
 	content: "\ecf0";
-    color: rgb(22, 22, 22);
+	background: #5bc0de;
 
 }
 
@@ -8659,7 +8661,7 @@ File: icons.css
 .bxs-trash:before {
 
 	content: "\ee26";
-	color: rgb(22, 22, 22);
+	background: #EB3C00;
 
 }
 

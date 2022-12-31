@@ -1,13 +1,14 @@
 from django.db import models
+from stock.models import Stock
 from django.utils.timezone import now
-from product.models import Product
 from supplier.models import Supplier
-from purchase.models import Purchase
-
 # Create your models here.
 
-class Store(models.Model):
-    company = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False)
+class StoreBill(models.Model):
+    billno = models.AutoField(primary_key=True)
+    time = models.DateTimeField(auto_now=True)
+    
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False, related_name='suppliername')
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
     REPORT = (
         ('', 'Select'),
@@ -22,12 +23,36 @@ class Store(models.Model):
     style_no = models.CharField(max_length=32, null=True, blank=True)
     file_no = models.CharField(max_length=64, blank=True, null=True)
     lot_no = models.CharField(max_length=64, blank=True, null=True)
-    product_item = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
-    fabric_color = models.CharField(max_length=64, blank=True, null=True)
+    
     fabric_detail = models.TextField()
     store_location = models.CharField(max_length=64, blank=True, null=True)
-    order_qty = models.PositiveIntegerField(default=0)
-    receive_qty = models.PositiveIntegerField(default=1)
+    order_qty = models.IntegerField(default=0)
+    
+    # name = models.CharField(max_length=150)
+    # phone = models.CharField(max_length=12)
+    # address = models.CharField(max_length=200)
+    # email = models.EmailField(max_length=254)
+
+    def __str__(self):
+        return "Bill no: " + str(self.billno)
+
+    def get_items_list(self):
+        return StoreItem.objects.filter(billno=self)
+        
+    def get_total_price(self):
+        storeitems = StoreItem.objects.filter(billno=self)
+        total = 0
+        for item in storeitems:
+            total += item.totalprice
+        return total
+    
+class StoreItem(models.Model):
+    billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storebillno')
+    stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
+    quantity = models.IntegerField(default=1)
+    unit_price = models.IntegerField(default=1)
+    totalprice = models.IntegerField(default=1)
+    fabric_color = models.CharField(max_length=64, blank=True, null=True)
     UOM = (
         ('', 'Select'),
         ('kg', 'kg'),
@@ -42,18 +67,24 @@ class Store(models.Model):
         ('1000 pcs', '1000 pcs'),
     )
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
-    unit_price = models.FloatField()
-    total_price=models.FloatField(editable=False, default=0)  
-    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
-    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
-    
-    def __str__(self):
-        return self.company.company_name
-    
-    def save(self,*args, **kwargs):
-        self.total_price = self.receive_qty * self.unit_price
-        super(Store, self).save(*args, **kwargs)   
 
-    # def save(self,*args, **kwargs):
-    #     self.due_qty = self.id.booking_qty - self.rec_qty
-    #     super(Store, self).save(*args, **kwargs)          
+    def __str__(self):
+        return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
+    
+class StoreBillDetails(models.Model):
+    billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storedetailsbillno')
+    
+    eway = models.CharField(max_length=50, blank=True, null=True)    
+    veh = models.CharField(max_length=50, blank=True, null=True)
+    destination = models.CharField(max_length=50, blank=True, null=True)
+    po = models.CharField(max_length=50, blank=True, null=True)
+    
+    cgst = models.CharField(max_length=50, blank=True, null=True)
+    sgst = models.CharField(max_length=50, blank=True, null=True)
+    igst = models.CharField(max_length=50, blank=True, null=True)
+    cess = models.CharField(max_length=50, blank=True, null=True)
+    tcs = models.CharField(max_length=50, blank=True, null=True)
+    total = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return "Bill no: " + str(self.billno.billno)

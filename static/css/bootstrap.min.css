@@ -268,6 +268,20 @@ tbody,td,tfoot,th,thead,tr{
     border-style:solid;
     border-width:0
 }
+
+/* bill css file  */
+
+.outer-box{
+    border-collapse: collapse;
+}
+.inner-box{
+    border: 1px solid #000;
+}
+.billwrapper{
+    text-align: center;
+}
+
+
 label{
     display:inline-block
 }

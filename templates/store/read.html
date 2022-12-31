@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %}store Table{% endblock title %}
+{% block title %}read Store{% endblock title %}
 {% block body %}
 {% load static %}		
 
@@ -33,21 +33,12 @@
 				</div>
 				<!--end breadcrumb-->
 
-                <div class="col-md-9">
-					<form class="float-md-end">
-						<div class="row row-cols-md-auto g-lg-3">
-							<label for="inputFromDate" class="col-md-2 col-form-label text-md-end">From Date</label>
-							<div class="col-md-4">
-								<input type="date" class="form-control" id="inputFromDate">
-							</div>
-							<label for="inputToDate" class="col-md-2 col-form-label text-md-end">To Date</label>
-							<div class="col-md-4">
-								<input type="date" class="form-control" id="inputToDate">
-							</div>
-						</div>
-					</form>
-				</div>
-                
+				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
+					{% csrf_token %}
+									
+
+				} {% endcomment %}
+
                 <div class="ms-auto"><a href="/store/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Store</a></div>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				<hr/>
@@ -57,101 +48,98 @@
 							<table id="example2" class="table table-striped table-bordered">
 								<thead>
 									<tr>
-                                        <th>ID</th>
-                                        <th>Company</th>
-										<th>Buyer Name</th>
-                                        <th>Inv/DC</th>
-                                        <th>Inv/DC No</th>
-                                        <th>Inv/DC Date</th>
-                                        <th>Po No</th>
-										<th>LC</th>
-										<th>Style No</th>
-										<th>File No</th>
-										<th>Lot No</th>
-										<th>Product</th>
-										<th>Fabric Color</th>
-										<th>Fabric Detail</th>
-										<th>Store Loca</th>
-										<th>Order Qty</th>
-										<th>Receive Qty</th>
-										<th>UOM</th>
-										<th>Price</th>										
-										<th>Total Price</th>                                        
-                                        <th>Actions</th>
+                                        {% comment %} <th width="10%">Bill No.</th>
+                                        <th width="15%">Supplier</th>
+                                        <th width="15%">Stocks Purchased</th>
+                                        <th width="10%">Quantity Purchased</th>
+                                        <th width="15%">Total Purchased Price</th>
+                                        <th width="10%">Purchased Date</th>
+                                        <th width="25%">Actions</th> {% endcomment %}
+
+										<th>Bill No.</th>
+										<th>Supplier</th>
+                                        <th>Buyer</th>
+                                        <th>IN/DC</th>
+                                        <th>IN/DC No</th>
+                                        <th>IN/DC Date</th>
+                                        <th>PO</th>
+                                        <th>LC</th>
+                                        <th>Style</th>
+                                        <th>File No</th>
+                                        <th>Lot No</th>
+                                        <th>Fabric Color</th>
+                                        <th>Fabric Detail</th>
+                                        <th>Items</th>
+                                        <th>UOM</th>
+                                        <th>Qty</th>
+                                        <th>Total Price</th>
+										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
-									{% for data in store_data %}
+									{% for data in bills %}
 									<tr>
-                                        <td>{{ data.id }}</td>
-                                        <td>{{ data.company }}</td> 
-										<td>{{ data.buyer_name }}</td>
+                                        <td> <p>{{ data.billno }}</p> </td>
+                                        {% comment %} <td class=""> {{ data.name }} <br> 
+                                            <small style="color: #909494">Ph No : {{ data.phone }}</small> 
+                                        </td> {% endcomment %}
+                                        <td>{{ data.supplier }}</td>
+                                        <td>{{ data.buyer_name }}</td>
                                         <td>{{ data.report }}</td>
-                                        <td>{{ data.report_no }}</td> 
+                                        <td>{{ data.report_no }}</td>
                                         <td>{{ data.report_date }}</td>
                                         <td>{{ data.po_no }}</td>
-										<td>{{ data.lc }}</td>
+                                        <td>{{ data.lc }}</td>
                                         <td>{{ data.style_no }}</td>
-										<td>{{ data.file_no }}</td>
-										<td>{{ data.lot_no }}</td>
-										<td>{{ data.product_item }}</td>
-										<td>{{ data.fabric_color }}</td>
-										<td>{{ data.fabric_detail }}</td>
-										<td>{{ data.store_location }}</td>
-                                        <td>{{ data.order_qty }}</td>
-										<td>{{ data.receive_qty }}</td>
-                                        <td>{{ data.uom }}</td>
-                                        <td>{{ data.unit_price }}</td>
-										<td>{{ data.total_price }}</td>                   
+                                        <td>{{ data.file_no }}</td>
+                                        <td>{{ data.lot_no }}</td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.fabric_color }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>{{ data.fabric_detail }}</td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.stock.name }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.uom }} <br> 
+                                            {% endfor %}
+                                        </td>
+
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.quantity }} <br> 
+                                            {% endfor %}
+                                        </td>     
+                                        <td>৳{{ data.get_total_price }}</td>
 
 									   <td class="center">
 										<div class="d-flex order-actions">
-											<a class="" href="{% url 'store_update' data.id %}">
-												<i class='bx bxs-edit'></i>
+											<a class="" href="{% url 'store_bill' data.billno %}">
+												<i class="fadeIn animated bx bx-show-alt"></i>
 											</a>
-											<a class="ms-3" href="{% url 'store_delete' data.id %}" onclick="return confirm('Are you sure?');">
+
+											<a class="ms-3" href="{% url 'purchase_delete' data.billno %}" onclick="return confirm('Are you sure?');">
 												<i class='bx bxs-trash'></i>
 											</a>
 										</div>
 									   </td>
 									</tr>
 								 {% endfor %}
-								 {% if not store_data %}
+								 {% if not bills %}
 								 <tr>
-									 <td colspan="20" class="text-center">No Data available</td>
+									 <td colspan="17" class="text-center">No Data available</td>
 								 </tr>
 								 {% endif %}
 								</tbody>
-								<tfoot>
-									<tr>
-                                        <th>ID</th>
-                                        <th>Company</th>
-										<th>Buyer Name</th>
-                                        <th>Inv/DC</th>
-                                        <th>Inv/DC No</th>
-                                        <th>Inv/DC Date</th>
-                                        <th>Po No</th>
-										<th>LC</th>
-										<th>Style No</th>
-										<th>File No</th>
-										<th>Lot No</th>
-										<th>Product</th>
-										<th>Fabric Color</th>
-										<th>Fabric Detail</th>
-										<th>Store Loca</th>
-										<th>Order Qty</th>
-										<th>Receive Qty</th>
-										<th>UOM</th>
-										<th>Price</th>										
-										<th>Total Price</th>                                        
-                                        <th>Actions</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 {% endblock body %}

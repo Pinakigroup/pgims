@@ -1,7 +1,7 @@
 body {
 
-    color: #000000;
-	background-color: #e3e3e3;
+    color: #333;
+	background-color: #eee;
  }
 
  .h1,
@@ -16,29 +16,29 @@ h3,
 h4,
 h5,
 h6 {
-	color: #000000;
+	color: #333;
 }
 
 a {
-	color: #000000;
+	color: #ffffff;
 	text-decoration: underline
 }
 a:hover {
-	color: #000000
+	color: #333
 }
 
 
 .table {
 	--bs-table-bg: transparent;
-	--bs-table-striped-color: #000000;
-	--bs-table-striped-bg: rgb(255 255 255 / 12%);
-	--bs-table-active-color: rgb(255 255 255 / 27%);
-	--bs-table-active-bg: rgb(255 255 255 / 10%);
+	--bs-table-striped-color: #333;
+	--bs-table-striped-bg: rgba(12, 145, 41, 0.12);
+	--bs-table-active-color: rgba(17, 117, 70, 0.27);
+	--bs-table-active-bg: rgba(231, 235, 5, 0.1);
 	--bs-table-hover-color: #000000;
 	--bs-table-hover-bg: rgba(0, 0, 0, 0.075);
 	width: 100%;
 	margin-bottom: 1rem;
-	color: #000000;
+	color: #333;
 	vertical-align: top;
 	border-color: rgb(255 255 255 / 15%);
 }
@@ -52,14 +52,14 @@ a:hover {
 
 
 .form-control  {
-    color: #000000;
+    color: #333;
 	background-color: rgb(0 0 0 / 15%);
     border: 1px solid rgb(255 255 255 / 15%);
 }
 
 
 .form-control:focus {
-    color: #fff;
+    color: #333;
 	background-color: rgb(0 0 0 / 20%);
 	border-color: 1px solid rgb(255 255 255 / 15%);
 	box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25)
@@ -106,9 +106,9 @@ a:hover {
 }
 
 .btn-light {
-	color: #444444;
+	color: #333;
 	background-color: #c2c2c2;
-	border-color: rgb(255 255 255 / 35%);
+	border-color: #b3b3b3;
 }
 .btn-light:hover {
 	color: #333;
@@ -117,7 +117,7 @@ a:hover {
 }
 
 .card {
-    background-color: rgb(0 0 0 / 20%);
+    background-color: #ffffff;
     box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .12);
     margin-bottom: 1.5rem;
     border: 0 solid transparent;

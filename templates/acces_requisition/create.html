@@ -67,23 +67,23 @@
 									</div>
 								</div><br>
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
 									<div class="controls">
 										{{ form.order_no|as_crispy_field }}
 									</div>
 								</div><br>
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
 									<div class="controls">
 										{{ form.style_no|as_crispy_field }}
 									</div>
 								</div><br>
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
 									<div class="controls">
 										{{ form.line_no|as_crispy_field }}
 									</div>
 								</div><br>
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
 									<div class="controls">
 										{{ form.card_no|as_crispy_field }}
 									</div>
@@ -122,7 +122,7 @@
                                         <div class="panel-body">
                                         {% for iform in formset %}
                                             <div class="row form-row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-5">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Stock:</label>
                                                     {{ iform.stock }}

@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'store',
     'store_receiver',
     'store_requisition',
-    'fabric_requisition',
+    'fabric_requi',
     'accounts',
     'acces_requisition',
 ]

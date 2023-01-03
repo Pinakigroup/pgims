@@ -1,0 +1,135 @@
+{% extends 'base/base.html' %} 
+{% block title %} Fabric Requisition Bill No : {{ bill.billno }}{% endblock title %}
+{% block body %} 
+{% load crispy_forms_tags %}
+{% load static %}		
+
+<div style="color:#575757; font-style: bold; font-size: 3rem;  border-bottom: 1px solid #eeeeee00;">Fabric Requisition Bill No : {{ bill.billno }}</div>
+
+    <!-- <br><br> --><!-- Log on to codeastro.com for more projects -->
+    
+<form method="post">
+    {% csrf_token %}
+
+        <div class="bg"><br>
+            <div id="printArea" class="bg">
+                <table class="outer-box inner-box" style="width: 840px; margin-left: auto; margin-right: auto;">
+                    <tbody>
+                        <tr style="height: 1px;">
+                            <td> 
+                                <div class="split left">
+                                    <p> TEXT INVOICE - Fabric Requisition</p> 
+                            </div>
+                            </td>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <td >
+                                <span style="font-size: 160%; font-weight: bold;">PINAKI GROUP</span> <br>
+                                <span style="font-size: 90%; font-weight: bold;">DEALERS IN : Products</span> <br>
+                                <span style="font-size: 90%; font-weight: bold;">ADDRESS :</span> 29, Gareb-Newaz Avenue<br>Sector-11, Uttara, Dhaka-1230<br>
+                                <span style="font-size: 90%; font-weight: bold;">EMAIL : info@pinakigroup.com</span> <br>
+
+                                <div class="split left" style="margin-top: 15px; padding-bottom: 10px;">
+                                    <div class="centered; width: 50%;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong> NAME : </strong>{{ bill.name }}</span> 
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>Buyer : </strong>{{ bill.buyer_name }}</span>
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>PO : </strong>{{ bill.po_no }}</span>
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>ORDER NO : </strong>{{ bill.order_no }}</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>CARD NO : </strong>{{ bill.card_no }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>FLOOR : </strong>{{ bill.floor }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>DATE : </strong>{{ bill.time.date }}</span>
+                                            </div>
+                                        </div>                                     
+                                    </div>
+                                </div>
+                            </td><!-- Log on to codeastro.com for more projects -->
+                        </tr>           
+                        <tr>
+                            <td><!-- Log on to codeastro.com for more projects -->
+                            <table class="outer-box" style="width: 800px; margin-left: auto; margin-right: auto;">
+                                <tbody>
+                                    <tr>
+                                        <td class="inner-box" style="width: 2%; font-weight: bold; text-align: center;">&nbsp;SL</td>
+                                        <td class="inner-box" style="width: 25%; font-weight: bold; text-align: center;">ITEMS</td>
+                                        <td class="inner-box" style="width: 5%; font-weight: bold; text-align: center;">&nbsp;UOM</td>
+                                        <td class="inner-box" style="width: 8%; font-weight: bold; text-align: center;">COLOR</td>
+                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">STYLE</td>
+                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">OR Q</td>
+                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">CUT Q</td>
+                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">CONSUMPTION</td>
+                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">REQ Q</td>
+                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">SUPPLY Q</td>
+                                    </tr>
+                                    {% for item in items %}
+                                        <tr style="height: auto;">
+                                            <td class="inner-box" style="width: 3%;">&nbsp; {{ forloop.counter }}</td>
+                                            <td class="inner-box" style="width: 25%;">&nbsp; {{ item.stock.name }}</td>
+                                            <td class="inner-box" style="width: 5%;">&nbsp; {{ item.uom }}</td>
+                                            <td class="inner-box" style="width: 7%;">&nbsp;{{ item.fab_color }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.style_no }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.order_qty }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.cutting_qty }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.consumption }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.requard_qty }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.quantity }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; padding-right:10px; padding-top: 15px;">
+                                <span style="font-size: 90%; padding-left: 10px; display: block; text-align: left;"><strong>FABRIC DETAIL : </strong>{{ bill.fabric_detail }}</span><br><br>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <span style="font-size: 90%; padding-left: 20px; display: block; text-align: left;"><strong><br><br><br> Cutting</strong></span> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span style="font-size: 90%; padding-left: 20px; display: block; text-align: left;"><strong><br><br><br> Merchandiser</strong></span> 
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <span style="font-size: 90%; padding-left: 70px; display: block; text-align: left;"><strong><br><br><br> Issued By</strong></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span style="font-size: 90%; padding-left: 100px; display: block; text-align: left;"><strong><br><br><br> Received By</strong></span>
+                                    </div>
+                                </div><br> 
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- <br><br> --><!-- Log on to codeastro.com for more projects -->
+
+        </div>
+
+        <br><br>
+
+        <div class="billwrapper">
+            <button class="center btn btn-primary" onclick="printpage('printArea')">Print</button>
+            <a href="{% url 'fabricr_read' %}" class=" btn center btn-secondary">Go Back</a>
+        </div><br>
+
+    </form>
+
+    <script>
+        function printpage(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }       
+    </script>
+
+{% endblock body %}

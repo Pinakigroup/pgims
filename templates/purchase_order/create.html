@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %} 
-{% block title %}create Store{% endblock title %} 
+{% block title %}create Purchase Order{% endblock title %} 
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
@@ -53,65 +53,48 @@
 
 
                         
-						<form class="row g-3" method="POST">
+						<form class="panel panel-default" method="POST">
 							{% csrf_token %}	
 
-								<div class="col-sm-6">
-									<div class="controls">
-										{{ form.name|as_crispy_field }}
-									</div>
-								</div><br>
+                            <div class="col-sm-12">
+                                <div class="controls">
+                                    {{ form.supplier|as_crispy_field }}
+                                </div>
+                            </div><br>
+        
+                            <div class="col-sm-12">
+                                <div class="controls">
+                                    {{ form.merchandiser|as_crispy_field }}
+                                </div>
+                            </div><br>
+        
+                            <div class="col-sm-12">
+                                <div class="controls">
+                                    {{ form.work_order|as_crispy_field }}
+                                </div>
+                            </div><br>
+        
+                            <div class="col-sm-12">
+                                <div class="controls">
+                                    {{ form.po_date|as_crispy_field }}
+                                </div>
+                            </div><br>
+                            <div class="col-sm-12">
+                                <div class="controls">
+                                    {{ form.file_no|as_crispy_field }}
+                                </div>
+                            </div><br>
+                            <div class="col-sm-12">
+                                <div class="controls">
+                                    {{ form.detail|as_crispy_field }}
+                                </div>
+                            </div><br>
 
-								<div class="col-sm-6">
-									<div class="controls">
-										{{ form.buyer_name|as_crispy_field }}
-									</div>
-								</div><br>
 
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.po_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.order_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.card_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-6">
-									<div class="controls">
-										{{ form.floor|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-6">
-									<div class="controls">
-										{{ form.date|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.fabric_detail|as_crispy_field }}
-									</div>
-								</div><br>
-
-{% comment %} 
-							<div class="form-actions">
+							{% comment %} <div class="form-actions">
 								<button type="submit" class="btn btn-light">Save changes</button>
 								<button type="reset" class="btn">Cancel</button>
 							</div> {% endcomment %}
-
-
-
 
                             <div class="panel panel-default">
             
@@ -122,64 +105,42 @@
                                         <div class="panel-body">
                                         {% for iform in formset %}
                                             <div class="row form-row">
-                                                <div class="form-group col-md-3">
-                                                    {{ iform.stock.errors }}
+                                                <div class="form-group col-md-2">
+                                                    {{ form.stock.errors }}
                                                     <label class="panel-body-text">Stock:</label>
-                                                    {{ iform.stock }}
-                                                </div>
-
-
+                                                    {{ form.stock }}
+                                                </div><!-- Log on to codeastro.com for more projects -->
+            
                                                 <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
                                                     <label class="panel-body-text">UOM:</label>
-                                                    {{ iform.uom }}
+                                                    {{ form.uom }}
                                                 </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Style:</label>
-                                                    {{ iform.style_no }}
+                                                <div class="form-group col-md-1">
+                                                    <label class="panel-body-text">Size:</label>
+                                                    {{ form.size }}
                                                 </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
+                                                <div class="form-group col-md-1">
                                                     <label class="panel-body-text">Color:</label>
-                                                    {{ iform.fab_color }}
+                                                    {{ form.color }}
                                                 </div>
+                                                <div class="form-group col-md-1">
+                                                    <label class="panel-body-text">Style:</label>
+                                                    {{ form.style_no }}
+                                                </div>
+            
                                                 <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Order Qty:</label>
-                                                    {{ iform.order_qty }}
+                                                    <label class="panel-body-text">Unit Price:</label>
+                                                    {{ form.unit_price }}
                                                 </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Cutting Qty:</label>
-                                                    {{ iform.cutting_qty }}
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Consumption:</label>
-                                                    {{ iform.consumption }}
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Req Qty:</label>
-                                                    {{ iform.requard_qty }}
-                                                </div>
-
-
-                                                <div class="form-group col-md-2">
-                                                    <label class="panel-body-text">Price per item:</label>
-                                                    {{ iform.unit_price }}
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.quantity.errors }}
+                                                <div class="form-group col-md-1">
+                                                    {{ form.quantity.errors }}
                                                     <label class="panel-body-text">Quantity:</label>
-                                                    {{ iform.quantity }}
-                                                </div>
-
+                                                    {{ form.quantity }}
+                                                </div><!-- Log on to codeastro.com for more projects -->
                                                 <div class="form-group col-md-2">
                                                     <label class="panel-body-text">Price:</label>
                                                     <input type="text" class="textinput form-control totalprice" value="1" disabled required>
-                                                </div><!-- Log on to codeastro.com for more projects -->
+                                                </div>
                                                 <div class="form-group col-md-1">
                                                     <label class="panel-body-text" style="color: #000">.</label>
                                                     <button class="form-control btn btn-danger remove-form-row">-</button>
@@ -212,12 +173,11 @@
 </div>
 <!--end page wrapper -->
 
-
-
+<!-- Custom JS to add and remove item forms --><!-- Log on to codeastro.com for more projects -->
 <script type="text/javascript" src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dialogbox.js' %}"></script>
 <script type="text/javascript">
-    
+        
     //creates custom alert object
     var custom_alert = new custom_alert();
 
@@ -269,7 +229,7 @@
             }
             total--;
         } else {
-            custom_alert.render('Field cannot be deleted');
+            custom_alert.render("Field cannot be deleted");
         }
         return false;
     }
@@ -287,55 +247,20 @@
     });
 
 
-    //stores pk and quantity of all stocks into a js object 'stocks'
-    var stocks = [
-        {% for stock in stocks %}
-            {% if not forloop.first %},{% endif %}
-            {
-                pk          : {{ stock.pk }},
-                quantity    : {{ stock.quantity }}
-            }
-        {% endfor %}
-    ];
-    
     //updates the total price by multiplying 'price per item' and 'quantity' 
     $(document).on('change', '.setprice', function(e){
         e.preventDefault();
         //gets the values
         var element = $(this);
-        var stock = element.parents('.form-row').find('.stock').val();
         var quantity = element.parents('.form-row').find('.quantity').val();
-        var unit_price = element.parents('.form-row').find('.price').val();
-        //checks if stocks are available
-        stocks.forEach(function(stockSummary, i) {
-            var pk = stocks[i].pk;
-            var squantity = stocks[i].quantity;
-            if(stock == pk) {
-                //checks if ordered stock is more than available stock
-                if(quantity >= squantity){
-                    quantity = quantity - 1;
-                    if(quantity <= 1){
-                        //no stocks are available. Attempts to delete field
-                        custom_alert.render('Stocks are currently unavailable. Field will be removed;');
-                        //Sets quantity to 0 as failsafe for when the total no of item forms are 1
-                        element.parents('.form-row').find('.quantity').val(0);
-                        deleteForm('form', element);
-                    } else {
-                        element.parents('.form-row').find('.quantity').val(squantity-1);
-                        quantity = squantity - 1;
-                        custom_alert.render('Exceeded current stock available');
-                    }
-                }
-            }
-        });     
+        var perprice = element.parents('.form-row').find('.price').val();
         //calculates the total
-        var tprice = quantity * unit_price;
+        var tprice = quantity * perprice;
         //sets it to field
         element.parents('.form-row').find('.totalprice').val(tprice);
         return false;
     });
 
 </script>
-
 
 {% endblock body %}

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'product',
     'merchandiser',
     'supplier',
+    'purchase_order',
     'purchase',
     'store',
     'store_receiver',

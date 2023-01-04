@@ -1,0 +1,254 @@
+{% extends 'base/base.html' %} 
+{% block title %}create Purchase Order{% endblock title %} 
+{% block body %} 
+{% load crispy_forms_tags %}
+{% load static %}		
+
+<!--start page wrapper -->
+<div class="page-wrapper">
+	<div class="page-content">
+		<!--breadcrumb-->
+		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+			<div class="breadcrumb-title pe-3">Forms</div>
+			<div class="ps-3">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-0 p-0">
+						<li class="breadcrumb-item">
+							<a href="#">
+								<i class="bx bx-home-alt"></i>
+							</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Add New Purchase Order</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="ms-auto">
+				<div class="btn-group">
+					<button type="button" class="btn btn-light">Settings</button>
+					<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+						<span class="visually-hidden">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Separated link</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-9 mx-auto">
+				<div class="ms-auto">
+					<a href="{% url 'po_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
+						<i class="bx bx-grid-alt"></i>Purchase Order Table
+					</a>
+				</div>
+
+                <form method="post" class="panel panel-default">  
+                    {% csrf_token %}
+
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.supplier|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.merchandiser|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.work_order|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.po_date|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.file_no|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.detail|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    {{ formset.management_form }}
+
+                    <div class="panel-heading panel-heading-text">
+                        <h1>Product Details</h1>
+                    </div>
+                    
+                        <div id="stockitem"> 
+                            <div class="panel-body">
+                            {% for form in formset %}
+                                <div class="row form-row">
+                                    <div class="form-group col-md-2">
+                                        {{ form.stock.errors }}
+                                        <label class="panel-body-text">Stock:</label>
+                                        {{ form.stock }}
+                                    </div><!-- Log on to codeastro.com for more projects -->
+
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">UOM:</label>
+                                        {{ form.uom }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Size:</label>
+                                        {{ form.size }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Color:</label>
+                                        {{ form.color }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Style:</label>
+                                        {{ form.style_no }}
+                                    </div>
+
+                                    <div class="form-group col-md-2">
+                                        <label class="panel-body-text">Unit Price:</label>
+                                        {{ form.unit_price }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        {{ form.quantity.errors }}
+                                        <label class="panel-body-text">Quantity:</label>
+                                        {{ form.quantity }}
+                                    </div><!-- Log on to codeastro.com for more projects -->
+                                    <div class="form-group col-md-2">
+                                        <label class="panel-body-text">Price:</label>
+                                        <input type="text" class="textinput form-control totalprice" value="1" disabled required>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text" style="color: #000">.</label>
+                                        <button class="form-control btn btn-danger remove-form-row">-</button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                                <div style="text-align: right;">                    
+                                    <a href="#" class="add-form-row">+ Add More</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <br><!-- Log on to codeastro.com for more projects -->
+
+                    <div class="align-middle">
+                        <button type="submit" class="btn btn-success">Add to Purchases</button><br>
+                            {% comment %} <a href="{% url 'select_supplier' %}" class="btn btn-danger">Go Back</a>
+                        <a href="{% url 'purchases_list' %}" class="btn btn-secondary">Cancel</a> {% endcomment %}
+                    </div>
+                    
+                </form><br>
+
+            </div>
+
+
+		</div>
+	<!--end row-->
+	</div>
+</div>
+<!--end page wrapper -->
+
+<!-- Custom JS to add and remove item forms --><!-- Log on to codeastro.com for more projects -->
+<script type="text/javascript" src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/dialogbox.js' %}"></script>
+<script type="text/javascript">
+        
+    //creates custom alert object
+    var custom_alert = new custom_alert();
+
+    function updateElementIndex(el, prefix, ndx) {
+        var id_regex = new RegExp('(' + prefix + '-\\d+)');
+        var replacement = prefix + '-' + ndx;
+        if ($(el).attr("for")) $(el).attr("for", $(el).attr("for").replace(id_regex, replacement));
+        if (el.id) el.id = el.id.replace(id_regex, replacement);
+        if (el.name) el.name = el.name.replace(id_regex, replacement);
+    }
+    
+    //stores the total no of item forms
+    var total = 1;
+
+    function cloneMore(selector, prefix) {
+        var newElement = $(selector).clone(true);
+        //var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
+        newElement.find(':input:not([type=button]):not([type=submit]):not([type=reset])').each(function() {
+            var name = $(this).attr('name')
+            if(name) {
+                name = name.replace('-' + (total-1) + '-', '-' + total + '-');
+                var id = 'id_' + name;
+                $(this).attr({'name': name, 'id': id}).val('').removeAttr('checked');
+            }
+        });
+        newElement.find('label').each(function() {
+            var forValue = $(this).attr('for');
+            if (forValue) {
+            forValue = forValue.replace('-' + (total-1) + '-', '-' + total + '-');
+            $(this).attr({'for': forValue});
+            }
+        });
+        total++;
+        $('#id_' + prefix + '-TOTAL_FORMS').val(total);
+        $(selector).after(newElement);
+        return false;
+    }
+    
+    function deleteForm(prefix, btn) {
+        //var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
+        if (total > 1){
+            btn.closest('.form-row').remove();
+            var forms = $('.form-row');
+            $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
+            for (var i=0, formCount=forms.length; i<formCount; i++) {
+                $(forms.get(i)).find(':input').each(function() {
+                    updateElementIndex(this, prefix, i);
+                });
+            }
+            total--;
+        } else {
+            custom_alert.render("Field cannot be deleted");
+        }
+        return false;
+    }
+    
+    $(document).on('click', '.add-form-row', function(e){
+        e.preventDefault();
+        cloneMore('.form-row:last', 'form');
+        return false;
+    });
+    
+    $(document).on('click', '.remove-form-row', function(e){
+        e.preventDefault();
+        deleteForm('form', $(this));
+        return false;
+    });
+
+
+    //updates the total price by multiplying 'price per item' and 'quantity' 
+    $(document).on('change', '.setprice', function(e){
+        e.preventDefault();
+        //gets the values
+        var element = $(this);
+        var quantity = element.parents('.form-row').find('.quantity').val();
+        var perprice = element.parents('.form-row').find('.price').val();
+        //calculates the total
+        var tprice = quantity * perprice;
+        //sets it to field
+        element.parents('.form-row').find('.totalprice').val(tprice);
+        return false;
+    });
+
+</script>
+
+{% endblock body %}

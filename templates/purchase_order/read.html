@@ -1,0 +1,145 @@
+{% extends 'base/base.html' %}
+{% block title %}read Purchase Order{% endblock title %}
+{% block body %}
+{% load static %}		
+
+        <!--start page wrapper -->
+		<div class="page-wrapper">
+			<div class="page-content">
+				<!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">Tables</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">Purchase Order Table</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-light">Settings</button>
+							<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="#">Something else here</a>
+								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="#">Separated link</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end breadcrumb-->
+
+				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
+					{% csrf_token %}
+									
+
+
+
+                <div class="ms-auto"><a href="/purchase_order/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Purchase Order</a></div>
+				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
+				<hr/>
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example2" class="table table-striped table-bordered">
+								<thead>
+									<tr>
+                                        {% comment %} <th width="10%">Bill No.</th>
+                                        <th width="15%">Supplier</th>
+                                        <th width="15%">Stocks Purchased</th>
+                                        <th width="10%">Quantity Purchased</th>
+                                        <th width="15%">Total Purchased Price</th>
+                                        <th width="10%">Purchased Date</th>
+                                        <th width="25%">Actions</th> {% endcomment %}
+
+										<th>Bill No.</th>
+										<th>Supplier</th>
+                                        <th>Merchandiser</th>
+                                        <th>Work Order</th>
+                                        <th>PO Date</th>
+                                        <th>File No</th>
+                                        <th>Items</th>
+										<th>UOM</th>
+                                        <th>Qty</th>  
+                                        <th>Size</th>
+                                        <th>Style</th>
+                                        <th>Color</th>
+                                        <th>Total Price</th>
+                                        <th>Detail</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for data in bills %}
+									<tr>
+                                        <td> <p>{{ data.billno }}</p> </td>
+                                        {% comment %} <td class=""> {{ data.name }} <br> 
+                                            <small style="color: #909494">Ph No : {{ data.phone }}</small> 
+                                        </td> {% endcomment %}
+                                        <td>{{ data.supplier }}</td>
+                                        <td>{{ data.merchandiser }}</td>
+                                        <td>{{ data.work_order }}</td>
+                                        <td>{{ data.po_date }}</td>
+										<td>{{ data.file_no }}</td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.stock.name }} <br> 
+                                            {% endfor %}
+                                        </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.uom }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.quantity }} <br> 
+                                            {% endfor %}
+                                        </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.size }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.style_no }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.color }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>৳{{ data.get_total_price }}</td>
+                                        <td>{{ data.detail }}</td>
+									   <td class="center">
+										<div class="d-flex order-actions">
+											<a class="" href="{% url 'po_bill' data.billno %}">
+												<i class="fadeIn animated bx bx-show-alt"></i>
+											</a>
+
+											<a class="ms-3" href="{% url 'purchase_delete' data.billno %}" onclick="return confirm('Are you sure?');">
+												<i class='bx bxs-trash'></i>
+											</a>
+										</div>
+									   </td>
+									</tr>
+								 {% endfor %}
+								 {% if not bills %}
+								 <tr>
+									 <td colspan="17" class="text-center">No Data available</td>
+								 </tr>
+								 {% endif %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock body %}

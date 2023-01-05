@@ -54,7 +54,7 @@ class PurchaseCreateView(View):
                 # saves bill item and stock
                 stock.save()
                 billitem.save()
-            messages.success(request, "Purchased items have been registered successfully")
+            messages.success(request, "Purchased items have been create successfully")
             return redirect('po_read')
         form = PurchaseForm(request.GET or None)
         formset = PurchaseItemFormset(request.GET or None)

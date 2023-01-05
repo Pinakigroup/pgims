@@ -48,8 +48,15 @@
 					</form>
 				</div> {% endcomment %}
                 
-                <div class="ms-auto"><a href="/supplier/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Supplier</a></div>
+                <div class="ms-auto"><a href="/supplier/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Supplier</a></div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
+				{% if messages %}
+				{% for message in  messages %}
+					<div class="alert alert-{{message.tags}}" role="alert">
+					{{message}}
+					</div>
+				{% endfor %}
+				{% endif %}
 				<hr/>
 				<div class="card">
 					<div class="card-body">

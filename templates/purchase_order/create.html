@@ -18,7 +18,7 @@
 								<i class="bx bx-home-alt"></i>
 							</a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Add New Sale</li>
+						<li class="breadcrumb-item active" aria-current="page">Add New Purchase Order</li>
 					</ol>
 				</nav>
 			</div>
@@ -38,135 +38,139 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-xl-9 mx-auto">
 				<div class="ms-auto">
-					<a href="{% url 'fabricr_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
-						<i class="bx bx-grid-alt"></i>Store Table
+					<a href="{% url 'po_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
+						<i class="bx bx-grid-alt"></i>Purchase Order Table
 					</a>
 				</div>
 
-				<hr/>
-				<div class="card">
-					<div class="card-body">
+                <form method="POST" class="row g-3 panel panel-default">  
+                    {% csrf_token %}
 
+                    <div class="col-sm-6">
+                        <div class="controls">
+                            {{ form.supplier|as_crispy_field }}
+                        </div>
+                    </div><br>
 
-                        
-						<form class="panel panel-default" method="POST">
-							{% csrf_token %}	
+                    <div class="col-sm-6">
+                        <div class="controls">
+                            {{ form.merchandiser|as_crispy_field }}
+                        </div>
+                    </div><br>
 
-                            <div class="col-sm-12">
-                                <div class="controls">
-                                    {{ form.supplier|as_crispy_field }}
-                                </div>
-                            </div><br>
-        
-                            <div class="col-sm-12">
-                                <div class="controls">
-                                    {{ form.merchandiser|as_crispy_field }}
-                                </div>
-                            </div><br>
-        
-                            <div class="col-sm-12">
-                                <div class="controls">
-                                    {{ form.work_order|as_crispy_field }}
-                                </div>
-                            </div><br>
-        
-                            <div class="col-sm-12">
-                                <div class="controls">
-                                    {{ form.po_date|as_crispy_field }}
-                                </div>
-                            </div><br>
-                            <div class="col-sm-12">
-                                <div class="controls">
-                                    {{ form.file_no|as_crispy_field }}
-                                </div>
-                            </div><br>
-                            <div class="col-sm-12">
-                                <div class="controls">
-                                    {{ form.detail|as_crispy_field }}
-                                </div>
-                            </div><br>
+                    <div class="col-sm-4">
+                        <div class="controls">
+                            {{ form.work_order|as_crispy_field }}
+                        </div>
+                    </div><br>
 
+                    <div class="col-sm-4">
+                        <div class="controls">
+                            {{ form.po_date|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-4">
+                        <div class="controls">
+                            {{ form.file_no|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.detail|as_crispy_field }}
+                        </div>
+                    </div><br>
 
-							{% comment %} <div class="form-actions">
-								<button type="submit" class="btn btn-light">Save changes</button>
-								<button type="reset" class="btn">Cancel</button>
-							</div> {% endcomment %}
+                    {{ formset.management_form }}
 
-                            <div class="panel panel-default">
-            
-                                {{ formset.management_form }}
-                                <h1>Product Details</h1>
-                                
-                                    <div id="stockitem"> 
-                                        <div class="panel-body">
-                                        {% for iform in formset %}
-                                            <div class="row form-row">
-                                                <div class="form-group col-md-2">
-                                                    {{ form.stock.errors }}
-                                                    <label class="panel-body-text">Stock:</label>
-                                                    {{ form.stock }}
-                                                </div><!-- Log on to codeastro.com for more projects -->
-            
-                                                <div class="form-group col-md-1">
-                                                    <label class="panel-body-text">UOM:</label>
-                                                    {{ form.uom }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    <label class="panel-body-text">Size:</label>
-                                                    {{ form.size }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    <label class="panel-body-text">Color:</label>
-                                                    {{ form.color }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    <label class="panel-body-text">Style:</label>
-                                                    {{ form.style_no }}
-                                                </div>
-            
-                                                <div class="form-group col-md-2">
-                                                    <label class="panel-body-text">Unit Price:</label>
-                                                    {{ form.unit_price }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    {{ form.quantity.errors }}
-                                                    <label class="panel-body-text">Quantity:</label>
-                                                    {{ form.quantity }}
-                                                </div><!-- Log on to codeastro.com for more projects -->
-                                                <div class="form-group col-md-2">
-                                                    <label class="panel-body-text">Price:</label>
-                                                    <input type="text" class="textinput form-control totalprice" value="1" disabled required>
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    <label class="panel-body-text" style="color: #000">.</label>
-                                                    <button class="form-control btn btn-danger remove-form-row">-</button>
-                                                </div>
-                                            </div>
-                                        {% endfor %}
-                                            <div style="text-align: right;">                    
-                                                <a href="#" class="add-form-row">+ Add More</a>
-                                            </div>
-                                        </div>
+                    <div class="panel-heading panel-heading-text">
+                        <h1>Product Details</h1>
+                    </div>
+                    
+                        <div id="stockitem"> 
+                            <div class="panel-body">
+                            {% for form in formset %}
+                                <div class="row form-row">
+                                    <div class="form-group col-md-2">
+                                        {{ form.stock.errors }}
+                                        <label class="panel-body-text">Stock:</label>
+                                        {{ form.stock }}
+                                    </div><!-- Log on to codeastro.com for more projects -->
+
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">UOM:</label>
+                                        {{ form.uom }}
                                     </div>
-                    
-                    
-                                <br>
-                    
-                                <div class="align-middle">
-                                    <button type="submit" class="btn btn-success">Add to Store</button>
-                                    {% comment %} <a href="{% url 'sales-list' %}" class="btn btn-secondary">Cancel</a> {% endcomment %}
-                                </div>
-                                
-                            </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Size:</label>
+                                        {{ form.size }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Color:</label>
+                                        {{ form.color }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Style:</label>
+                                        {{ form.style_no }}
+                                    </div>
 
-						</form>
-					</div>
-				</div>
-			</div>
+                                    <div class="form-group col-md-2">
+                                        <label class="panel-body-text">Unit Price:</label>
+                                        {{ form.unit_price }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        {{ form.quantity.errors }}
+                                        <label class="panel-body-text">Quantity:</label>
+                                        {{ form.quantity }}
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label class="panel-body-text">Price:</label>
+                                        <input type="text" class="textinput form-control totalprice" value="1" disabled required>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text" style="color: #000">.</label>
+                                        <button class="form-control btn btn-danger remove-form-row">-</button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                                <div style="text-align: right;">                    
+                                    <a href="#" class="add-form-row">+ Add More</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <br><!-- Log on to codeastro.com for more projects -->
+
+                    <div class="align-middle">
+                        <button type="submit" class="btn btn-success">Add to Purchases</button><br>
+                            {% comment %} <a href="{% url 'select_supplier' %}" class="btn btn-danger">Go Back</a>
+                        <a href="{% url 'purchases_list' %}" class="btn btn-secondary">Cancel</a> {% endcomment %}
+                    </div>
+                    
+                </form><br>
+                {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}										
+                        <div class="alert alert-danger" role="alert">
+                        {{error}}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            {% if messages %}
+                {% for message in  messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                    {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+
+
 		</div>
 	<!--end row-->
 	</div>

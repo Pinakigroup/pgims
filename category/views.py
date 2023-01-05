@@ -45,7 +45,7 @@ def category_update(request, pk):
         form = CategoryForm(request.POST, instance=get_category_data)
         if form.is_valid():
             form.save()
-            # messages.success(request, 'Category updated successfully')
+            messages.success(request, 'Category updated successfully')
             return redirect('category_read')
     context = {
         'form': form
@@ -58,5 +58,5 @@ def category_update(request, pk):
 def category_delete(request, pk):
     get_category = get_object_or_404(Category, pk=pk)
     get_category.delete()
-    # messages.error(request, 'Category deleted successfully')
+    messages.error(request, 'Category deleted successfully')
     return redirect('category_read')

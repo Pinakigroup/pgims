@@ -39,8 +39,15 @@
 
 
 
-                <div class="ms-auto"><a href="/purchase_order/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Purchase Order</a></div>
+                <div class="ms-auto"><a href="/purchase_order/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Purchase Order</a></div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
+				{% if messages %}
+				{% for message in  messages %}
+					<div class="alert alert-{{message.tags}}" role="alert">
+					{{message}}
+					</div>
+				{% endfor %}
+				{% endif %}
 				<hr/>
 				<div class="card">
 					<div class="card-body">
@@ -63,11 +70,11 @@
                                         <th>PO Date</th>
                                         <th>File No</th>
                                         <th>Items</th>
-										<th>UOM</th>
-                                        <th>Qty</th>  
                                         <th>Size</th>
                                         <th>Style</th>
                                         <th>Color</th>
+										<th>UOM</th>
+                                        <th>Qty</th>  
                                         <th>Total Price</th>
                                         <th>Detail</th>
 										<th>Actions</th>
@@ -92,16 +99,6 @@
                                         </td>
 										<td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.uom }} <br> 
-                                            {% endfor %}
-                                        </td>
-                                        <td>
-                                            {% for item in data.get_items_list %} 
-                                                {{ item.quantity }} <br> 
-                                            {% endfor %}
-                                        </td>
-										<td>
-                                            {% for item in data.get_items_list %} 
                                                 {{ item.size }} <br> 
                                             {% endfor %}
                                         </td>
@@ -115,6 +112,16 @@
                                                 {{ item.color }} <br> 
                                             {% endfor %}
                                         </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.uom }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.quantity }} <br> 
+                                            {% endfor %}
+                                        </td>
                                         <td>৳{{ data.get_total_price }}</td>
                                         <td>{{ data.detail }}</td>
 									   <td class="center">
@@ -123,7 +130,7 @@
 												<i class="fadeIn animated bx bx-show-alt"></i>
 											</a>
 
-											<a class="ms-3" href="{% url 'purchase_delete' data.billno %}" onclick="return confirm('Are you sure?');">
+											<a class="ms-3" href="#" onclick="return confirm('Are you sure?');">
 												<i class='bx bxs-trash'></i>
 											</a>
 										</div>

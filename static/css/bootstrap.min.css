@@ -4202,12 +4202,18 @@ textarea.form-control-lg{
     color:#34383c
 }
 .alert-success{
-    --bs-alert-color:#0f5132;
-    --bs-alert-bg:#d1e7dd;
-    --bs-alert-border-color:#badbcc
+    --bs-alert-color: #000000;
+    --bs-alert-bg: #e4ffdd;
+    --bs-alert-border-color: #0c9619;
 }
+.alert-error{
+    --bs-alert-color: #000000;
+    --bs-alert-bg: #ffcac3;
+    --bs-alert-border-color: #f75840;
+}
+
 .alert-success .alert-link{
-    color:#0c4128
+    color:#eaffe1
 }
 .alert-info{
     --bs-alert-color:#055160;

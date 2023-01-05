@@ -56,6 +56,6 @@ def merchandiser_update(request, pk):
 def merchandiser_delete(request, pk):
     get_merchandiser = get_object_or_404(Merchandiser, pk=pk)
     get_merchandiser.delete()
-    messages.error(request, 'Merchandiser delete successfully')
+    messages.error(request, 'Merchandiser deleted successfully')
     return redirect('merchandiser_read')
     

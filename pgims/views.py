@@ -4,7 +4,7 @@ from category.models import Category
 from product.models import Product
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
-from purchase.models import Purchase
+from purchase_order.models import PurchaseItem
 from stock.models import Stock
 from store.models import StoreBill, StoreItem
 from accounts.decorators import allowed_users, admin_only
@@ -19,7 +19,7 @@ def home(request):
     total_product = Product.objects.count()
     total_merchandiser = Merchandiser.objects.count()
     total_supplier = Supplier.objects.count()
-    total_purchase = Purchase.objects.count()
+    total_purchase = PurchaseItem.objects.count()
     total_stock = Stock.objects.count()
     stocks = Stock.objects.all().order_by('-id')
     
@@ -28,7 +28,7 @@ def home(request):
         'description': total_product,
         'office_id': total_merchandiser,
         'supplier_name': total_supplier,
-        'style_detail': total_purchase,
+        'stock': total_purchase,
         'billno': total_stock,
         'stocks': stocks
     }

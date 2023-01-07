@@ -25,13 +25,11 @@ urlpatterns = [
         
     path('category/', include('category.urls')),
     path('stock/', include('stock.urls')),
-    path('product/', include('product.urls')),
     path('merchandiser/', include('merchandiser.urls')),
     path('supplier/', include('supplier.urls')),
     path('purchase_order/', include('purchase_order.urls')),
     path('store/', include('store.urls')),
     path('store_receiver/', include('store_receiver.urls')),
-    path('store_requisition/', include('store_requisition.urls')),
     path('fabric_requi/', include('fabric_requi.urls')),
     path('acces_requisition/', include('acces_requisition.urls')),
     path('accounts/', include('accounts.urls')),

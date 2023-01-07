@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from category.models import Category
-from product.models import Product
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from purchase_order.models import PurchaseItem
@@ -16,7 +15,6 @@ from accounts.decorators import allowed_users, admin_only
 @allowed_users(allowed_roles=['admin', 'merchandiser'])
 def home(request):
     total_category = Category.objects.count()
-    total_product = Product.objects.count()
     total_merchandiser = Merchandiser.objects.count()
     total_supplier = Supplier.objects.count()
     total_purchase = PurchaseItem.objects.count()
@@ -25,7 +23,6 @@ def home(request):
     
     context = {
         'name': total_category,
-        'description': total_product,
         'office_id': total_merchandiser,
         'supplier_name': total_supplier,
         'stock': total_purchase,

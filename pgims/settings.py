@@ -44,13 +44,11 @@ INSTALLED_APPS = [
     # app 
     'stock',
     'category',
-    'product',
     'merchandiser',
     'supplier',
     'purchase_order',
     'store',
     'store_receiver',
-    'store_requisition',
     'fabric_requi',
     'accounts',
     'acces_requisition',

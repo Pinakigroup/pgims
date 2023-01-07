@@ -48,7 +48,7 @@ class FabricRequiCreateView(View):
                 # saves bill item and stock
                 stock.save()
                 billitem.save()
-            messages.success(request, "Fabric Requisition items have been registered successfully")
+            messages.success(request, "Sold items have been registered successfully")
             return redirect('fabricr_read')
         form = FabricRForm(request.GET or None)
         formset = FabricRItemForm(request.GET or None)

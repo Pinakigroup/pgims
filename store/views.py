@@ -54,7 +54,7 @@ class StoreCreateView(View):
                 # saves bill item and stock
                 stock.save()
                 billitem.save()
-            messages.success(request, "Purchased items have been registered successfully")
+            messages.success(request, "Store items have been registered successfully")
             return redirect('store_read')
         form = StoreForm(request.GET or None)
         formset = StoreItemFormset(request.GET or None)

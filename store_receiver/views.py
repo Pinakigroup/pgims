@@ -44,7 +44,7 @@ def storeRec_update(request, pk):
         form = StoreReceiverForm(request.POST, instance=get_storeRec_data)
         if form.is_valid():
             form.save()
-            # messages.success(request, 'Store Receiver updated successfully')
+            messages.success(request, 'Store Receiver updated successfully')
             return redirect('storeRec_read')
     context = {
         'form': form
@@ -57,5 +57,5 @@ def storeRec_update(request, pk):
 def storeRec_delete(request, pk):
     get_storeRec = get_object_or_404(StoreReceiver, pk=pk)
     get_storeRec.delete()
-    # messages.error(request, 'Store Receiver deleted successfully')
+    messages.error(request, 'Store Receiver deleted successfully')
     return redirect('storeRec_read')

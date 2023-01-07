@@ -45,6 +45,7 @@
 						<i class="bx bx-grid-alt"></i>Store Table
 					</a>
 				</div>
+                <hr/>
 
                 <form method="POST" class="row g-3 panel panel-default">  
                     {% csrf_token %}
@@ -178,9 +179,25 @@
                     </div>
                     
                 </form><br>
+                {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}										
+                        <div class="alert alert-danger" role="alert">
+                        {{error}}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
 
+            {% if messages %}
+                {% for message in  messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                    {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
             </div>
-
+            </div>
 
 		</div>
 	<!--end row-->

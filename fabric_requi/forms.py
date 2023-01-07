@@ -24,6 +24,22 @@ class FabricRForm(forms.ModelForm):
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'fabric_detail' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
         }
+        labels = {
+            'buyer_name': 'Buyer Name',
+            'po_no': 'PO No',
+            'order_no': 'Order No',
+            'card_no': 'Card No',
+            'file_no': 'File No',
+            'lot_no': 'Lot No',
+            'product_item': 'Product Name',
+            'fabric_color': 'Fabric Color',
+            'fabric_detail': 'Fabric Detail',
+            'store_location': 'Location',
+            'order_qty': 'Order Qty',
+            'receive_qty': 'Receive Qty',
+            'uom': 'UOM',
+            'unit_price': 'Uprice',
+        }
 
 
 class FabricRItemForm(forms.ModelForm):

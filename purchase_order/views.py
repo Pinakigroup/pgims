@@ -126,5 +126,5 @@ class PurchaseDeleteView(SuccessMessageMixin, DeleteView):
             if stock.is_deleted == False:
                 # stock.quantity += item.quantity
                 stock.save()
-        messages.success(self.request, "Purchase bill has been deleted successfully")
+        messages.success(self.request, "Purchase Order has been deleted successfully")
         return super(PurchaseDeleteView, self).delete(*args, **kwargs)

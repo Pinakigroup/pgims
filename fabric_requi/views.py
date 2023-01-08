@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from stock.models import Stock
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import FabricRequisitionBill, FabricRequisitionBillDetails, FabricRequisitionItem
 from .forms import FabricRDetailsForm, FabricRItemFormset, FabricRForm, FabricRItemForm
 from django.views.generic import (
     View, 
     ListView,
+    DeleteView,
 )
 
 # Create your views here
@@ -99,3 +101,21 @@ class FabricRequiBillView(View):
             'billdetails'   : FabricRequisitionBillDetails.objects.get(billno=billno),
         }
         return render(request, self.template_name, context)
+    
+    
+
+class FabricRequiDeleteView(SuccessMessageMixin, DeleteView):
+    model = FabricRequisitionBill
+    template_name = "fabric_requi/delete.html"
+    success_url = '/fabric_requi'
+    
+    def delete(self, *args, **kwargs):
+        self.object = self.get_object()
+        items = FabricRequisitionItem.objects.filter(billno=self.object.billno)
+        for item in items:
+            stock = get_object_or_404(Stock, name=item.stock.name)
+            if stock.is_deleted == False:
+                stock.quantity += item.quantity
+                stock.save()
+        messages.success(self.request, "Fabric items has been deleted successfully")
+        return super(FabricRequiDeleteView, self).delete(*args, **kwargs)

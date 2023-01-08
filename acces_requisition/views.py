@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from stock.models import Stock
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import AccesRequisitionBill, AccesRequisitionBillDetails, AccesRequisitionItem
 from .forms import AccesRDetailsForm, AccesRItemFormset, AccesRForm, AccesRItemForm
 from django.views.generic import (
     View, 
     ListView,
+    DeleteView,
 )
 # Create your views here.
 
@@ -99,3 +101,20 @@ class AccesRBillView(View):
             'billdetails'   : AccesRequisitionBillDetails.objects.get(billno=billno),
         }
         return render(request, self.template_name, context)
+    
+
+class AccesRDeleteView(SuccessMessageMixin, DeleteView):
+    model = AccesRequisitionBill
+    template_name = "acces_requisition/delete.html"
+    success_url = '/acces_requisition'
+    
+    def delete(self, *args, **kwargs):
+        self.object = self.get_object()
+        items = AccesRequisitionItem.objects.filter(billno=self.object.billno)
+        for item in items:
+            stock = get_object_or_404(Stock, name=item.stock.name)
+            if stock.is_deleted == False:
+                stock.quantity += item.quantity
+                stock.save()
+        messages.success(self.request, "Accessories items has been deleted successfully")
+        return super(AccesRDeleteView, self).delete(*args, **kwargs)

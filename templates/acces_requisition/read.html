@@ -78,7 +78,7 @@
                                         <th width="25%">Actions</th> {% endcomment %}
 
 										<th>Bill No.</th>
-										<th>Customer</th>
+										<th>Line Man</th>
                                         <th>Items</th>
                                         <th>Sold Qty</th>
                                         <th>Total Price</th>
@@ -91,7 +91,6 @@
 									<tr>
                                         <td> <p>{{ data.billno }}</p> </td>
                                         <td class=""> {{ data.name }} <br> 
-                                            <small style="color: #909494">Ph No : {{ data.phone }}</small> 
                                         </td>
                                         <td>
                                             {% for item in data.get_items_list %} 

@@ -7,4 +7,5 @@ urlpatterns = [
     path('create/', views.StoreCreateView.as_view(), name='create'),
     path('', views.StoreView.as_view(), name='store_read'),
     path("bill/<billno>", views.StoreBillView.as_view(), name="store_bill"),
+    path('delete/<int:pk>/', views.StoreDeleteView.as_view(), name='store_delete'),
 ]

@@ -11,7 +11,7 @@ File: app.css
   - General
   - Sidebar
   - Header
-  - Metismenu
+  - Metismenu.chart-container1
   - Extra CSS
   - Invoice Page
   - Chat box
@@ -2894,7 +2894,8 @@ height: 100vh;
 
 	position: relative;
 
-	height: 340px
+	height: 340px;
+	background-color: rgb(124, 124, 124);
 
 }
 

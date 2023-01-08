@@ -113,18 +113,18 @@ class StoreBillView(View):
         }
         return render(request, self.template_name, context)
     
-# class PurchaseDeleteView(SuccessMessageMixin, DeleteView):
-#     model = PurchasesBill
-#     # template_name = "purchases/delete_purchase.html"
-#     success_url = '/purchases'
+class StoreDeleteView(SuccessMessageMixin, DeleteView):
+    model = StoreBill
+    template_name = "store/delete.html"
+    success_url = '/store'
     
-#     def delete(self, *args, **kwargs):
-#         self.object = self.get_object()
-#         items = PurchasesItem.objects.filter(billno=self.object.billno)
-#         for item in items:
-#             stock = get_object_or_404(Stock, name=item.stock.name)
-#             if stock.is_deleted == False:
-#                 stock.quantity -= item.quantity
-#                 stock.save()
-#         messages.success(self.request, "Purchase bill has been deleted successfully")
-#         return super(PurchaseDeleteView, self).delete(*args, **kwargs)
+    def delete(self, *args, **kwargs):
+        self.object = self.get_object()
+        items = StoreItem.objects.filter(billno=self.object.billno)
+        for item in items:
+            stock = get_object_or_404(Stock, name=item.stock.name)
+            if stock.is_deleted == False:
+                stock.quantity -= item.quantity
+                stock.save()
+        messages.success(self.request, "Purchase bill has been deleted successfully")
+        return super(StoreDeleteView, self).delete(*args, **kwargs)

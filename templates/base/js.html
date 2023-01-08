@@ -9,6 +9,9 @@
 <script src="{% static 'plugins/apexcharts-bundle/js/apexcharts.min.js' %}"></script>
 <script src="{% static 'plugins/datatable/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'plugins/datatable/js/dataTables.bootstrap5.min.js' %}"></script>
+
+<script src="{% static 'plugins/chartjs/js/Chart.min.js' %}"></script>
+<script src="{% static 'plugins/chartjs/js/chartjs-custom.js' %}"></script>
 <script>
     $(document).ready(function() {
         $('#Transaction-History').DataTable({
@@ -18,15 +21,11 @@
 </script>
 <script src="{% static 'js/index.js' %}"></script>
 <!--app JS-->
-<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>  
 <script>
     new PerfectScrollbar('.product-list');
     new PerfectScrollbar('.customers-list');
 </script>
-
-
-
-
 
 <script>
 	  

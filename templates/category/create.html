@@ -60,15 +60,15 @@
 								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
 												    {{ form.name|as_crispy_field }}
-											    </div>
-								</div>
+									</div>
+								</div><br>
 							</div>
 							<br>
 							</div>
-							<div class="form-actions">
-								<button type="submit" class="btn btn-light">Save changes</button>
+							<div class="form-actions" style="padding-left: 15px;">
+								<button type="submit" class="btn btn-success">Save changes</button>
 								<button type="reset" class="btn">Cancel</button>
-							</div>
+							</div><br>
 						</form>
 								{% if form.errors %}
 								{% for field in form %}

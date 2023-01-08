@@ -1735,7 +1735,7 @@ progress{
     color:#212529;
     background-color:#fff;
     background-clip:padding-box;
-    border:1px solid #ced4da;
+    border:1px solid #121213;
     -webkit-appearance:none;
     -moz-appearance:none;
     appearance:none;
@@ -1754,7 +1754,7 @@ progress{
     cursor:pointer
 }
 .form-control:focus{
-    color:#212529;
+    color:#000;
     background-color:#fff;
     border-color:#86b7fe;
     outline:0;
@@ -1764,7 +1764,7 @@ progress{
     height:1.5em
 }
 .form-control::-moz-placeholder{
-    color:#6c757d;
+    color:#000;
     opacity:1
 }
 .form-control::placeholder{
@@ -1780,7 +1780,7 @@ progress{
     margin:-.375rem -.75rem;
     -webkit-margin-end:.75rem;
     margin-inline-end:.75rem;
-    color:#212529;
+    color:#000000;
     background-color:#e9ecef;
     pointer-events:none;
     border-color:inherit;

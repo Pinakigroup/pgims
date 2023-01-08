@@ -17,6 +17,7 @@ def home(request):
     total_category = Category.objects.count()
     total_merchandiser = Merchandiser.objects.count()
     total_supplier = Supplier.objects.count()
+    total_store = StoreBill.objects.count()
     total_purchase = PurchaseItem.objects.count()
     total_stock = Stock.objects.count()
     stocks = Stock.objects.all().order_by('-id')
@@ -26,6 +27,7 @@ def home(request):
         'office_id': total_merchandiser,
         'supplier_name': total_supplier,
         'stock': total_purchase,
+        'billno': total_store,
         'billno': total_stock,
         'stocks': stocks
     }

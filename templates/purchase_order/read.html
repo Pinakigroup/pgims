@@ -129,8 +129,7 @@
 											<a class="" href="{% url 'po_bill' data.billno %}">
 												<i class="fadeIn animated bx bx-show-alt"></i>
 											</a>
-
-											<a class="ms-3" href="#" onclick="return confirm('Are you sure?');">
+											<a class="ms-3" href="{% url 'po_delete' data.billno %}">
 												<i class='bx bxs-trash'></i>
 											</a>
 										</div>

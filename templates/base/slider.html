@@ -24,7 +24,7 @@
 				</li>
 				
 				{% for group in user.groups.all %}
-					{% if group.name == "merchandiser" %}
+				{% if group.name == "merchandiser" %}
 						<li>
 							<a href="{% url 'merchandiser_read' %}">
 								<div class="parent-icon"><i class='bx bx-cookie'></i>
@@ -34,18 +34,16 @@
 						</li>
 						<li>
 							<a href="/supplier/create/">
-								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								<div class="parent-icon"><i class='lni lni-cart-full'></i>
 								</div>
 								<div class="menu-title">Supplier</div>
 							</a>
 						</li>
 
-
-
 					{% elif group.name == "store" %}
 						<li>
 							<a href="{% url 'category_read' %}">
-								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								<div class="parent-icon"><i class='bx bx-grid-alt'></i>
 								</div>
 								<div class="menu-title">Category</div>
 							</a>
@@ -59,14 +57,14 @@
 						</li>
 						<li>
 							<a href="{% url 'po_read' %}">
-								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								<div class="parent-icon"><i class='bx bx-cart'></i>
 								</div>
 								<div class="menu-title">Purchase Order</div>
 							</a>
 						</li>
 						<li>
 							<a href="{% url 'store_read' %}">
-								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								<div class="parent-icon"><i class='bx bx-cart'></i>
 								</div>
 								<div class="menu-title">Store</div>
 							</a>
@@ -80,7 +78,7 @@
 						</li>
 						<li>
 							<a href="javascript:;" class="has-arrow">
-								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								<div class="parent-icon"><i class='lni lni-spiner-solid'></i>
 								</div>
 								<div class="menu-title">Requisition</div>
 							</a>
@@ -95,7 +93,72 @@
 
 
 					{% else %}
-						Do This {{group}}
+					<li>
+						<a href="{% url 'category_read' %}">
+							<div class="parent-icon"><i class='bx bx-grid-alt'></i>
+							</div>
+							<div class="menu-title">Category</div>
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'stock_read' %}">
+							<div class="parent-icon"><i class='bx bx-cookie'></i>
+							</div>
+							<div class="menu-title">Stock</div>
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'po_read' %}">
+							<div class="parent-icon"><i class='bx bx-cart'></i>
+							</div>
+							<div class="menu-title">Purchase Order</div>
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'store_read' %}">
+							<div class="parent-icon"><i class='bx bx-cart'></i>
+							</div>
+							<div class="menu-title">Store</div>
+						</a>
+					</li>
+						<li>
+							<a href="{% url 'storeRec_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Store Receiver</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="has-arrow">
+								<div class="parent-icon"><i class='lni lni-spiner-solid'></i>
+								</div>
+								<div class="menu-title">Requisition</div>
+							</a>
+							<ul>
+								<li> <a href="{% url 'fabricr_read' %}"><i class="bx bx-right-arrow-alt"></i>Fabric Requisition</a>
+								</li>
+								<li> <a href="{% url 'ar_read' %}"><i class="bx bx-right-arrow-alt"></i>Access Requisition</a>
+								</li>
+							</ul>
+						</li>
+					<li>
+
+
+						<li>
+							<a href="{% url 'merchandiser_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Merchandiser</div>
+							</a>
+						</li>
+						<li>
+							<a href="/supplier/create/">
+								<div class="parent-icon"><i class='lni lni-cart-full'></i>
+								</div>
+								<div class="menu-title">Supplier</div>
+							</a>
+						</li>
+
 					{% endif %}
 
 				{% endfor %}

@@ -22,88 +22,85 @@
 						<div class="menu-title">Dashboard</div>
 					</a>
 				</li>
-				<li>
-					<a href="{% url 'category_read' %}">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Category</div>
-					</a>
-				</li>
-				<li>
-					<a href="{% url 'stock_read' %}">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Stock</div>
-					</a>
-				</li>
-
-				{% comment %} {% if request.user|has_group:"admin", "merchandiser" %} {% endcomment %}
-
-				<li>
-					<a href="{% url 'merchandiser_read' %}">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Merchandiser</div>
-					</a>
-				</li>
-				<li>
-					<a href="/supplier/create/">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Supplier</div>
-					</a>
-				</li>
-				<li>
-					<a href="{% url 'po_read' %}">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Purchase Order</div>
-					</a>
-				</li>
-				{% comment %} {% endif %} {% endcomment %}
-
-				{% comment %} {% for group in user.groups %}
-					{{ group.name }}
-					{% endfor %} {% endcomment %}
-{% comment %} 
-				{% if request.user|group:"store", "admin"%} {% endcomment %}
-
-				<li>
-					<a href="{% url 'store_read' %}">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Store</div>
-					</a>
-				</li>
-				<li>
-					<a href="{% url 'storeRec_read' %}">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Store Receiver</div>
-					</a>
-				</li>
-				{% comment %} <li>
-					<a href="{% url 'storeRequis_read' %}">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">StoreRequisition</div>
-					</a>
-				</li> {% endcomment %}
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Requisition</div>
-					</a>
-					<ul>
-						<li> <a href="{% url 'fabricr_read' %}"><i class="bx bx-right-arrow-alt"></i>Fabric Requisition</a>
+				
+				{% for group in user.groups.all %}
+					{% if group.name == "merchandiser" %}
+						<li>
+							<a href="{% url 'merchandiser_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Merchandiser</div>
+							</a>
 						</li>
-						<li> <a href="{% url 'ar_read' %}"><i class="bx bx-right-arrow-alt"></i>Access Requisition</a>
+						<li>
+							<a href="/supplier/create/">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Supplier</div>
+							</a>
 						</li>
-					</ul>
-				</li>
-				<li>
+
+
+
+					{% elif group.name == "store" %}
+						<li>
+							<a href="{% url 'category_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Category</div>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'stock_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Stock</div>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'po_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Purchase Order</div>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'store_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Store</div>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'storeRec_read' %}">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Store Receiver</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="has-arrow">
+								<div class="parent-icon"><i class='bx bx-cookie'></i>
+								</div>
+								<div class="menu-title">Requisition</div>
+							</a>
+							<ul>
+								<li> <a href="{% url 'fabricr_read' %}"><i class="bx bx-right-arrow-alt"></i>Fabric Requisition</a>
+								</li>
+								<li> <a href="{% url 'ar_read' %}"><i class="bx bx-right-arrow-alt"></i>Access Requisition</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+
+
+					{% else %}
+						Do This {{group}}
+					{% endif %}
+
+				{% endfor %}
+
+
 
 				{% comment %} {% endif %} {% endcomment %}
 					

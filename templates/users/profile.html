@@ -45,11 +45,10 @@
 												<p class="mb-1">{{user.designation}}</p>
 												<p>
 													{% for group in user.groups.all %}
-														{{group}}
+														Groups: {{group}}
 														{% if not forloop.last %},
 														{% endif %}
 													{% endfor %}
-
 												</p>
 												{% comment %} <p class="font-size-sm">Bay Area, San Francisco, CA</p>
 												<button class="btn btn-light">Follow</button>

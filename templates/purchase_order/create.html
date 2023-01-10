@@ -46,6 +46,8 @@
 					</a>
 				</div><br>
                 <hr/>
+        <div class="card">
+			<div class="card-body">
 
                 <form method="POST" class="row g-3 panel panel-default">  
                     {% csrf_token %}
@@ -151,6 +153,8 @@
                     </div>
                     
                 </form><br>
+            </div>
+        </div>
                 {% if form.errors %}
                 {% for field in form %}
                     {% for error in field.errors %}										

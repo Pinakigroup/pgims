@@ -9,8 +9,13 @@ from django.views.generic import (
     ListView,
     DeleteView,
 )
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 # Create your views here.
 
+# Create
+@login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 class AccesRCreateView(View):                                                      
     template_name = 'acces_requisition/create.html'
 
@@ -59,13 +64,19 @@ class AccesRCreateView(View):
         }
         return render(request, self.template_name, context)
     
+    
+# Read
+# @login_required
+# @allowed_users(allowed_roles=['admin', 'store'])
 class AccesRView(ListView):
     model = AccesRequisitionBill 
     template_name = 'acces_requisition/read.html'
     context_object_name = 'bills'
     ordering = ['-time']
 
-
+# Show Bill
+@login_required
+@allowed_users(allowed_roles=['admin', 'store'])
 class AccesRBillView(View):
     model = AccesRequisitionBill
     template_name = "bill/ar_bill.html"
@@ -102,7 +113,10 @@ class AccesRBillView(View):
         }
         return render(request, self.template_name, context)
     
-
+# Delete     
+@login_required
+@allowed_users(allowed_roles=['admin'])   
+# AttributeError: 'function' object has no attribute 'as_view'  -->> solution:  Since, this view is a clasbase view . goto--->> urls.py/ and .as_view() (remove)
 class AccesRDeleteView(SuccessMessageMixin, DeleteView):
     model = AccesRequisitionBill
     template_name = "acces_requisition/delete.html"

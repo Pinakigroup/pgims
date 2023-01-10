@@ -53,21 +53,21 @@
                                 <tbody>
                                     <tr>
                                         <td class="inner-box" style="width: 2%; font-weight: bold; text-align: center;">&nbsp;SL</td>
-                                        <td class="inner-box" style="width: 25%; font-weight: bold; text-align: center;">ITEMS</td>
-                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">SIZE</td>
+                                        <td class="inner-box" style="width: 35%; font-weight: bold; text-align: center;">ITEMS</td>
+                                        <td class="inner-box" style="width: 5%; font-weight: bold; text-align: center;">SIZE</td>
                                         <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">COLOR</td>
-                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">UOM</td>
                                         <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">QUANTITY</td>
+                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">UOM</td>
                                         <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">TOTAL PRICE</td>
                                     </tr>
                                     {% for item in items %}
                                         <tr style="height: auto;">
-                                            <td class="inner-box" style="width: 3%;">&nbsp; {{ forloop.counter }}</td>
-                                            <td class="inner-box" style="width: 25%;">&nbsp; {{ item.stock.name }}</td>
-                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.size }}</td>
+                                            <td class="inner-box" style="width: 2%;">&nbsp; {{ forloop.counter }}</td>
+                                            <td class="inner-box" style="width: 35%;">&nbsp; {{ item.stock.name }}</td>
+                                            <td class="inner-box" style="width: 5%;">&nbsp; {{ item.size }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.color }}</td>
-                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.uom }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.quantity }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.uom }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.totalprice }}</td>
                                         </tr>
                                     {% endfor %}

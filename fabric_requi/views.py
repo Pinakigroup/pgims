@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from stock.models import Stock
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import FabricRequisitionBill, FabricRequisitionBillDetails, FabricRequisitionItem
 from .forms import FabricRDetailsForm, FabricRItemFormset, FabricRForm, FabricRItemForm
-from django.views.generic import (
-    View, 
-    ListView,
-    DeleteView,
-)
+from django.views.generic import (View, ListView, DeleteView,)
 
 # Create your views here
 

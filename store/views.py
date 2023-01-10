@@ -7,10 +7,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     View, 
     ListView,
-    CreateView,
-    UpdateView,
     DeleteView
 )
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 # Create your views here.
 
 # used to generate a bill object and save items

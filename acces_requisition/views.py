@@ -14,8 +14,8 @@ from accounts.decorators import allowed_users
 # Create your views here.
 
 # Create
-@login_required
-@allowed_users(allowed_roles=['admin', 'store'])
+# @login_required
+# @allowed_users(allowed_roles=['admin', 'store'])
 class AccesRCreateView(View):                                                      
     template_name = 'acces_requisition/create.html'
 
@@ -75,8 +75,8 @@ class AccesRView(ListView):
     ordering = ['-time']
 
 # Show Bill
-@login_required
-@allowed_users(allowed_roles=['admin', 'store'])
+# @login_required
+# @allowed_users(allowed_roles=['admin', 'store'])
 class AccesRBillView(View):
     model = AccesRequisitionBill
     template_name = "bill/ar_bill.html"
@@ -114,8 +114,8 @@ class AccesRBillView(View):
         return render(request, self.template_name, context)
     
 # Delete     
-@login_required
-@allowed_users(allowed_roles=['admin'])   
+# @login_required
+# @allowed_users(allowed_roles=['admin'])   
 # AttributeError: 'function' object has no attribute 'as_view'  -->> solution:  Since, this view is a clasbase view . goto--->> urls.py/ and .as_view() (remove)
 class AccesRDeleteView(SuccessMessageMixin, DeleteView):
     model = AccesRequisitionBill

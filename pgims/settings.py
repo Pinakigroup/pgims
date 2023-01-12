@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third party app
     'crispy_forms',
+    'djrichtextfield',
     # app 
     'stock',
     'category',

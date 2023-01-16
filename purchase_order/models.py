@@ -3,6 +3,8 @@ from django.utils.timezone import now
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from stock.models import Stock
+import datetime
+
 # Create your models here.
 
 
@@ -15,6 +17,8 @@ class PurchaseBill(models.Model):
     merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
     work_order = models.CharField(max_length=32, null=True, blank=True)
     po_date = models.DateField(default= now)
+    
+    po_no = models.CharField(max_length=32, null=True, blank=False)
     file_no = models.CharField(max_length=64, null=True, blank=True, unique=True)
     detail = models.TextField()
     
@@ -31,7 +35,10 @@ class PurchaseBill(models.Model):
         for item in purchaseitems:
             total = total + item.totalprice
         return total
-
+    
+    
+    
+    
 #contains the purchase stocks made
 class PurchaseItem(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete = models.CASCADE, related_name='purchasebillno')

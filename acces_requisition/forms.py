@@ -34,10 +34,13 @@ class AccesRItemForm(forms.ModelForm):
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
+        self.fields['uom'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['acces_color'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
+        
     class Meta:
         model = AccesRequisitionItem
-        fields = ['stock', 'quantity', 'unit_price', 'size']
+        fields = ['stock', 'quantity', 'unit_price', 'uom', 'acces_color', 'size']
 
 # formset used to render multiple 'AccesRequisitionItemForm'
 AccesRItemFormset = formset_factory(AccesRItemForm, extra=1)

@@ -42,6 +42,21 @@ class AccesRequisitionItem(models.Model):
     quantity = models.IntegerField(default=1)
     unit_price = models.IntegerField(default=1)
     totalprice = models.IntegerField(default=1)
+    UOM = (
+        ('', 'Select'),
+        ('kg', 'kg'),
+        ('miter', 'miter'),
+        ('yard', 'yard'),
+        ('pcs', 'pcs'),
+        ('pound', 'pound'),
+        ('g', 'g'),
+        ('gg', 'gg'),
+        ('litre', 'litre'),
+        ('dg', 'dg'),
+        ('1000 pcs', '1000 pcs'),
+    )
+    uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
+    acces_color = models.CharField(max_length=64, blank=True, null=True)
     size = models.CharField(max_length=64, null=True, unique=True, blank=True)
 
     def __str__(self):

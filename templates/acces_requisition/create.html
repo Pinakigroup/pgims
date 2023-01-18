@@ -55,13 +55,13 @@
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
 
-								<div class="col-sm-12">
+								<div class="col-sm-6">
 									<div class="controls">
 										{{ form.name|as_crispy_field }}
 									</div>
 								</div><br>
 
-								<div class="col-sm-12">
+								<div class="col-sm-6">
 									<div class="controls">
 										{{ form.sr_designation|as_crispy_field }}
 									</div>
@@ -122,10 +122,20 @@
                                         <div class="panel-body">
                                         {% for iform in formset %}
                                             <div class="row form-row">
-                                                <div class="form-group col-md-5">
+                                                <div class="form-group col-md-3">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Stock:</label>
                                                     {{ iform.stock }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Unit:</label>
+                                                    {{ iform.uom }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Color:</label>
+                                                    {{ iform.acces_color }}
                                                 </div>
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}

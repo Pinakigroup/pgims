@@ -80,6 +80,8 @@
 										<th>Bill No.</th>
 										<th>Line Man</th>
                                         <th>Items</th>
+										<th>Unit</th>
+										<th>Color</th>
                                         <th>Sold Qty</th>
                                         <th>Total Price</th>
                                         <th>Sale Date</th>
@@ -95,6 +97,21 @@
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 
+                                            {% endfor %}
+                                        </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.uom }} <br> 
+                                            {% endfor %}
+                                        </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.acces_color }} <br> 
+                                            {% endfor %}
+                                        </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.size }} <br> 
                                             {% endfor %}
                                         </td>
                                         <td>

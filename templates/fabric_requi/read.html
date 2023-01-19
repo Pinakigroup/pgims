@@ -88,7 +88,7 @@
                                         <th>UOM</th>
 										<th>Style</th>
 										<th>Color</th>
-                                        <th>Qty</th>
+                                        <th>Supply Qty</th>
                                         <th>Order Qty</th>
                                         <th>Cut Qty</th>
                                         <th>Consumption</th>
@@ -137,7 +137,8 @@
 
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.quantity }} <br> 
+                                                {{ item.quantity }}
+												{{ item.unit }}
                                             {% endfor %}
                                         </td>     
                                         <td>
@@ -157,7 +158,8 @@
                                         </td> 
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.requard_qty }} <br> 
+                                                {{ item.requard_qty }}
+												{{ item.unit }} 
                                             {% endfor %}
                                         </td> 
                                         <td>৳{{ data.get_total_price }}</td>

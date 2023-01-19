@@ -65,12 +65,18 @@ class FabricRequisitionItem(models.Model):
         ('dg', 'dg'),
         ('1000 pcs', '1000 pcs'),
     )
+    UNIT = (
+        ('', 'Select'),
+        ('miter', 'miter'),
+        ('yard', 'yard'),
+    )
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
+    unit = models.CharField(max_length=64, null=True, blank=False, choices=UNIT)
     style_no = models.CharField(max_length=64, blank=True, null=True)
     fab_color = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.IntegerField(default=0)
     cutting_qty = models.IntegerField(default=0)
-    consumption = models.IntegerField(default=0)
+    consumption = models.CharField(max_length=64, blank=True, null=True)
     requard_qty = models.IntegerField(default=0)
 
     def __str__(self):

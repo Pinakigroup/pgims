@@ -154,7 +154,7 @@
                                                     <label class="panel-body-text">Cutting Qty:</label>
                                                     {{ iform.cutting_qty }}
                                                 </div>
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-2">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Consumption:</label>
                                                     {{ iform.consumption }}
@@ -164,20 +164,24 @@
                                                     <label class="panel-body-text">Req Qty:</label>
                                                     {{ iform.requard_qty }}
                                                 </div>
-
+                                                <div class="form-group col-md-2">
+                                                    {{ iform.quantity.errors }}
+                                                    <label class="panel-body-text">Supply Qty:</label>
+                                                    {{ iform.quantity }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Unit:</label>
+                                                    {{ iform.unit }}
+                                                </div>
 
                                                 <div class="form-group col-md-2">
                                                     <label class="panel-body-text">Price per item:</label>
                                                     {{ iform.unit_price }}
                                                 </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.quantity.errors }}
-                                                    <label class="panel-body-text">Quantity:</label>
-                                                    {{ iform.quantity }}
-                                                </div>
 
                                                 <div class="form-group col-md-2">
-                                                    <label class="panel-body-text">Price:</label>
+                                                    <label class="panel-body-text">T Price:</label>
                                                     <input type="text" class="textinput form-control totalprice" value="1" disabled required>
                                                 </div><!-- Log on to codeastro.com for more projects -->
                                                 <div class="form-group col-md-1">

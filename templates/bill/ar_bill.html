@@ -56,19 +56,19 @@
                                     <tr>
                                         <td class="inner-box" style="width: 05%; font-weight: bold; text-align: center;">&nbsp;SL</td>
                                         <td class="inner-box" style="width: 25%; font-weight: bold; text-align: center;">ITEMS</td>
-                                        <td class="inner-box" style="width: 5%; font-weight: bold; text-align: center;">&nbsp;SIZE</td>
+                                        <td class="inner-box" style="width: 5%; font-weight: bold; text-align: center;">&nbsp;SIZE</td>                                       
+                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">COLOR</td>
                                         <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">QTY</td>
-                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">UNIT PRICE</td>
-                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">AMOUNT ৳</td>
+                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">UNIT</td>
                                     </tr>
                                     {% for item in items %}
                                         <tr style="height: auto;">
                                             <td class="inner-box" style="width: 5%;">&nbsp; {{ forloop.counter }}</td>
                                             <td class="inner-box" style="width: 25%;">&nbsp; {{ item.stock.name }}</td>
-                                            <td class="inner-box" style="width: 5%;">&nbsp; {{ item.size }}</td>
+                                            <td class="inner-box" style="width: 5%;">&nbsp; {{ item.size }}</td>                                           
+                                            <td class="inner-box" style="width: 12%;">&nbsp;{{ item.acces_color }}</td>
                                             <td class="inner-box" style="width: 12%;">&nbsp; {{ item.quantity }}</td>
-                                            <td class="inner-box" style="width: 12%;">&nbsp; {{ item.unit_price }}</td>
-                                            <td class="inner-box" style="width: 12%;">&nbsp;{{ item.totalprice }}</td>
+                                            <td class="inner-box" style="width: 12%;">&nbsp; {{ item.uom }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

@@ -12,4 +12,4 @@ class StoreReceiver(models.Model):
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     
     def __str__(self):
-        return self.designation
+        return self.name

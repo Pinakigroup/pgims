@@ -71,6 +71,7 @@
 										<th>Joining Date</th>
 										<th>Email</th>
 										<th>Phone</th>
+										<th>Image</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -83,7 +84,16 @@
                                         <td>{{ data.designation }}</td>   
 										<td>{{ data.joining_date }}</td> 
 										<td>{{ data.email }}</td> 
-										<td>{{ data.phone }}</td>                           
+										<td>{{ data.phone }}</td>   
+										<td>
+											{% if data.img == ""  %}
+											No Image
+											{% else %}
+											<img class="img img-fluid mb-2" height="56" width="56"
+												src="{{ data.img.url }}" alt="">
+											{% endif %}
+										</td> 
+
 									   <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="{% url 'merchandiser_update' data.id %}">
@@ -102,18 +112,6 @@
 								 </tr>
 								 {% endif %}
 								</tbody>
-								<tfoot>
-									<tr>
-										<th>ID</th>
-										<th>Office ID</th>
-										<th>Name</th>
-										<th>Designation</th>
-										<th>Joining Date</th>
-										<th>Email</th>
-										<th>Phone</th>
-										<th>Actions</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 					</div>

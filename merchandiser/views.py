@@ -13,7 +13,7 @@ from accounts.decorators import allowed_users
 def create(request):
     form = MerchandiserForm()
     if request.method == 'POST':
-        form = MerchandiserForm(request.POST)
+        form = MerchandiserForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Merchandiser created successfully')
@@ -40,7 +40,7 @@ def merchandiser_update(request, pk):
     get_merchandiser_data = get_object_or_404(Merchandiser, pk=pk)
     form = MerchandiserForm(instance=get_merchandiser_data)
     if request.method == 'POST':
-        form = MerchandiserForm(request.POST, instance=get_merchandiser_data)
+        form = MerchandiserForm(request.POST, request.FILES, instance=get_merchandiser_data)
         if form.is_valid():
             form.save()
             messages.success(request, 'Merchandiser updated successfully')

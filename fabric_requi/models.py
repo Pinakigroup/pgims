@@ -62,7 +62,7 @@ class FabricRequisitionItem(models.Model):
         ('g', 'g'),
         ('gg', 'gg'),
         ('litre', 'litre'),
-        ('dg', 'dg'),
+        ('dz', 'dz'),
         ('1000 pcs', '1000 pcs'),
     )
     UNIT = (

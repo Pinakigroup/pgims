@@ -11,6 +11,7 @@ class Merchandiser(models.Model):
     email = models.EmailField(max_length=64, blank=True, unique=True)
     phone = models.CharField(max_length=16, null=True, blank=True, unique=True)
     access_area = models.CharField(max_length=64, blank=True)
+    img = models.ImageField(upload_to='media/merchandiser')
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     

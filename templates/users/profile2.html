@@ -1,10 +1,9 @@
 {% extends 'base/base.html' %} 
 {% block title %}user profile{% endblock title %} 
 {% block body %} 
-{% load crispy_forms_tags %}
 {% load static %}	
 
-		<!--start page wrapper -->
+        <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
 				<!--breadcrumb-->
@@ -42,14 +41,25 @@
 										<div class="d-flex flex-column align-items-center text-center">
 											<img src="assets/images/avatars/avatar-2.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 											<div class="mt-3">
-												<h4>John Doe</h4>
-												<p class="mb-1">Full Stack Developer</p>
-												<p class="font-size-sm">Bay Area, San Francisco, CA</p>
+												<h4>{{user.username}}</h4>
+												<p class="mb-1">{{user.designation}}</p>
+												<p>
+													{% for group in user.groups.all %}
+														Group: {{group.name}}
+														{% if not forloop.last %},
+														{% endif %}
+													{% endfor %}
+												</p>
+												<p>
+													DOB : {{user_data.birthdate}}	
+												</p>
+												{% comment %} <p class="font-size-sm">Bay Area, San Francisco, CA</p>
 												<button class="btn btn-light">Follow</button>
-												<button class="btn btn-light">Message</button>
+												<button class="btn btn-light">Message</button> {% endcomment %}
 											</div>
 										</div>
 										<hr class="my-4" />
+
 										<ul class="list-group list-group-flush">
 											<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 												<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
@@ -72,132 +82,43 @@
 												<span class="text-white">codervent</span>
 											</li>
 										</ul>
+										
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-8">
 								<div class="card">
 									<div class="card-body">
-
-
-
-{% comment %} 
-									<form method="POST" class="row g-3 panel panel-default">  
-										{% csrf_token %}
-
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">Full Name</h6>
+												<h6 class="mb-0">First Name :</h6>
 											</div>
 											<div class="col-sm-9">
-												{{ form.user|as_crispy_field }}
-											</div>
-										</div>
-					
-										<div class="col-sm-3">
-											<div class="controls">
-												{{ form.full_name|as_crispy_field }}
-											</div>
-										</div><br>
-					
-										<div class="col-sm-3">
-											<div class="controls">
-												{{ form.img_profile|as_crispy_field }}
-											</div>
-										</div><br>
-										<div class="col-sm-3">
-											<div class="controls">
-												{{ form.email|as_crispy_field }}
-											</div>
-										</div><br>
-										<div class="col-sm-3">
-											<div class="controls">
-												{{ form.phone|as_crispy_field }}
-											</div>
-										</div><br>
-										<div class="col-sm-3">
-											<div class="controls">
-												{{ form.designation|as_crispy_field }}
-											</div>
-										</div><br>
-										<div class="col-sm-3">
-											<div class="controls">
-												{{ form.dob|as_crispy_field }}
-											</div>
-										</div><br>
-
-										<div class="align-middle">
-											<button type="submit" class="btn btn-success">Save changes</button>
-											<button type="reset" class="btn">Cancel</button>
-										</div>
-										
-									</form><br> {% endcomment %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Full Name</h6>
-											</div>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" value="John Doe" />
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Email</h6>
-											</div>
-											<div class="col-sm-9">
-												{% comment %} <input type="email" class="form-control" value="{{user.email}}" /> {% endcomment %}
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Phone</h6>
-											</div>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" value="(239) 816-9029" />
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Mobile</h6>
-											</div>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" value="(320) 380-4539" />
+												<h6 class="mb-0">{{user.first_name}}</h6>
 											</div>
 										</div>
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">Address</h6>
+												<h6 class="mb-0">Last Name :</h6>
 											</div>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" value="Bay Area, San Francisco, CA" />
+												<h6 class="mb-0">{{user.last_name}}</h6>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-sm-3"></div>
+										<div class="row mb-3">
+											<div class="col-sm-3">
+												<h6 class="mb-0">Full Name :</h6>
+											</div>
 											<div class="col-sm-9">
-												<input type="button" class="btn btn-light px-4" value="Save Changes" />
+												<h6 class="mb-0">{{user.first_name}} {{user.last_name}}</h6>
+											</div>
+										</div>
+										<div class="row mb-3">
+											<div class="col-sm-3">
+												<h6 class="mb-0">Email :</h6>
+											</div>
+											<div class="col-sm-9">
+												<h6 class="mb-0">{{user.email}}</h6>
 											</div>
 										</div>
 									</div>
@@ -238,6 +159,4 @@
 			</div>
 		</div>
 		<!--end page wrapper -->
-
-
 {% endblock body %}        

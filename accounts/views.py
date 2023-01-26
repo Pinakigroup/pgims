@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from pgims.forms import RegisterForm
+from .forms import ProfileForm
+from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from .decorators import unauthenticated_user, allowed_users, admin_only
@@ -53,8 +55,27 @@ def logout_view(request):
 
 # User Profile
 def profile(request):
-    user_data = User.objects.all()
-    context = {
-        'user_data': user_data
-    } 
-    return render(request, 'users/profile.html', context)
+    if request.method == "POST":
+        
+        
+        user_data = User.objects.all()
+        context = {
+            'user_data': user_data
+        } 
+        return render(request, 'users/profile.html', context)
+
+# Create 
+# @login_required
+# @allowed_users(allowed_roles=['admin', 'merchandiser'])
+# def create(request):
+#     form = ProfileForm()
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Successfully')
+#             return redirect('profile')
+#     context = {
+#         'form': form
+#     }
+#     return render(request, 'users/profile.html', context)

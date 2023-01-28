@@ -67,7 +67,7 @@ def profile(request):
 # Create 
 # @login_required
 # @allowed_users(allowed_roles=['admin', 'merchandiser'])
-# def create(request):
+# def lll(request):
 #     form = ProfileForm()
 #     if request.method == 'POST':
 #         form = ProfileForm(request.POST, request.FILES)
@@ -79,3 +79,18 @@ def profile(request):
 #         'form': form
 #     }
 #     return render(request, 'users/profile.html', context)
+
+def create(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user_name = form.cleaned_data.get('user')
+            messages.success(request, f'{user_name} has been added')
+            return redirect('profile_create')
+    else:
+        form = ProfileForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'users/profile.html', context)        

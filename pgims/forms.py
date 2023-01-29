@@ -22,7 +22,12 @@ class RegisterForm(UserCreationForm):
 	# 	user.email = self.cleaned_data['email']
 	# 	if commit:
 	# 		user.save()
-	# 	return user      
+	# 	return user  
+ 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']    
  
  
  

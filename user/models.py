@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
     full_name = models.CharField(max_length=64, null=True, blank=True)
     image = models.ImageField(upload_to='profile_images' ,blank=False)
-    email = models.EmailField(max_length=64, blank=True, unique=True)
     phone_no = models.CharField(max_length=16, null=True, blank=False, unique=True)
     designation = models.CharField("Designation", max_length=50, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from pgims.forms import RegisterForm
+from pgims.forms import RegisterForm, UserUpdateForm
 from .forms import ProfileForm
 from .models import Profile
 from django.contrib.auth.models import User
@@ -54,15 +54,15 @@ def logout_view(request):
     return redirect('login')
 
 # User Profile
-def profile(request):
-    if request.method == "POST":
+# def profile(request):
+#     if request.method == "POST":
         
         
-        user_data = User.objects.all()
-        context = {
-            'user_data': user_data
-        } 
-        return render(request, 'users/profile.html', context)
+#         user_data = User.objects.all()
+#         context = {
+#             'user_data': user_data
+#         } 
+#         return render(request, 'users/profile.html', context)
 
 # Create 
 # @login_required
@@ -80,17 +80,41 @@ def profile(request):
 #     }
 #     return render(request, 'users/profile.html', context)
 
-def create(request):
+def profile(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user_name = form.cleaned_data.get('user')
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            user_name = p_form.cleaned_data.get('user')
             messages.success(request, f'{user_name} has been added')
-            return redirect('profile_create')
+            return redirect('profile')
     else:
-        form = ProfileForm()
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileForm()
     context = {
-        'form': form
+        'u_form': u_form,
+        'p_form': p_form,
     }
-    return render(request, 'users/profile.html', context)        
+    return render(request, 'users/profile.html', context)  
+
+
+    # if request.method == 'POST':
+    #     form = ProductForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         product_name = form.cleaned_data.get('name')
+    #         messages.success(request, f'{product_name} has been added')
+    #         return redirect('dashboard-products')
+    # else:
+    #     form = ProductForm()
+    # context = {
+    #     'product': product,
+    #     'form': form,
+    #     'customer_count': customer_count,
+    #     'product_count': product_count,
+    #     'order_count': order_count,
+    # }
+    # return render(request, 'dashboard/products.html', context)      

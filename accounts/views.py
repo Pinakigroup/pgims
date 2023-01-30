@@ -67,24 +67,30 @@ def logout_view(request):
 # Create 
 # @login_required
 # @allowed_users(allowed_roles=['admin', 'merchandiser'])
-# def lll(request):
-#     form = ProfileForm()
+# def profile_update(request):
 #     if request.method == 'POST':
-#         form = ProfileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Successfully')
-#             return redirect('profile')
+#         u_form = UserUpdateForm(request.POST, instance=request.user)
+#         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+#         if u_form.is_valid() and p_form.is_valid():
+#             u_form.save()
+#             p_form.save()
+#             return redirect('user-profile')
+#     else:
+#         u_form = UserUpdateForm(instance=request.user)
+#         p_form = ProfileUpdateForm(instance=request.user.profile)
+
 #     context = {
-#         'form': form
+#         'u_form': u_form,
+#         'p_form': p_form,
 #     }
-#     return render(request, 'users/profile.html', context)
+#     return render(request, 'user/profile_update.html', context)
+
+
 
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileForm(request.POST, request.FILES, instance=request.user)
-        
+        p_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
@@ -93,28 +99,9 @@ def profile(request):
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileForm()
+        p_form = ProfileForm(instance=request.user.profile)
     context = {
         'u_form': u_form,
         'p_form': p_form,
     }
-    return render(request, 'users/profile.html', context)  
-
-
-    # if request.method == 'POST':
-    #     form = ProductForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         product_name = form.cleaned_data.get('name')
-    #         messages.success(request, f'{product_name} has been added')
-    #         return redirect('dashboard-products')
-    # else:
-    #     form = ProductForm()
-    # context = {
-    #     'product': product,
-    #     'form': form,
-    #     'customer_count': customer_count,
-    #     'product_count': product_count,
-    #     'order_count': order_count,
-    # }
-    # return render(request, 'dashboard/products.html', context)      
+    return render(request, 'users/profile.html', context)

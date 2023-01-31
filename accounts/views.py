@@ -53,41 +53,13 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-# User Profile
-# def profile(request):
-#     if request.method == "POST":
-        
-        
-#         user_data = User.objects.all()
-#         context = {
-#             'user_data': user_data
-#         } 
-#         return render(request, 'users/profile.html', context)
 
 # Create 
 # @login_required
-# @allowed_users(allowed_roles=['admin', 'merchandiser'])
-# def profile_update(request):
-#     if request.method == 'POST':
-#         u_form = UserUpdateForm(request.POST, instance=request.user)
-#         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-#         if u_form.is_valid() and p_form.is_valid():
-#             u_form.save()
-#             p_form.save()
-#             return redirect('user-profile')
-#     else:
-#         u_form = UserUpdateForm(instance=request.user)
-#         p_form = ProfileUpdateForm(instance=request.user.profile)
-
-#     context = {
-#         'u_form': u_form,
-#         'p_form': p_form,
-#     }
-#     return render(request, 'user/profile_update.html', context)
-
-
 
 def profile(request):
+    # player, created = Profile.objects.get_or_create(user=request.user)
+    # Profile.objects.get_or_create(user=request.user_acc)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)

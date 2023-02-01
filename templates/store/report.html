@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %}store report{% endblock title %}
+{% block title %}read Store{% endblock title %}
 {% block body %}
 {% load static %}		
 
@@ -41,7 +41,7 @@
 
                 <div class="ms-auto">
 					<a href="/store/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Store</a>
-					<a href="/store/report/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Store Report</a>
+					<a href="/store/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Store Report</a>
 				</div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				{% if messages %}
@@ -70,45 +70,32 @@
 										<th>Supplier</th>
                                         <th>Buyer</th>
                                         <th>IN/DC</th>
-                                        <th>IN/DC No</th>
                                         <th>IN/DC Date</th>
                                         <th>PO</th>
                                         <th>LC</th>
                                         <th>Style</th>
                                         <th>File No</th>
                                         <th>Lot No</th>
-                                        <th>Fabric Color</th>
-                                        <th>Fabric Detail</th>
                                         <th>Items</th>
                                         <th>UOM</th>
                                         <th>Qty</th>
-                                        <th>Total Price</th>
-										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
 									{% for data in bills %}
 									<tr>
                                         <td> <p>{{ data.billno }}</p> </td>
-                                        {% comment %} <td class=""> {{ data.name }} <br> 
-                                            <small style="color: #909494">Ph No : {{ data.phone }}</small> 
-                                        </td> {% endcomment %}
                                         <td>{{ data.supplier }}</td>
                                         <td>{{ data.buyer_name }}</td>
-                                        <td>{{ data.report }}</td>
-                                        <td>{{ data.report_no }}</td>
+										<td class=""> {{ data.report }} <br> 
+                                            <small style="color: #909494">{{ data.report_no }}</small> 
+                                        </td>
                                         <td>{{ data.report_date }}</td>
                                         <td>{{ data.po_no }}</td>
                                         <td>{{ data.lc }}</td>
                                         <td>{{ data.style_no }}</td>
                                         <td>{{ data.file_no }}</td>
                                         <td>{{ data.lot_no }}</td>
-										<td>
-                                            {% for item in data.get_items_list %} 
-                                                {{ item.fabric_color }} <br> 
-                                            {% endfor %}
-                                        </td>
-                                        <td>{{ data.fabric_detail }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 
@@ -125,19 +112,6 @@
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>     
-                                        <td>৳{{ data.get_total_price }}</td>
-
-									   <td class="center">
-										<div class="d-flex order-actions">
-											<a class="" href="{% url 'store_bill' data.billno %}">
-												<i class="fadeIn animated bx bx-show-alt"></i>
-											</a>
-
-											<a class="ms-3" href="{% url 'store_delete' data.billno %}">
-												<i class='bx bxs-trash'></i>
-											</a>
-										</div>
-									   </td>
 									</tr>
 								 {% endfor %}
 								 {% if not bills %}

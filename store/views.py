@@ -70,6 +70,12 @@ class StoreView(ListView):
     template_name = 'store/read.html'
     context_object_name = 'bills'
     ordering = ['-time']
+    
+class StoreReportView(ListView):
+    model = StoreBill 
+    template_name = 'store/report.html'
+    context_object_name = 'bills'
+    ordering = ['-time']
 
 
 # used to display the purchase bill object

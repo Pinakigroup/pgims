@@ -12,7 +12,7 @@ class PurchaseForm(forms.ModelForm):
         
     class Meta:
         model = PurchaseBill
-        fields = ['supplier', 'merchandiser', 'work_order', 'po_no', 'file_no', 'po_date', 'detail']
+        fields = ['supplier', 'buyer_name', 'merchandiser', 'work_order', 'po_no', 'file_no', 'po_date', 'detail']
         widgets = {
             'merchandiser' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),

@@ -65,6 +65,7 @@
 
 										<th>Bill No.</th>
 										<th>Supplier</th>
+										<th>Buyer</th>
                                         <th>Merchandiser</th>
                                         <th>Work Order</th>
 										<th>PO No</th>
@@ -89,7 +90,8 @@
                                             <small style="color: #909494">Ph No : {{ data.phone }}</small> 
                                         </td> {% endcomment %}
                                         <td>{{ data.supplier }}</td>
-                                        <td>{{ data.merchandiser }}</td>
+                                        <td>{{ data.buyer_name }}</td>
+										<td>{{ data.merchandiser }}</td>
                                         <td>{{ data.work_order }}</td>
 										<td>{{ data.po_no }}</td>
                                         <td>{{ data.po_date }}</td>

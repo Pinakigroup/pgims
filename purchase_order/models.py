@@ -14,6 +14,7 @@ class PurchaseBill(models.Model):
     time = models.DateTimeField(auto_now=True)
     
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False, related_name='suppliersname')
+    buyer_name = models.CharField(max_length=64, blank=False, null=True)
     merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
     work_order = models.CharField(max_length=32, null=True, blank=True)
     po_date = models.DateField(default= now)

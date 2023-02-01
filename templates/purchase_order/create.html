@@ -52,13 +52,19 @@
                 <form method="POST" class="row g-3 panel panel-default">  
                     {% csrf_token %}
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.supplier|as_crispy_field }}
                         </div>
                     </div><br>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <div class="controls">
+                            {{ form.buyer_name|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.merchandiser|as_crispy_field }}
                         </div>

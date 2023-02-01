@@ -41,7 +41,7 @@
 
                 <div class="ms-auto">
 					<a href="/store/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Store</a>
-					<a href="/store/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Store Report</a>
+					<a href="{% url 'store_read' %}" class="btn btn-dark radius-30 mt-2 mt-lg-0">Previous</a>
 				</div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				{% if messages %}

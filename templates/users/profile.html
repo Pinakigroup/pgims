@@ -93,66 +93,7 @@
 												</div>
 											</div>
 										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card">
-									<div class="card-body"><br>
-
-
-
-									<form method="POST" class="row g-3 panel panel-default" enctype="multipart/form-data">  
-										{% csrf_token %}
-
-										{{ u_form|crispy }}
-										{{ p_form|crispy }}
-
-										{% comment %} <div class="col-sm-12">
-											<div class="controls">
-												{{ p_form.user|as_crispy_field }}
-											</div>
-										</div><br>
-										<div class="col-sm-12">
-											<div class="controls">
-												{{ p_form.email|as_crispy_field }}
-											</div>
-										</div><br>
-					
-										<div class="col-sm-12">
-											<div class="controls">
-												{{ p_form.full_name|as_crispy_field }}
-											</div>
-										</div><br>
-					
-										<div class="col-sm-12">
-											<div class="controls">
-												{{ p_form.img_profile|as_crispy_field }}
-											</div>
-										</div><br>
-
-										<div class="col-sm-4">
-											<div class="controls">
-												{{ p_form.phone|as_crispy_field }}
-											</div>
-										</div><br>
-										<div class="col-sm-4">
-											<div class="controls">
-												{{ p_form.designation|as_crispy_field }}
-											</div>
-										</div><br>
-										<div class="col-sm-4">
-											<div class="controls">
-												{{ p_form.dob|as_crispy_field }}
-											</div>
-										</div><br> {% endcomment %}
-
-										<div class="align-middle">
-											<button type="submit" class="btn btn-success">Save changes</button>
-											<button type="reset" class="btn">Cancel</button>
-										</div>
-										
-									</form><br>
+										<a href="/accounts/profile/update/" class="btn btn-success radius-30 mt-2 mt-lg-0">Edit Profile</a>
 									</div>
 								</div>
 							</div>

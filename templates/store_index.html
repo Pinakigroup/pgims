@@ -1,12 +1,5 @@
-{% extends 'base/base.html' %}
-{% block title %}home{% endblock title %}
-{% block body %}
 {% load static %}
-
-
-{% if user.is_authenticated and user.is_staff and user.is_superuser %}
-
-		<!--start page wrapper -->
+        <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
 
@@ -49,8 +42,8 @@
                                 <div style="background-color: #DD2026" class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <p style="color: #FFFFFF" class="mb-0">Supplier</p>
-                                            <h5 style="color: #FFFFFF" class="mb-0">{{supplier_name}}</h5>
+                                            <p style="color: #FFFFFF" class="mb-0">Store</p>
+                                            <h5 style="color: #FFFFFF" class="mb-0">{{lc}}</h5>
                                         </div>
                                         <div class="ms-auto text-white">	<i class='bx bx-bulb font-30'></i>
                                         </div>
@@ -81,43 +74,6 @@
                                 <div style="background-color: #19A82A" class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <p style="color: #FFFFFF" class="mb-0">Store</p>
-                                            <h5 style="color: #FFFFFF" class="mb-0">{{lc}}</h5>
-                                        </div>
-                                        <div class="ms-auto text-white">	<i class='bx bx-bulb font-30'></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="" id="w-chart7"></div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card radius-10 overflow-hidden">
-                                <div style="background-color: #1F144D" class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div>
-                                            <p style="color: #FFFFFF" class="mb-0">Merchandiser</p>
-                                            <h5 style="color: #FFFFFF" class="mb-0">{{office_id}}</h5>
-                                        </div>
-                                        <div class="ms-auto text-white">	<i class='bx bx-bulb font-30'></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="" id="w-chart7"></div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-12">
-
-                        <div class="col">
-                            <div class="card radius-10 overflow-hidden">
-                                <div style="background-color: #1023AD" class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div>
                                             <p style="color: #FFFFFF" class="mb-0">Accessories Requi</p>
                                             <h5 style="color: #FFFFFF" class="mb-0">{{supply_qty}}</h5>
                                         </div>
@@ -131,7 +87,7 @@
 
                         <div class="col">
                             <div class="card radius-10 overflow-hidden">
-                                <div style="background-color: #A52A2A" class="card-body">
+                                <div style="background-color: #1F144D" class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <p style="color: #FFFFFF" class="mb-0">Fabric Requi</p>
@@ -184,8 +140,3 @@
             </div>
         </div>
 		<!--end row-->
-{% else %}
-{% include 'store_index.html' %}
-{% endif%}        
-
-{% endblock body %}

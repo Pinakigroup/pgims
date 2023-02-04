@@ -7,7 +7,7 @@ from django import forms
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['id', 'full_name', 'img_profile', 'phone', 'designation', 'dob']
+        fields = ['full_name', 'img_profile', 'phone', 'designation', 'dob']
 
 # class ProfileForm(forms.ModelForm):
 #     class Meta:
@@ -24,3 +24,11 @@ class ProfileForm(forms.ModelForm):
 #         labels = {
 #             'img_profile': 'Photo',
 #         } 
+
+# def save(self, commit=True):
+#     Profile = super(ProfileForm, self).save(commit=False)
+#     Profile.Company_name(self.cleaned_data["Company_name"])
+
+#     if commit:
+#             Profile.save()
+#     return Profile

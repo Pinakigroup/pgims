@@ -13,8 +13,8 @@ from accounts.decorators import allowed_users, admin_only
 # Create your views here.
 
 @login_required
-@admin_only
-@allowed_users(allowed_roles=['admin', 'merchandiser'])
+# @admin_only
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def home(request):
     total_category = Category.objects.count()
     total_merchandiser = Merchandiser.objects.count()

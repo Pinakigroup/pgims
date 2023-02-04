@@ -56,14 +56,17 @@ def logout_view(request):
 
 # Create 
 # @login_required
-
 def profile(request):
-    # player, created = Profile.objects.get_or_create(user=request.user)
-    # Profile.objects.get_or_create(user=request.user_acc)
+    context = {
+
+    }
+    return render(request, 'users/profile.html', context)
+
+def profile_update(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():                
             u_form.save()
             p_form.save()
             user_name = p_form.cleaned_data.get('user')
@@ -72,8 +75,10 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileForm(instance=request.user.profile)
+        print("LPLPLP", u_form)
+        print("LPLPLP", p_form)
     context = {
         'u_form': u_form,
         'p_form': p_form,
     }
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/profile_update.html', context)

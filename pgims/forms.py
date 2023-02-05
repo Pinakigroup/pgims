@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django import forms
 
 class RegisterForm(UserCreationForm):
-    # email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True)
     designation = forms.CharField(max_length=64, required=True)
     class Meta:
         model = User
@@ -23,11 +23,6 @@ class RegisterForm(UserCreationForm):
 	# 	if commit:
 	# 		user.save()
 	# 	return user  
- 
-class UserUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'email']    
  
  
  

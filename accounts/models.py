@@ -4,7 +4,7 @@ from django.utils.timezone import now
 # Create your models here.
 
 class Profile(models.Model):
-    customer = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name="profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name="profile")
     full_name = models.CharField(max_length=64, null=True, blank=True)
     img_profile = models.ImageField(upload_to='profile', default='default.png')
     phone = models.CharField(max_length=32, null=True, blank=False, unique=True)
@@ -14,4 +14,4 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True) 
     
     def __str__(self):
-        return f'{self.customer.username} -Profile'
+        return f'{self.user.username} -Profile'

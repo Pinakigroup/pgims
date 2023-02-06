@@ -9,7 +9,7 @@ class Profile(models.Model):
     img_profile = models.ImageField(upload_to='profile', default='default.png')
     phone = models.CharField(max_length=32, null=True, blank=False, unique=True)
     designation = models.CharField("Designation", max_length=50, blank=True)
-    dob = models.DateField(default=None)
+    dob = models.DateField(default=None, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True) 
     

@@ -91,7 +91,6 @@
 						</li>
 						<li>
 
-
 					{% else %}
 					<li>
 						<a href="{% url 'category_read' %}">
@@ -121,6 +120,20 @@
 							<div class="menu-title">Store</div>
 						</a>
 					</li>
+					<li>
+						<a href="{% url 'merchandiser_read' %}">
+							<div class="parent-icon"><i class="lni lni-wheelchair"></i>
+							</div>
+							<div class="menu-title">Merchandiser</div>
+						</a>
+					</li>
+					<li>
+						<a href="/supplier/create/">
+							<div class="parent-icon"><i class='lni lni-cart-full'></i>
+							</div>
+							<div class="menu-title">Supplier</div>
+						</a>
+					</li>
 						<li>
 							<a href="{% url 'storeRec_read' %}">
 								<div class="parent-icon"><i class='bx bx-cart'></i>
@@ -143,22 +156,6 @@
 						</li>
 					<li>
 
-
-						<li>
-							<a href="{% url 'merchandiser_read' %}">
-								<div class="parent-icon"><i class="lni lni-wheelchair"></i>
-								</div>
-								<div class="menu-title">Merchandiser</div>
-							</a>
-						</li>
-						<li>
-							<a href="/supplier/create/">
-								<div class="parent-icon"><i class='lni lni-cart-full'></i>
-								</div>
-								<div class="menu-title">Supplier</div>
-							</a>
-						</li>
-
 					{% endif %}
 
 				{% endfor %}
@@ -168,7 +165,6 @@
 						</div>
 						<div class="menu-title">Documentation</div>
 					</a> {% endcomment %}
-				</li>
 
 
 			</ul>

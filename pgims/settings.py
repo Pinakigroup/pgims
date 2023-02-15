@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'fabric_requi',
     'accounts',
     'acces_requisition',
+    'bootstrap4',
 ]
 
 # AUTH_USER_MODEL = 'useraccounts.User'
@@ -70,6 +71,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pgims.urls'
+
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATES = [
     {

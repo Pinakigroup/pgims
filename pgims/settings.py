@@ -69,7 +69,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'pgims.urls'
 
+
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+# TEMPLATE_DIR = os.path.join(BASE_DIR, "<pgims>/templates")
 
 TEMPLATES = [
     {

@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third party app
-    # 'accounts.apps.AccountsConfig',
-    
     'crispy_forms',
     'djrichtextfield',
     # app 
@@ -55,7 +53,6 @@ INSTALLED_APPS = [
     'fabric_requi',
     'accounts',
     'acces_requisition',
-    'bootstrap4',
 ]
 
 # AUTH_USER_MODEL = 'useraccounts.User'

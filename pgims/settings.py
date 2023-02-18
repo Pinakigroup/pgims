@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third party app
     'crispy_forms',
+    'crispy_bootstrap5',
     'djrichtextfield',
     # app 
     'stock',
@@ -72,7 +73,7 @@ ROOT_URLCONF = 'pgims.urls'
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # TEMPLATE_DIR = os.path.join(BASE_DIR, "<pgims>/templates")
 
@@ -80,7 +81,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR,'templates')
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -147,7 +148,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 LOGIN_URL = 'login'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

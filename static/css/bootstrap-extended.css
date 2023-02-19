@@ -72,7 +72,7 @@ a:hover {
 
 
 .form-select {
-    color: #ffffff;
+    color: #000000;
 }
 
 .form-select:focus {
@@ -81,7 +81,7 @@ a:hover {
 }
 
 .form-select option {
-	background-color: #171717;
+	background-color: #c2c2c2;
 }
 
 .form-check-input {

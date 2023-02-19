@@ -66,21 +66,19 @@
 									<tr>
                                         <th width="2%">ID</th>
                                         <th width="5%">Date</th>
-                                        <th width="5%">Supplier Name</th>
-                                        <th width="5%">Company Name</th>
-                                        <th width="5%">>Office Address</th>
+                                        <th width="5%">Supplier</th>
+                                        <th width="5%">Company</th>
+                                        <th width="5%">Office Address</th>
                                         <th width="5%">Office Tphone</th>
-                                        <th width="5%">>Factory Address</th>
+                                        <th width="5%">Factory Address</th>
                                         <th width="5%">Factory Tphone</th>
                                         <th width="5%">Vat INo</th>
                                         <th width="5%">Exp Date</th>
                                         <th width="5%">TradeLNo</th>
-                                        <th width="5%">Owner Name</th>
+                                        <th width="5%">Owner</th>
                                         <th width="5%">Owner Email</th>
-                                        <th width="5%">First CPName</th>
-                                        <th width="5%">Sec CPName</th>
-                                        <th width="5%">Account No</th>
-                                        <th width="3%">>Bank Name</th>
+                                        <th width="5%">Contact Person</th>
+                                        <th width="3%">Bank</th>
                                         <th width="5%">SWIFT</th>
                                         <th>Actions</th>
 									</tr>
@@ -92,19 +90,23 @@
                                         <td width="5%">{{ data.date }}</td> 
                                         <td width="5%">{{ data.supplier_name }}</td>
                                         <td width="5%">{{ data.company_name }}</td>    
-                                        <td width="5%">>{{ data.office_address }}</td>
+                                        <td width="5%">{{ data.office_address }}</td>
                                         <td width="5%">{{ data.office_tphone }}</td>
-                                        <td width="5%">>{{ data.factory_address }}</td> 
+                                        <td width="5%">{{ data.factory_address }}</td> 
                                         <td width="5%">{{ data.factory_tphone }}</td> 
                                         <td width="5%">{{ data.vat_identi_no }}</td> 
                                         <td width="5%">{{ data.expiry_date }}</td> 
                                         <td width="5%">{{ data.trade_license_no }}</td>
                                         <td width="5%">{{ data.owner_name }}</td> 
                                         <td width="5%">{{ data.owner_email }}</td> 
-                                        <td width="5%">{{ data.first_cp_name }}</td>  
-                                        <td width="5%">{{ data.sec_cp_name }}</td> 
-                                        <td width="5%">{{ data.account_no }}</td>  
-                                        <td width="3%">>{{ data.bank_name }}</td>     
+										
+										<td class="">1st : {{ data.first_cp_name }} <br> 
+                                            <small style="color: #333">2nd : {{ data.sec_cp_name }}</small> 
+                                        </td>
+										<td class="">{{ data.bank_name }} <br> 
+                                            <small style="color: #333">{{ data.account_no }}</small> 
+                                        </td>
+
                                         <td width="5%">{{ data.swift }}</td>                           
 									   <td class="center">
 										<div class="d-flex order-actions">
@@ -124,29 +126,6 @@
 								 </tr>
 								 {% endif %}
 								</tbody>
-								<tfoot>
-									<tr>
-                                        <th>ID</th>
-                                        <th>Date</th>
-                                        <th>Supplier Name</th>
-                                        <th>Company Name</th>
-                                        <th>Office Address</th>
-                                        <th>Office Tphone</th>
-                                        <th>Factory Address</th>
-                                        <th>Factory Tphone</th>
-                                        <th>Vat INo</th>
-                                        <th>Exp Date</th>
-                                        <th>TradeLNo</th>
-                                        <th>Owner Name</th>
-                                        <th>Owner Email</th>
-                                        <th>First CPName</th>
-                                        <th>Sec CPName</th>
-                                        <th>Account No</th>
-                                        <th>Bank Name</th>
-                                        <th>SWIFT</th>
-                                        <th>Actions</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 					</div>

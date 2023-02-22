@@ -49,7 +49,7 @@
         <div class="card">
 			<div class="card-body">
 
-                <form method="POST" class="row g-3 panel panel-default">  
+                <form method="POST" enctype="multipart/form-data" class="row g-3 panel panel-default">  
                     {% csrf_token %}
 
                     <div class="col-sm-6">
@@ -80,11 +80,13 @@
                             {{ form.report_date|as_crispy_field }}
                         </div>
                     </div><br>
+
                     <div class="col-sm-3">
                         <div class="controls">
                             {{ form.po_no|as_crispy_field }}
                         </div>
                     </div><br>
+
                     <div class="col-sm-3">
                         <div class="controls">
                             {{ form.lc|as_crispy_field }}
@@ -105,6 +107,28 @@
                             {{ form.lot_no|as_crispy_field }}
                         </div>
                     </div><br>
+                    
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.pi_no|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.received_date|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.received_by|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.img_file|as_crispy_field }}
+                        </div>
+                    </div><br>
+
                     <div class="col-sm-12">
                         <div class="controls">
                             {{ form.fabric_detail|as_crispy_field }}

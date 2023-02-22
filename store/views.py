@@ -29,7 +29,7 @@ class StoreCreateView(View):
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = StoreForm(request.POST)
+        form = StoreForm(request.POST, request.FILES)
         formset = StoreItemFormset(request.POST) 
         # recieves a post method for the formset
         

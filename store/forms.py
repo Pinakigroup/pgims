@@ -14,13 +14,17 @@ class StoreForm(forms.ModelForm):
         
     class Meta:
         model = StoreBill
-        fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'po_no', 'lc', 'style_no', 'file_no', 'lot_no', 'fabric_detail', 'store_location', 'order_qty']
+        fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'pi_no', 'received_by', 'received_date', 'img_file', 'po_no', 'lc', 'style_no', 'file_no', 'lot_no', 'fabric_detail', 'store_location', 'order_qty']
         widgets = {
             
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'report' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'report_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
+            'pi_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'received_by' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'received_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
+            
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'lc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -36,7 +40,12 @@ class StoreForm(forms.ModelForm):
             'report': 'Inv/DC',
             'report_no': 'Inv/DC No',
             'report_date': 'Inv/DC Date',
-            'po_no': 'PO No',
+            'pi_no': 'PI',
+            'received_by': 'Received By',
+            'received_date': 'Received Date',
+            'img_file': 'Photo',
+            
+            'po_no': 'PO',
             'lc': 'LC',
             'style_no': 'Style No',
             'file_no': 'File No',

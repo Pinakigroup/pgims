@@ -72,6 +72,11 @@
                                         <th>IN/DC</th>
                                         <th>IN/DC No</th>
                                         <th>IN/DC Date</th>
+                                        <th>PI</th>
+                                        <th>Received Date</th>
+                                        <th>Received By</th>
+                                        <th>Photo</th>
+
                                         <th>PO</th>
                                         <th>LC</th>
                                         <th>Style</th>
@@ -98,6 +103,17 @@
                                         <td>{{ data.report }}</td>
                                         <td>{{ data.report_no }}</td>
                                         <td>{{ data.report_date }}</td>
+                                        <td>{{ data.pi_no }}</td>
+                                        <td>{{ data.received_date }}</td>
+                                        <td>{{ data.received_by }}</td>
+										<td>
+											{% if data.img_file == ""  %}
+												No Image
+											{% else %}
+											<img class="img img-fluid mb-2" height="56" width="56"
+												src="{{ data.img_file.url }}" alt="">
+											{% endif %}
+										</td> 
                                         <td>{{ data.po_no }}</td>
                                         <td>{{ data.lc }}</td>
                                         <td>{{ data.style_no }}</td>

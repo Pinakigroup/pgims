@@ -7,6 +7,20 @@ class Stock(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     name = models.CharField(max_length=30, unique=True)
     quantity = models.IntegerField(default=1)
+    UOM = (
+        ('', 'Select'),
+        ('kg', 'kg'),
+        ('miter', 'miter'),
+        ('yard', 'yard'),
+        ('pcs', 'pcs'),
+        ('pound', 'pound'),
+        ('g', 'g'),
+        ('gg', 'gg'),
+        ('litre', 'litre'),
+        ('dg', 'dg'),
+        ('1000 pcs', '1000 pcs'),
+    )
+    uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):

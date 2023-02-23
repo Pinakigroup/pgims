@@ -11,6 +11,11 @@ class StockForm(forms.ModelForm):
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control', 'min': '0'})
     class Meta:
         model = Stock
-        fields = ['category', 'name', 'quantity']
-        
+        fields = ['category', 'name', 'quantity', 'uom']
+        widgets = {
+            'uom' : forms.Select(attrs = {'class' : 'textinput form-control'}),
+        }
+        labels = {
+            'uom': 'Unit',
+        }
         

@@ -22,7 +22,7 @@ class StoreBill(models.Model):
     pi_no = models.CharField(max_length=150, blank=True, null=True)
     received_by = models.CharField(max_length=64, blank=False, null=True)
     received_date = models.DateField(default= now)
-    img_file = models.ImageField(upload_to='store')
+    img_file = models.ImageField(upload_to='store', null=True, blank=True)
     
     po_no = models.CharField(max_length=64, blank=True, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)

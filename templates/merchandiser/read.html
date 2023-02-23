@@ -89,9 +89,10 @@
 											{% if data.img == ""  %}
 											No Image
 											{% else %}
-											<img class="img img-fluid mb-2" height="56" width="56"
-												src="{{ data.img.url }}" alt="">
-											{% endif %}
+											<a href="{{ data.img.url }}" data-lightbox="image-1" data-title="My caption" target="_blank">
+												<img src="{{ data.img.url }}" height="60" width="56">
+											  </a>
+											  {% endif %}
 										</td> 
 
 									   <td class="center">

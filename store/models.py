@@ -27,7 +27,7 @@ class StoreBill(models.Model):
     po_no = models.CharField(max_length=64, blank=True, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
-    file_no = models.CharField(max_length=64, blank=True, null=True)
+    file_no = models.CharField(max_length=64, blank=False, null=True)
     lot_no = models.CharField(max_length=64, blank=True, null=True)
     
     fabric_detail = models.TextField()

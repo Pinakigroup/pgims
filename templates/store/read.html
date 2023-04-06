@@ -2,6 +2,7 @@
 {% block title %}store report{% endblock title %}
 {% block body %}
 {% load static %}		
+{% load crispy_forms_tags %}
 
         <!--start page wrapper -->
 		<div class="page-wrapper">
@@ -35,10 +36,32 @@
 
 				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
 					{% csrf_token %}
-									
 
+					<div class="col-md-9">
+						<form class="float-md-end" method='POST' action=''>
+							{% csrf_token %}
+							<div class="row row-cols-md-auto g-lg-4">
+								<div class="col-md-5">
+									<div class="controls">
+										{{ form.start_date }}
+									</div>
+								</div><br>
 
+								<div class="col-md-5">
+									<div class="controls">
+										{{ form.end_date }}
+									</div>
+								</div><br>
 
+								<div class="col-md-2">
+									<div class="controls">
+										<input type="submit" value='Search'/>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					
                 <div class="ms-auto">
 					<a href="/store/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Store</a>
 					<a href="/store/report/" class="btn btn-success radius-30 mt-2 mt-lg-0">Store Report</a>
@@ -88,6 +111,7 @@
                                         <th>UOM</th>
                                         <th>Qty</th>
                                         <th>Total Price</th>
+										<th>Last Updated</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -143,6 +167,7 @@
                                             {% endfor %}
                                         </td>     
                                         <td>৳{{ data.get_total_price }}</td>
+										<td>{{ data.updated_at }}</td>
 
 									   <td class="center">
 										<div class="d-flex order-actions">
@@ -159,7 +184,7 @@
 								 {% endfor %}
 								 {% if not bills %}
 								 <tr>
-									 <td colspan="17" class="text-center">No Data available</td>
+									 <td colspan="23" class="text-center">No Data available</td>
 								 </tr>
 								 {% endif %}
 								</tbody>

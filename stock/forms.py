@@ -19,3 +19,9 @@ class StockForm(forms.ModelForm):
             'uom': 'Unit',
         }
         
+class StockDateSearchForm(forms.ModelForm):
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    class Meta:
+        model = Stock
+        fields = ['start_date', 'end_date']

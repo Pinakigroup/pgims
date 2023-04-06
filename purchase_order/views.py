@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from stock.models import Stock
 from django.contrib import messages
 from .models import PurchaseBill, PurchaseBillDetails, PurchaseItem
-from .forms import PurchaseDetailsForm, PurchaseItemFormset, PurchaseForm
+from .forms import PurchaseDetailsForm, PurchaseItemFormset, PurchaseForm, PurchaseSearchForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     View, 
@@ -65,11 +65,32 @@ class PurchaseCreateView(View):
         return render(request, self.template_name, context)    
     
 # Read
-class PurchaseView(ListView):
-    model = PurchaseBill 
-    template_name = 'purchase_order/read.html'
-    context_object_name = 'bills'
-    ordering = ['-time']
+# class PurchaseView(ListView):
+#     model = PurchaseBill 
+#     template_name = 'purchase_order/read.html'
+#     context_object_name = 'bills'
+#     ordering = ['-time']
+    
+# Read
+def purchaseOrder_read(request):
+    form = PurchaseSearchForm(request.POST or None)
+    bills = PurchaseBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = PurchaseBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'purchase_order/read.html', context)
 
 
 # used to display the purchase bill object

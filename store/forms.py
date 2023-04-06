@@ -83,3 +83,11 @@ class StoreDetailsForm(forms.ModelForm):
     class Meta:
         model = StoreBillDetails
         fields = ['eway','veh', 'destination', 'po', 'cgst', 'sgst', 'igst', 'cess', 'tcs', 'total']
+
+
+class StockSearchForm(forms.ModelForm):
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    class Meta:
+        model = StoreBill
+        fields = ['start_date', 'end_date']

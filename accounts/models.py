@@ -10,8 +10,8 @@ class Profile(models.Model):
     phone = models.CharField(max_length=32, null=True, blank=True, unique=True)
     designation = models.CharField("Designation", max_length=50, null=True, blank=True)
     dob = models.DateField(default=None, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
-    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True) 
     
     def __str__(self):
         return f'{self.user.username} -Profile'

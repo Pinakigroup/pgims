@@ -11,3 +11,10 @@ class CategoryForm(forms.ModelForm):
         widgets = {
             'created_at': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
+        
+class CategoryDateSearchForm(forms.ModelForm):
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    class Meta:
+        model = Category
+        fields = ['start_date', 'end_date']

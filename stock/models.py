@@ -22,6 +22,8 @@ class Stock(models.Model):
     )
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
     is_deleted = models.BooleanField(default=False)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)  
 
     def __str__(self):
         return self.name

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import StoreReceiver
-from .forms import StoreReceiverForm
+from .forms import StoreReceiverForm, StoreReceiverDateSearchForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
@@ -28,9 +28,22 @@ def create(request):
 @login_required
 @allowed_users(allowed_roles=['admin', 'store'])
 def storeRec_read(request):
+    form = StoreReceiverDateSearchForm(request.POST or None)
     storeRec_data = StoreReceiver.objects.all().order_by('-id')
     context = {
-        'storeRec_data': storeRec_data
+        'storeRec_data': storeRec_data,
+        'form':form,
+    }
+    if request.method == 'POST':
+        storeRec_data = StoreReceiver.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'storeRec_data': storeRec_data,
+        'form':form,
     }
     return render(request, 'store_receiver/read.html', context)
 

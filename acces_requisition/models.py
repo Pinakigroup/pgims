@@ -20,6 +20,8 @@ class AccesRequisitionBill(models.Model):
     date = models.DateField(default= now)
     supply_qty = models.PositiveIntegerField(default=1)
     remarks = models.TextField()
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
 
     def __str__(self):
@@ -58,6 +60,8 @@ class AccesRequisitionItem(models.Model):
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
     acces_color = models.CharField(max_length=64, blank=True, null=True)
     size = models.CharField(max_length=64, null=True, unique=True, blank=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
@@ -77,6 +81,8 @@ class AccesRequisitionBillDetails(models.Model):
     cess = models.CharField(max_length=50, blank=True, null=True)
     tcs = models.CharField(max_length=50, blank=True, null=True)
     total = models.CharField(max_length=50, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno)

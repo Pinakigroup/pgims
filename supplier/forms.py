@@ -82,3 +82,10 @@ class SupplierForm(forms.ModelForm):
             'bank_address': 'Bank Address',   
             'swift': 'SWIFT',           
         }
+
+class SupplierDateSearchForm(forms.ModelForm):
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    class Meta:
+        model = Supplier
+        fields = ['start_date', 'end_date']

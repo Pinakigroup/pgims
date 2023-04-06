@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import FabricRequisitionBill, FabricRequisitionBillDetails, FabricRequisitionItem
-from .forms import FabricRDetailsForm, FabricRItemFormset, FabricRForm, FabricRItemForm
+from .forms import FabricRDetailsForm, FabricRItemFormset, FabricRForm, FabricRItemForm, FabricRequisitionBillDateSearchForm
 from django.views.generic import (View, ListView, DeleteView,)
 
 # Create your views here
@@ -58,11 +58,35 @@ class FabricRequiCreateView(View):
         }
         return render(request, self.template_name, context)
     
-class FabricRequiView(ListView):
-    model = FabricRequisitionBill 
-    template_name = 'fabric_requi/read.html'
-    context_object_name = 'bills'
-    ordering = ['-time']
+# class base List View 
+
+# class FabricRequiView(ListView):
+#     model = FabricRequisitionBill 
+#     template_name = 'fabric_requi/read.html'
+#     context_object_name = 'bills'
+#     ordering = ['-time']
+
+# Read
+def fabricRequi_read(request):
+    form = FabricRequisitionBillDateSearchForm(request.POST or None)
+    bills = FabricRequisitionBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = FabricRequisitionBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'fabric_requi/read.html', context)
+
     
 class FabricRequiBillView(View):
     model = FabricRequisitionBill

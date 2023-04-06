@@ -62,3 +62,12 @@ class FabricRDetailsForm(forms.ModelForm):
     class Meta:
         model = FabricRequisitionBillDetails
         fields = ['eway','veh', 'destination', 'po', 'cgst', 'sgst', 'igst', 'cess', 'tcs', 'total']
+        
+
+# form used for search data by from date to date
+class FabricRequisitionBillDateSearchForm(forms.ModelForm):                                                                     
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    class Meta:
+        model = FabricRequisitionBill
+        fields = ['start_date', 'end_date']

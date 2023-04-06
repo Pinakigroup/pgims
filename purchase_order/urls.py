@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('create/', views.PurchaseCreateView.as_view(), name='create'),
-    path('', views.PurchaseView.as_view(), name='po_read'),
+    path('', views.purchaseOrder_read, name='po_read'),
     path("bill/<billno>", views.PurchaseBillView.as_view(), name="po_bill"),
     path('delete/<int:pk>/', views.PurchaseDeleteView.as_view(), name='po_delete'),
 ]

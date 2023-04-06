@@ -36,22 +36,30 @@
 				{% comment %} <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}"> {% endcomment %}
 					{% csrf_token %}
 									
-				{% comment %} <div class="col-md-9">
-					<form class="float-md-end" method="POST">
-						{% csrf_token %}
-						<div class="row row-cols-md-auto g-lg-3">
-							<label for="fromdate" class="col-md-2 col-form-label text-md-end">From Date</label>
-							<div class="col-md-4">
-								<input type="date" name= "fromdate" class="form-control" id="fromdate">
+					<div class="col-md-9">
+						<form class="float-md-end" method='POST' action=''>
+							{% csrf_token %}
+							<div class="row row-cols-md-auto g-lg-4">
+								<div class="col-md-5">
+									<div class="controls">
+										{{ form.start_date }}
+									</div>
+								</div><br>
+
+								<div class="col-md-5">
+									<div class="controls">
+										{{ form.end_date }}
+									</div>
+								</div><br>
+
+								<div class="col-md-2">
+									<div class="controls">
+										<input type="submit" value='Search'/>
+									</div>
+								</div>
 							</div>
-							<label for="todate" class="col-md-2 col-form-label text-md-end">To Date</label>
-							<div class="col-md-4">
-								<input type="date" name= "todate" class="form-control" id="todate">
-							</div>							
-						</div>
-						
-					</form>
-				</div> {% endcomment %}
+						</form>
+					</div>
 
                 <div class="ms-auto"><a href="/fabric_requi/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Fabric</a></div><br>
 				{% if messages %}

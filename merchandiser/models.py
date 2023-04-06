@@ -12,8 +12,8 @@ class Merchandiser(models.Model):
     phone = models.CharField(max_length=16, null=True, blank=True, unique=True)
     access_area = models.CharField(max_length=64, blank=True)
     img = models.ImageField(upload_to='merchandiser', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
     def __str__(self):
         return self.name

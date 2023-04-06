@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from stock.models import Stock
 from django.contrib import messages
 from .models import StoreBill, StoreItem, StoreBillDetails
-from .forms import StoreDetailsForm, StoreItemFormset, StoreForm, StoreItemForm
+from .forms import StoreDetailsForm, StoreItemFormset, StoreForm, StoreItemForm, StockSearchForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     View, 
@@ -64,18 +64,60 @@ class StoreCreateView(View):
         }
         return render(request, self.template_name, context)    
     
-# Read
-class StoreView(ListView):
-    model = StoreBill 
-    template_name = 'store/read.html'
-    context_object_name = 'bills'
-    ordering = ['-time']
+
+# class StoreView(ListView):
+#     model = StoreBill 
+#     template_name = 'store/read.html'
+#     context_object_name = 'bills'
+#     ordering = ['-time']
     
-class StoreReportView(ListView):
-    model = StoreBill 
-    template_name = 'store/report.html'
-    context_object_name = 'bills'
-    ordering = ['-time']
+# class StoreReportView(ListView):
+#     model = StoreBill 
+#     template_name = 'store/report.html'
+#     context_object_name = 'bills'
+#     ordering = ['-time']
+
+# Read
+def store_read(request):
+    form = StockSearchForm(request.POST or None)
+    bills = StoreBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = StoreBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'store/read.html', context)
+
+# Store Report Read
+def storeReport_read(request):
+    form = StockSearchForm(request.POST or None)
+    bills = StoreBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = StoreBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'store/report.html', context)
 
 
 # used to display the purchase bill object

@@ -3,7 +3,7 @@ from stock.models import Stock
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import AccesRequisitionBill, AccesRequisitionBillDetails, AccesRequisitionItem
-from .forms import AccesRDetailsForm, AccesRItemFormset, AccesRForm, AccesRItemForm
+from .forms import AccesRDetailsForm, AccesRItemFormset, AccesRForm, AccesRItemForm, AccesRequisitionBillDateSearchForm
 from django.views.generic import (
     View, 
     ListView,
@@ -68,11 +68,31 @@ class AccesRCreateView(View):
 # Read
 # @login_required
 # @allowed_users(allowed_roles=['admin', 'store'])
-class AccesRView(ListView):
-    model = AccesRequisitionBill 
-    template_name = 'acces_requisition/read.html'
-    context_object_name = 'bills'
-    ordering = ['-time']
+# class AccesRView(ListView):
+#     model = AccesRequisitionBill 
+#     template_name = 'acces_requisition/read.html'
+#     context_object_name = 'bills'
+#     ordering = ['-time']
+    
+def accesR_read(request):
+    form = AccesRequisitionBillDateSearchForm(request.POST or None)
+    bills = AccesRequisitionBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = AccesRequisitionBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'acces_requisition/read.html', context)
 
 # Show Bill
 # @login_required

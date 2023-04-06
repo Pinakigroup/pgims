@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category
-from .forms import CategoryForm
+from .forms import CategoryForm, CategoryDateSearchForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
@@ -28,10 +28,22 @@ def create(request):
 @login_required
 @allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def category_read(request):
-    
+    form = CategoryDateSearchForm(request.POST or None)
     category_data = Category.objects.all().order_by('-id')
     context = {
-        'category_data': category_data
+        'category_data': category_data,
+        'form':form,
+    }
+    if request.method == 'POST':
+        category_data = Category.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'category_data': category_data,
+        'form':form,
     }
     return render(request, 'category/read.html', context)
 

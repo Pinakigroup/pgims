@@ -22,7 +22,7 @@ class StoreBill(models.Model):
     pi_no = models.CharField(max_length=150, blank=True, null=True)
     received_by = models.CharField(max_length=64, blank=False, null=True)
     received_date = models.DateField(default= now)
-    img_file = models.ImageField(upload_to='store', null=True, blank=True)
+    img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
     
     po_no = models.CharField(max_length=64, blank=True, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)
@@ -33,6 +33,8 @@ class StoreBill(models.Model):
     fabric_detail = models.TextField()
     store_location = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.IntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno)
@@ -68,6 +70,8 @@ class StoreItem(models.Model):
         ('1000 pcs', '1000 pcs'),
     )
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
@@ -86,6 +90,8 @@ class StoreBillDetails(models.Model):
     cess = models.CharField(max_length=50, blank=True, null=True)
     tcs = models.CharField(max_length=50, blank=True, null=True)
     total = models.CharField(max_length=50, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno)

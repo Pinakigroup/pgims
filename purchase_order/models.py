@@ -22,6 +22,8 @@ class PurchaseBill(models.Model):
     po_no = models.CharField(max_length=32, null=True, blank=False)
     file_no = models.CharField(max_length=64, null=True, blank=True, unique=True)
     detail = models.TextField()
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
 
     def __str__(self):
@@ -64,6 +66,8 @@ class PurchaseItem(models.Model):
     size = models.CharField(max_length=64, null=True, blank=True)
     style_no = models.CharField(max_length=64, blank=True, null=True)
     color = models.CharField(max_length=64, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
 
     def __str__(self):
@@ -85,6 +89,8 @@ class PurchaseBillDetails(models.Model):
     cess = models.CharField(max_length=50, blank=True, null=True)
     tcs = models.CharField(max_length=50, blank=True, null=True)
     total = models.CharField(max_length=50, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno)

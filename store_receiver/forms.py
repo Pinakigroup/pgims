@@ -13,3 +13,10 @@ class StoreReceiverForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
         }
+        
+class StoreReceiverDateSearchForm(forms.ModelForm):
+    start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
+    class Meta:
+        model = StoreReceiver
+        fields = ['start_date', 'end_date']

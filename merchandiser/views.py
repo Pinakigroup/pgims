@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Merchandiser
-from .forms import MerchandiserForm
+from .forms import MerchandiserForm, MerchandiserDateSearchForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
@@ -27,10 +27,23 @@ def create(request):
 @allowed_users(allowed_roles=['admin', 'merchandiser'])
 @login_required
 def merchandiser_read(request):
+    form = MerchandiserDateSearchForm(request.POST or None)
     merchandiser_data = Merchandiser.objects.all().order_by('-id')
     context = {
-        'merchandiser_data': merchandiser_data
+        'merchandiser_data': merchandiser_data,
+        'form':form,
     }  
+    if request.method == 'POST':
+        merchandiser_data = Merchandiser.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'merchandiser_data': merchandiser_data,
+        'form':form,
+    }
     return render(request, 'merchandiser/read.html', context)
 
 # Update 

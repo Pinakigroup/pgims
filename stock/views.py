@@ -5,7 +5,7 @@ from django.views.generic import (
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .models import Stock
-from .forms import StockForm
+from .forms import StockForm, StockDateSearchForm
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 
@@ -24,11 +24,31 @@ class StockCreateView(SuccessMessageMixin, CreateView):                         
         return context  
 
 # Read
-class StockListView(ListView):
-    model = Stock 
-    template_name = 'stock/read.html'
-    context_object_name = 'stocks'
-    paginate_by = 10
+# class StockListView(ListView):
+#     model = Stock 
+#     template_name = 'stock/read.html'
+#     context_object_name = 'stocks'
+#     paginate_by = 10
+    
+def stock_read(request):
+    form = StockDateSearchForm(request.POST or None)
+    stocks = Stock.objects.all().order_by('-id')
+    context = {
+        'stocks': stocks,
+        'form':form,
+    }
+    if request.method == 'POST':
+        stocks = Stock.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'stocks': stocks,
+        'form':form,
+    }
+    return render(request, 'stock/read.html', context)
 
 # Update 
 class StockUpdateView(SuccessMessageMixin, UpdateView):                                 # updateview class to edit stock, mixin used to display message

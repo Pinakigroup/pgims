@@ -51,21 +51,19 @@
 				<div class="card">
 					<div class="card-body">
 						<form method="POST">
-									{% csrf_token %}
-										
+							{% csrf_token %}		
 							<div class="form-row">
 								<div class="form-group col-md-12 mb-0">
 									<div class="controls">
 										{{ form.name|as_crispy_field }}
-								</div>
+								    </div>
 								</div><br>
-									</div>
-									<div class="form-actions">
-										<button type="submit" class="btn btn-light">Update changes</button>
-										<button type="reset" class="btn">Cancel</button>
-									</div>
-								</div>
-							</form>
+							</div>
+							<div class="form-actions">
+									<button type="submit" class="btn btn-light">Update changes</button>
+									<button type="reset" class="btn">Cancel</button>
+							</div>
+						</form>
 							{% if form.errors %}
 							{% for field in form %}
 								{% for error in field.errors %}										

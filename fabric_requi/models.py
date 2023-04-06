@@ -30,6 +30,8 @@ class FabricRequisitionBill(models.Model):
     floor = models.CharField(max_length=64, null=True, blank=False, choices=FLOOR)
     date = models.DateField(default= now)
     fabric_detail = models.TextField()
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno)
@@ -78,6 +80,8 @@ class FabricRequisitionItem(models.Model):
     cutting_qty = models.IntegerField(default=0)
     consumption = models.CharField(max_length=64, blank=True, null=True)
     requard_qty = models.IntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
@@ -97,6 +101,8 @@ class FabricRequisitionBillDetails(models.Model):
     cess = models.CharField(max_length=50, blank=True, null=True)
     tcs = models.CharField(max_length=50, blank=True, null=True)
     total = models.CharField(max_length=50, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno)

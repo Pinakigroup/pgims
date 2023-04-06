@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Supplier
-from .forms import SupplierForm
+from .forms import SupplierForm, SupplierDateSearchForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
@@ -27,11 +27,25 @@ def create(request):
 @login_required
 @allowed_users(allowed_roles=['admin', 'merchandiser'])
 def supplier_read(request):
+    form = SupplierDateSearchForm(request.POST or None)
     supplier_data = Supplier.objects.all().order_by('-id')
     context = {
-        'supplier_data': supplier_data
+        'supplier_data': supplier_data,
+        'form':form,
+    }
+    if request.method == 'POST':
+        supplier_data = Supplier.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'supplier_data': supplier_data,
+        'form':form,
     }
     return render(request, 'supplier/read.html', context)
+
 
 # Update 
 @login_required

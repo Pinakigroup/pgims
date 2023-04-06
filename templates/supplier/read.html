@@ -33,20 +33,30 @@
 				</div>
 				<!--end breadcrumb-->
 
-                {% comment %} <div class="col-md-9">
-					<form class="float-md-end">
-						<div class="row row-cols-md-auto g-lg-3">
-							<label for="inputFromDate" class="col-md-2 col-form-label text-md-end">From Date</label>
-							<div class="col-md-4">
-								<input type="date" class="form-control" id="inputFromDate">
-							</div>
-							<label for="inputToDate" class="col-md-2 col-form-label text-md-end">To Date</label>
-							<div class="col-md-4">
-								<input type="date" class="form-control" id="inputToDate">
+				<div class="col-md-9">
+					<form class="float-md-end" method='POST' action=''>
+						{% csrf_token %}
+						<div class="row row-cols-md-auto g-lg-4">
+							<div class="col-md-5">
+								<div class="controls">
+									{{ form.start_date }}
+								</div>
+							</div><br>
+
+							<div class="col-md-5">
+								<div class="controls">
+									{{ form.end_date }}
+								</div>
+							</div><br>
+
+							<div class="col-md-2">
+								<div class="controls">
+									<input type="submit" value='Search'/>
+								</div>
 							</div>
 						</div>
 					</form>
-				</div> {% endcomment %}
+				</div>
                 
                 <div class="ms-auto"><a href="/supplier/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Supplier</a></div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}

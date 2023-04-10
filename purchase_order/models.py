@@ -4,9 +4,14 @@ from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from stock.models import Stock
 import datetime
+from datetime import date
+import random
 
 # Create your models here.
 
+
+def generate_random_number():
+    return random.randint(100, 999)
 
 #contains the purchase bills made
 class PurchaseBill(models.Model):
@@ -19,7 +24,8 @@ class PurchaseBill(models.Model):
     work_order = models.CharField(max_length=32, null=True, blank=True)
     po_date = models.DateField(default= now)
     
-    po_no = models.CharField(max_length=32, null=True, blank=False)
+    po_id = models.IntegerField(default=generate_random_number)
+    # po_no = models.CharField(max_length=32, null=True, blank=False)
     file_no = models.CharField(max_length=64, null=True, blank=True, unique=True)
     detail = models.TextField()
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -39,9 +45,17 @@ class PurchaseBill(models.Model):
             total = total + item.totalprice
         return total
     
+    # Generate a uniq no
+    def po_no(self):               
+        today = date.today()
+        ymd = str(today.year), str(today.month), str(today.day)
+        ymds = ymd[0] + ymd[1] + ymd[2]
+        po = ymds[2:]
+        p = "AGD"+ po + str(self.po_id)
+        return p
     
     
-    
+
 #contains the purchase stocks made
 class PurchaseItem(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete = models.CASCADE, related_name='purchasebillno')

@@ -31,7 +31,6 @@ class PurchaseBill(models.Model):
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
-
     def __str__(self):
         return "Bill no: " + str(self.billno)
 
@@ -47,13 +46,12 @@ class PurchaseBill(models.Model):
     
     # Generate a uniq no
     def po_no(self):               
-        today = date.today()
-        ymd = str(today.year), str(today.month), str(today.day)
-        ymds = ymd[0] + ymd[1] + ymd[2]
-        po = ymds[2:]
+        ymdt = str(self.created_at)
+        ymd = ymdt[:10]
+        rep = ymd.replace("-", "")
+        po = rep[2:]
         p = "AGD"+ po + str(self.po_id)
         return p
-    
     
 
 #contains the purchase stocks made

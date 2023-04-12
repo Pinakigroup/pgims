@@ -86,8 +86,9 @@
                                         <th width="25%">Actions</th> {% endcomment %}
 
 										<th>Bill No.</th>
-										<th>Line Man</th>
-                                        <th>Items</th>
+										<th>Store Man</th>
+										<th>Supervisor</th>
+										<th>Items</th>
 										<th>Unit</th>
 										<th>Color</th>
 										<th>Size</th>
@@ -101,7 +102,8 @@
 									{% for data in bills %}
 									<tr>
                                         <td> <p>{{ data.billno }}</p> </td>
-                                        <td class=""> {{ data.name }} <br> 
+                                        <td> <p>{{ data.store_receiver }}</p> </td>
+                                        <td> <p>{{ data.name }}</p> </td>
                                         </td>
                                         <td>
                                             {% for item in data.get_items_list %} 

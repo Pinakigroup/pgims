@@ -11,8 +11,8 @@ class AccesRequisitionBill(models.Model):
     billno = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now=True)
 
-    name = models.CharField(max_length=64, null=True, unique=True, blank=True)
-    sr_designation = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
+    name = models.CharField(max_length=64, null=True, blank=True)
+    store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     order_no = models.CharField(max_length=32, null=True, blank=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     line_no = models.CharField(max_length=32, null=True, blank=True)
@@ -51,6 +51,7 @@ class AccesRequisitionItem(models.Model):
         ('yard', 'yard'),
         ('pcs', 'pcs'),
         ('pound', 'pound'),
+        ('cone', 'cone'),
         ('g', 'g'),
         ('gg', 'gg'),
         ('litre', 'litre'),

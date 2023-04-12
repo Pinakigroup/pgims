@@ -14,9 +14,9 @@ class AccesRForm(forms.ModelForm):
         
     class Meta:
         model = AccesRequisitionBill
-        fields = ['name', 'sr_designation', 'order_no', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
+        fields = ['name', 'store_receiver', 'order_no', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
         widgets = {
-            'sr_designation' : forms.Select(attrs = {'class' : 'textinput form-control'}),
+            'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'line_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -24,6 +24,9 @@ class AccesRForm(forms.ModelForm):
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'supply_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
+        }
+        labels = {
+            'name': 'Supervisor',
         }
 
 

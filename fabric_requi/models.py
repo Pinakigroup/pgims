@@ -29,7 +29,7 @@ class FabricRequisitionBill(models.Model):
     )
     floor = models.CharField(max_length=64, null=True, blank=False, choices=FLOOR)
     date = models.DateField(default= now)
-    fabric_detail = models.TextField()
+    fabric_detail = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

@@ -81,7 +81,7 @@ a:hover {
 }
 
 .form-select option {
-	background-color: #c2c2c2;
+	background-color: #dad8dd;
 }
 
 .form-check-input {
@@ -206,7 +206,7 @@ a:hover {
 }
 
 .modal-content {
-    background-color: #171717;
+    background-color: #dad8dd;
     border: 1px solid rgba(255, 255, 255, .2);
 }
 

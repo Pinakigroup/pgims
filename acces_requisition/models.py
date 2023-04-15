@@ -19,7 +19,7 @@ class AccesRequisitionBill(models.Model):
     card_no = models.CharField(max_length=32, null=True, blank=True)
     date = models.DateField(default= now)
     supply_qty = models.PositiveIntegerField(default=1)
-    remarks = models.TextField()
+    remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

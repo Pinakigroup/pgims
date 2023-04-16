@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from stock.models import Stock
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from accounts.decorators import allowed_users
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import FabricRequisitionBill, FabricRequisitionBillDetails, FabricRequisitionItem
@@ -10,6 +11,8 @@ from django.views.generic import (View, ListView, DeleteView,)
 
 # Create your views here
 
+# Create
+@method_decorator(login_required, name='dispatch')
 class FabricRequiCreateView(View):                                                      
     template_name = 'fabric_requi/create.html'
 
@@ -67,6 +70,8 @@ class FabricRequiCreateView(View):
 #     ordering = ['-time']
 
 # Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def fabricRequi_read(request):
     form = FabricRequisitionBillDateSearchForm(request.POST or None)
     bills = FabricRequisitionBill.objects.all().order_by('-time')
@@ -88,6 +93,7 @@ def fabricRequi_read(request):
     return render(request, 'fabric_requi/read.html', context)
 
     
+@method_decorator(login_required, name='dispatch')
 class FabricRequiBillView(View):
     model = FabricRequisitionBill
     template_name = "bill/fr_bill.html"
@@ -126,6 +132,7 @@ class FabricRequiBillView(View):
     
     
 
+@method_decorator(login_required, name='dispatch')
 class FabricRequiDeleteView(SuccessMessageMixin, DeleteView):
     model = FabricRequisitionBill
     template_name = "fabric_requi/delete.html"

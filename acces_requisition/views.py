@@ -11,11 +11,11 @@ from django.views.generic import (
 )
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 # Create
-# @login_required
-# @allowed_users(allowed_roles=['admin', 'store'])
+@method_decorator(login_required, name='dispatch')
 class AccesRCreateView(View):                                                      
     template_name = 'acces_requisition/create.html'
 
@@ -73,7 +73,9 @@ class AccesRCreateView(View):
 #     template_name = 'acces_requisition/read.html'
 #     context_object_name = 'bills'
 #     ordering = ['-time']
-    
+
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def accesR_read(request):
     form = AccesRequisitionBillDateSearchForm(request.POST or None)
     bills = AccesRequisitionBill.objects.all().order_by('-time')
@@ -97,6 +99,7 @@ def accesR_read(request):
 # Show Bill
 # @login_required
 # @allowed_users(allowed_roles=['admin', 'store'])
+@method_decorator(login_required, name='dispatch')
 class AccesRBillView(View):
     model = AccesRequisitionBill
     template_name = "bill/ar_bill.html"
@@ -137,6 +140,7 @@ class AccesRBillView(View):
 # @login_required
 # @allowed_users(allowed_roles=['admin'])   
 # AttributeError: 'function' object has no attribute 'as_view'  -->> solution:  Since, this view is a clasbase view . goto--->> urls.py/ and .as_view() (remove)
+@method_decorator(login_required, name='dispatch')
 class AccesRDeleteView(SuccessMessageMixin, DeleteView):
     model = AccesRequisitionBill
     template_name = "acces_requisition/delete.html"

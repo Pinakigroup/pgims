@@ -11,9 +11,11 @@ from django.views.generic import (
 )
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 # used to generate a bill object and save items
+@method_decorator(login_required, name='dispatch')
 class StoreCreateView(View):                                                 
     template_name = 'store/create.html'
     
@@ -78,6 +80,8 @@ class StoreCreateView(View):
 #     ordering = ['-time']
 
 # Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def store_read(request):
     form = StockSearchForm(request.POST or None)
     bills = StoreBill.objects.all().order_by('-time')
@@ -99,6 +103,8 @@ def store_read(request):
     return render(request, 'store/read.html', context)
 
 # Store Report Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def storeReport_read(request):
     form = StockSearchForm(request.POST or None)
     bills = StoreBill.objects.all().order_by('-time')
@@ -121,6 +127,7 @@ def storeReport_read(request):
 
 
 # used to display the purchase bill object
+@method_decorator(login_required, name='dispatch')
 class StoreBillView(View):
     model = StoreBill
     template_name = "bill/store_bill.html"
@@ -161,6 +168,7 @@ class StoreBillView(View):
         }
         return render(request, self.template_name, context)
     
+@method_decorator(login_required, name='dispatch')
 class StoreDeleteView(SuccessMessageMixin, DeleteView):
     model = StoreBill
     template_name = "store/delete.html"

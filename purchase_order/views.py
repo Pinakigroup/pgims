@@ -11,9 +11,12 @@ from django.views.generic import (
 )
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 # used to generate a bill object and save items
+
+@method_decorator(login_required, name='dispatch')
 class PurchaseCreateView(View):                                                 
     template_name = 'purchase_order/create.html'
     
@@ -72,6 +75,8 @@ class PurchaseCreateView(View):
 #     ordering = ['-time']
     
 # Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def purchaseOrder_read(request):
     form = PurchaseSearchForm(request.POST or None)
     bills = PurchaseBill.objects.all().order_by('-time')
@@ -94,6 +99,7 @@ def purchaseOrder_read(request):
 
 
 # used to display the purchase bill object
+@method_decorator(login_required, name='dispatch')
 class PurchaseBillView(View):
     model = PurchaseBill
     template_name = "bill/po_bill.html"
@@ -134,6 +140,8 @@ class PurchaseBillView(View):
         }
         return render(request, self.template_name, context)
     
+
+@method_decorator(login_required, name='dispatch')
 class PurchaseDeleteView(SuccessMessageMixin, DeleteView):
     model = PurchaseBill
     template_name = "purchase_order/delete.html"

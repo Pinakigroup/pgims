@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pgims.forms import RegisterForm
 
@@ -51,6 +52,8 @@ def login_view(request):
     return render(request, 'login.html')
 
 # logout
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store']) 
 def logout_view(request):
     logout(request)
     return redirect('login')
@@ -58,13 +61,17 @@ def logout_view(request):
 
 # Create 
 # @login_required
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store']) 
 def profile(request):
     context = {
 
     }
     return render(request, 'users/profile.html', context)
 
-# Update Profile 
+# Update Profile
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store']) 
 def profile_update(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)

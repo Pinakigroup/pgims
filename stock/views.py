@@ -8,10 +8,12 @@ from .models import Stock
 from .forms import StockForm, StockDateSearchForm
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
 # Create 
+@method_decorator(login_required, name='dispatch')
 class StockCreateView(SuccessMessageMixin, CreateView):                                 # createview class to add new stock, mixin used to display message
     model = Stock                                                                       # setting 'Stock' model as model
     form_class = StockForm                                                              # setting 'StockForm' form as form
@@ -30,6 +32,8 @@ class StockCreateView(SuccessMessageMixin, CreateView):                         
 #     context_object_name = 'stocks'
 #     paginate_by = 10
     
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def stock_read(request):
     form = StockDateSearchForm(request.POST or None)
     stocks = Stock.objects.all().order_by('-id')
@@ -51,6 +55,7 @@ def stock_read(request):
     return render(request, 'stock/read.html', context)
 
 # Update 
+@method_decorator(login_required, name='dispatch')
 class StockUpdateView(SuccessMessageMixin, UpdateView):                                 # updateview class to edit stock, mixin used to display message
     model = Stock                                                                       # setting 'Stock' model as model
     form_class = StockForm                                                              # setting 'StockForm' form as form
@@ -63,6 +68,8 @@ class StockUpdateView(SuccessMessageMixin, UpdateView):                         
         return context
 
 # Delete 
+@login_required
+@allowed_users(allowed_roles=['admin'])
 def stock_delete(request, pk):
     get_stock = get_object_or_404(Stock, pk=pk)
     get_stock.delete()

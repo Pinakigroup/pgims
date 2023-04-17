@@ -115,7 +115,7 @@
 										<td>{{ data.merchandiser }}</td>
                                         <td>{{ data.work_order }}</td>
 										<td>{{ data.po_no }}</td>
-                                        <td>{{ data.po_date }}</td>
+                                        <td>{{ data.po_date|date:"d/m/Y" }}</td>
 										<td>{{ data.file_no }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 

@@ -103,7 +103,6 @@
                                         <th>Items</th>
                                         <th>UOM</th>
                                         <th>Qty</th>
-                                        <th>Last Updated</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -115,7 +114,7 @@
 										<td class=""> {{ data.report }} <br> 
                                             <small style="color: #909494">{{ data.report_no }}</small> 
                                         </td>
-                                        <td>{{ data.report_date }}</td>
+                                        <td>{{ data.report_date|date:"d/m/Y" }}</td>
                                         <td>{{ data.po_no }}</td>
                                         <td>{{ data.lc }}</td>
                                         <td>{{ data.style_no }}</td>
@@ -137,7 +136,6 @@
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>     
-										<td>{{ data.updated_at }}</td>
 									</tr>
 								 {% endfor %}
 								 {% if not bills %}

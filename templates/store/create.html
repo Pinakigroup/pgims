@@ -155,7 +155,7 @@
                             <div class="panel-body">
                             {% for form in formset %}
                                 <div class="row form-row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-5">
                                         {{ form.stock.errors }}
                                         <label class="panel-body-text">Stock:</label>
                                         {{ form.stock }}
@@ -165,23 +165,15 @@
                                         <label class="panel-body-text">UOM:</label>
                                         {{ form.uom }}
                                     </div>
-                                    <div class="form-group col-md-1">
+                                    <div class="form-group col-md-2">
                                         <label class="panel-body-text">Color:</label>
                                         {{ form.fabric_color }}
                                     </div>
 
-                                    <div class="form-group col-md-2">
-                                        <label class="panel-body-text">Unit Price:</label>
-                                        {{ form.unit_price }}
-                                    </div>
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-3">
                                         {{ form.quantity.errors }}
                                         <label class="panel-body-text">Quantity:</label>
                                         {{ form.quantity }}
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label class="panel-body-text">Price:</label>
-                                        <input type="text" class="textinput form-control totalprice" value="1" disabled required>
                                     </div>
                                     <div class="form-group col-md-1">
                                         <label class="panel-body-text" style="color: #000">.</label>
@@ -308,18 +300,6 @@
 
 
     //updates the total price by multiplying 'price per item' and 'quantity' 
-    $(document).on('change', '.setprice', function(e){
-        e.preventDefault();
-        //gets the values
-        var element = $(this);
-        var quantity = element.parents('.form-row').find('.quantity').val();
-        var perprice = element.parents('.form-row').find('.price').val();
-        //calculates the total
-        var tprice = quantity * perprice;
-        //sets it to field
-        element.parents('.form-row').find('.totalprice').val(tprice);
-        return false;
-    });
 
 </script>
 

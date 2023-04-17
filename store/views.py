@@ -47,8 +47,6 @@ class StoreCreateView(View):
 
                 # gets the stock item
                 stock = get_object_or_404(Stock, name=billitem.stock.name)         # gets the item
-                # calculates the total price
-                billitem.totalprice = billitem.unit_price * billitem.quantity
                 
                 # updates quantity in stock db
                 stock.quantity += billitem.quantity                               # updates quantity

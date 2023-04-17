@@ -42,19 +42,17 @@ class StoreBill(models.Model):
     def get_items_list(self):
         return StoreItem.objects.filter(billno=self)
         
-    def get_total_price(self):
-        storeitems = StoreItem.objects.filter(billno=self)
-        total = 0
-        for item in storeitems:
-            total += item.totalprice
-        return total
+    # def get_total_price(self):
+    #     storeitems = StoreItem.objects.filter(billno=self)
+    #     total = 0
+    #     for item in storeitems:
+    #         total += item.totalprice
+    #     return total
     
 class StoreItem(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
     quantity = models.IntegerField(default=1)
-    unit_price = models.IntegerField(default=1)
-    totalprice = models.IntegerField(default=1)
     fabric_color = models.CharField(max_length=64, blank=True, null=True)
     UOM = (
         ('', 'Select'),

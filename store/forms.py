@@ -67,12 +67,11 @@ class StoreItemForm(forms.ModelForm):
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'false'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'false'})
-        self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
         self.fields['uom'].widget.attrs.update({'class': 'textinput form-control', 'required': 'false'})
         self.fields['fabric_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'false'})
     class Meta:
         model = StoreItem
-        fields = ['stock', 'quantity', 'unit_price', 'uom', 'fabric_color']
+        fields = ['stock', 'quantity', 'uom', 'fabric_color']
 
 # formset used to render multiple 'StoreItemForm'
 StoreItemFormset = formset_factory(StoreItemForm, extra=1)

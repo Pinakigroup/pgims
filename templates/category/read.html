@@ -79,7 +79,6 @@
 									<tr>
 										<th>ID</th>
 										<th>Category Name</th>
-										<th>Last Updated</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -87,8 +86,7 @@
 									{% for data in category_data %}
 									<tr>
 									   <td>{{ data.id }}</td>
-									   <td>{{ data.name }}</td>                           
-									   <td>{{ data.updated_at }}</td>                                                  
+									   <td>{{ data.name }}</td>                                                                            
 									   <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="{% url 'category_update' data.id %}">

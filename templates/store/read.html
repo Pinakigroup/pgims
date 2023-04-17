@@ -110,8 +110,6 @@
                                         <th>Items</th>
                                         <th>UOM</th>
                                         <th>Qty</th>
-                                        <th>Total Price</th>
-										<th>Last Updated</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -126,9 +124,9 @@
                                         <td>{{ data.buyer_name }}</td>
                                         <td>{{ data.report }}</td>
                                         <td>{{ data.report_no }}</td>
-                                        <td>{{ data.report_date }}</td>
+                                        <td>{{ data.report_date|date:"d/m/Y" }}</td>
                                         <td>{{ data.pi_no }}</td>
-                                        <td>{{ data.received_date }}</td>
+                                        <td>{{ data.received_date|date:"d/m/Y" }}</td>
                                         <td>{{ data.received_by }}</td>
 										<td>
 											{% if data.img_file == ""  %}
@@ -166,8 +164,6 @@
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>     
-                                        <td>৳{{ data.get_total_price }}</td>
-										<td>{{ data.updated_at }}</td>
 
 									   <td class="center">
 										<div class="d-flex order-actions">

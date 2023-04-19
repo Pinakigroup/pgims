@@ -30,20 +30,18 @@ class AccesRequisitionBill(models.Model):
     def get_items_list(self):
         return AccesRequisitionItem.objects.filter(billno=self)
         
-    def get_total_price(self):
-        ar_items = AccesRequisitionItem.objects.filter(billno=self)
-        total = 0
-        for item in ar_items:
-            total += item.totalprice
-        return total
+    # def get_total_price(self):
+    #     ar_items = AccesRequisitionItem.objects.filter(billno=self)
+    #     total = 0
+    #     for item in ar_items:
+    #         total += item.totalprice
+    #     return total
 
 # contains the acces_requisition stocks made
 class AccesRequisitionItem(models.Model):
     billno = models.ForeignKey(AccesRequisitionBill, on_delete = models.CASCADE, related_name='ar_billno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='ar_item')
     quantity = models.IntegerField(default=1)
-    unit_price = models.IntegerField(default=1)
-    totalprice = models.IntegerField(default=1)
     UOM = (
         ('', 'Select'),
         ('kg', 'kg'),

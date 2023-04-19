@@ -88,13 +88,15 @@
 										<th>Bill No.</th>
 										<th>Store Man</th>
 										<th>Supervisor</th>
+										<th>Order No</th>
+										<th>Style No</th>
+										<th>Line No</th>
+										<th>Card No</th>
 										<th>Items</th>
 										<th>Unit</th>
 										<th>Color</th>
 										<th>Size</th>
                                         <th>Sold Qty</th>
-                                        <th>Total Price</th>
-                                        <th>Out Date</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -104,6 +106,10 @@
                                         <td> <p>{{ data.billno }}</p> </td>
                                         <td> <p>{{ data.store_receiver }}</p> </td>
                                         <td> <p>{{ data.name }}</p> </td>
+                                        <td> <p>{{ data.order_no }}</p> </td>
+                                        <td> <p>{{ data.style_no }}</p> </td>
+                                        <td> <p>{{ data.line_no }}</p> </td>
+                                        <td> <p>{{ data.card_no }}</p> </td>
                                         </td>
                                         <td>
                                             {% for item in data.get_items_list %} 
@@ -129,9 +135,7 @@
                                             {% for item in data.get_items_list %} 
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
-                                        </td>     
-                                        <td>৳{{ data.get_total_price }}</td>
-                                        <td>{{ data.time.date }}</td>
+                                        </td>
 
 									   <td class="center">
 										<div class="d-flex order-actions">

@@ -1,7 +1,7 @@
 from django.db import models
 from stock.models import Stock
 from django.utils.timezone import now
-
+from store_receiver.models import StoreReceiver
 
 # Create your models here.
 
@@ -11,7 +11,7 @@ class FabricRequisitionBill(models.Model):
     time = models.DateTimeField(auto_now=True)
     
     name = models.CharField(max_length=64, null=True, unique=True, blank=True)
-    # srf_designation = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
+    store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     buyer_name = models.CharField(max_length=64, null=True, unique=True, blank=True)
     po_no = models.CharField(max_length=32, null=True, blank=True)
     order_no = models.CharField(max_length=32, null=True, blank=True)
@@ -39,12 +39,12 @@ class FabricRequisitionBill(models.Model):
     def get_items_list(self):
         return FabricRequisitionItem.objects.filter(billno=self)
         
-    def get_total_price(self):
-        ar_items = FabricRequisitionItem.objects.filter(billno=self)
-        total = 0
-        for item in ar_items:
-            total += item.totalprice
-        return total
+    # def get_total_price(self):
+    #     ar_items = FabricRequisitionItem.objects.filter(billno=self)
+    #     total = 0
+    #     for item in ar_items:
+    #         total += item.totalprice
+    #     return total
 
 # contains the fabric_requisition stocks made
 class FabricRequisitionItem(models.Model):
@@ -52,8 +52,6 @@ class FabricRequisitionItem(models.Model):
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='fr_item')
     # Supply QTY 
     quantity = models.IntegerField(default=1)
-    unit_price = models.IntegerField(default=1)
-    totalprice = models.IntegerField(default=1)
     UOM = (
         ('', 'Select'),
         ('kg', 'kg'),

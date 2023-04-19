@@ -85,7 +85,7 @@
                                         <th width="25%">Actions</th> {% endcomment %}
 
 										<th>Bill No.</th>
-										<th>Name</th>
+										<th>Supervisor</th>
                                         <th>Buyer</th>
                                         <th>PO</th>
                                         <th>Order No</th>
@@ -101,7 +101,6 @@
                                         <th>Cut Qty</th>
                                         <th>Consumption</th>
                                         <th>Req Qty</th>
-										<th>Total Price</th>
 										<th>Remark</th>
 										<th>Actions</th>
 									</tr>
@@ -119,7 +118,7 @@
                                         <td>{{ data.order_no }}</td>
                                         <td>{{ data.card_no }}</td>
                                         <td>{{ data.floor }}</td>
-                                        <td>{{ data.date }}</td>
+                                        <td>{{ data.date|date:"d/m/Y" }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 
@@ -170,7 +169,6 @@
 												{{ item.unit }} 
                                             {% endfor %}
                                         </td> 
-                                        <td>৳{{ data.get_total_price }}</td>
                                         <td>{{ data.fabric_detail }}</td>
 
 									   <td class="center">

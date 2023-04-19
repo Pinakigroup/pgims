@@ -97,7 +97,7 @@
 									{% for data in supplier_data %}
 									<tr>
                                         <td width="2%">{{ data.id }}</td>
-                                        <td width="5%">{{ data.date }}</td> 
+                                        <td width="5%">{{ data.date|date:"d/m/Y" }}</td> 
                                         <td width="5%">{{ data.supplier_name }}</td>
                                         <td width="5%">{{ data.company_name }}</td>    
                                         <td width="5%">{{ data.office_address }}</td>
@@ -105,7 +105,7 @@
                                         <td width="5%">{{ data.factory_address }}</td> 
                                         <td width="5%">{{ data.factory_tphone }}</td> 
                                         <td width="5%">{{ data.vat_identi_no }}</td> 
-                                        <td width="5%">{{ data.expiry_date }}</td> 
+                                        <td width="5%">{{ data.expiry_date|date:"d/m/Y" }}</td> 
                                         <td width="5%">{{ data.trade_license_no }}</td>
                                         <td width="5%">{{ data.owner_name }}</td> 
                                         <td width="5%">{{ data.owner_email }}</td> 

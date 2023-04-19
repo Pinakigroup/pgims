@@ -14,8 +14,9 @@ class FabricRForm(forms.ModelForm):
         
     class Meta:
         model = FabricRequisitionBill
-        fields = ['name', 'buyer_name', 'po_no', 'order_no', 'card_no', 'floor', 'date', 'fabric_detail']
+        fields = ['name', 'buyer_name', 'store_receiver', 'po_no', 'order_no', 'card_no', 'floor', 'date', 'fabric_detail']
         widgets = {
+            'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -25,6 +26,7 @@ class FabricRForm(forms.ModelForm):
             'fabric_detail' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
         }
         labels = {
+            'name': 'Supervisor',
             'buyer_name': 'Buyer Name',
             'po_no': 'PO No',
             'order_no': 'Order No',
@@ -41,7 +43,6 @@ class FabricRItemForm(forms.ModelForm):
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
-        self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
         self.fields['uom'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control'})
@@ -52,7 +53,7 @@ class FabricRItemForm(forms.ModelForm):
         self.fields['requard_qty'].widget.attrs.update({'class': 'textinput form-control'})
     class Meta:
         model = FabricRequisitionItem
-        fields = ['stock', 'quantity', 'unit_price', 'uom', 'unit', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'consumption', 'requard_qty']
+        fields = ['stock', 'quantity', 'uom', 'unit', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'consumption', 'requard_qty']
 
 # formset used to render multiple 'FabricRequisitionItemForm'
 FabricRItemFormset = formset_factory(FabricRItemForm, extra=1)

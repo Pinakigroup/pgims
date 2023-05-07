@@ -21,13 +21,15 @@ class PurchaseBill(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False, related_name='suppliersname')
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
     merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
-    work_order = models.CharField(max_length=32, null=True, blank=True)
-    po_date = models.DateField(default= now)
+    po_no = models.CharField(max_length=32, null=True, blank=True)
+    style = models.CharField(max_length=32, null=True, blank=True)
+    wo_date = models.DateField(default= now)
     
-    po_id = models.IntegerField(default=generate_random_number)
-    # po_no = models.CharField(max_length=32, null=True, blank=False)
-    file_no = models.CharField(max_length=64, null=True, blank=True, unique=True)
-    detail = models.TextField()
+    work_order = models.IntegerField(default=generate_random_number)
+    # po_id = models.CharField(max_length=32, null=True, blank=False)
+    file_no = models.CharField(max_length=64, null=True, blank=False, unique=True)
+    sale_contact = models.CharField(max_length=64, null=True, blank=True)
+    remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
@@ -45,12 +47,12 @@ class PurchaseBill(models.Model):
         return total
     
     # Generate a uniq no
-    def po_no(self):               
+    def wo_no(self):               
         ymdt = str(self.created_at)
         ymd = ymdt[:10]
         rep = ymd.replace("-", "")
         po = rep[2:]
-        p = "AGD"+ po + str(self.po_id)
+        p = "AGD"+ po + str(self.work_order)
         return p
     
 

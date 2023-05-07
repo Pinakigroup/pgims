@@ -66,24 +66,30 @@
 										{{ form.store_receiver|as_crispy_field }}
 									</div>
 								</div><br>
+                                <div class="col-sm-4">
+									<div class="controls">
+										{{ form.file_no|as_crispy_field }}
+									</div>
+								</div><br>
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
 									<div class="controls">
 										{{ form.order_no|as_crispy_field }}
 									</div>
 								</div><br>
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
 									<div class="controls">
 										{{ form.style_no|as_crispy_field }}
 									</div>
 								</div><br>
-                                <div class="col-sm-3">
+
+                                <div class="col-sm-2">
 									<div class="controls">
 										{{ form.line_no|as_crispy_field }}
 									</div>
 								</div><br>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
 									<div class="controls">
 										{{ form.card_no|as_crispy_field }}
 									</div>
@@ -115,9 +121,7 @@
                             <div class="panel panel-default">
             
                                 {{ formset.management_form }}
-                    
-                                <div class="panel-heading panel-heading-text">Product Details</div>
-                                
+                                <h3>Product Details</h3>
                                     <div id="stockitem"> 
                                         <div class="panel-body">
                                         {% for iform in formset %}

@@ -24,13 +24,13 @@ class StoreBill(models.Model):
     received_date = models.DateField(default= now)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
     
-    po_no = models.CharField(max_length=64, blank=True, null=True)
+    wo_no = models.CharField(max_length=64, blank=True, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     file_no = models.CharField(max_length=64, blank=False, null=True)
     lot_no = models.CharField(max_length=64, blank=True, null=True)
     
-    fabric_detail = models.TextField()
+    remarks = models.TextField(blank=True, null=True)
     store_location = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  

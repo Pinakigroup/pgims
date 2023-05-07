@@ -14,26 +14,29 @@ class FabricRForm(forms.ModelForm):
         
     class Meta:
         model = FabricRequisitionBill
-        fields = ['name', 'buyer_name', 'store_receiver', 'po_no', 'order_no', 'card_no', 'floor', 'date', 'fabric_detail']
+        fields = ['name', 'buyer_name', 'store_receiver', 'wo_no', 'order_no', 'file_no', 'card_no', 'floor', 'date', 'remarks']
         widgets = {
             'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'wo_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'floor' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
-            'fabric_detail' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
+            'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
         }
         labels = {
-            'name': 'Supervisor',
+            'name': 'Goods Receiver',
+            'store_receiver': 'Goods Issuer',
             'buyer_name': 'Buyer Name',
-            'po_no': 'PO No',
+            'wo_no': 'WO No',
             'order_no': 'Order No',
+            'file_no': 'File No',
             'card_no': 'Card No',
             'floor': 'Floor',
             'date': 'Date',
-            'fabric_detail': 'Fabric Detail',
+            'remarks': 'Remarks',
         }
 
 
@@ -49,11 +52,11 @@ class FabricRItemForm(forms.ModelForm):
         self.fields['fab_color'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['order_qty'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['cutting_qty'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['consumption'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['cad_consumption'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['requard_qty'].widget.attrs.update({'class': 'textinput form-control'})
     class Meta:
         model = FabricRequisitionItem
-        fields = ['stock', 'quantity', 'uom', 'unit', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'consumption', 'requard_qty']
+        fields = ['stock', 'quantity', 'uom', 'unit', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'cad_consumption', 'requard_qty']
 
 # formset used to render multiple 'FabricRequisitionItemForm'
 FabricRItemFormset = formset_factory(FabricRItemForm, extra=1)

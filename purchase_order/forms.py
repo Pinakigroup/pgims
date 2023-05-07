@@ -12,20 +12,26 @@ class PurchaseForm(forms.ModelForm):
         
     class Meta:
         model = PurchaseBill
-        # fields = ['supplier', 'buyer_name', 'merchandiser', 'work_order', 'po_id', 'po_no', 'file_no', 'po_date', 'detail']
+        # fields = ['supplier', 'buyer_name', 'merchandiser', 'work_order', 'po_no', 'style', 'file_no', 'sale_contact', 'po_date', 'remarks']
         fields = '__all__'
         widgets = {
             'merchandiser' : forms.Select(attrs = {'class' : 'textinput form-control'}),
-            'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'style' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'po_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
-            'detail' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
+            'sale_contact' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
+            'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
         }
 
 
 # form used to render a single stock item form
 class PurchaseItemForm(forms.ModelForm):
+    class Meta:
+        model = PurchaseItem
+        fields = ['stock', 'quantity', 'unit_price', 'uom', 'size', 'style_no', 'color']
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
@@ -36,9 +42,10 @@ class PurchaseItemForm(forms.ModelForm):
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
-    class Meta:
-        model = PurchaseItem
-        fields = ['stock', 'quantity', 'unit_price', 'uom', 'size', 'style_no', 'color']
+        
+    labels = {
+            'stock': 'Goods Receiver',
+        }
 
 # formset used to render multiple 'PurchaseItemForm'
 PurchaseItemFormset = formset_factory(PurchaseItemForm, extra=1)

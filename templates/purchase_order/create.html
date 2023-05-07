@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %} 
-{% block title %}create Purchase Order{% endblock title %} 
+{% block title %}create Work Order{% endblock title %} 
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
@@ -18,7 +18,7 @@
 								<i class="bx bx-home-alt"></i>
 							</a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Add New Purchase Order</li>
+						<li class="breadcrumb-item active" aria-current="page">Add New Work Order</li>
 					</ol>
 				</nav>
 			</div>
@@ -42,7 +42,7 @@
 			<div class="col-xl-9 mx-auto">
 				<div class="ms-auto">
 					<a href="{% url 'po_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
-						<i class="bx bx-grid-alt"></i>Purchase Order Table
+						<i class="bx bx-grid-alt"></i>Work Order Table
 					</a>
 				</div><br>
                 <hr/>
@@ -70,37 +70,46 @@
                         </div>
                     </div><br>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="controls">
                             {{ form.work_order|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="controls">
-                            {{ form.po_id|as_crispy_field }}
+                            {{ form.wo_date|as_crispy_field }}
                         </div>
                     </div><br>
-
-                    <div class="col-sm-3">
-                        <div class="controls">
-                            {{ form.po_date|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="controls">
                             {{ form.file_no|as_crispy_field }}
                         </div>
                     </div><br>
+                    <div class="col-sm-2">
+                        <div class="controls">
+                            {{ form.sale_contact|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-2">
+                        <div class="controls">
+                            {{ form.po_no|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-2">
+                        <div class="controls">
+                            {{ form.style|as_crispy_field }}
+                        </div>
+                    </div><br>
                     <div class="col-sm-12">
                         <div class="controls">
-                            {{ form.detail|as_crispy_field }}
+                            {{ form.remarks|as_crispy_field }}
                         </div>
                     </div><br>
 
                     {{ formset.management_form }}
 
                     <div class="panel-heading panel-heading-text">
-                        <h1>Product Details</h1>
+                        <h3>Product Details</h3>
                     </div>
                     
                         <div id="stockitem"> 

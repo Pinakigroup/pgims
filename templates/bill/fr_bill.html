@@ -33,10 +33,10 @@
                                     <div class="centered; width: 50%;">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>Supervisor : </strong>{{ bill.name }}</span> 
-                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>Store Man : </strong>{{ bill.store_receiver }}</span>
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>Goods Issuer : </strong>{{ bill.store_receiver }}</span> 
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>Goods Receiver : </strong>{{ bill.name }}</span>
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>Buyer : </strong>{{ bill.buyer_name }}</span>
-                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>PO : </strong>{{ bill.po_no }}</span>
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>WO : </strong>{{ bill.wo_no }}</span>
                                             </div>
                                             <div class="col-md-6">
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>ORDER NO : </strong>{{ bill.order_no }}</span>
@@ -74,7 +74,7 @@
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.style_no }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.order_qty }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.cutting_qty }}</td>
-                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.consumption }}</td>
+                                            <td class="inner-box" style="width: 10%;">&nbsp; {{ item.cad_consumption }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.requard_qty }} {{ item.unit }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.quantity }} {{ item.unit }}</td>
                                         </tr>
@@ -85,7 +85,7 @@
                         </tr>
                         <tr>
                             <td style="text-align: right; padding-right:10px; padding-top: 15px;">
-                                <span style="font-size: 90%; padding-left: 10px; display: block; text-align: left;"><strong>FABRIC DETAIL : </strong>{{ bill.fabric_detail }}</span><br><br>
+                                <span style="font-size: 90%; padding-left: 10px; display: block; text-align: left;"><strong>FABRIC DETAIL : </strong>{{ bill.remarks }}</span><br><br>
 
                                 <div class="row">
                                     <div class="col-md-3">

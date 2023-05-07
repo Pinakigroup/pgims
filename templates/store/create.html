@@ -81,9 +81,15 @@
                         </div>
                     </div><br>
 
+                    <div class="col-sm-2">
+                        <div class="controls">
+                            {{ form.file_no|as_crispy_field }}
+                        </div>
+                    </div><br>
+
                     <div class="col-sm-3">
                         <div class="controls">
-                            {{ form.po_no|as_crispy_field }}
+                            {{ form.wo_no|as_crispy_field }}
                         </div>
                     </div><br>
 
@@ -95,11 +101,6 @@
                     <div class="col-sm-2">
                         <div class="controls">
                             {{ form.style_no|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    <div class="col-sm-2">
-                        <div class="controls">
-                            {{ form.file_no|as_crispy_field }}
                         </div>
                     </div><br>
                     <div class="col-sm-2">
@@ -131,7 +132,7 @@
 
                     <div class="col-sm-12">
                         <div class="controls">
-                            {{ form.fabric_detail|as_crispy_field }}
+                            {{ form.remarks|as_crispy_field }}
                         </div>
                     </div><br>
                     <div class="col-sm-6">

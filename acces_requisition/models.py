@@ -15,6 +15,7 @@ class AccesRequisitionBill(models.Model):
     store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     order_no = models.CharField(max_length=32, null=True, blank=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
+    file_no = models.CharField(max_length=64, null=True, blank=False, unique=True)
     line_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     date = models.DateField(default= now)

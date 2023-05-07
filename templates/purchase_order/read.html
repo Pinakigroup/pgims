@@ -14,7 +14,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Purchase Order Table</li>
+								<li class="breadcrumb-item active" aria-current="page">Work Order Table</li>
 							</ol>
 						</nav>
 					</div>
@@ -60,7 +60,7 @@
 						</form>
 					</div>
 
-                <div class="ms-auto"><a href="/purchase_order/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Purchase Order</a></div><br>
+                <div class="ms-auto"><a href="/purchase_order/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Work Order</a></div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				{% if messages %}
 				{% for message in  messages %}
@@ -89,9 +89,11 @@
 										<th>Buyer</th>
                                         <th>Merchandiser</th>
                                         <th>Work Order</th>
-										<th>PO ID</th>
-                                        <th>PO Date</th>
+										<th>PO NO</th>
+										<th>Style</th>
+                                        <th>WO Date</th>
                                         <th>File No</th>
+                                        <th>Sale Contact</th>
                                         <th>Items</th>
                                         <th>Size</th>
                                         <th>Style</th>
@@ -113,10 +115,12 @@
                                         <td>{{ data.supplier }}</td>
                                         <td>{{ data.buyer_name }}</td>
 										<td>{{ data.merchandiser }}</td>
-                                        <td>{{ data.work_order }}</td>
-										<td>{{ data.po_no }}</td>
-                                        <td>{{ data.po_date|date:"d/m/Y" }}</td>
+										<td>{{ data.wo_no }}</td>
+                                        <td>{{ data.po_no }}</td>
+                                        <td>{{ data.style }}</td>
+                                        <td>{{ data.wo_date|date:"d/m/Y" }}</td>
 										<td>{{ data.file_no }}</td>
+										<td>{{ data.sale_contact }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 
@@ -148,7 +152,7 @@
                                             {% endfor %}
                                         </td>
                                         <td>৳{{ data.get_total_price }}</td>
-                                        <td>{{ data.detail }}</td>
+                                        <td>{{ data.remarks }}</td>
 									   <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="{% url 'po_bill' data.billno %}">

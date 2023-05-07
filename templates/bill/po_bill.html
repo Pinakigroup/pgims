@@ -1,10 +1,10 @@
 {% extends 'base/base.html' %} 
-{% block title %} Purchase Order Bill No : {{ bill.billno }}{% endblock title %}
+{% block title %} Work Order Bill No : {{ bill.billno }}{% endblock title %}
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
 
-<div style="color:#575757; font-style: bold; font-size: 3rem;  border-bottom: 1px solid #eeeeee00;">Purchase Order Bill No : {{ bill.billno }}</div>
+<div style="color:#575757; font-style: bold; font-size: 3rem;  border-bottom: 1px solid #eeeeee00;">Work Order Bill No : {{ bill.billno }}</div>
 
     <!-- <br><br> --><!-- Log on to codeastro.com for more projects -->
     
@@ -18,7 +18,7 @@
                         <tr style="height: 1px;">
                             <td> 
                                 <div class="split left">
-                                    <p> TEXT INVOICE - Purchase Order</p> 
+                                    <p> TEXT INVOICE - Work Order</p> 
                             </div>
                             </td>
                         </tr>
@@ -35,11 +35,11 @@
                                             <div class="col-md-6">
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong> SUPPLIER : </strong>{{ bill.supplier }}</span> 
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>MERCHANDISER : </strong>{{ bill.merchandiser }}</span>
-                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>WORK ORDER : </strong>{{ bill.work_order }}</span>
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>WO NO : </strong>{{ bill.wo_no }}</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>PO DATE : </strong>{{ bill.po_date }}</span>
-                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>PO ID : </strong>{{ bill.po_no }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>PO DATE : </strong>{{ bill.wo_date }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>PO NO : </strong>{{ bill.po_no }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>FILE NO : </strong>{{ bill.file_no }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>DATE : </strong>{{ bill.time.date }}</span>
                                             </div>

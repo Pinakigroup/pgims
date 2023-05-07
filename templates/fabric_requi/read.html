@@ -85,23 +85,24 @@
                                         <th width="25%">Actions</th> {% endcomment %}
 
 										<th>Bill No.</th>
-										<th>Supervisor</th>
+										<th>Goods Receiver</th>
                                         <th>Buyer</th>
-                                        <th>PO</th>
+                                        <th>WO No</th>
                                         <th>Order No</th>
+                                        <th>File No</th>
                                         <th>Card No</th>
                                         <th>Floor</th>
                                         <th>Date</th>
                                         <th>Items</th>
-                                        <th>UOM</th>
+                                        <th>Unit</th>
 										<th>Style</th>
 										<th>Color</th>
                                         <th>Supply Qty</th>
                                         <th>Order Qty</th>
                                         <th>Cut Qty</th>
-                                        <th>Consumption</th>
+                                        <th>Cad Consumption</th>
                                         <th>Req Qty</th>
-										<th>Remark</th>
+										<th>Remarks</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -114,8 +115,9 @@
                                         </td> {% endcomment %}
                                         <td>{{ data.name }}</td>
                                         <td>{{ data.buyer_name }}</td>
-                                        <td>{{ data.po_no }}</td>
+                                        <td>{{ data.wo_no }}</td>
                                         <td>{{ data.order_no }}</td>
+                                        <td>{{ data.file_no }}</td>
                                         <td>{{ data.card_no }}</td>
                                         <td>{{ data.floor }}</td>
                                         <td>{{ data.date|date:"d/m/Y" }}</td>
@@ -160,7 +162,7 @@
                                         </td> 
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.consumption }} <br> 
+                                                {{ item.cad_consumption }} <br> 
                                             {% endfor %}
                                         </td> 
                                         <td>
@@ -169,7 +171,7 @@
 												{{ item.unit }} 
                                             {% endfor %}
                                         </td> 
-                                        <td>{{ data.fabric_detail }}</td>
+                                        <td>{{ data.remarks }}</td>
 
 									   <td class="center">
 										<div class="d-flex order-actions">

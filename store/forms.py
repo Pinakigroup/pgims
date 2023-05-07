@@ -14,7 +14,8 @@ class StoreForm(forms.ModelForm):
         
     class Meta:
         model = StoreBill
-        fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'pi_no', 'received_by', 'received_date', 'img_file', 'po_no', 'lc', 'style_no', 'file_no', 'lot_no', 'fabric_detail', 'store_location', 'order_qty']
+        # fields = '__all__'
+        fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'pi_no', 'received_by', 'received_date', 'img_file', 'wo_no', 'lc', 'style_no', 'file_no', 'lot_no', 'remarks', 'store_location', 'order_qty']
         widgets = {
             
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -25,13 +26,13 @@ class StoreForm(forms.ModelForm):
             'received_by' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'received_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             
-            'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'wo_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'lc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'lot_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
-            'fabric_detail' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
+            'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
             'store_location' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
@@ -45,14 +46,14 @@ class StoreForm(forms.ModelForm):
             'received_date': 'Received Date',
             'img_file': 'Photo',
             
-            'po_no': 'PO',
+            'wo_no': 'Work Order No',
             'lc': 'LC',
             'style_no': 'Style No',
             'file_no': 'File No',
             'lot_no': 'Lot No',
             'product_item': 'Product Name',
             'fabric_color': 'Fabric Color',
-            'fabric_detail': 'Fabric Detail',
+            'remarks': 'Remarks',
             'store_location': 'Location',
             'order_qty': 'Order Qty',
             'receive_qty': 'Receive Qty',

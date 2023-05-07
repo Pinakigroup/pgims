@@ -100,7 +100,7 @@
                                         <th>Received By</th>
                                         <th>Photo</th>
 
-                                        <th>PO</th>
+                                        <th>WO</th>
                                         <th>LC</th>
                                         <th>Style</th>
                                         <th>File No</th>
@@ -137,7 +137,7 @@
 											  </a>
 											  {% endif %}
 										</td> 
-                                        <td>{{ data.po_no }}</td>
+                                        <td>{{ data.wo_no }}</td>
                                         <td>{{ data.lc }}</td>
                                         <td>{{ data.style_no }}</td>
                                         <td>{{ data.file_no }}</td>
@@ -147,7 +147,7 @@
                                                 {{ item.fabric_color }} <br> 
                                             {% endfor %}
                                         </td>
-                                        <td>{{ data.fabric_detail }}</td>
+                                        <td>{{ data.remarks }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 

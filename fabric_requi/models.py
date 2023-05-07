@@ -13,8 +13,9 @@ class FabricRequisitionBill(models.Model):
     name = models.CharField(max_length=64, null=True, unique=True, blank=True)
     store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     buyer_name = models.CharField(max_length=64, null=True, unique=True, blank=True)
-    po_no = models.CharField(max_length=32, null=True, blank=True)
+    wo_no = models.CharField(max_length=32, null=True, blank=True)
     order_no = models.CharField(max_length=32, null=True, blank=True)
+    file_no = models.CharField(max_length=64, null=True, blank=False, unique=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     FLOOR = (
         ('', 'Select'),
@@ -29,7 +30,7 @@ class FabricRequisitionBill(models.Model):
     )
     floor = models.CharField(max_length=64, null=True, blank=False, choices=FLOOR)
     date = models.DateField(default= now)
-    fabric_detail = models.TextField(null=True, blank=True)
+    remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
@@ -76,7 +77,7 @@ class FabricRequisitionItem(models.Model):
     fab_color = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.IntegerField(default=0)
     cutting_qty = models.IntegerField(default=0)
-    consumption = models.CharField(max_length=64, blank=True, null=True)
+    cad_consumption = models.CharField(max_length=64, blank=True, null=True)
     requard_qty = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)

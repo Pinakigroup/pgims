@@ -32,6 +32,10 @@ class PurchaseItemForm(forms.ModelForm):
         model = PurchaseItem
         fields = ['stock', 'quantity', 'unit_price', 'uom', 'size', 'style_no', 'color']
         
+        labels = {
+            'stock': 'Goods Receiver',
+            'color': 'Goods Issuer',
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
@@ -42,10 +46,7 @@ class PurchaseItemForm(forms.ModelForm):
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
-        
-    labels = {
-            'stock': 'Goods Receiver',
-        }
+
 
 # formset used to render multiple 'PurchaseItemForm'
 PurchaseItemFormset = formset_factory(PurchaseItemForm, extra=1)

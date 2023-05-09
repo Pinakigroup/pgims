@@ -18,8 +18,8 @@ class AccesRequisitionBill(models.Model):
     file_no = models.CharField(max_length=64, null=True, blank=False, unique=True)
     line_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
-    date = models.DateField(default= now)
-    supply_qty = models.PositiveIntegerField(default=1)
+    date = models.DateField(default= now, null=True, blank=True)
+    supply_qty = models.PositiveIntegerField(default=1, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -42,7 +42,7 @@ class AccesRequisitionBill(models.Model):
 class AccesRequisitionItem(models.Model):
     billno = models.ForeignKey(AccesRequisitionBill, on_delete = models.CASCADE, related_name='ar_billno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='ar_item')
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=1, blank=True, null=True)
     UOM = (
         ('', 'Select'),
         ('kg', 'kg'),

@@ -9,11 +9,14 @@ from .forms import StockForm, StockDateSearchForm
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import permission_required
+
 
 # Create your views here.
 
 # Create 
 @method_decorator(login_required, name='dispatch')
+# @method_decorator(permission_required('app_name.stock'), name='dispatch')
 class StockCreateView(SuccessMessageMixin, CreateView):                                 # createview class to add new stock, mixin used to display message
     model = Stock                                                                       # setting 'Stock' model as model
     form_class = StockForm                                                              # setting 'StockForm' form as form
@@ -26,6 +29,7 @@ class StockCreateView(SuccessMessageMixin, CreateView):                         
         return context  
 
 # Read
+
 # class StockListView(ListView):
 #     model = Stock 
 #     template_name = 'stock/read.html'

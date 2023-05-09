@@ -29,7 +29,7 @@ class FabricRequisitionBill(models.Model):
         ('8th', '8th'),
     )
     floor = models.CharField(max_length=64, null=True, blank=False, choices=FLOOR)
-    date = models.DateField(default= now)
+    date = models.DateField(default= now, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -75,10 +75,10 @@ class FabricRequisitionItem(models.Model):
     unit = models.CharField(max_length=64, null=True, blank=False, choices=UNIT)
     style_no = models.CharField(max_length=64, blank=True, null=True)
     fab_color = models.CharField(max_length=64, blank=True, null=True)
-    order_qty = models.IntegerField(default=0)
-    cutting_qty = models.IntegerField(default=0)
+    order_qty = models.IntegerField(default=0, blank=True, null=True)
+    cutting_qty = models.IntegerField(default=0, blank=True, null=True)
     cad_consumption = models.CharField(max_length=64, blank=True, null=True)
-    requard_qty = models.IntegerField(default=0)
+    requard_qty = models.IntegerField(default=0, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

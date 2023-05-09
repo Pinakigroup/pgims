@@ -12,11 +12,12 @@ from django.views.generic import (
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 # used to generate a bill object and save items
 @method_decorator(login_required, name='dispatch')
-class StoreCreateView(View):                                                 
+class StoreCreateView(LoginRequiredMixin, View):                                                 
     template_name = 'store/create.html'
     
     def get(self, request):
@@ -70,7 +71,8 @@ class StoreCreateView(View):
 #     template_name = 'store/read.html'
 #     context_object_name = 'bills'
 #     ordering = ['-time']
-    
+
+
 # class StoreReportView(ListView):
 #     model = StoreBill 
 #     template_name = 'store/report.html'

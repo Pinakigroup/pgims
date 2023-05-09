@@ -16,23 +16,21 @@ class StoreBill(models.Model):
         ('DC', 'DC'),
     )
     report = models.CharField(max_length=64, null=True, blank=False, choices=REPORT)
-    report_no = models.CharField(max_length=64, blank=True, null=True)  
+    report_no = models.CharField(max_length=64, null=True, blank=True)  
     report_date = models.DateField(default= now)
     # Sonia Kater 
     pi_no = models.CharField(max_length=150, blank=True, null=True)
     received_by = models.CharField(max_length=64, blank=False, null=True)
-    received_date = models.DateField(default= now)
+    received_date = models.DateField(default= now, blank=True, null=True)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
-    
     wo_no = models.CharField(max_length=64, blank=True, null=True)
     lc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     file_no = models.CharField(max_length=64, blank=False, null=True)
     lot_no = models.CharField(max_length=64, blank=True, null=True)
-    
     remarks = models.TextField(blank=True, null=True)
     store_location = models.CharField(max_length=64, blank=True, null=True)
-    order_qty = models.IntegerField(default=0)
+    order_qty = models.IntegerField(default=0, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

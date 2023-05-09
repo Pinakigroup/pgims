@@ -6,7 +6,7 @@ class Stock(models.Model):
     id = models.AutoField(primary_key=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     name = models.CharField(max_length=30, unique=True)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=1, null=True)
     UOM = (
         ('', 'Select'),
         ('kg', 'kg'),

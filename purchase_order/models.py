@@ -23,7 +23,7 @@ class PurchaseBill(models.Model):
     merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
     po_no = models.CharField(max_length=32, null=True, blank=True)
     style = models.CharField(max_length=32, null=True, blank=True)
-    wo_date = models.DateField(default= now)
+    wo_date = models.DateField(default= now, null=True, blank=True)
     
     work_order = models.IntegerField(default=generate_random_number)
     # po_id = models.CharField(max_length=32, null=True, blank=False)
@@ -60,9 +60,9 @@ class PurchaseBill(models.Model):
 class PurchaseItem(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete = models.CASCADE, related_name='purchasebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='purchaseitem')
-    quantity = models.IntegerField(default=1)
-    unit_price = models.IntegerField(default=1)
-    totalprice = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=1, null=True, blank=True)
+    unit_price = models.IntegerField(default=1, null=True, blank=True)
+    totalprice = models.IntegerField(default=1, null=True, blank=True)
     UOM = (
         ('', 'Select'),
         ('kg', 'kg'),

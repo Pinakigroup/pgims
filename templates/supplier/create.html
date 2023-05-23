@@ -55,7 +55,7 @@
 							<h4 class="mb-0 text-uppercase">General Detail</h4>
 							{% csrf_token %}	
 
-							<div class="col-sm-12">
+							<div class="col-sm-6">
 								<div class="controls">
 									{{ form.date|as_crispy_field }}
 								</div>
@@ -65,12 +65,6 @@
 									{{ form.supplier_name|as_crispy_field }}
 								</div>
 							</div>
-							<div class="col-sm-6">
-								<div class="controls">
-									{{ form.company_name|as_crispy_field }}
-								</div>
-							</div>
-
 							<h4 class="mb-0 text-uppercase">Office Info</h4>
 							<div class="col-sm-3">
 								<div class="controls">
@@ -222,7 +216,7 @@
 							
 
 							<div class="form-actions">
-								<button type="submit" class="btn btn-success">Save changes</button>
+								<button type="submit" class="btn btn-success">Save</button>
 								<button type="reset" class="btn">Cancel</button>
 							</div>
 						</form>

@@ -96,7 +96,6 @@ def accesR_read(request):
     }
     return render(request, 'acces_requisition/read.html', context)
 
-# Show Bill
 # @login_required
 # @allowed_users(allowed_roles=['admin', 'store'])
 @method_decorator(login_required, name='dispatch')
@@ -136,7 +135,7 @@ class AccesRBillView(View):
         }
         return render(request, self.template_name, context)
     
-# Delete     
+#  Delete     
 # @login_required
 # @allowed_users(allowed_roles=['admin'])   
 # AttributeError: 'function' object has no attribute 'as_view'  -->> solution:  Since, this view is a clasbase view . goto--->> urls.py/ and .as_view() (remove)

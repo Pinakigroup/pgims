@@ -38,9 +38,9 @@ class StoreForm(forms.ModelForm):
         labels = {
             'company': 'Company',
             'buyer_name': 'Buyer Name',
-            'report': 'Inv/DC',
-            'report_no': 'Inv/DC No',
-            'report_date': 'Inv/DC Date',
+            'report': 'Invoice/Delivery Challan',
+            'report_no': 'Invoice/Delivery Challan No',
+            'report_date': 'Invoice/Delivery Challan Date',
             'pi_no': 'PI',
             'received_by': 'Received By',
             'received_date': 'Received Date',

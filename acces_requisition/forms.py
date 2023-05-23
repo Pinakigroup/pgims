@@ -29,6 +29,11 @@ class AccesRForm(forms.ModelForm):
         labels = {
             'name': 'Goods Receiver',
             'store_receiver': 'Goods Issuer',
+            'file_no': 'File No',
+            'order_no': 'Order No',
+            'style_no': 'Style No',
+            'line_no': 'Line No',
+            'card_no': 'Card No',
         }
 
 

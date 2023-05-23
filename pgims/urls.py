@@ -33,4 +33,6 @@ urlpatterns = [
     path('fabric_requi/', include('fabric_requi.urls')),
     path('acces_requisition/', include('acces_requisition.urls')),
     path('accounts/', include('accounts.urls')),
+    path('buyer/', include('buyer.urls')),
+    path('file/', include('file.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

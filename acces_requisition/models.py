@@ -31,12 +31,6 @@ class AccesRequisitionBill(models.Model):
     def get_items_list(self):
         return AccesRequisitionItem.objects.filter(billno=self)
         
-    # def get_total_price(self):
-    #     ar_items = AccesRequisitionItem.objects.filter(billno=self)
-    #     total = 0
-    #     for item in ar_items:
-    #         total += item.totalprice
-    #     return total
 
 # contains the acces_requisition stocks made
 class AccesRequisitionItem(models.Model):

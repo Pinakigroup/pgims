@@ -24,6 +24,14 @@ class PurchaseForm(forms.ModelForm):
             'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
         }
+        labels = {
+            'po_no': 'PO No',
+            'work_order': 'Work Order',
+            'file_no': 'File No',
+            'wo_date': 'Work Order Date',
+            'sale_contact': 'Sales Contact / MLC',
+            'style': 'PO/Style/Order NO',
+        }
 
 
 # form used to render a single stock item form
@@ -56,6 +64,8 @@ class PurchaseDetailsForm(forms.ModelForm):
         model = PurchaseBillDetails
         fields = ['eway','veh', 'destination', 'po', 'cgst', 'sgst', 'igst', 'cess', 'tcs', 'total']
         
+        
+# Purchase Search Form
 class PurchaseSearchForm(forms.ModelForm):
     start_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)
     end_date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}), required=True)

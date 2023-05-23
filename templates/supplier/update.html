@@ -55,19 +55,14 @@
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
 							<h4 class="mb-0 text-uppercase">General Detail</h4>
-							<div class="col-sm-12">
+							<div class="col-sm-6">
 								<div class="controls">
 									{{ form.date|as_crispy_field }}
 								</div>
 							</div>
-							<div class="col-sm-12">
+							<div class="col-sm-6">
 								<div class="controls">
 									{{ form.supplier_name|as_crispy_field }}
-								</div>
-							</div>
-							<div class="col-sm-12">
-								<div class="controls">
-									{{ form.company_name|as_crispy_field }}
 								</div>
 							</div>
 

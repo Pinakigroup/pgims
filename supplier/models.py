@@ -9,7 +9,6 @@ class Supplier(models.Model):
     
     date = models.DateField(default= now)
     supplier_name = models.CharField(max_length=64, null=True, blank=False)
-    company_name = models.CharField(max_length=64, null=True, blank=False)
     office_address = models.CharField(max_length=64, null=True, blank=True)
     office_postal_code = models.IntegerField(null=True, blank=True)
     office_country = models.CharField(max_length=64, null=True, blank=True)

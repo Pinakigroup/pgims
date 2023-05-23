@@ -27,7 +27,7 @@ class PurchaseBill(models.Model):
     
     work_order = models.IntegerField(default=generate_random_number)
     # po_id = models.CharField(max_length=32, null=True, blank=False)
-    file_no = models.CharField(max_length=64, null=True, blank=False, unique=True)
+    file_no = models.CharField(max_length=64, null=True, blank=False)
     sale_contact = models.CharField(max_length=64, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)

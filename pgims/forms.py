@@ -23,10 +23,3 @@ class RegisterForm(UserCreationForm):
 	# 	if commit:
 	# 		user.save()
 	# 	return user  
- 
- 
- 
-# class UserProfileForm(forms):
-#     class Meta:
-#         model = User 
-#         fi

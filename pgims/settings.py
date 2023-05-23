@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'fabric_requi',
     'accounts',
     'acces_requisition',
+    'buyer',
+    'file',
 ]
 
 # AUTH_USER_MODEL = 'useraccounts.User'
@@ -110,6 +112,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dbpgims',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root123456',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation

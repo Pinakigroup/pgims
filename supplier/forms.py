@@ -4,11 +4,10 @@ from django.forms import fields, widgets
 from .models import Supplier
 
 class SupplierForm(forms.ModelForm):
-    supplier_name = forms.CharField(label='Supplier Name', widget=forms.TextInput(attrs={'class': 'form-control'}), required=True, error_messages={'required':'Must Enter Supplier Name'})
-    company_name = forms.CharField(label="Company Name", widget=forms.TextInput({'class': 'form-control', 'rows':8, 'cols':256}), required=True, error_messages={'required':'Must Enter Company name'})
+    supplier_name = forms.CharField(label='Supplier/Company Name', widget=forms.TextInput(attrs={'class': 'form-control'}), required=True, error_messages={'required':'Must Enter Supplier Name'})
     class Meta:
         model = Supplier
-        fields = ['id', 'date', 'supplier_name', 'company_name', 'office_address', 'office_postal_code', 'office_country', 'office_tphone', 'factory_address', 'factory_postal_code', 'factory_country', 'factory_tphone', 'vat_identi_no', 'expiry_date', 'trade_license_no', 'owner_name', 'owner_phone', 'owner_email', 'first_cp_name', 'first_cp_position', 'first_cp_phone', 'first_cp_email', 'sec_cp_name', 'sec_cp_position', 'sec_cp_phone', 'sec_cp_email', 'account_name', 'account_no', 'bank_name', 'bank_address', 'swift']
+        fields = ['id', 'date', 'supplier_name', 'office_address', 'office_postal_code', 'office_country', 'office_tphone', 'factory_address', 'factory_postal_code', 'factory_country', 'factory_tphone', 'vat_identi_no', 'expiry_date', 'trade_license_no', 'owner_name', 'owner_phone', 'owner_email', 'first_cp_name', 'first_cp_position', 'first_cp_phone', 'first_cp_email', 'sec_cp_name', 'sec_cp_position', 'sec_cp_phone', 'sec_cp_email', 'account_name', 'account_no', 'bank_name', 'bank_address', 'swift']
         widgets = {
             'date': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
             'office_address': forms.TextInput(attrs={'class':'form-control'}),

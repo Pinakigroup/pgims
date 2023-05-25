@@ -49,7 +49,7 @@
         <div class="card">
 			<div class="card-body">
 
-                <form method="POST" enctype="multipart/form-data" class="row g-3 panel panel-default">  
+                <form method="POST" enctype="multipart/form-data" class="row g-3 panel panel-default" action="">  
                     {% csrf_token %}
 
                     <div class="col-sm-6">
@@ -89,18 +89,17 @@
 
                     <div class="col-sm-3">
                         <div class="controls">
-                            {{ form.wo_no|as_crispy_field }}
-                        </div>
-                    </div><br>
-
-                    <div class="col-sm-3">
-                        <div class="controls">
-                            {{ form.lc|as_crispy_field }}
+                            {{ form.work_order|as_crispy_field }}
                         </div>
                     </div><br>
                     <div class="col-sm-2">
                         <div class="controls">
                             {{ form.style_no|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.lc|as_crispy_field }}
                         </div>
                     </div><br>
                     <div class="col-sm-2">
@@ -302,6 +301,28 @@
 
     //updates the total price by multiplying 'price per item' and 'quantity' 
 
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#id_file_no').change(function() {
+      var personId = $(this).val();
+      $.ajax({
+        type: 'GET',
+        url: '/purchase_order/api/purchase/' + personId + '/',
+        dataType: 'json',
+        success: function(response) {
+          $('#id_style_no').val(response.style_no);
+          $('#id_work_order').val(response.work_order);
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          console.log('Error:', errorThrown);
+        }
+      });
+    });
+  });
 </script>
 
 {% endblock body %}

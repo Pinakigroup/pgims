@@ -12,6 +12,10 @@ from django.views.generic import (
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 from django.utils.decorators import method_decorator
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import PurchaseBillSerializer
 # Create your views here.
 
 # used to generate a bill object and save items
@@ -157,3 +161,14 @@ class PurchaseDeleteView(SuccessMessageMixin, DeleteView):
                 stock.save()
         messages.success(self.request, "Purchase Order has been deleted successfully")
         return super(PurchaseDeleteView, self).delete(*args, **kwargs)
+
+
+
+class PurchaseBillDetailView(APIView):
+    def get(self, request, pk):
+        try:
+            person = PurchaseBill.objects.get(pk=pk)
+            serializer = PurchaseBillSerializer(person)
+            return Response(serializer.data)
+        except PurchaseBill.DoesNotExist:
+            return Response(status=404)

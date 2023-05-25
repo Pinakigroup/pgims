@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third party app
+    'rest_framework',
     'crispy_forms',
     'crispy_bootstrap5',
     'djrichtextfield',
+    # CORS
+    'corsheaders',
     # app 
     'stock',
     'category',
@@ -61,6 +64,10 @@ INSTALLED_APPS = [
 # AUTH_USER_MODEL = 'useraccounts.User'
 
 MIDDLEWARE = [
+    #CORS
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

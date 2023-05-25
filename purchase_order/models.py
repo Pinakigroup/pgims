@@ -22,19 +22,21 @@ class PurchaseBill(models.Model):
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
     merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
     po_no = models.CharField(max_length=32, null=True, blank=True)
-    style = models.CharField(max_length=32, null=True, blank=True)
+    style_no = models.CharField(max_length=32, null=True, blank=True)
     wo_date = models.DateField(default= now, null=True, blank=True)
     
     work_order = models.IntegerField(default=generate_random_number)
-    # po_id = models.CharField(max_length=32, null=True, blank=False)
     file_no = models.CharField(max_length=64, null=True, blank=False)
     sale_contact = models.CharField(max_length=64, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
+    # def __str__(self):
+    #     return "Bill no: " + str(self.billno)
+    
     def __str__(self):
-        return "Bill no: " + str(self.billno)
+        return str(self.work_order)
 
     def get_items_list(self):
         return PurchaseItem.objects.filter(billno=self)

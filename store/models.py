@@ -2,6 +2,7 @@ from django.db import models
 from stock.models import Stock
 from django.utils.timezone import now
 from supplier.models import Supplier
+from purchase_order.models import PurchaseBill
 # Create your models here.
 
 class StoreBill(models.Model):
@@ -23,7 +24,8 @@ class StoreBill(models.Model):
     received_by = models.CharField(max_length=64, blank=False, null=True)
     received_date = models.DateField(default= now, blank=True, null=True)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
-    wo_no = models.CharField(max_length=64, blank=True, null=True)
+    work_order = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False)
+    
     lc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     file_no = models.CharField(max_length=64, blank=False, null=True)

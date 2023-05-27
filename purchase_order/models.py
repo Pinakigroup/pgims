@@ -33,10 +33,10 @@ class PurchaseBill(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
     # def __str__(self):
-    #     return "Bill no: " + str(self.billno)
+    #     return "Bill no: " + str(self.file_no)
     
     def __str__(self):
-        return str(self.work_order)
+        return str(self.file_no)
 
     def get_items_list(self):
         return PurchaseItem.objects.filter(billno=self)

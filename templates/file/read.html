@@ -71,6 +71,7 @@
 										<th>Sales Contact NO</th>
 										<th>Payment Terms</th>
 										<th>Day</th>
+										<th>Exp Date of Delivery</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -84,6 +85,7 @@
                                         <td>{{ data.sales_contact_no }}</td>
                                         <td>{{ data.abc }}</td> 
                                         <td>{{ data.xyz }}</td>
+                                        <td>{{ data.exp_date_of_delivery }}</td>
 										<td class="center">
 											<div class="d-flex order-actions">
 												<a class="" href="{% url 'file_update' data.id %}">

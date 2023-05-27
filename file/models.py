@@ -1,5 +1,6 @@
 from django.db import models
 from buyer.models import Buyer
+from django.utils.timezone import now
 # Create your models here.
 
 class File(models.Model):
@@ -19,6 +20,8 @@ class File(models.Model):
         ('120 day', '120 day'),
     )
     xyz = models.CharField(max_length=64, null=True, blank=True, choices=DAY)
+    # expected date of delivery 
+    exp_date_of_delivery = models.DateField(default= now, null=True, blank=True) 
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)  
     

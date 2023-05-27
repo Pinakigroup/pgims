@@ -26,10 +26,10 @@ class StoreForm(forms.ModelForm):
             'received_by' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'received_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             
-            'work_order' : forms.Select(attrs = {'class' : 'textinput form-control'}),
+            'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'lc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'file_no' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'lot_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),

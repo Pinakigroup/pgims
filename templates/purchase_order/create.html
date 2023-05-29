@@ -203,6 +203,19 @@
 </div>
 <!--end page wrapper -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{ form.media }}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#id_id_file_no').select2({
+			placeholder: 'Select person',
+			allowClear: true,
+			width: '100%'
+		});
+	});
+</script>
+
 <!-- Custom JS to add and remove item forms --><!-- Log on to codeastro.com for more projects -->
 <script type="text/javascript" src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dialogbox.js' %}"></script>
@@ -307,5 +320,6 @@
         });
     });
 </script>
+
 
 {% endblock body %}

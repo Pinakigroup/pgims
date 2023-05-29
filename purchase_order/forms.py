@@ -1,9 +1,20 @@
 from django import forms
 from django.forms import formset_factory
 from .models import PurchaseItem, PurchaseBillDetails, PurchaseBill
+from file.models import File
 from stock.models import Stock
+from django_select2.forms import ModelSelect2Widget
 
 class PurchaseForm(forms.ModelForm):
+    file_no = forms.ModelChoiceField(
+        queryset=File.objects.all(),
+        widget=ModelSelect2Widget(
+            model=File,
+            search_fields=['name__icontains'],
+            attrs={'style': 'width: 100%'}
+        )
+    )
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # self.fields['name'].widget.attrs.update({'class': 'textinput form-control', 'pattern' : '[a-zA-Z\s]{1,50}', 'title' : 'Alphabets and Spaces only', 'required': 'true'})
@@ -19,7 +30,6 @@ class PurchaseForm(forms.ModelForm):
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'sale_contact' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
@@ -27,7 +37,6 @@ class PurchaseForm(forms.ModelForm):
         labels = {
             'po_no': 'PO No',
             'work_order': 'Work Order',
-            'file_no': 'File No',
             'wo_date': 'Work Order Date',
             'sale_contact': 'Sales Contact / MLC',
             'style': 'PO/Style/Order NO',

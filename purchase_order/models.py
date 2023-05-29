@@ -2,13 +2,12 @@ from django.db import models
 from django.utils.timezone import now
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
+from file.models import File
 from stock.models import Stock
 import datetime
 from datetime import date
 import random
-
 # Create your models here.
-
 
 def generate_random_number():
     return random.randint(100, 999)
@@ -26,7 +25,7 @@ class PurchaseBill(models.Model):
     wo_date = models.DateField(default= now, null=True, blank=True)
     
     work_order = models.IntegerField(default=generate_random_number)
-    file_no = models.CharField(max_length=64, null=True, blank=False)
+    file_no = models.ForeignKey(File, on_delete=models.CASCADE, blank=False)
     sale_contact = models.CharField(max_length=64, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)

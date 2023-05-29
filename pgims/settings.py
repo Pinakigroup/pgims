@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Third party app
+    # Other apps...
+    'django_select2',
     'rest_framework',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -123,7 +124,7 @@ WSGI_APPLICATION = 'pgims.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db1',
+        'NAME': 'db4',
         'USER': 'postgres',
         'PASSWORD': 'root123456',
         'HOST': 'localhost',

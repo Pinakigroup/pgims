@@ -4,7 +4,7 @@ from django.utils.timezone import now
 # Create your models here.
 
 class File(models.Model):
-    file_no = models.CharField(max_length=64, null=True, blank=False)
+    file = models.CharField(max_length=64, null=True, blank=False)
     name = models.ForeignKey(Buyer, on_delete=models.CASCADE, blank=False, related_name='buyersname')
     master_lc = models.CharField(max_length=128, null=True, blank=True)
     sales_contact_no = models.CharField(max_length=128, null=True, blank=True)
@@ -26,4 +26,4 @@ class File(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)  
     
     def __str__(self):
-        return self.name
+        return str(self.file)

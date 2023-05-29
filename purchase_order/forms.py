@@ -10,7 +10,7 @@ class PurchaseForm(forms.ModelForm):
         queryset=File.objects.all(),
         widget=ModelSelect2Widget(
             model=File,
-            search_fields=['name__icontains'],
+            search_fields=['file__icontains'],
             attrs={'style': 'width: 100%'}
         )
     )

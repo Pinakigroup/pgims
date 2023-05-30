@@ -1,10 +1,22 @@
 from django import forms
 from django.forms import formset_factory
 from .models import StoreBill, StoreItem, StoreBillDetails
+from purchase_order.models import PurchaseBill
 from stock.models import Stock
+from django_select2.forms import ModelSelect2Widget
 
 # form used to get customer details
-class StoreForm(forms.ModelForm):
+class StoreForm(forms.ModelForm):   
+     
+    file_no_wo = forms.ModelChoiceField(
+        queryset=PurchaseBill.objects.all(),
+        widget=ModelSelect2Widget(
+            model=PurchaseBill,
+            search_fields=['file_no__icontains'],
+            attrs={'style': 'width: 100%'}
+        )
+    )
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['supplier'].widget.attrs.update({'class': 'textinput form-control'})
@@ -15,9 +27,9 @@ class StoreForm(forms.ModelForm):
     class Meta:
         model = StoreBill
         # fields = '__all__'
-        fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'pi_no', 'received_by', 'received_date', 'img_file', 'work_order', 'lc', 'style_no', 'file_no', 'lot_no', 'remarks', 'store_location', 'order_qty']
+        # fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'pi_no', 'received_by', 'received_date', 'img_file', 'work_order', 'lc', 'style_no', 'file_no_wo', 'lot_no', 'remarks', 'store_location', 'order_qty']
+        fields = '__all__'
         widgets = {
-            
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'report' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -29,7 +41,7 @@ class StoreForm(forms.ModelForm):
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'lc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'file_no' : forms.Select(attrs = {'class' : 'textinput form-control'}),
+            # 'file_no_wo' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'lot_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
@@ -49,7 +61,7 @@ class StoreForm(forms.ModelForm):
             'work_order': 'Work Order No',
             'lc': 'LC',
             'style_no': 'Style No',
-            'file_no': 'File No',
+            # 'file_no_wo': 'File No',
             'lot_no': 'Lot No',
             'product_item': 'Product Name',
             'fabric_color': 'Fabric Color',

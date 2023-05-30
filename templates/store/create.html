@@ -83,7 +83,7 @@
 
                     <div class="col-sm-2">
                         <div class="controls">
-                            {{ form.file_no|as_crispy_field }}
+                            {{ form.file_no_wo|as_crispy_field }}
                         </div>
                     </div><br>
 
@@ -323,6 +323,20 @@
       });
     });
   });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{ form.media }}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#id_id_file_no_wo').select2({
+			placeholder: 'Select file_no',
+			allowClear: true,
+			width: '100%'
+		});
+	});
 </script>
 
 {% endblock body %}

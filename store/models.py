@@ -30,7 +30,7 @@ class StoreBill(models.Model):
     lc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     # file_no = models.CharField(max_length=64, blank=False, null=True)
-    file_no = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False)
+    file_no_wo = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False)
     lot_no = models.CharField(max_length=64, blank=True, null=True)
     remarks = models.TextField(blank=True, null=True)
     store_location = models.CharField(max_length=64, blank=True, null=True)
@@ -39,7 +39,10 @@ class StoreBill(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
-        return "Bill no: " + str(self.billno)
+        return str(self.file_no_wo)
+    
+    # def __str__(self):
+    #     return "Bill no: " + str(self.billno)
 
     def get_items_list(self):
         return StoreItem.objects.filter(billno=self)

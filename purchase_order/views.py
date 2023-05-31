@@ -168,6 +168,7 @@ class PurchaseBillDetailView(APIView):
     def get(self, request, pk):
         try:
             person = PurchaseBill.objects.get(pk=pk)
+            print("Liton", person)
             serializer = PurchaseBillSerializer(person)
             return Response(serializer.data)
         except PurchaseBill.DoesNotExist:

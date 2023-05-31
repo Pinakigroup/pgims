@@ -8,11 +8,11 @@ from django_select2.forms import ModelSelect2Widget
 # form used to get customer details
 class StoreForm(forms.ModelForm):   
      
-    file_no_wo = forms.ModelChoiceField(
+    file_no = forms.ModelChoiceField(
         queryset=PurchaseBill.objects.all(),
         widget=ModelSelect2Widget(
             model=PurchaseBill,
-            search_fields=['file_no__icontains'],
+            search_fields=['file_no__file__icontains'],
             attrs={'style': 'width: 100%'}
         )
     )

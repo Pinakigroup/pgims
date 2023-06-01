@@ -304,10 +304,11 @@
 </script>
 
 
+<!-- Use for instand show data by id  -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
-    $('#id_file_no').change(function() {
+    $('#id_file_no__file').change(function() {
       var personId = $(this).val();
       $.ajax({
         type: 'GET',
@@ -326,6 +327,7 @@
 </script>
 
 
+<!-- Use for select search  -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {{ form.media }}
 

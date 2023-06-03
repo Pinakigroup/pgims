@@ -124,7 +124,7 @@ WSGI_APPLICATION = 'pgims.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db5',
+        'NAME': 'db6',
         'USER': 'postgres',
         'PASSWORD': 'root123456',
         'HOST': 'localhost',

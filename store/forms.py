@@ -4,12 +4,13 @@ from .models import StoreBill, StoreItem, StoreBillDetails
 from purchase_order.models import PurchaseBill
 from stock.models import Stock
 from django_select2.forms import ModelSelect2Widget
+from django.core.paginator import Paginator
 
 # form used to get customer details
 class StoreForm(forms.ModelForm):   
      
     file_no = forms.ModelChoiceField(
-        queryset=PurchaseBill.objects.all(),
+        queryset=PurchaseBill.objects.all().order_by('file_no'),
         widget=ModelSelect2Widget(
             model=PurchaseBill,
             search_fields=['file_no__file__icontains'],

@@ -9,8 +9,23 @@ from datetime import date
 import random
 # Create your models here.
 
-def generate_random_number():
+def generate_random_number2():
     return random.randint(100, 999)
+
+def generate_random_number():
+    random_number = generate_random_number2()
+    
+    purchase_bill = PurchaseBill()
+
+    # Get the wo_no value
+    wo_number = purchase_bill.wo_no()
+    
+    # wo_number = wo_no()
+    
+    # Combine the random number and wo number in a desired way
+    combined_number = wo_number + random_number
+    
+    return combined_number
 
 #contains the purchase bills made
 class PurchaseBill(models.Model):
@@ -24,7 +39,7 @@ class PurchaseBill(models.Model):
     style_no = models.CharField(max_length=32, null=True, blank=True)
     wo_date = models.DateField(default= now, null=True, blank=True)
     
-    work_order = models.IntegerField(default=generate_random_number)
+    work_order = models.CharField(max_length=64, default=generate_random_number)
     file_no = models.ForeignKey(File, on_delete=models.CASCADE, blank=False)
     sale_contact = models.CharField(max_length=64, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
@@ -53,7 +68,7 @@ class PurchaseBill(models.Model):
         ymd = ymdt[:10]
         rep = ymd.replace("-", "")
         po = rep[2:]
-        p = "AGD"+ po + str(self.work_order)
+        p = "AGD"+ po
         return p
     
 

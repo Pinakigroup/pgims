@@ -9,23 +9,8 @@ from datetime import date
 import random
 # Create your models here.
 
-def generate_random_number2():
-    return random.randint(100, 999)
-
 def generate_random_number():
-    random_number = generate_random_number2()
-    
-    purchase_bill = PurchaseBill()
-
-    # Get the wo_no value
-    wo_number = purchase_bill.wo_no()
-    
-    # wo_number = wo_no()
-    
-    # Combine the random number and wo number in a desired way
-    combined_number = wo_number + random_number
-    
-    return combined_number
+    return random.randint(100, 999)
 
 #contains the purchase bills made
 class PurchaseBill(models.Model):
@@ -36,13 +21,17 @@ class PurchaseBill(models.Model):
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
     merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
     po_no = models.CharField(max_length=32, null=True, blank=True)
+    
+    fileno_po = models.ForeignKey(File, on_delete=models.CASCADE, blank=False, related_name='fileno_pos')
     style_no = models.CharField(max_length=32, null=True, blank=True)
+    work_order = models.CharField(max_length=64, default=generate_random_number)
+    
     wo_date = models.DateField(default= now, null=True, blank=True)
     
-    work_order = models.CharField(max_length=64, default=generate_random_number)
-    file_no = models.ForeignKey(File, on_delete=models.CASCADE, blank=False)
+    
     sale_contact = models.CharField(max_length=64, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
+    
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     
@@ -50,7 +39,7 @@ class PurchaseBill(models.Model):
     #     return "Bill no: " + str(self.file_no)
     
     def __str__(self):
-        return str(self.file_no)
+        return str(self.fileno_po.file)
 
     def get_items_list(self):
         return PurchaseItem.objects.filter(billno=self)
@@ -63,14 +52,55 @@ class PurchaseBill(models.Model):
         return total
     
     # Generate a uniq no
+    # def wo_no(self):               
+    #     ymdt = str(self.created_at)
+    #     ymd = ymdt[:10]
+    #     rep = ymd.replace("-", "")
+    #     po = rep[2:]
+    #     p = "AGD"+ po
+    #     return p
+    
+    # Generate a uniq no 
+    # def wo_no(self):               
+    #     ymdt = str(self.created_at)
+    #     ymd = ymdt[:10]
+    #     rep = ymd.replace("-", "")
+    #     po = rep[2:]
+    #     p = "AGD" + po + str(self.work_order)
+    #     lp = p.replace("ne", "")
+    #     return lp
+    
     def wo_no(self):               
         ymdt = str(self.created_at)
         ymd = ymdt[:10]
         rep = ymd.replace("-", "")
         po = rep[2:]
-        p = "AGD"+ po
-        return p
+        p = "AGD"+ po + str(self.work_order)
+        lp = p.replace("ne", "")
+        return lp
     
+    
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Only generate 'p' if the instance is being created
+            self.work_order = generate_random_number()
+        self.work_order = self.wo_no()  # Compute the value of 'p'
+        super().save(*args, **kwargs)
+
+
+    # def save(self, *args, **kwargs):
+    #     if not self.pk:  # Only generate 'p' value for new instances
+    #         ymdt = str(self.created_at)
+    #         ymd = ymdt[:10]
+    #         rep = ymd.replace("-", "")
+    #         po = rep[2:]
+    #         print("po:", self.created_at)
+    #         # self.work_order = "AGD" + po + str(self.work_order)
+    #         l = "AGD" + po + str(self.work_order)
+    #         lp = l.replace("ne", "")
+    #         self.work_order = lp
+    #     super().save(*args, **kwargs)
+
+
 
 #contains the purchase stocks made
 class PurchaseItem(models.Model):
@@ -94,7 +124,7 @@ class PurchaseItem(models.Model):
     )
     uom = models.CharField(max_length=64, null=True, blank=True, choices=UOM)
     size = models.CharField(max_length=64, null=True, blank=True)
-    style_no = models.CharField(max_length=64, blank=True, null=True)
+    style = models.CharField(max_length=64, blank=True, null=True)
     color = models.CharField(max_length=64, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)

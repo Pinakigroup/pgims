@@ -6,14 +6,6 @@ from category.models import Category
 from django_select2.forms import ModelSelect2Widget
 
 class StockForm(forms.ModelForm):
-    category = forms.ModelChoiceField(
-        queryset=Category.objects.all(),
-        widget=ModelSelect2Widget(
-            model=Category,
-            search_fields=['name__icontains'],
-            attrs={'style': 'width: 100%'}
-        )
-    )
     def __init__(self, *args, **kwargs):                          # used to set css classes to the various fields
         super().__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'textinput form-control'})
@@ -22,6 +14,7 @@ class StockForm(forms.ModelForm):
         model = Stock
         fields = ['category', 'name', 'quantity', 'uom']
         widgets = {
+            'category': ModelSelect2Widget(model=Category, search_fields=['name__icontains'], attrs={'style': 'width: 100%'}),
             'uom' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {

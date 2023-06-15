@@ -90,7 +90,7 @@
                                         <th>Merchandiser</th>
                                         <th>Work Order</th>
 										<th>PO NO</th>
-										<th>Style</th>
+										<th>Style No</th>
                                         <th>WO Date</th>
                                         <th>File No</th>
                                         <th>Sale Contact</th>
@@ -115,11 +115,11 @@
                                         <td>{{ data.supplier }}</td>
                                         <td>{{ data.buyer_name }}</td>
 										<td>{{ data.merchandiser }}</td>
-										<td>{{ data.wo_no }}</td>
+										<td>{{ data.work_order }}</td>
                                         <td>{{ data.po_no }}</td>
                                         <td>{{ data.style_no }}</td>
                                         <td>{{ data.wo_date|date:"d/m/Y" }}</td>
-										<td>{{ data.file_no }}</td>
+										<td>{{ data.fileno_po }}</td>
 										<td>{{ data.sale_contact }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
@@ -133,7 +133,7 @@
                                         </td>
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.style_no }} <br> 
+                                                {{ item.style }} <br> 
                                             {% endfor %}
                                         </td>
                                         <td>

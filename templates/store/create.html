@@ -83,7 +83,7 @@
 
                     <div class="col-sm-2">
                         <div class="controls">
-                            {{ form.file_no|as_crispy_field }}
+                            {{ form.file_no_store|as_crispy_field }}
                         </div>
                     </div><br>
 
@@ -305,40 +305,50 @@
 
 
 <!-- Use for instand show data by id  -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('#id_file_no__file').change(function() {
-      var personId = $(this).val();
-      $.ajax({
-        type: 'GET',
-        url: '/purchase_order/api/purchase/' + personId + '/',
-        dataType: 'json',
-        success: function(response) {
-          $('#id_style_no').val(response.style_no);
-          $('#id_work_order').val(response.work_order);
-        },
-        error: function(xhr, textStatus, errorThrown) {
-          console.log('Error:', errorThrown);
-        }
-      });
-    });
-  });
-</script>
+
 
 
 <!-- Use for select search  -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{{ form.media }}
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#id_id_file_no').select2({
-			placeholder: 'Select file_no',
-			allowClear: true,
-			width: '100%'
-		});
-	});
-</script>
 
+
+
+<script>
+    $(document).ready(function() {
+        $('#id_file_no_store').select2({
+            placeholder: 'Select a File No',
+            allowClear: true,
+            ajax: {
+                url: '/purchase_order/purchase/' + $('#id_file_no_store').val() + '/',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term,
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data,
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1
+        }).on('change', function() {
+            var selectedPerson = $(this).val();
+            if (selectedPerson !== '') {
+                $.ajax({
+                    url: '/purchase_order/purchase/' + selectedPerson + '/',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#id_style_no').val(response.style_no);
+                        $('#id_work_order').val(response.work_order);
+                    }
+                });
+            }
+        });
+    });
+    </script>
+ 
 {% endblock body %}

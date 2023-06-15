@@ -167,9 +167,8 @@ class PurchaseDeleteView(SuccessMessageMixin, DeleteView):
 class PurchaseBillDetailView(APIView):
     def get(self, request, pk):
         try:
-            person = PurchaseBill.objects.get(pk=pk)
-            print("Liton", person)
-            serializer = PurchaseBillSerializer(person)
+            purchase = PurchaseBill.objects.get(pk=pk)
+            serializer = PurchaseBillSerializer(purchase)
             return Response(serializer.data)
         except PurchaseBill.DoesNotExist:
             return Response(status=404)

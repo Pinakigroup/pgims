@@ -9,14 +9,14 @@ from django.core.paginator import Paginator
 # form used to get customer details
 class StoreForm(forms.ModelForm):   
      
-    file_no = forms.ModelChoiceField(
-        queryset=PurchaseBill.objects.all().order_by('file_no'),
-        widget=ModelSelect2Widget(
-            model=PurchaseBill,
-            search_fields=['file_no__file__icontains'],
-            attrs={'style': 'width: 100%'}
-        )
-    )
+    # file_no = forms.ModelChoiceField(
+    #     queryset=PurchaseBill.objects.all().order_by('file_no'),
+    #     widget=ModelSelect2Widget(
+    #         model=PurchaseBill,
+    #         search_fields=['file_no__file__icontains'],
+#         attrs={'style': 'width: 100%'}
+    #     )
+    # )
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,10 +27,11 @@ class StoreForm(forms.ModelForm):
         
     class Meta:
         model = StoreBill
-        # fields = '__all__'
         # fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'pi_no', 'received_by', 'received_date', 'img_file', 'work_order', 'lc', 'style_no', 'file_no_wo', 'lot_no', 'remarks', 'store_location', 'order_qty']
         fields = '__all__'
         widgets = {
+            'file_no_store': ModelSelect2Widget(model=PurchaseBill, search_fields=['fileno_po__file__icontains'], attrs={'style': 'width: 100%'}),
+            
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'report' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),

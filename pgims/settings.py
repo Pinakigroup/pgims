@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'acces_requisition',
     'buyer',
     'file',
+    'work_order',
 ]
 
 # AUTH_USER_MODEL = 'useraccounts.User'
@@ -114,23 +115,23 @@ WSGI_APPLICATION = 'pgims.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db6',
-        'USER': 'postgres',
-        'PASSWORD': 'root123456',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'db6',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root123456',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -185,3 +186,23 @@ STATIC_ROOT = os.path.join(BASE_DIR,'assets')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+CACHES = {
+    # … default cache config and others
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    "select2": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+
+# Tell select2 which cache configuration to use:
+SELECT2_CACHE_BACKEND = "select2"

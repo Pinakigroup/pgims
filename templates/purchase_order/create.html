@@ -51,38 +51,14 @@
 
                 <form method="POST" class="row g-3 panel panel-default">  
                     {% csrf_token %}
-
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="controls">
-                            {{ form.supplier|as_crispy_field }}
+                            {{ form.fileno_po|as_crispy_field }}
                         </div>
                     </div><br>
-
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="controls">
                             {{ form.buyer_name|as_crispy_field }}
-                        </div>
-                    </div><br>
-
-                    <div class="col-sm-4">
-                        <div class="controls">
-                            {{ form.merchandiser|as_crispy_field }}
-                        </div>
-                    </div><br>
-
-                    <div class="col-sm-2">
-                        <div class="controls">
-                            {{ form.work_order|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    <div class="col-sm-2">
-                        <div class="controls">
-                            {{ form.wo_date|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    <div class="col-sm-2">
-                        <div class="controls">
-                            {{ form.file_no|as_crispy_field }}
                         </div>
                     </div><br>
                     <div class="col-sm-2">
@@ -90,12 +66,36 @@
                             {{ form.sale_contact|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-2">
+
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.supplier|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.merchandiser|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.work_order|as_crispy_field }}
+                        </div>
+                    </div><br>
+                    
+                    <div class="col-sm-3">
+                        <div class="controls">
+                            {{ form.wo_date|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-3">
                         <div class="controls">
                             {{ form.po_no|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="controls">
                             {{ form.style_no|as_crispy_field }}
                         </div>
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="form-group col-md-1">
                                         <label class="panel-body-text">Style:</label>
-                                        {{ form.style_no }}
+                                        {{ form.style }}
                                     </div>
 
                                     <div class="form-group col-md-2">
@@ -309,11 +309,10 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{{ form.media }}
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#id_id_file_no').select2({
+		$('#id_id_fileno_po').select2({
 			placeholder: 'Select person',
 			allowClear: true,
 			width: '100%'

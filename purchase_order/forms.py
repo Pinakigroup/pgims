@@ -6,14 +6,6 @@ from stock.models import Stock
 from django_select2.forms import ModelSelect2Widget
 
 class PurchaseForm(forms.ModelForm):
-    file_no = forms.ModelChoiceField(
-        queryset=File.objects.all(),
-        widget=ModelSelect2Widget(
-            model=File,
-            search_fields=['file__icontains'],
-            attrs={'style': 'width: 100%'}
-        )
-    )
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -26,10 +18,11 @@ class PurchaseForm(forms.ModelForm):
         # fields = ['supplier', 'buyer_name', 'merchandiser', 'work_order', 'po_no', 'style', 'file_no', 'sale_contact', 'po_date', 'remarks']
         fields = '__all__'
         widgets = {
+            'fileno_po': ModelSelect2Widget(model=File, search_fields=['file__icontains'], attrs={'style': 'width: 100%'}),
             # 'file_no' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'merchandiser' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'style' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'sale_contact' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
@@ -48,7 +41,7 @@ class PurchaseForm(forms.ModelForm):
 class PurchaseItemForm(forms.ModelForm):
     class Meta:
         model = PurchaseItem
-        fields = ['stock', 'quantity', 'unit_price', 'uom', 'size', 'style_no', 'color']
+        fields = ['stock', 'quantity', 'unit_price', 'uom', 'size', 'style', 'color']
         
         labels = {
             'stock': 'Goods Receiver',
@@ -62,7 +55,7 @@ class PurchaseItemForm(forms.ModelForm):
         self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
         self.fields['uom'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
 
 

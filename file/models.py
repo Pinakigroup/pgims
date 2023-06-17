@@ -6,8 +6,7 @@ from django.utils.timezone import now
 class File(models.Model):
     file = models.CharField(max_length=64, null=True, blank=False)
     name = models.ForeignKey(Buyer, on_delete=models.CASCADE, blank=False, related_name='buyersname')
-    master_lc = models.CharField(max_length=128, null=True, blank=True)
-    sales_contact_no = models.CharField(max_length=128, null=True, blank=True)
+    master_lc_sc = models.CharField(max_length=128, null=True, blank=True)
     abc = models.CharField(max_length=50)
     DAY = (
         ('', 'Select'),

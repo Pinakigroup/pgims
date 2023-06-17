@@ -29,7 +29,7 @@ class PurchaseBill(models.Model):
     wo_date = models.DateField(default= now, null=True, blank=True)
     
     
-    sale_contact = models.CharField(max_length=64, null=True, blank=True)
+    master_lc_sc = models.CharField(max_length=64, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)

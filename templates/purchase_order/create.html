@@ -63,7 +63,7 @@
                     </div><br>
                     <div class="col-sm-2">
                         <div class="controls">
-                            {{ form.sale_contact|as_crispy_field }}
+                            {{ form.master_lc_sc|as_crispy_field }}
                         </div>
                     </div><br>
 
@@ -308,7 +308,7 @@
     });
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -318,7 +318,43 @@
 			width: '100%'
 		});
 	});
-</script>
+</script> {% endcomment %}
 
+<script>
+    $(document).ready(function() {
+        $('#id_fileno_po').select2({
+            placeholder: 'Select a File',
+            allowClear: true,
+            ajax: {
+                url: '/file/file/' + $('#id_fileno_po').val() + '/',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term,
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data,
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1
+        }).on('change', function() {
+            var selectedPerson = $(this).val();
+            if (selectedPerson !== '') {
+                $.ajax({
+                    url: '/file/file/' + selectedPerson + '/',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#id_master_lc_sc').val(response.master_lc_sc);
+                    }
+                });
+            }
+        });
+    });
+    </script>
 
 {% endblock body %}

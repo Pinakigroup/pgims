@@ -99,7 +99,7 @@
                     </div><br>
                     <div class="col-sm-3">
                         <div class="controls">
-                            {{ form.lc|as_crispy_field }}
+                            {{ form.master_lc_sc|as_crispy_field }}
                         </div>
                     </div><br>
                     <div class="col-sm-2">
@@ -344,6 +344,7 @@
                     success: function(response) {
                         $('#id_style_no').val(response.style_no);
                         $('#id_work_order').val(response.work_order);
+                        $('#id_master_lc_sc').val(response.master_lc_sc);
                     }
                 });
             }

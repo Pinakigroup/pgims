@@ -41,7 +41,7 @@ class StoreForm(forms.ModelForm):
             'received_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'lc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'master_lc_sc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             # 'file_no_wo' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'lot_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -61,7 +61,7 @@ class StoreForm(forms.ModelForm):
             'img_file': 'Photo',
             
             'work_order': 'Work Order No',
-            'lc': 'LC',
+            'master_lc_sc': 'Master LC / Sale Contact',
             'style_no': 'Style No',
             # 'file_no_wo': 'File No',
             'lot_no': 'Lot No',

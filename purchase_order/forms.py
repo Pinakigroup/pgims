@@ -24,7 +24,7 @@ class PurchaseForm(forms.ModelForm):
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'sale_contact' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'master_lc_sc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
         }
@@ -32,7 +32,7 @@ class PurchaseForm(forms.ModelForm):
             'po_no': 'PO No',
             'work_order': 'Work Order',
             'wo_date': 'Work Order Date',
-            'sale_contact': 'Sales Contact / MLC',
+            'master_lc_sc': 'Master LC / Sales Contact',
             'style': 'PO/Style/Order NO',
         }
 

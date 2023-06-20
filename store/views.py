@@ -13,6 +13,9 @@ from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .serializers import StoreBillSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 # Create your views here.
 
 # used to generate a bill object and save items
@@ -184,3 +187,13 @@ class StoreDeleteView(SuccessMessageMixin, DeleteView):
                 stock.save()
         messages.success(self.request, "Store item has been deleted successfully")
         return super(StoreDeleteView, self).delete(*args, **kwargs)
+    
+    
+class StoreBillDetailView(APIView):
+    def get(self, request, pk):
+        try:
+            purchase = StoreBill.objects.get(pk=pk)
+            serializer = StoreBillSerializer(purchase)
+            return Response(serializer.data)
+        except StoreBill.DoesNotExist:
+            return Response(status=404)

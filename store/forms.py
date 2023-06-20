@@ -37,7 +37,7 @@ class StoreForm(forms.ModelForm):
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'report_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'pi_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'received_by' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'received_by' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'received_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -50,6 +50,7 @@ class StoreForm(forms.ModelForm):
             'store_location' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
+            'file_no_store': 'File No',
             'company': 'Company',
             'buyer_name': 'Buyer Name',
             'report': 'Invoice/Delivery Challan',

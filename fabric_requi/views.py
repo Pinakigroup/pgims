@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from stock.models import Stock
+from store.models import StoreBill
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -17,6 +18,7 @@ class FabricRequiCreateView(View):
     template_name = 'fabric_requi/create.html'
 
     def get(self, request):
+
         form = FabricRForm(request.GET or None)
         formset = FabricRItemFormset(request.GET or None)                          # renders an empty formset
         stocks = Stock.objects.filter(is_deleted=False)
@@ -27,7 +29,7 @@ class FabricRequiCreateView(View):
         }
         return render(request, self.template_name, context)
 
-    def post(self, request):
+    def post(self, request):        
         form = FabricRForm(request.POST)
         formset = FabricRItemFormset(request.POST)                                 # recieves a post method for the formset
         if form.is_valid() and formset.is_valid():
@@ -54,7 +56,8 @@ class FabricRequiCreateView(View):
             messages.success(request, "Sold items have been registered successfully")
             return redirect('fabricr_read')
         form = FabricRForm(request.GET or None)
-        formset = FabricRItemForm(request.GET or None)
+        formset = FabricRItemForm(request.GET or None)   
+                           
         context = {
             'form'      : form,
             'formset'   : formset,

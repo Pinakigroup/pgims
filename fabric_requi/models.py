@@ -1,5 +1,6 @@
 from django.db import models
 from stock.models import Stock
+from store.models import StoreBill
 from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
 
@@ -13,9 +14,9 @@ class FabricRequisitionBill(models.Model):
     name = models.CharField(max_length=64, null=True, unique=True, blank=True)
     store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     buyer_name = models.CharField(max_length=64, null=True, unique=True, blank=True)
-    wo_no = models.CharField(max_length=32, null=True, blank=True)
+    wo_no = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='fabric_file_no')
     order_no = models.CharField(max_length=32, null=True, blank=True)
-    file_no = models.CharField(max_length=64, null=True, blank=False, unique=True)
+    file_no_store = models.CharField(max_length=64, null=True, blank=False, unique=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     FLOOR = (
         ('', 'Select'),

@@ -2,6 +2,8 @@ from django import forms
 from django.forms import formset_factory
 from .models import FabricRequisitionBill, FabricRequisitionItem, FabricRequisitionBillDetails
 from stock.models import Stock
+from store.models import StoreBill
+from django_select2.forms import ModelSelect2Widget
 
 # form used to get customer details
 class FabricRForm(forms.ModelForm):
@@ -14,13 +16,14 @@ class FabricRForm(forms.ModelForm):
         
     class Meta:
         model = FabricRequisitionBill
-        fields = ['name', 'buyer_name', 'store_receiver', 'wo_no', 'order_no', 'file_no', 'card_no', 'floor', 'date', 'remarks']
+        fields = ['name', 'buyer_name', 'store_receiver', 'wo_no', 'order_no', 'file_no_store', 'card_no', 'floor', 'date', 'remarks']
         widgets = {
+            'wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order__icontains'], attrs={'style': 'width: 100%'}),
+            
             'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'wo_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'file_no_store' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'floor' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
@@ -30,9 +33,9 @@ class FabricRForm(forms.ModelForm):
             'name': 'Goods Receiver',
             'store_receiver': 'Goods Issuer',
             'buyer_name': 'Buyer Name',
-            'wo_no': 'WO No',
+            'wo_no': 'Work Order',
             'order_no': 'Order No',
-            'file_no': 'File No',
+            'file_no_store': 'File No',
             'card_no': 'Card No',
             'floor': 'Floor',
             'date': 'Date',

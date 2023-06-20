@@ -14,7 +14,7 @@ class StockForm(forms.ModelForm):
         model = Stock
         fields = ['category', 'name', 'quantity', 'uom']
         widgets = {
-            'category': ModelSelect2Widget(model=Category, search_fields=['name__icontains'], attrs={'style': 'width: 100%'}),
+            'category' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'uom' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {

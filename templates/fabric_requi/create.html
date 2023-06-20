@@ -88,7 +88,7 @@
 
                                 <div class="col-sm-3">
 									<div class="controls">
-										{{ form.file_no|as_crispy_field }}
+										{{ form.file_no_store|as_crispy_field }}
 									</div>
 								</div><br>
 
@@ -354,6 +354,46 @@
     });
 
 </script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#id_wo_no').select2({
+            placeholder: 'Select a File',
+            allowClear: true,
+            ajax: {
+                url: '/store/store/' + $('#id_wo_no').val() + '/',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term,
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data,
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1
+        }).on('change', function() {
+            var selectedPerson = $(this).val();
+            if (selectedPerson !== '') {
+                $.ajax({
+                    url: '/store/store/' + selectedPerson + '/',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#id_file_no_store').val(response.file_no_store);
+                        $('#id_buyer_name').val(response.buyer_name);
+                    }
+                });
+            }
+        });
+    });
+    </script>
 
 
 {% endblock body %}

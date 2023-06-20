@@ -29,11 +29,12 @@ class PurchaseForm(forms.ModelForm):
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
         }
         labels = {
+            'fileno_po': 'File No',
             'po_no': 'PO No',
             'work_order': 'Work Order',
             'wo_date': 'Work Order Date',
             'master_lc_sc': 'Master LC / Sales Contact',
-            'style': 'PO/Style/Order NO',
+            'style_no': 'PO/Style/Order NO',
         }
 
 

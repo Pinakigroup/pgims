@@ -2,6 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from .views import StoreBillDetailView
 
 urlpatterns = [
     path('create/', views.StoreCreateView.as_view(), name='create'),
@@ -9,4 +10,5 @@ urlpatterns = [
     path('report/', views.storeReport_read, name='store_report'),
     path("bill/<billno>", views.StoreBillView.as_view(), name="store_bill"),
     path('delete/<int:pk>/', views.StoreDeleteView.as_view(), name='store_delete'),
+    path('store/<int:pk>/', StoreBillDetailView.as_view(), name='store_detail'),
 ]

@@ -34,7 +34,7 @@ class PurchaseForm(forms.ModelForm):
             'work_order': 'Work Order',
             'wo_date': 'Work Order Date',
             'master_lc_sc': 'Master LC / Sales Contact',
-            'style_no': 'PO/Style/Order NO',
+            'style_no': 'Style/Order NO',
         }
 
 

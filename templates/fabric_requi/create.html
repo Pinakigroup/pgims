@@ -56,36 +56,17 @@
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
 
-								<div class="col-sm-4">
+								<div class="col-sm-6">
 									<div class="controls">
 										{{ form.name|as_crispy_field }}
 									</div>
 								</div><br>
 
-								<div class="col-sm-4">
+								<div class="col-sm-6">
 									<div class="controls">
 										{{ form.store_receiver|as_crispy_field }}
 									</div>
 								</div><br>
-
-								<div class="col-sm-4">
-									<div class="controls">
-										{{ form.buyer_name|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-3">
-									<div class="controls">
-										{{ form.wo_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-3">
-									<div class="controls">
-										{{ form.order_no|as_crispy_field }}
-									</div>
-								</div><br>
-
                                 <div class="col-sm-3">
 									<div class="controls">
 										{{ form.file_no_store|as_crispy_field }}
@@ -93,6 +74,22 @@
 								</div><br>
 
                                 <div class="col-sm-3">
+									<div class="controls">
+										{{ form.work_order|as_crispy_field }}
+									</div>
+								</div><br> 
+								<div class="col-sm-2">
+									<div class="controls">
+										{{ form.buyer_name|as_crispy_field }}
+									</div>
+								</div><br>
+                                <div class="col-sm-2">
+									<div class="controls">
+										{{ form.order_no|as_crispy_field }}
+									</div>
+								</div><br>
+
+                                <div class="col-sm-2">
 									<div class="controls">
 										{{ form.card_no|as_crispy_field }}
 									</div>
@@ -359,11 +356,11 @@
 
 <script>
     $(document).ready(function() {
-        $('#id_wo_no').select2({
+        $('#id_file_no_store').select2({
             placeholder: 'Select a File',
             allowClear: true,
             ajax: {
-                url: '/store/store/' + $('#id_wo_no').val() + '/',
+                url: '/store/store/' + $('#id_file_no_store').val() + '/',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -386,7 +383,7 @@
                     url: '/store/store/' + selectedPerson + '/',
                     type: 'GET',
                     success: function(response) {
-                        $('#id_file_no_store').val(response.file_no_store);
+                        $('#id_work_order').val(response.work_order);
                         $('#id_buyer_name').val(response.buyer_name);
                     }
                 });

@@ -68,7 +68,7 @@
 								</div><br>
                                 <div class="col-sm-4">
 									<div class="controls">
-										{{ form.file_no|as_crispy_field }}
+										{{ form.file_no_ar|as_crispy_field }}
 									</div>
 								</div><br>
 
@@ -322,6 +322,44 @@
     });
 
 </script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#id_file_no_ar').select2({
+            placeholder: 'Select a File',
+            allowClear: true,
+            ajax: {
+                url: '/store/store/accessories/' + $('#id_file_no_ar').val() + '/',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term,
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data,
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1
+        }).on('change', function() {
+            var selectedPerson = $(this).val();
+            if (selectedPerson !== '') {
+                $.ajax({
+                    url: '/store/store/accessories/' + selectedPerson + '/',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#id_style_no').val(response.style_no);
+                    }
+                });
+            }
+        });
+    });
+    </script>
 
 
 {% endblock body %}

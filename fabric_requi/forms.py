@@ -16,14 +16,13 @@ class FabricRForm(forms.ModelForm):
         
     class Meta:
         model = FabricRequisitionBill
-        fields = ['name', 'buyer_name', 'store_receiver', 'wo_no', 'order_no', 'file_no_store', 'card_no', 'floor', 'date', 'remarks']
+        fields = ['name', 'buyer_name', 'store_receiver', 'work_order', 'order_no', 'file_no_store', 'card_no', 'floor', 'date', 'remarks']
         widgets = {
-            'wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order__icontains'], attrs={'style': 'width: 100%'}),
-            
+            'file_no_store': ModelSelect2Widget(model=StoreBill, search_fields=['file_no_store__fileno_po__file__icontains'], attrs={'style': 'width: 100%'}),
+
             'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'file_no_store' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'floor' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
@@ -33,7 +32,7 @@ class FabricRForm(forms.ModelForm):
             'name': 'Goods Receiver',
             'store_receiver': 'Goods Issuer',
             'buyer_name': 'Buyer Name',
-            'wo_no': 'Work Order',
+            'work_order': 'Work Order',
             'order_no': 'Order No',
             'file_no_store': 'File No',
             'card_no': 'Card No',

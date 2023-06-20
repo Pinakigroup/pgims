@@ -1,5 +1,6 @@
 from django.db import models
 from stock.models import Stock
+from store.models import StoreBill
 from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
 
@@ -15,7 +16,7 @@ class AccesRequisitionBill(models.Model):
     store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     order_no = models.CharField(max_length=32, null=True, blank=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
-    file_no = models.CharField(max_length=64, null=True, blank=False, unique=True)
+    file_no_ar = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='Acces_file_no')
     line_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     date = models.DateField(default= now, null=True, blank=True)

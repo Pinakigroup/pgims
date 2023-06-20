@@ -51,19 +51,6 @@
 
                 <form method="POST" enctype="multipart/form-data" class="row g-3 panel panel-default" action="">  
                     {% csrf_token %}
-
-                    <div class="col-sm-6">
-                        <div class="controls">
-                            {{ form.supplier|as_crispy_field }}
-                        </div>
-                    </div><br>
-
-                    <div class="col-sm-6">
-                        <div class="controls">
-                            {{ form.buyer_name|as_crispy_field }}
-                        </div>
-                    </div><br>
-
                     <div class="col-sm-4">
                         <div class="controls">
                             {{ form.report|as_crispy_field }}
@@ -80,7 +67,6 @@
                             {{ form.report_date|as_crispy_field }}
                         </div>
                     </div><br>
-
                     <div class="col-sm-2">
                         <div class="controls">
                             {{ form.file_no_store|as_crispy_field }}
@@ -104,34 +90,40 @@
                     </div><br>
                     <div class="col-sm-2">
                         <div class="controls">
+                            {{ form.buyer_name|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-4">
+                        <div class="controls">
+                            {{ form.supplier|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-4">
+                        <div class="controls">
                             {{ form.lot_no|as_crispy_field }}
                         </div>
                     </div><br>
                     
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.pi_no|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.received_date|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.received_by|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.img_file|as_crispy_field }}
-                        </div>
-                    </div><br>
-
-                    <div class="col-sm-12">
-                        <div class="controls">
-                            {{ form.remarks|as_crispy_field }}
                         </div>
                     </div><br>
                     <div class="col-sm-6">
@@ -142,6 +134,12 @@
                     <div class="col-sm-6">
                         <div class="controls">
                             {{ form.order_qty|as_crispy_field }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.remarks|as_crispy_field }}
                         </div>
                     </div><br>
 
@@ -310,9 +308,6 @@
 
 <!-- Use for select search  -->
 
-
-
-
 <script>
     $(document).ready(function() {
         $('#id_file_no_store').select2({
@@ -345,6 +340,7 @@
                         $('#id_style_no').val(response.style_no);
                         $('#id_work_order').val(response.work_order);
                         $('#id_master_lc_sc').val(response.master_lc_sc);
+                        $('#id_buyer_name').val(response.buyer_name);
                     }
                 });
             }

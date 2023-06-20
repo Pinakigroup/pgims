@@ -31,8 +31,7 @@ class StoreForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'file_no_store': ModelSelect2Widget(model=PurchaseBill, search_fields=['fileno_po__file__icontains'], attrs={'style': 'width: 100%'}),
-            
-            'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+
             'report' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'report_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),

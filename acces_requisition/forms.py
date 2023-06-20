@@ -2,6 +2,8 @@ from django import forms
 from django.forms import formset_factory
 from .models import AccesRequisitionBill, AccesRequisitionItem, AccesRequisitionBillDetails
 from stock.models import Stock
+from store.models import StoreBill
+from django_select2.forms import ModelSelect2Widget
 
 # form used to get customer details
 class AccesRForm(forms.ModelForm):
@@ -14,12 +16,12 @@ class AccesRForm(forms.ModelForm):
         
     class Meta:
         model = AccesRequisitionBill
-        fields = ['name', 'store_receiver', 'order_no', 'style_no', 'file_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
+        fields = ['name', 'store_receiver', 'order_no', 'file_no_ar', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
         widgets = {
+            'file_no_ar': ModelSelect2Widget(model=StoreBill, search_fields=['file_no_store__fileno_po__file__icontains'], attrs={'style': 'width: 100%'}),
             'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'file_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'line_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
@@ -29,7 +31,7 @@ class AccesRForm(forms.ModelForm):
         labels = {
             'name': 'Goods Receiver',
             'store_receiver': 'Goods Issuer',
-            'file_no': 'File No',
+            'file_no_ar': 'File No',
             'order_no': 'Order No',
             'style_no': 'Style No',
             'line_no': 'Line No',

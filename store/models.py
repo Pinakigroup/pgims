@@ -39,7 +39,7 @@ class StoreBill(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
-        return str(self.work_order)
+        return str(self.file_no_store.fileno_po.file)
     
     # def __str__(self):
     #     return "Bill no: " + str(self.billno)

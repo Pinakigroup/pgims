@@ -10,8 +10,8 @@ from store_receiver.models import StoreReceiver
 class StoreBill(models.Model):
     billno = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now=True)
-    
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False, related_name='suppliername')
+
+    supplier = models.CharField(max_length=64, blank=False, null=True)
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
     REPORT = (
         ('', 'Select'),

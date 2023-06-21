@@ -24,7 +24,6 @@ class PurchaseForm(forms.ModelForm):
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'master_lc_sc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
         }

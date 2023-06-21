@@ -17,7 +17,6 @@ class FabricRequisitionBill(models.Model):
     file_no_store = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='fabric_file_no')
     work_order = models.CharField(max_length=64, blank=False, null=True)
     order_no = models.CharField(max_length=32, null=True, blank=True)
-    file_no_store = models.CharField(max_length=64, null=True, blank=False, unique=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     FLOOR = (
         ('', 'Select'),

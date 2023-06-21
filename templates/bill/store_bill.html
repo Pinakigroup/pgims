@@ -41,10 +41,10 @@
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>LOCATION : </strong>{{ bill.store_location }}</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>PO : </strong>{{ bill.wo_no }}</span>
-                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>LC : </strong>{{ bill.lc }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>PO : </strong>{{ bill.work_order }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>LC : </strong>{{ bill.master_lc_sc }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>STYLE : </strong>{{ bill.style_no }}</span>
-                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>FILE No : </strong>{{ bill.file_no }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>FILE No : </strong>{{ bill.file_no_store }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>LOT No : </strong>{{ bill.lot_no }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>DATE : </strong>{{ bill.time.date }}</span>
                                             </div>
@@ -63,8 +63,6 @@
                                         <td class="inner-box" style="width: 5%; font-weight: bold; text-align: center;">&nbsp;UOM</td>
                                         <td class="inner-box" style="width: 7%; font-weight: bold; text-align: center;">COLOR</td>
                                         <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">QTY</td>
-                                        <td class="inner-box" style="width: 12%; font-weight: bold; text-align: center;">UNIT PRICE</td>
-                                        <td class="inner-box" style="width: 10%; font-weight: bold; text-align: center;">AMOUNT ৳</td>
                                     </tr>
                                     {% for item in items %}
                                         <tr style="height: auto;">
@@ -73,8 +71,6 @@
                                             <td class="inner-box" style="width: 5%;">&nbsp; {{ item.uom }}</td>
                                             <td class="inner-box" style="width: 7%;">&nbsp;{{ item.fabric_color }}</td>
                                             <td class="inner-box" style="width: 10%;">&nbsp; {{ item.quantity }}</td>
-                                            <td class="inner-box" style="width: 12%;">&nbsp; {{ item.unit_price }}</td>
-                                            <td class="inner-box" style="width: 10%;">&nbsp;{{ item.totalprice }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

@@ -7,7 +7,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %} {% endblock title %}</title>
-    {% include 'base/header.html' %}
+
+
+<!--favicon-->
+<link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" />
+<!--plugins-->
+<link href="{% static 'plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+<link href="{% static 'plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+<link href="{% static 'plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+<link href="{% static 'plugins/datatable/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" />
+<!-- loader-->
+
+
+
+<!-- Bootstrap CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap-extended.css' %}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="{% static 'css/app.css' %}" rel="stylesheet">
+<link href="{% static 'css/icons.css' %}" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 </head>
 <body class="bg-theme bg-theme2">
@@ -17,14 +40,575 @@
 
 
 
-        <!--sidebar wrapper -->
-        {% include 'base/slider.html' %}
-        <!--end sidebar wrapper -->
 
 
-        <!--start header & navbar -->
-        {% include 'base/navbar.html' %}
-        <!--end header & navbar -->
+
+<!--sidebar wrapper -->
+<div class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header">
+        <div>
+            <img src="{% static 'images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
+        </div>
+        <div>
+            <h4 class="logo-text">Pinaki Group</h4>
+        </div>
+        <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+        </div>
+    </div>
+    <!--navigation-->
+    <ul class="metismenu" id="menu">
+
+        
+        <li>
+            <a href="{% url 'home' %}">
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                </div>
+                <div class="menu-title">Dashboard</div>
+            </a>
+        </li>
+        
+        {% for group in user.groups.all %}
+        {% if group.name == "merchandiser" %}
+                <li>
+                    <a href="{% url 'merchandiser_read' %}">
+                        <div class="parent-icon"><i class="lni lni-wheelchair"></i>
+                        </div>
+                        <div class="menu-title">Merchandiser</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'buyer_read' %}">
+                        <div class="parent-icon"><i class="lni lni-users"></i>
+                        </div>
+                        <div class="menu-title">Buyer</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'file_read' %}">
+                        <div class="parent-icon"><i class='bx bx-file'></i>
+                        </div>
+                        <div class="menu-title">File</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/supplier/create/">
+                        <div class="parent-icon"><i class='lni lni-cart-full'></i>
+                        </div>
+                        <div class="menu-title">Supplier</div>
+                    </a>
+                </li>
+
+            {% elif group.name == "store" %}
+                <li>
+                    <a href="{% url 'category_read' %}">
+                        <div class="parent-icon"><i class='bx bx-grid-alt'></i>
+                        </div>
+                        <div class="menu-title">Category</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'stock_read' %}">
+                        <div class="parent-icon"><i class="fadeIn animated bx bx-store"></i>
+                        </div>
+                        <div class="menu-title">Stock</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'po_read' %}">
+                        <div class="parent-icon"><i class="lni lni-cart"></i>
+                        </div>
+                        <div class="menu-title">Work Order</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'storeRec_read' %}">
+                        <div class="parent-icon"><i class='bx bx-cart'></i>
+                        </div>
+                        <div class="menu-title">Store Receiver</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'store_read' %}">
+                        <div class="parent-icon"><i class="fadeIn animated bx bx-store-alt"></i>
+                        </div>
+                        <div class="menu-title">Store</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='lni lni-spiner-solid'></i>
+                        </div>
+                        <div class="menu-title">Requisition</div>
+                    </a>
+                    <ul>
+                        <li> <a href="{% url 'fabricr_read' %}"><i class="bx bx-right-arrow-alt"></i>Fabric Requisition</a>
+                        </li>
+                        <li> <a href="{% url 'ar_read' %}"><i class="bx bx-right-arrow-alt"></i>Access Requisition</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+
+            {% else %}
+            <li>
+                <a href="{% url 'category_read' %}">
+                    <div class="parent-icon"><i class='bx bx-grid-alt'></i>
+                    </div>
+                    <div class="menu-title">Category</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'stock_read' %}">
+                    <div class="parent-icon"><i class="fadeIn animated bx bx-store"></i>
+                    </div>
+                    <div class="menu-title">Stock</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'po_read' %}">
+                    <div class="parent-icon"><i class="lni lni-cart"></i>
+                    </div>
+                    <div class="menu-title">Work Order</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'store_read' %}">
+                    <div class="parent-icon"><i class="fadeIn animated bx bx-store-alt"></i>
+                    </div>
+                    <div class="menu-title">Store</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'merchandiser_read' %}">
+                    <div class="parent-icon"><i class="lni lni-wheelchair"></i>
+                    </div>
+                    <div class="menu-title">Merchandiser</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'buyer_read' %}">
+                    <div class="parent-icon"><i class="lni lni-users"></i>
+                    </div>
+                    <div class="menu-title">Buyer</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'file_read' %}">
+                    <div class="parent-icon"><i class='bx bx-file'></i>
+                    </div>
+                    <div class="menu-title">File</div>
+                </a>
+            </li>
+            <li>
+                <a href="/supplier/create/">
+                    <div class="parent-icon"><i class='lni lni-cart-full'></i>
+                    </div>
+                    <div class="menu-title">Supplier</div>
+                </a>
+            </li>
+                <li>
+                    <a href="{% url 'storeRec_read' %}">
+                        <div class="parent-icon"><i class='bx bx-cart'></i>
+                        </div>
+                        <div class="menu-title">Store Receiver</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='lni lni-spiner-solid'></i>
+                        </div>
+                        <div class="menu-title">Requisition</div>
+                    </a>
+                    <ul>
+                        <li> <a href="{% url 'fabricr_read' %}"><i class="bx bx-right-arrow-alt"></i>Fabric Requisition</a>
+                        </li>
+                        <li> <a href="{% url 'ar_read' %}"><i class="bx bx-right-arrow-alt"></i>Access Requisition</a>
+                        </li>
+                    </ul>
+                </li>
+            <li>
+
+            {% endif %}
+
+        {% endfor %}
+
+            {% comment %} <a href="https://codervent.com/dashtreme/documentation/index.html" target="_blank">
+                <div class="parent-icon"><i class="bx bx-folder"></i>
+                </div>
+                <div class="menu-title">Documentation</div>
+            </a> {% endcomment %}
+
+
+    </ul>
+    <!--end navigation-->
+</div>
+<!--end sidebar wrapper -->
+
+
+
+
+        <!--start header -->
+		<header>
+			<div class="topbar d-flex align-items-center">
+				<nav class="navbar navbar-expand">
+					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+					</div>
+					<div class="search-bar flex-grow-1">
+						<div class="position-relative search-bar-box">
+							<marquee behavior="" direction="">
+								<h4 style="color:#FFFF22"class="my-4">Welcome to Pinaki Group</h4>
+							</marquee>
+						</div>
+					</div>
+					<div class="top-menu ms-auto">
+						<ul class="navbar-nav align-items-center">
+							<li class="nav-item mobile-search-icon">
+								<a class="nav-link" href="#">	<i class='bx bx-search'></i>
+								</a>
+							</li>
+							{% comment %} <li class="nav-item dropdown dropdown-large">
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<div class="row row-cols-3 g-3 p-3">
+										<div class="col text-center">
+											<div class="app-box mx-auto"><i class='bx bx-group'></i>
+											</div>
+											<div class="app-title">Teams</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto"><i class='bx bx-atom'></i>
+											</div>
+											<div class="app-title">Projects</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto"><i class='bx bx-shield'></i>
+											</div>
+											<div class="app-title">Tasks</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto"><i class='bx bx-notification'></i>
+											</div>
+											<div class="app-title">Feeds</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto"><i class='bx bx-file'></i>
+											</div>
+											<div class="app-title">Files</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto"><i class='bx bx-filter-alt'></i>
+											</div>
+											<div class="app-title">Alerts</div>
+										</div>
+									</div>
+								</div>
+							</li> {% endcomment %}
+
+
+
+							{% comment %} <li class="nav-item dropdown dropdown-large">
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">7</span>
+									<i class='bx bx-bell'></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<a href="#">
+										<div class="msg-header">
+											<p class="msg-header-title">Notifications</p>
+											<p class="msg-header-clear ms-auto">Marks all as read</p>
+										</div>
+									</a>
+									<div class="header-notifications-list">
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class="bx bx-group"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Customers<span class="msg-time float-end">14 Sec
+												ago</span></h6>
+													<p class="msg-info">5 new user registered</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class="bx bx-cart-alt"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
+												ago</span></h6>
+													<p class="msg-info">You have recived new orders</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class="bx bx-file"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">24 PDF File<span class="msg-time float-end">19 min
+												ago</span></h6>
+													<p class="msg-info">The pdf files generated</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class="bx bx-send"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Time Response <span class="msg-time float-end">28 min
+												ago</span></h6>
+													<p class="msg-info">5.1 min avarage time response</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class="bx bx-home-circle"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Product Approved <span
+												class="msg-time float-end">2 hrs ago</span></h6>
+													<p class="msg-info">Your new product has approved</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class="bx bx-message-detail"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Comments <span class="msg-time float-end">4 hrs
+												ago</span></h6>
+													<p class="msg-info">New customer comments recived</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class='bx bx-check-square'></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5 hrs
+												ago</span></h6>
+													<p class="msg-info">Successfully shipped your item</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class='bx bx-user-pin'></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
+												ago</span></h6>
+													<p class="msg-info">24 new authors joined last week</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="notify"><i class='bx bx-door-open'></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Defense Alerts <span class="msg-time float-end">2 weeks
+												ago</span></h6>
+													<p class="msg-info">45% less alerts last 4 weeks</p>
+												</div>
+											</div>
+										</a>
+									</div>
+									<a href="#">
+										<div class="text-center msg-footer">View All Notifications</div>
+									</a>
+								</div>
+							</li> {% endcomment %}
+
+							{% comment %} <li class="nav-item dropdown dropdown-large">
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
+									<i class='bx bx-comment'></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<a href="#">
+										<div class="msg-header">
+											<p class="msg-header-title">Messages</p>
+											<p class="msg-header-clear ms-auto">Marks all as read</p>
+										</div>
+									</a>
+									<div class="header-message-list">
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-1.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
+												ago</span></h6>
+													<p class="msg-info">The standard chunk of lorem</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-2.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
+												sec ago</span></h6>
+													<p class="msg-info">Many desktop publishing packages</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-3.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
+												ago</span></h6>
+													<p class="msg-info">Various versions have evolved over</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-4.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
+												min ago</span></h6>
+													<p class="msg-info">Making this the first true generator</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-5.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
+												ago</span></h6>
+													<p class="msg-info">Duis aute irure dolor in reprehenderit</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-6.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
+												ago</span></h6>
+													<p class="msg-info">The passage is attributed to an unknown</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-7.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
+												ago</span></h6>
+													<p class="msg-info">The point of using Lorem</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-8.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
+												ago</span></h6>
+													<p class="msg-info">It was popularised in the 1960s</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-9.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
+												ago</span></h6>
+													<p class="msg-info">Various versions have evolved over</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-10.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2 days
+												ago</span></h6>
+													<p class="msg-info">If you are going to use a passage</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="#">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-11.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
+												ago</span></h6>
+													<p class="msg-info">All the Lorem Ipsum generators</p>
+												</div>
+											</div>
+										</a>
+									</div>
+									<a href="#">
+										<div class="text-center msg-footer">View All Messages</div>
+									</a>
+								</div>
+							</li> {% endcomment %}
+
+
+						</ul>
+					</div>
+					<div class="user-box dropdown">
+						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="{{ user.profile.img_profile.url }}" class="user-img" alt="user avatar">
+							<div class="user-info ps-3">
+								<p class="user-name mb-0">{{request.user}}</p>
+								<p class="designattion mb-0">{{ user.profile.designation }}</p>
+							</div>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="/accounts/profile/"><i class="bx bx-user"></i><span>Profile</span></a>
+							</li>
+							<li><a class="dropdown-item" href="/accounts/profile/update/"><i class="bx bx-cog"></i><span>Settings</span></a>
+							</li>
+							<li><a class="dropdown-item" href="{% url 'home' %}"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
+							</li>
+							<li><a class="dropdown-item" href="#"><i class='bx bx-dollar-circle'></i><span>Reset Password</span></a>
+							</li>
+							{% comment %} <li><a class="dropdown-item" href="#"><i class='bx bx-download'></i><span>Reset Password</span></a>
+							</li> {% endcomment %}
+							<li>
+								<div class="dropdown-divider mb-0"></div>
+							</li>
+							<li><a class="dropdown-item" href="/accounts/logout/"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!--end header -->
 
 
 
@@ -33,7 +617,6 @@
                 
         {% endblock body %}
         <!--end page wrapper -->
-
 
 
 		<!--start overlay-->
@@ -48,8 +631,16 @@
         <!--End Back To Top Button-->
 
 
+
+
         <!--start footer-->
-        {% include 'base/footer.html' %}
+        <footer class="page-footer">
+            <p>
+                <span style="text-align:left;float:left">&copy; 2022 <a href="https://pinakigroup.com/" alt="Bootstrap Themes">Pinaki Group</a></span>
+                <span class="mb-0"><i class="text-white" data-feather="mail"></i>Email: software.development@pinakigroup.com</span>
+                <span class="hidden-phone" style="text-align:right;float:right">Powered by: <a href="https://www.linkedin.com/in/litonbairaggi" alt="Bootstrap Admin Templates">Liton</a></span>
+            </p>
+        </footer>
         <!--end footer-->
 
 
@@ -58,13 +649,106 @@
 
 
 
+
     <!--start switcher-->
-    {% include 'base/switcher.html' %}
+	<div class="switcher-wrapper">
+		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
+		</div>
+		<div class="switcher-body">
+			<div class="d-flex align-items-center">
+				<h5 class="mb-0 text-uppercase">Theme Customizer</h5>
+				<button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
+			</div>
+			<hr/>
+			<p class="mb-0">Gaussian Texture</p>
+			<hr>
+			<ul class="switcher">
+				<li id="theme1"></li>
+				<li id="theme2"></li>
+				<li id="theme3"></li>
+				<li id="theme4"></li>
+				<li id="theme5"></li>
+				<li id="theme6"></li>
+			</ul>
+			<hr>
+			<p class="mb-0">Gradient Background</p>
+			<hr>
+			<ul class="switcher">
+				<li id="theme7"></li>
+				<li id="theme8"></li>
+				<li id="theme9"></li>
+				<li id="theme10"></li>
+				<li id="theme11"></li>
+				<li id="theme12"></li>
+				<li id="theme13"></li>
+				<li id="theme14"></li>
+				<li id="theme15"></li>
+			  </ul>
+		</div>
+	</div>
+	<!--end switcher-->
+
+
+
+
+
+
+    <!--start js-->
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!--plugins-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/simplebar/js/simplebar.min.js' %}"></script>
+    <script src="{% static 'plugins/metismenu/js/metisMenu.min.js' %}"></script>
+    <script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'plugins/apexcharts-bundle/js/apexcharts.min.js' %}"></script>
+    <script src="{% static 'plugins/datatable/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'plugins/datatable/js/dataTables.bootstrap5.min.js' %}"></script>
+
+    <script src="{% static 'plugins/chartjs/js/Chart.min.js' %}"></script>
+    <script src="{% static 'plugins/chartjs/js/chartjs-custom.js' %}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#Transaction-History').DataTable({
+            lengthMenu: [[6, 10, 20, -1], [6, 10, 20, 'Todos']]
+        });
+        } );
+    </script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <!--app JS-->
+    <script src="{% static 'js/app.js' %}"></script>  
+    <script>
+    new PerfectScrollbar('.product-list');
+    new PerfectScrollbar('.customers-list');
+    </script>
+
+    <script>
+        
+    $(document).ready(function() {
+    $('#example').DataTable()
+    });
+
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#example2').DataTable( {
+                lengthChange: false,
+                buttons: [ 'copy', 'excel', 'pdf', 'print']
+            } );
+        
+            table.buttons().container()
+                .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+        } );
+    </script>
     <!--end switcher-->
 
 
-    {% include 'base/js.html' %}
 
+
+    <!--Django Select 2-->
     {{ form.media.js }}
 </body>
 </html>

@@ -1171,7 +1171,7 @@ progress{
         --bs-gutter-y:1rem
     }
     .g-lg-4,.gx-lg-4{
-        --bs-gutter-x:1.5rem
+        --bs-gutter-x:-0.5rem
     }
     .g-lg-4,.gy-lg-4{
         --bs-gutter-y:1.5rem

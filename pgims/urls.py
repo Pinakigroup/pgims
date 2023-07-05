@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('select2/', include('django_select2.urls')),
     path('', views.home, name= 'home'),
-        
+       
     path('category/', include('category.urls')),
     path('stock/', include('stock.urls')),
     path('merchandiser/', include('merchandiser.urls')),

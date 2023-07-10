@@ -19,18 +19,18 @@ class StoreBill(models.Model):
         ('DC', 'DC'),
     )
     report = models.CharField(max_length=64, null=True, blank=False, choices=REPORT)
-    report_no = models.CharField(max_length=64, null=True, blank=True)  
+    report_no = models.CharField(max_length=64, null=True, blank=True)
     report_date = models.DateField(default= now)
     # Sonia Kater 
     pi_no = models.CharField(max_length=150, blank=True, null=True)
     received_by = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False, related_name='goods_receivers')
     received_date = models.DateField(default= now, blank=True, null=True)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
-    work_order = models.CharField(max_length=64, blank=False, null=True)
+    work_order_store = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False, related_name='store_file_no')
     
     master_lc_sc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
-    file_no_store = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False, related_name='store_file_no')
+    fileno_po = models.CharField(max_length=64, blank=False, null=True)
     lot_no = models.CharField(max_length=64, blank=True, null=True)
     remarks = models.TextField(blank=True, null=True)
     store_location = models.CharField(max_length=64, blank=True, null=True)
@@ -39,7 +39,7 @@ class StoreBill(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
-        return str(self.file_no_store.fileno_po.file)
+        return str(self.work_order_store.work_order)
     
     # def __str__(self):
     #     return "Bill no: " + str(self.billno)

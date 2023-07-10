@@ -30,7 +30,7 @@ class StoreForm(forms.ModelForm):
         # fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'pi_no', 'received_by', 'received_date', 'img_file', 'work_order', 'lc', 'style_no', 'file_no_wo', 'lot_no', 'remarks', 'store_location', 'order_qty']
         fields = '__all__'
         widgets = {
-            'file_no_store': ModelSelect2Widget(model=PurchaseBill, search_fields=['fileno_po__file__icontains'], attrs={'style': 'width: 100%'}),
+            'work_order_store': ModelSelect2Widget(model=PurchaseBill, search_fields=['work_order__icontains'], attrs={'style': 'width: 100%'}),
 
             'report' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -39,7 +39,7 @@ class StoreForm(forms.ModelForm):
             'received_by' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'received_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             
-            'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'fileno_po' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'master_lc_sc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'lot_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
@@ -47,7 +47,7 @@ class StoreForm(forms.ModelForm):
             'store_location' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
-            'file_no_store': 'File No',
+            'work_order_store': 'Work Order No',
             'company': 'Company',
             'buyer_name': 'Buyer Name',
             'report': 'Invoice/Delivery Challan',
@@ -58,7 +58,7 @@ class StoreForm(forms.ModelForm):
             'received_date': 'Received Date',
             'img_file': 'Photo',
             
-            'work_order': 'Work Order No',
+            'fileno_po': 'File No',
             'master_lc_sc': 'Master LC / Sale Contact',
             'style_no': 'Style No',
             # 'file_no_wo': 'File No',

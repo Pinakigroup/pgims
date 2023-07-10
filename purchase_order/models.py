@@ -39,7 +39,7 @@ class PurchaseBill(models.Model):
     #     return "Bill no: " + str(self.file_no)
     
     def __str__(self):
-        return str(self.fileno_po.file)
+        return str(self.work_order)
 
     def get_items_list(self):
         return PurchaseItem.objects.filter(billno=self)

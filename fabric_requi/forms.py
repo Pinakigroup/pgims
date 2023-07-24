@@ -16,9 +16,9 @@ class FabricRForm(forms.ModelForm):
         
     class Meta:
         model = FabricRequisitionBill
-        fields = ['name', 'buyer_name', 'store_receiver', 'work_order', 'order_no', 'file_no_store', 'card_no', 'floor', 'date', 'remarks']
+        fields = ['name', 'buyer_name', 'store_receiver', 'work_order_fr', 'order_no', 'fileno_po', 'card_no', 'floor', 'date', 'remarks']
         widgets = {
-            'file_no_store': ModelSelect2Widget(model=StoreBill, search_fields=['file_no_store__fileno_po__file__icontains'], attrs={'style': 'width: 100%'}),
+            'work_order_fr': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
 
             'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -32,9 +32,9 @@ class FabricRForm(forms.ModelForm):
             'name': 'Goods Receiver',
             'store_receiver': 'Goods Issuer',
             'buyer_name': 'Buyer Name',
-            'work_order': 'Work Order',
+            'work_order_fr': 'Work Order',
             'order_no': 'Order No',
-            'file_no_store': 'File No',
+            'fileno_po': 'File No',
             'card_no': 'Card No',
             'floor': 'Floor',
             'date': 'Date',

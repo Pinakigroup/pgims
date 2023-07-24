@@ -90,6 +90,7 @@
 										<th>Goods Receiver</th>
 										<th>File No</th>
 										<th>Order No</th>
+										<th>WO No</th>
 										<th>Style No</th>
 										<th>Line No</th>
 										<th>Card No</th>
@@ -108,8 +109,9 @@
                                         <td> <p>{{ data.store_receiver }}</p> </td>
                                         <td> <p>{{ data.name }}</p> </td>
                                         <td> <p>{{ data.order_no }}</p> </td>
+                                        <td> <p>{{ data.acces_wo_no }}</p> </td>
                                         <td> <p>{{ data.style_no }}</p> </td>
-                                        <td> <p>{{ data.file_no_ar }}</p> </td>
+                                        <td> <p>{{ data.fileno_po }}</p> </td>
                                         <td> <p>{{ data.line_no }}</p> </td>
                                         <td> <p>{{ data.card_no }}</p> </td>
                                         </td>
@@ -154,7 +156,7 @@
 								 {% endfor %}
 								 {% if not bills %}
 								 <tr>
-									 <td colspan="13" class="text-center">No Data available</td>
+									 <td colspan="15" class="text-center">No Data available</td>
 								 </tr>
 								 {% endif %}
 								</tbody>

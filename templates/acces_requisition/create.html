@@ -66,21 +66,25 @@
 										{{ form.store_receiver|as_crispy_field }}
 									</div>
 								</div><br>
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.file_no_ar|as_crispy_field }}
-									</div>
-								</div><br>
-
                                 <div class="col-sm-2">
 									<div class="controls">
-										{{ form.order_no|as_crispy_field }}
+										{{ form.acces_wo_no|as_crispy_field }}
 									</div>
 								</div><br>
-
+                                <div class="col-sm-2">
+									<div class="controls">
+										{{ form.fileno_po|as_crispy_field }}
+									</div>
+								</div><br>
                                 <div class="col-sm-2">
 									<div class="controls">
 										{{ form.style_no|as_crispy_field }}
+									</div>
+								</div><br>
+                                
+                                <div class="col-sm-2">
+									<div class="controls">
+										{{ form.order_no|as_crispy_field }}
 									</div>
 								</div><br>
 
@@ -326,11 +330,11 @@
 
 <script>
     $(document).ready(function() {
-        $('#id_file_no_ar').select2({
+        $('#id_acces_wo_no').select2({
             placeholder: 'Select a File',
             allowClear: true,
             ajax: {
-                url: '/store/store/accessories/' + $('#id_file_no_ar').val() + '/',
+                url: '/store/store/accessories/' + $('#id_acces_wo_no').val() + '/',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -353,6 +357,7 @@
                     url: '/store/store/accessories/' + selectedPerson + '/',
                     type: 'GET',
                     success: function(response) {
+                        $('#id_fileno_po').val(response.fileno_po);
                         $('#id_style_no').val(response.style_no);
                     }
                 });

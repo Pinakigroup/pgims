@@ -69,15 +69,14 @@
 								</div><br>
                                 <div class="col-sm-3">
 									<div class="controls">
-										{{ form.file_no_store|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-3">
-									<div class="controls">
-										{{ form.work_order|as_crispy_field }}
+										{{ form.work_order_fr|as_crispy_field }}
 									</div>
 								</div><br> 
+                                <div class="col-sm-3">
+									<div class="controls">
+										{{ form.fileno_po|as_crispy_field }}
+									</div>
+								</div><br>
 								<div class="col-sm-2">
 									<div class="controls">
 										{{ form.buyer_name|as_crispy_field }}
@@ -356,11 +355,11 @@
 
 <script>
     $(document).ready(function() {
-        $('#id_file_no_store').select2({
+        $('#id_work_order_fr').select2({
             placeholder: 'Select a File',
             allowClear: true,
             ajax: {
-                url: '/store/store/' + $('#id_file_no_store').val() + '/',
+                url: '/store/store/' + $('#id_work_order_fr').val() + '/',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -383,7 +382,7 @@
                     url: '/store/store/' + selectedPerson + '/',
                     type: 'GET',
                     success: function(response) {
-                        $('#id_work_order').val(response.work_order);
+                        $('#id_fileno_po').val(response.fileno_po);
                         $('#id_buyer_name').val(response.buyer_name);
                     }
                 });

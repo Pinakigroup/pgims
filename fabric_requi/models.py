@@ -14,8 +14,14 @@ class FabricRequisitionBill(models.Model):
     name = models.CharField(max_length=64, null=True, unique=True, blank=True)
     store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     buyer_name = models.CharField(max_length=64, null=True, unique=True, blank=True)
-    file_no_store = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='fabric_file_no')
-    work_order = models.CharField(max_length=64, blank=False, null=True)
+    
+    # work_order = models.CharField(max_length=64, blank=False, null=True)
+    
+    work_order_fr = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='fabric_work_order')
+    
+    # file_no_store = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='fabric_file_no')
+    fileno_po = models.CharField(max_length=64, blank=False, null=True)
+        
     order_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     FLOOR = (

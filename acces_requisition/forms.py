@@ -16,9 +16,9 @@ class AccesRForm(forms.ModelForm):
         
     class Meta:
         model = AccesRequisitionBill
-        fields = ['name', 'store_receiver', 'order_no', 'file_no_ar', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
+        fields = ['name', 'store_receiver', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
         widgets = {
-            'file_no_ar': ModelSelect2Widget(model=StoreBill, search_fields=['file_no_store__fileno_po__file__icontains'], attrs={'style': 'width: 100%'}),
+            'acces_wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
             'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -31,7 +31,8 @@ class AccesRForm(forms.ModelForm):
         labels = {
             'name': 'Goods Receiver',
             'store_receiver': 'Goods Issuer',
-            'file_no_ar': 'File No',
+            'acces_wo_no': 'Work Order No',
+            'fileno_po': 'File No',
             'order_no': 'Order No',
             'style_no': 'Style No',
             'line_no': 'Line No',

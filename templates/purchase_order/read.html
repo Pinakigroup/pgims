@@ -93,7 +93,8 @@
                                         <th>Work Order</th>
 										<th>WO Date</th>
 										<th>PO NO</th>
-										<th>Master LC / Sale Contact</th>
+										<th>MLC / SC</th>
+										<th>Order Qty</th>
                                         <th>Items</th>
                                         <th>Size</th>
                                         <th>Style</th>
@@ -122,6 +123,7 @@
 										<td>{{ data.wo_date|date:"d/m/Y" }}</td>
                                         <td>{{ data.po_no }}</td>
                                         <td>{{ data.master_lc_sc }}</td>
+                                        <td>{{ data.order_qty }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 

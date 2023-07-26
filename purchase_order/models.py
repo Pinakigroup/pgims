@@ -30,6 +30,7 @@ class PurchaseBill(models.Model):
     
     
     master_lc_sc = models.CharField(max_length=64, null=True, blank=True)
+    order_qty = models.IntegerField(default=0, blank=True, null=True)
     remarks = models.TextField(null=True, blank=True)
     
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)

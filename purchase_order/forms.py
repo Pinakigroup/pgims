@@ -25,6 +25,7 @@ class PurchaseForm(forms.ModelForm):
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
+            'order_qty' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
         }
         labels = {
@@ -34,6 +35,7 @@ class PurchaseForm(forms.ModelForm):
             'wo_date': 'Work Order Date',
             'master_lc_sc': 'Master LC / Sales Contact',
             'style_no': 'Style/Order NO',
+            'order_qty': 'Order Qty',
         }
 
 

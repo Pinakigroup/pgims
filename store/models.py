@@ -23,7 +23,6 @@ class StoreBill(models.Model):
     report_date = models.DateField(default= now)
     # Sonia Kater 
     pi_no = models.CharField(max_length=150, blank=True, null=True)
-    received_by = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False, related_name='goods_receivers')
     received_date = models.DateField(default= now, blank=True, null=True)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
     work_order_store = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False, related_name='store_file_no')

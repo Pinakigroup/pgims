@@ -112,37 +112,28 @@
                             {{ form.pi_no|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="controls">
                             {{ form.received_date|as_crispy_field }}
                         </div>
-                    </div><br>
-                    <div class="col-sm-4">
-                        <div class="controls">
-                            {{ form.received_by|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    <div class="col-sm-4">
-                        <div class="controls">
-                            {{ form.img_file|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    <div class="col-sm-6">
+                    </div><br>                    
+                    <div class="col-sm-3">
                         <div class="controls">
                             {{ form.store_location|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="controls">
-                            {{ form.order_qty|as_crispy_field }}
+                            {{ form.img_file|as_crispy_field }}
                         </div>
                     </div><br>
-
-                    <div class="col-sm-12">
+                    {% comment %} <div class="col-sm-3">
                         <div class="controls">
-                            {{ form.remarks|as_crispy_field }}
+                            {{ form.received_by|as_crispy_field }}
                         </div>
-                    </div><br>
+                    </div><br> {% endcomment %}
+                    {{ u_form|crispy }}
+                    
 
                     {{ formset.management_form }}
 
@@ -186,6 +177,17 @@
                             </div>
                         </div>
 
+                        <div class="col-sm-12">
+                            <div class="controls">
+                                {{ form.order_qty|as_crispy_field }}
+                            </div>
+                        </div><br>
+    
+                        <div class="col-sm-12">
+                            <div class="controls">
+                                {{ form.remarks|as_crispy_field }}
+                            </div>
+                        </div><br>
 
                     <br><!-- Log on to codeastro.com for more projects -->
 

@@ -5,4 +5,4 @@ from .models import StoreReceiver
 
 @admin.register(StoreReceiver)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'designation', 'email', 'phone']
+    list_display = ['phone', 'designation']

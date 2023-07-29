@@ -78,9 +78,9 @@
 									<tr>
 										<th>ID</th>
 										<th>Name</th>
-										<th>Designation</th>
                                         <th>Email</th>
                                         <th>Phone</th>
+										<th>Designation</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -88,10 +88,10 @@
 									{% for data in storeRec_data %}
 									<tr>
 									   <td>{{ data.id }}</td>
-									   <td>{{ data.name }}</td> 
-									   <td>{{ data.designation }}</td> 
-                                       <td>{{ data.email }}</td>
-                                       <td>{{ data.phone }}</td>                        
+									   <td>{{ user.username }}</td> 
+                                       <td>{{ user.email }}</td>
+                                       <td>{{ data.phone }}</td>     
+									   <td>{{ data.designation }}</td>                    
 									   <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="{% url 'storeRec_update' data.id %}">

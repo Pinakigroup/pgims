@@ -5,6 +5,7 @@ from purchase_order.models import PurchaseBill
 from stock.models import Stock
 from django_select2.forms import ModelSelect2Widget
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 
 # form used to get customer details
 class StoreForm(forms.ModelForm):   
@@ -36,7 +37,6 @@ class StoreForm(forms.ModelForm):
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'report_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'pi_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'received_by' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'received_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             
             'fileno_po' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -54,7 +54,6 @@ class StoreForm(forms.ModelForm):
             'report_no': 'Invoice/Delivery Challan No',
             'report_date': 'Invoice/Delivery Challan Date',
             'pi_no': 'PI',
-            'received_by': 'Received By',
             'received_date': 'Received Date',
             'img_file': 'Photo',
             
@@ -72,6 +71,11 @@ class StoreForm(forms.ModelForm):
             'uom': 'UOM',
             'unit_price': 'Uprice',
         }
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
 
 
 class StoreItemForm(forms.ModelForm):

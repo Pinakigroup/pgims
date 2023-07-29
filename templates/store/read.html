@@ -127,7 +127,7 @@
                                         <td>{{ data.report_date|date:"d/m/Y" }}</td>
                                         <td>{{ data.pi_no }}</td>
                                         <td>{{ data.received_date|date:"d/m/Y" }}</td>
-                                        <td>{{ data.received_by }}</td>
+										<td>{{ user.username }}</td> 
 										<td>
 											{% if data.img_file == ""  %}
 											No Image

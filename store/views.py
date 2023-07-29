@@ -16,6 +16,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .serializers import StoreBillSerializer, StoreAccessoriesSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .forms import UserUpdateForm
+
 # Create your views here.
 
 # used to generate a bill object and save items
@@ -37,12 +39,14 @@ class StoreCreateView(LoginRequiredMixin, View):
     def post(self, request):
         form = StoreForm(request.POST, request.FILES)
         formset = StoreItemFormset(request.POST) 
+        u_form = UserUpdateForm(request.POST, instance=request.user)
         # recieves a post method for the formset
         
-        if form.is_valid() and formset.is_valid():
+        if form.is_valid() and formset.is_valid() and u_form.is_valid():
             # saves bill
             billobj = form.save(commit=False)
             billobj.save() 
+            u_form.save()
             
             for form in formset:                                                   # for loop to save each individual form as its own object
                 # false saves the item and links bill to the item
@@ -60,11 +64,14 @@ class StoreCreateView(LoginRequiredMixin, View):
                 billitem.save()
             messages.success(request, "Store items have been registered successfully")
             return redirect('store_read')
-        form = StoreForm(request.GET or None)
-        formset = StoreItemFormset(request.GET or None)
+        else:
+            form = StoreForm(request.GET or None)
+            formset = StoreItemFormset(request.GET or None)
+            u_form = UserUpdateForm(instance=request.user)
         context = {
-            'form'      : form,
-            'formset'   : formset,            
+            'form': form,
+            'formset': formset,  
+            'u_form': u_form,          
         }
         return render(request, self.template_name, context)    
     

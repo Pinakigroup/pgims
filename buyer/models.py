@@ -8,7 +8,7 @@ class Buyer(models.Model):
     country = models.CharField(max_length=64, null=True, blank=True)
     TYPE = (
         ('', 'Select'),
-        ('derect_customer', 'Derect Customer'),
+        ('direct_customer', 'Direct Customer'),
         ('buying_house', 'Buying House'),
     )
     type = models.CharField(max_length=64, null=True, blank=False, choices=TYPE)

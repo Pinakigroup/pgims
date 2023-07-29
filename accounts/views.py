@@ -71,7 +71,7 @@ def profile(request):
 
 # Update Profile
 @login_required
-@allowed_users(allowed_roles=['admin', 'merchandiser', 'store']) 
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def profile_update(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)

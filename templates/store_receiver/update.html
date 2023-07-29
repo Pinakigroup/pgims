@@ -42,26 +42,18 @@
 							<div class="card-body">
 								<form method="POST">
 									{% csrf_token %}
-                                    <div class="col-sm-12">
-                                        <div class="controls">
-                                            {{ form.name|as_crispy_field }}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="controls">
-                                            {{ form.designation|as_crispy_field }}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="controls">
-                                            {{ form.email|as_crispy_field }}
-                                        </div>
-                                    </div>
+									{{ u_form|crispy }}
+
                                     <div class="col-sm-12">
                                         <div class="controls">
                                             {{ form.phone|as_crispy_field }}
                                         </div>
-                                    </div>
+                                    </div><br>
+									<div class="col-sm-12">
+                                        <div class="controls">
+                                            {{ form.designation|as_crispy_field }}
+                                        </div>
+                                    </div><br>
 									<div class="form-actions">
 										<button type="submit" class="btn btn-light">Update changes</button>
 										<button type="reset" class="btn">Cancel</button>

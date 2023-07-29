@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import StoreReceiver
 from .forms import StoreReceiverForm, StoreReceiverDateSearchForm
 from django.contrib import messages
+from .forms import UserUpdateForm
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 
@@ -11,15 +12,20 @@ from accounts.decorators import allowed_users
 @login_required
 @allowed_users(allowed_roles=['admin', 'store'])
 def create(request):
-    form = StoreReceiverForm()
     if request.method == 'POST':
         form = StoreReceiverForm(request.POST)
-        if form.is_valid():
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid() and u_form.is_valid():
+            u_form.save()
             form.save()
             messages.success(request, 'Store Receiver created successfully')
             return redirect('storeRec_read')
+    else:
+        form = StoreReceiverForm()
+        u_form = UserUpdateForm(instance=request.user)
     context= {
-        'form': form
+        'form': form,
+        'u_form': u_form,
     }
     return render(request, 'store_receiver/create.html', context)
 
@@ -54,13 +60,20 @@ def storeRec_update(request, pk):
     get_storeRec_data = get_object_or_404(StoreReceiver, pk=pk)
     form = StoreReceiverForm(instance=get_storeRec_data)
     if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
         form = StoreReceiverForm(request.POST, instance=get_storeRec_data)
-        if form.is_valid():
+        if form.is_valid() and u_form.is_valid():
+            u_form.save()
             form.save()
             messages.success(request, 'Store Receiver updated successfully')
             return redirect('storeRec_read')
+        
+    else:
+        form = StoreReceiverForm(instance=get_storeRec_data)
+        u_form = UserUpdateForm(instance=request.user)
     context = {
-        'form': form
+        'form': form,
+        'u_form': u_form,
     }    
     return render(request, 'store_receiver/update.html', context)
 

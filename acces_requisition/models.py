@@ -3,6 +3,7 @@ from stock.models import Stock
 from store.models import StoreBill
 from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
+from datetime import date
 
 # Create your models here.
 
@@ -13,7 +14,7 @@ class AccesRequisitionBill(models.Model):
     time = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=64, null=True, blank=True)
-    store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
+    # store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     order_no = models.CharField(max_length=32, null=True, blank=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     # file_no_ar = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='Acces_file_no')
@@ -21,7 +22,7 @@ class AccesRequisitionBill(models.Model):
     fileno_po = models.CharField(max_length=64, blank=False, null=True)
     line_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
-    date = models.DateField(default= now, null=True, blank=True)
+    date = models.DateField(default=date.today, null=True, blank=True)
     supply_qty = models.PositiveIntegerField(default=1, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)

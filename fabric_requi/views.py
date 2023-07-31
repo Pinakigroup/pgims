@@ -9,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .models import FabricRequisitionBill, FabricRequisitionBillDetails, FabricRequisitionItem
 from .forms import FabricRDetailsForm, FabricRItemFormset, FabricRForm, FabricRItemForm, FabricRequisitionBillDateSearchForm
 from django.views.generic import (View, ListView, DeleteView,)
+from .forms import UserUpdateForm
 
 # Create your views here
 
@@ -22,10 +23,18 @@ class FabricRequiCreateView(View):
         form = FabricRForm(request.GET or None)
         formset = FabricRItemFormset(request.GET or None)                          # renders an empty formset
         stocks = Stock.objects.filter(is_deleted=False)
+        # Show user name in hare
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+        else:
+            u_form = UserUpdateForm(instance=request.user)
+            
         context = {
             'form'      : form,
             'formset'   : formset,
-            'stocks'    : stocks
+            'stocks'    : stocks, 
+            'u_form'    : u_form,
         }
         return render(request, self.template_name, context)
 

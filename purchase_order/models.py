@@ -26,7 +26,7 @@ class PurchaseBill(models.Model):
     style_no = models.CharField(max_length=32, null=True, blank=True)
     work_order = models.CharField(max_length=64, default=generate_random_number)
     
-    wo_date = models.DateField(default= now, null=True, blank=True)
+    wo_date = models.DateField(default=date.today, null=True, blank=True)
     
     
     master_lc_sc = models.CharField(max_length=64, null=True, blank=True)

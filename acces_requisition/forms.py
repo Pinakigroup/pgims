@@ -4,6 +4,7 @@ from .models import AccesRequisitionBill, AccesRequisitionItem, AccesRequisition
 from stock.models import Stock
 from store.models import StoreBill
 from django_select2.forms import ModelSelect2Widget
+from django.contrib.auth.models import User
 
 # form used to get customer details
 class AccesRForm(forms.ModelForm):
@@ -16,10 +17,9 @@ class AccesRForm(forms.ModelForm):
         
     class Meta:
         model = AccesRequisitionBill
-        fields = ['name', 'store_receiver', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
+        fields = ['name', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
         widgets = {
             'acces_wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
-            'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'line_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -30,7 +30,6 @@ class AccesRForm(forms.ModelForm):
         }
         labels = {
             'name': 'Goods Receiver',
-            'store_receiver': 'Goods Issuer',
             'acces_wo_no': 'Work Order No',
             'fileno_po': 'File No',
             'order_no': 'Order No',
@@ -38,6 +37,18 @@ class AccesRForm(forms.ModelForm):
             'line_no': 'Line No',
             'card_no': 'Card No',
         }
+# Goods Issuer add username 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+        labels = {
+            'username': 'Goods Issuer',
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Remove the default help_text
+        self.fields['username'].help_text = ''
 
 
 class AccesRItemForm(forms.ModelForm):

@@ -4,6 +4,7 @@ from .models import FabricRequisitionBill, FabricRequisitionItem, FabricRequisit
 from stock.models import Stock
 from store.models import StoreBill
 from django_select2.forms import ModelSelect2Widget
+from django.contrib.auth.models import User
 
 # form used to get customer details
 class FabricRForm(forms.ModelForm):
@@ -16,11 +17,10 @@ class FabricRForm(forms.ModelForm):
         
     class Meta:
         model = FabricRequisitionBill
-        fields = ['name', 'buyer_name', 'store_receiver', 'work_order_fr', 'order_no', 'fileno_po', 'card_no', 'floor', 'date', 'remarks']
+        fields = ['name', 'buyer_name', 'work_order_fr', 'order_no', 'fileno_po', 'card_no', 'floor', 'date', 'remarks']
         widgets = {
             'work_order_fr': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
 
-            'store_receiver' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -30,7 +30,6 @@ class FabricRForm(forms.ModelForm):
         }
         labels = {
             'name': 'Goods Receiver',
-            'store_receiver': 'Goods Issuer',
             'buyer_name': 'Buyer Name',
             'work_order_fr': 'Work Order',
             'order_no': 'Order No',
@@ -40,6 +39,18 @@ class FabricRForm(forms.ModelForm):
             'date': 'Date',
             'remarks': 'Remarks',
         }
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+        labels = {
+            'username': 'Goods Issuer',
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Remove the default help_text
+        self.fields['username'].help_text = ''
 
 
 class FabricRItemForm(forms.ModelForm):

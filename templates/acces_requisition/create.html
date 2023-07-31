@@ -55,17 +55,13 @@
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
 
-								<div class="col-sm-6">
+								<div class="col-sm-12">
 									<div class="controls">
 										{{ form.name|as_crispy_field }}
 									</div>
 								</div><br>
+                                {{ u_form|crispy }}
 
-								<div class="col-sm-6">
-									<div class="controls">
-										{{ form.store_receiver|as_crispy_field }}
-									</div>
-								</div><br>
                                 <div class="col-sm-2">
 									<div class="controls">
 										{{ form.acces_wo_no|as_crispy_field }}
@@ -108,9 +104,6 @@
 								<button type="submit" class="btn btn-light">Save changes</button>
 								<button type="reset" class="btn">Cancel</button>
 							</div> {% endcomment %}
-
-
-
 
                             <div class="panel panel-default">
             

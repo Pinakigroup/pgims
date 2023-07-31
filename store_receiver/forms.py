@@ -27,6 +27,10 @@ class UserUpdateForm(forms.ModelForm):
             'username': 'Name',
             'email': 'Email',
         }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Remove the default help_text
+        self.fields['username'].help_text = ''
 
         
 class StoreReceiverDateSearchForm(forms.ModelForm):

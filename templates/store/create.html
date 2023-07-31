@@ -112,17 +112,17 @@
                             {{ form.pi_no|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.received_date|as_crispy_field }}
                         </div>
                     </div><br>                    
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.store_location|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.img_file|as_crispy_field }}
                         </div>
@@ -132,8 +132,8 @@
                             {{ form.received_by|as_crispy_field }}
                         </div>
                     </div><br> {% endcomment %}
+
                     {{ u_form|crispy }}
-                    
 
                     {{ formset.management_form }}
 

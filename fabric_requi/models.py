@@ -3,6 +3,7 @@ from stock.models import Stock
 from store.models import StoreBill
 from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
+from datetime import date
 
 # Create your models here.
 
@@ -12,7 +13,6 @@ class FabricRequisitionBill(models.Model):
     time = models.DateTimeField(auto_now=True)
     
     name = models.CharField(max_length=64, null=True, unique=True, blank=True)
-    store_receiver = models.ForeignKey(StoreReceiver, on_delete=models.CASCADE, blank=False)
     buyer_name = models.CharField(max_length=64, null=True, unique=True, blank=True)
     
     # work_order = models.CharField(max_length=64, blank=False, null=True)
@@ -36,7 +36,7 @@ class FabricRequisitionBill(models.Model):
         ('8th', '8th'),
     )
     floor = models.CharField(max_length=64, null=True, blank=False, choices=FLOOR)
-    date = models.DateField(default= now, null=True, blank=True)
+    date = models.DateField(default=date.today, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)

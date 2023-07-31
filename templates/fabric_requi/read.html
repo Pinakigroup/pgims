@@ -86,6 +86,7 @@
 
 										<th>ID</th>
 										<th>Goods Receiver</th>
+										<th>Goods Issuer</th>
                                         <th>Buyer</th>
                                         <th>WO No</th>
                                         <th>Order No</th>
@@ -114,6 +115,7 @@
                                             <small style="color: #909494">Ph No : {{ data.phone }}</small> 
                                         </td> {% endcomment %}
                                         <td>{{ data.name }}</td>
+										<td>{{ user.username }}</td>
                                         <td>{{ data.buyer_name }}</td>
                                         <td>{{ data.work_order_fr }}</td>
                                         <td>{{ data.order_no }}</td>

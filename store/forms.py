@@ -76,6 +76,15 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username']
+        labels = {
+            'username': 'Name',
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Remove the default help_text
+        self.fields['username'].help_text = ''
+    
 
 
 class StoreItemForm(forms.ModelForm):

@@ -21,7 +21,7 @@ class StoreBill(models.Model):
     )
     report = models.CharField(max_length=64, null=True, blank=False, choices=REPORT)
     report_no = models.CharField(max_length=64, null=True, blank=True)
-    report_date = models.DateField(default= now)
+    report_date = models.DateField(default=date.today, null=True, blank=True)
     # Sonia Kater 
     pi_no = models.CharField(max_length=150, blank=True, null=True)
     received_date = models.DateField(default=date.today,  blank=True, null=True)

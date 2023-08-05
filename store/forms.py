@@ -43,8 +43,8 @@ class StoreForm(forms.ModelForm):
             'master_lc_sc' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'lot_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
-            'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
             'store_location' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
             'work_order_store': 'Work Order No',

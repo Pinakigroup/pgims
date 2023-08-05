@@ -26,7 +26,7 @@ class PurchaseForm(forms.ModelForm):
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'order_qty' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'})
+            'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
             'fileno_po': 'File No',

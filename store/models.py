@@ -2,6 +2,7 @@ from django.db import models
 from stock.models import Stock
 from django.utils.timezone import now
 from supplier.models import Supplier
+from remarks.models import Remarks
 from purchase_order.models import PurchaseBill
 from store_receiver.models import StoreReceiver
 from datetime import date
@@ -32,9 +33,10 @@ class StoreBill(models.Model):
     style_no = models.CharField(max_length=32, null=True, blank=True)
     fileno_po = models.CharField(max_length=64, blank=False, null=True)
     lot_no = models.CharField(max_length=64, blank=True, null=True)
-    remarks = models.TextField(blank=True, null=True)
+    
     store_location = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.IntegerField(default=0, blank=True, null=True)
+    remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname_store')
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

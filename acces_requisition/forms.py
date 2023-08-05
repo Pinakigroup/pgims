@@ -26,7 +26,7 @@ class AccesRForm(forms.ModelForm):
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
             'supply_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
-            'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
+            'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
             'name': 'Goods Receiver',

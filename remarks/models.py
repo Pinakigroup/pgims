@@ -10,4 +10,4 @@ class Remarks(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)  
     
     def __str__(self):
-        return self.name
+        return self.remarks

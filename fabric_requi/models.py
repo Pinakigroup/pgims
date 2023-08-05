@@ -1,6 +1,7 @@
 from django.db import models
 from stock.models import Stock
 from store.models import StoreBill
+from remarks.models import Remarks
 from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
 from datetime import date
@@ -37,7 +38,7 @@ class FabricRequisitionBill(models.Model):
     )
     floor = models.CharField(max_length=64, null=True, blank=False, choices=FLOOR)
     date = models.DateField(default=date.today, null=True, blank=True)
-    remarks = models.TextField(null=True, blank=True)
+    remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname_fabric')
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

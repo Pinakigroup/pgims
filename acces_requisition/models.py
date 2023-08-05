@@ -2,6 +2,7 @@ from django.db import models
 from stock.models import Stock
 from store.models import StoreBill
 from django.utils.timezone import now
+from remarks.models import Remarks
 from store_receiver.models import StoreReceiver
 from datetime import date
 
@@ -24,7 +25,7 @@ class AccesRequisitionBill(models.Model):
     card_no = models.CharField(max_length=32, null=True, blank=True)
     date = models.DateField(default=date.today, null=True, blank=True)
     supply_qty = models.PositiveIntegerField(default=1, null=True, blank=True)
-    remarks = models.TextField(null=True, blank=True)
+    remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname_acces')
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

@@ -26,7 +26,7 @@ class FabricRForm(forms.ModelForm):
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'floor' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
-            'remarks' : forms.Textarea(attrs = {'class' : 'textinput form-control', 'rows'  : '4'}),
+            'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
             'name': 'Goods Receiver',

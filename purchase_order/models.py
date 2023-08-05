@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.timezone import now
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
+from remarks.models import Remarks
 from file.models import File
 from stock.models import Stock
 import datetime
@@ -27,7 +28,7 @@ class PurchaseBill(models.Model):
     wo_date = models.DateField(default=date.today, null=True, blank=True)
     master_lc_sc = models.CharField(max_length=64, null=True, blank=True)
     order_qty = models.IntegerField(default=0, blank=True, null=True)
-    remarks = models.TextField(null=True, blank=True)
+    remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname')
     
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)

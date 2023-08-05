@@ -21,14 +21,10 @@ class PurchaseBill(models.Model):
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
     merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
     po_no = models.CharField(max_length=32, null=True, blank=True)
-    
     fileno_po = models.ForeignKey(File, on_delete=models.CASCADE, blank=False, related_name='fileno_pos')
     style_no = models.CharField(max_length=32, null=True, blank=True)
     work_order = models.CharField(max_length=64, default=generate_random_number)
-    
     wo_date = models.DateField(default=date.today, null=True, blank=True)
-    
-    
     master_lc_sc = models.CharField(max_length=64, null=True, blank=True)
     order_qty = models.IntegerField(default=0, blank=True, null=True)
     remarks = models.TextField(null=True, blank=True)

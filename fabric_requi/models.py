@@ -4,6 +4,7 @@ from store.models import StoreBill
 from remarks.models import Remarks
 from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
+from unit.models import Unit
 from datetime import date
 
 # Create your models here.
@@ -63,24 +64,11 @@ class FabricRequisitionItem(models.Model):
     quantity = models.IntegerField(default=1)
     UOM = (
         ('', 'Select'),
-        ('kg', 'kg'),
-        ('miter', 'miter'),
-        ('yard', 'yard'),
-        ('pcs', 'pcs'),
-        ('pound', 'pound'),
-        ('g', 'g'),
-        ('gg', 'gg'),
-        ('litre', 'litre'),
-        ('dz', 'dz'),
-        ('1000 pcs', '1000 pcs'),
-    )
-    UNIT = (
-        ('', 'Select'),
         ('miter', 'miter'),
         ('yard', 'yard'),
     )
     uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
-    unit = models.CharField(max_length=64, null=True, blank=False, choices=UNIT)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_fabric_issue')
     style_no = models.CharField(max_length=64, blank=True, null=True)
     fab_color = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.IntegerField(default=0, blank=True, null=True)

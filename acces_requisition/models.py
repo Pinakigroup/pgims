@@ -5,6 +5,7 @@ from django.utils.timezone import now
 from remarks.models import Remarks
 from store_receiver.models import StoreReceiver
 from datetime import date
+from unit.models import Unit
 
 # Create your models here.
 
@@ -42,23 +43,10 @@ class AccesRequisitionItem(models.Model):
     billno = models.ForeignKey(AccesRequisitionBill, on_delete = models.CASCADE, related_name='ar_billno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='ar_item')
     quantity = models.IntegerField(default=1, blank=True, null=True)
-    UOM = (
-        ('', 'Select'),
-        ('kg', 'kg'),
-        ('miter', 'miter'),
-        ('yard', 'yard'),
-        ('pcs', 'pcs'),
-        ('pound', 'pound'),
-        ('cone', 'cone'),
-        ('g', 'g'),
-        ('gg', 'gg'),
-        ('litre', 'litre'),
-        ('dg', 'dg'),
-        ('1000 pcs', '1000 pcs'),
-    )
-    uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_a_issue')
     acces_color = models.CharField(max_length=64, blank=True, null=True)
     size = models.CharField(max_length=64, null=True, unique=True, blank=True)
+    style = models.CharField(max_length=64, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

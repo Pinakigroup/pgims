@@ -102,13 +102,15 @@
 
                                         <th>WO</th>
                                         <th>MLC/SC</th>
-                                        <th>Style</th>
+                                        <th>Style No</th>
                                         <th>File No</th>
                                         <th>Lot No</th>
                                         <th>Fabric Color</th>
                                         <th>Fabric Detail</th>
                                         <th>Items</th>
-                                        <th>UOM</th>
+                                        <th>Unit</th>
+                                        <th>Style</th>
+                                        <th>Size</th>
                                         <th>Qty</th>
 										<th>Actions</th>
 									</tr>
@@ -155,7 +157,17 @@
                                         </td>
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.uom }} <br> 
+                                                {{ item.unit }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.size }} <br> 
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.style }} <br> 
                                             {% endfor %}
                                         </td>
 
@@ -180,7 +192,7 @@
 								 {% endfor %}
 								 {% if not bills %}
 								 <tr>
-									 <td colspan="23" class="text-center">No Data available</td>
+									 <td colspan="25" class="text-center">No Data available</td>
 								 </tr>
 								 {% endif %}
 								</tbody>

@@ -68,7 +68,7 @@ class StoreForm(forms.ModelForm):
             'store_location': 'Location',
             'order_qty': 'Order Qty',
             'receive_qty': 'Receive Qty',
-            'uom': 'UOM',
+            'unit': 'Unit',
             'unit_price': 'Uprice',
         }
 
@@ -88,16 +88,20 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class StoreItemForm(forms.ModelForm):
+    class Meta:
+        model = StoreItem
+        fields = ['stock', 'quantity', 'unit', 'size', 'style', 'fabric_color']
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'false'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'false'})
-        self.fields['uom'].widget.attrs.update({'class': 'textinput form-control', 'required': 'false'})
+        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'false'})
+        self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['fabric_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'false'})
-    class Meta:
-        model = StoreItem
-        fields = ['stock', 'quantity', 'uom', 'fabric_color']
+        
 
 # formset used to render multiple 'StoreItemForm'
 StoreItemFormset = formset_factory(StoreItemForm, extra=1)

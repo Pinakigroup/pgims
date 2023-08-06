@@ -145,15 +145,23 @@
                             <div class="panel-body">
                             {% for form in formset %}
                                 <div class="row form-row">
-                                    <div class="form-group col-md-5">
+                                    <div class="form-group col-md-3">
                                         {{ form.stock.errors }}
                                         <label class="panel-body-text">Stock:</label>
                                         {{ form.stock }}
                                     </div>
                                     
                                     <div class="form-group col-md-1">
-                                        <label class="panel-body-text">UOM:</label>
-                                        {{ form.uom }}
+                                        <label class="panel-body-text">Unit:</label>
+                                        {{ form.unit }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Size:</label>
+                                        {{ form.size }}
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="panel-body-text">Style:</label>
+                                        {{ form.style }}
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label class="panel-body-text">Color:</label>
@@ -166,7 +174,7 @@
                                         {{ form.quantity }}
                                     </div>
                                     <div class="form-group col-md-1">
-                                        <label class="panel-body-text" style="color: #000">.</label>
+                                        <label class="panel-body-text" style="color: #000"></label>
                                         <button class="form-control btn btn-danger remove-form-row">-</button>
                                     </div>
                                 </div>

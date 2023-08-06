@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'file',
     'work_order',
     'remarks',
+    'unit',
 ]
 
 # AUTH_USER_MODEL = 'useraccounts.User'

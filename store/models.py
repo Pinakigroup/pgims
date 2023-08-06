@@ -5,6 +5,7 @@ from supplier.models import Supplier
 from remarks.models import Remarks
 from purchase_order.models import PurchaseBill
 from store_receiver.models import StoreReceiver
+from unit.models import Unit
 from datetime import date
 
 # Create your models here.
@@ -61,20 +62,9 @@ class StoreItem(models.Model):
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
     quantity = models.IntegerField(default=1)
     fabric_color = models.CharField(max_length=64, blank=True, null=True)
-    UOM = (
-        ('', 'Select'),
-        ('kg', 'kg'),
-        ('miter', 'miter'),
-        ('yard', 'yard'),
-        ('pcs', 'pcs'),
-        ('pound', 'pound'),
-        ('g', 'g'),
-        ('gg', 'gg'),
-        ('litre', 'litre'),
-        ('dg', 'dg'),
-        ('1000 pcs', '1000 pcs'),
-    )
-    uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_store')
+    size = models.CharField(max_length=64, null=True, blank=True)
+    style = models.CharField(max_length=64, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

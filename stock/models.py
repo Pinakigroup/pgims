@@ -1,5 +1,7 @@
 from django.db import models
-from category. models import Category
+from category.models import Category
+from unit.models import Unit
+
 # Create your models here.
 
 class Stock(models.Model):
@@ -7,23 +9,10 @@ class Stock(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     name = models.CharField(max_length=30, unique=True)
     quantity = models.IntegerField(default=1, null=True)
-    UOM = (
-        ('', 'Select'),
-        ('kg', 'kg'),
-        ('miter', 'miter'),
-        ('yard', 'yard'),
-        ('pcs', 'pcs'),
-        ('pound', 'pound'),
-        ('g', 'g'),
-        ('gg', 'gg'),
-        ('litre', 'litre'),
-        ('dg', 'dg'),
-        ('1000 pcs', '1000 pcs'),
-    )
-    uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_stocks')
     is_deleted = models.BooleanField(default=False)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
-    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)  
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return self.name

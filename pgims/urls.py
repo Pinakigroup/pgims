@@ -38,4 +38,5 @@ urlpatterns = [
     path('file/', include('file.urls')),
     path('work_order/', include('work_order.urls')),
     path('remarks/', include('remarks.urls')),
+    path('unit/', include('unit.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

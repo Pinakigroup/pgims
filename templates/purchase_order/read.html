@@ -99,7 +99,7 @@
                                         <th>Size</th>
                                         <th>Style</th>
                                         <th>Color</th>
-										<th>UOM</th>
+										<th>Unit</th>
                                         <th>Qty</th>  
                                         <th>Unit Price</th>  
                                         <th>Total Price</th>
@@ -146,7 +146,7 @@
                                         </td>
 										<td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.uom }} <br> 
+                                                {{ item.unit }} <br> 
                                             {% endfor %}
                                         </td>
                                         <td>
@@ -175,7 +175,7 @@
 								 {% endfor %}
 								 {% if not bills %}
 								 <tr>
-									 <td colspan="20" class="text-center">No Data available</td>
+									 <td colspan="21" class="text-center">No Data available</td>
 								 </tr>
 								 {% endif %}
 								</tbody>

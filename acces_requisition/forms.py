@@ -52,18 +52,20 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class AccesRItemForm(forms.ModelForm):
+    class Meta:
+        model = AccesRequisitionItem
+        fields = ['stock', 'quantity', 'unit', 'acces_color', 'size', 'style']
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
-        self.fields['uom'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['acces_color'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
         
-    class Meta:
-        model = AccesRequisitionItem
-        fields = ['stock', 'quantity', 'uom', 'acces_color', 'size']
 
 # formset used to render multiple 'AccesRequisitionItemForm'
 AccesRItemFormset = formset_factory(AccesRItemForm, extra=1)

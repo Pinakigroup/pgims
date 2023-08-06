@@ -101,7 +101,7 @@
                                         <th>File No</th>
                                         <th>Lot No</th>
                                         <th>Items</th>
-                                        <th>UOM</th>
+                                        <th>Unit</th>
                                         <th>Qty</th>
 									</tr>
 								</thead>
@@ -127,7 +127,7 @@
                                         </td>
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.uom }} <br> 
+                                                {{ item.unit }} <br> 
                                             {% endfor %}
                                         </td>
 

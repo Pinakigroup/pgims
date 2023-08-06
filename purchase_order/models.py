@@ -3,6 +3,7 @@ from django.utils.timezone import now
 from supplier.models import Supplier
 from merchandiser.models import Merchandiser
 from remarks.models import Remarks
+from unit.models import Unit
 from file.models import File
 from stock.models import Stock
 import datetime
@@ -107,20 +108,7 @@ class PurchaseItem(models.Model):
     quantity = models.IntegerField(default=1, null=True, blank=True)
     unit_price = models.IntegerField(default=1, null=True, blank=True)
     totalprice = models.IntegerField(default=1, null=True, blank=True)
-    UOM = (
-        ('', 'Select'),
-        ('kg', 'kg'),
-        ('miter', 'miter'),
-        ('yard', 'yard'),
-        ('pcs', 'pcs'),
-        ('pound', 'pound'),
-        ('g', 'g'),
-        ('gg', 'gg'),
-        ('litre', 'litre'),
-        ('dg', 'dg'),
-        ('1000 pcs', '1000 pcs'),
-    )
-    uom = models.CharField(max_length=64, null=True, blank=True, choices=UOM)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_wos')
     size = models.CharField(max_length=64, null=True, blank=True)
     style = models.CharField(max_length=64, blank=True, null=True)
     color = models.CharField(max_length=64, blank=True, null=True)

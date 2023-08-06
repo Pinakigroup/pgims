@@ -113,7 +113,7 @@
                                         <div class="panel-body">
                                         {% for iform in formset %}
                                             <div class="row form-row">
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-3">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Stock:</label>
                                                     {{ iform.stock }}
@@ -121,7 +121,7 @@
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Unit:</label>
-                                                    {{ iform.uom }}
+                                                    {{ iform.unit }}
                                                 </div>
                                                 <div class="form-group col-md-2">
                                                     {{ iform.stock.errors }}
@@ -132,6 +132,11 @@
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">SIZE:</label>
                                                     {{ iform.size }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Style:</label>
+                                                    {{ iform.style }}
                                                 </div>
 
                                                 <div class="form-group col-md-2">

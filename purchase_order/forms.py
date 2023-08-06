@@ -43,19 +43,19 @@ class PurchaseForm(forms.ModelForm):
 class PurchaseItemForm(forms.ModelForm):
     class Meta:
         model = PurchaseItem
-        fields = ['stock', 'quantity', 'unit_price', 'uom', 'size', 'style', 'color']
-        
+        fields = ['stock', 'quantity', 'unit_price', 'unit', 'size', 'style', 'color']
         labels = {
             'stock': 'Goods Receiver',
             'color': 'Goods Issuer',
         }
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
-        self.fields['uom'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})

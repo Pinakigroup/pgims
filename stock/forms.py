@@ -12,13 +12,13 @@ class StockForm(forms.ModelForm):
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control', 'min': '0'})
     class Meta:
         model = Stock
-        fields = ['category', 'name', 'quantity', 'uom']
+        fields = ['category', 'name', 'quantity', 'unit']
         widgets = {
             'category' : forms.Select(attrs = {'class' : 'textinput form-control'}),
-            'uom' : forms.Select(attrs = {'class' : 'textinput form-control'}),
+            'unit' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
-            'uom': 'Unit',
+            'unit': 'Unit',
         }
         
 class StockDateSearchForm(forms.ModelForm):

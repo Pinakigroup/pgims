@@ -131,7 +131,7 @@
 
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.uom }} <br> 
+                                                {{ item.unit }} <br> 
                                             {% endfor %}
                                         </td>
 
@@ -149,7 +149,7 @@
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.quantity }}
-												{{ item.unit }}
+												{{ item.uom }}
                                             {% endfor %}
                                         </td>     
                                         <td>
@@ -170,7 +170,7 @@
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.requard_qty }}
-												{{ item.unit }} 
+												{{ item.uom }} 
                                             {% endfor %}
                                         </td> 
                                         <td>{{ data.remarks }}</td>

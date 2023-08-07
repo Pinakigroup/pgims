@@ -60,8 +60,12 @@
 							</div>
 						</form>
 					</div>
+					
+				<div class="ms-auto">
+					<a href="/acces_requisition/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Accessories</a>
+					<a href="/acces_requisition/report/" class="btn btn-success radius-30 mt-2 mt-lg-0">Accessories Issue Report</a>
+				</div><br>
 
-                <div class="ms-auto"><a href="/acces_requisition/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Accessories</a></div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				{% if messages %}
 				{% for message in  messages %}
@@ -109,10 +113,11 @@
                                         <td> <p>{{ data.billno }}</p> </td>
                                         <td> <p>{{ user.username }}</p> </td>
                                         <td> <p>{{ data.name }}</p> </td>
+										<td> <p>{{ data.fileno_po }}</p> </td>
                                         <td> <p>{{ data.order_no }}</p> </td>
                                         <td> <p>{{ data.acces_wo_no }}</p> </td>
                                         <td> <p>{{ data.style_no }}</p> </td>
-                                        <td> <p>{{ data.fileno_po }}</p> </td>
+                                        
                                         <td> <p>{{ data.line_no }}</p> </td>
                                         <td> <p>{{ data.card_no }}</p> </td>
                                         </td>
@@ -134,6 +139,11 @@
 										<td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.size }} <br> 
+                                            {% endfor %}
+                                        </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.style }} <br> 
                                             {% endfor %}
                                         </td>
                                         <td>

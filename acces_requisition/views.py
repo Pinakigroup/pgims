@@ -104,6 +104,29 @@ def accesR_read(request):
     }
     return render(request, 'acces_requisition/read.html', context)
 
+# Accessories Report Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
+def accesReport_read(request):
+    form = AccesRequisitionBillDateSearchForm(request.POST or None)
+    bills = AccesRequisitionBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = AccesRequisitionBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'acces_requisition/report.html', context)
+
 # @login_required
 # @allowed_users(allowed_roles=['admin', 'store'])
 @method_decorator(login_required, name='dispatch')

@@ -61,7 +61,10 @@
 						</form>
 					</div>
 
-                <div class="ms-auto"><a href="/fabric_requi/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Fabric</a></div><br>
+				<div class="ms-auto">
+					<a href="/fabric_requi/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Fabric</a>
+					<a href="/fabric_requi/report/" class="btn btn-success radius-30 mt-2 mt-lg-0">Fabric Issue Report</a>
+				</div><br>
 				{% if messages %}
 				{% for message in  messages %}
 					<div class="alert alert-{{message.tags}}" role="alert">

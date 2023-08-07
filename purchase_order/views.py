@@ -102,7 +102,7 @@ def purchaseOrder_read(request):
     return render(request, 'purchase_order/read.html', context)
 
 
-# Store Report Read
+# Work Order Report Read
 @login_required
 @allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def woReport_read(request):

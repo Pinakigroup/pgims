@@ -104,6 +104,29 @@ def fabricRequi_read(request):
     }
     return render(request, 'fabric_requi/read.html', context)
 
+# Fabric Report Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
+def fabricReport_read(request):
+    form = FabricRequisitionBillDateSearchForm(request.POST or None)
+    bills = FabricRequisitionBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = FabricRequisitionBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'fabric_requi/report.html', context)
+
     
 @method_decorator(login_required, name='dispatch')
 class FabricRequiBillView(View):

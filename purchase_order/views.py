@@ -102,6 +102,30 @@ def purchaseOrder_read(request):
     return render(request, 'purchase_order/read.html', context)
 
 
+# Store Report Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
+def woReport_read(request):
+    form = PurchaseSearchForm(request.POST or None)
+    bills = PurchaseBill.objects.all().order_by('-time')
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    if request.method == 'POST':
+        bills = PurchaseBill.objects.filter(
+										updated_at__range=[
+																form['start_date'].value(),
+																form['end_date'].value()
+															]
+										)
+    context = {
+        'bills':bills,
+        'form':form,
+    }
+    return render(request, 'purchase_order/report.html', context)
+
+
 # used to display the purchase bill object
 @method_decorator(login_required, name='dispatch')
 class PurchaseBillView(View):

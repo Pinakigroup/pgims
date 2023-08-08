@@ -8,6 +8,8 @@ from accounts.decorators import allowed_users
 
 
 # Create
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def create(request):
     form = BuyerForm()
     if request.method == 'POST':
@@ -22,6 +24,8 @@ def create(request):
     return render(request, 'buyer/create.html', context)
 
 # Read
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def buyer_read(request):
     form = BuyerDateSearchForm(request.POST or None)
     buyer_data = Buyer.objects.all().order_by('-id')
@@ -42,6 +46,9 @@ def buyer_read(request):
     }
     return render(request, 'buyer/read.html', context)
 
+# Update
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def buyer_update(request, pk):
     get_buyer_data = get_object_or_404(Buyer, pk=pk)
     form = BuyerForm(instance=get_buyer_data)
@@ -56,6 +63,9 @@ def buyer_update(request, pk):
     }
     return render(request, 'buyer/update.html', context)
 
+# Delete
+@login_required
+@allowed_users(allowed_roles=['admin'])
 def buyer_delete(request, pk):
     get_buyer = get_object_or_404(Buyer, pk=pk)
     get_buyer.delete()

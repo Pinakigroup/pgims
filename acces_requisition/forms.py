@@ -61,10 +61,10 @@ class AccesRItemForm(forms.ModelForm):
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
-        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['acces_color'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['acces_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['size'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         
 
 # formset used to render multiple 'AccesRequisitionItemForm'

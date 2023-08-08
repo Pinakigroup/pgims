@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect
 from .forms import WorkOrderForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
 
 # Create your views here.
 
+
+# Create
+@login_required
+@allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def create(request):
     if request.method == 'POST':
         form = WorkOrderForm(request.POST)

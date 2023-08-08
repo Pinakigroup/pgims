@@ -59,14 +59,14 @@ class FabricRItemForm(forms.ModelForm):
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
-        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['uom'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['fab_color'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['order_qty'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['cutting_qty'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['cad_consumption'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['requard_qty'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['uom'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['fab_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['order_qty'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['cutting_qty'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['cad_consumption'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['requard_qty'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
     class Meta:
         model = FabricRequisitionItem
         fields = ['stock', 'quantity', 'unit', 'uom', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'cad_consumption', 'requard_qty']

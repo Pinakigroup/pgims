@@ -55,10 +55,10 @@ class PurchaseItemForm(forms.ModelForm):
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
-        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['size'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
 
 
 # formset used to render multiple 'PurchaseItemForm'

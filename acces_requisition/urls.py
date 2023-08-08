@@ -9,5 +9,5 @@ urlpatterns = [
     path('report/', views.accesReport_read, name='ari_report'),
     # path('', views.AccesRView.as_view(), name='ar_read'),
     path("bill/<billno>", views.AccesRBillView.as_view(), name="ar_bill"),
-    path('delete/<int:pk>/', views.AccesRDeleteView.as_view(), name='ar_delete'),
+    path('delete/<int:pk>/', views.acces_requi_delete, name='ar_delete'),
 ]

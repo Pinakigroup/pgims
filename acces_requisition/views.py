@@ -166,23 +166,21 @@ class AccesRBillView(View):
         }
         return render(request, self.template_name, context)
     
-#  Delete     
-# @login_required
-# @allowed_users(allowed_roles=['admin'])   
-# AttributeError: 'function' object has no attribute 'as_view'  -->> solution:  Since, this view is a clasbase view . goto--->> urls.py/ and .as_view() (remove)
-@method_decorator(login_required, name='dispatch')
-class AccesRDeleteView(SuccessMessageMixin, DeleteView):
-    model = AccesRequisitionBill
-    template_name = "acces_requisition/delete.html"
-    success_url = '/acces_requisition'
+
+# Delete
+@login_required
+@allowed_users(allowed_roles=['admin'])
+def acces_requi_delete(request, pk):
+    get_acces_requi = get_object_or_404(AccesRequisitionBill, pk=pk)
     
-    def delete(self, *args, **kwargs):
-        self.object = self.get_object()
-        items = AccesRequisitionItem.objects.filter(billno=self.object.billno)
-        for item in items:
-            stock = get_object_or_404(Stock, name=item.stock.name)
-            if stock.is_deleted == False:
-                stock.quantity += item.quantity
-                stock.save()
-        messages.success(self.request, "Accessories items has been deleted successfully")
-        return super(AccesRDeleteView, self).delete(*args, **kwargs)
+    # Retrieve items associated with the accessories requisition
+    items = AccesRequisitionItem.objects.filter(billno=get_acces_requi.billno)
+    for item in items:
+        stock = get_object_or_404(Stock, name=item.stock.name)
+        if not stock.is_deleted:
+            stock.quantity += item.quantity
+            stock.save()
+    
+    get_acces_requi.delete()
+    messages.error(request, 'Accessories items has been deleted successfully')
+    return redirect('ar_read')

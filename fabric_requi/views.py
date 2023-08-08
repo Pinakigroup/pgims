@@ -165,21 +165,20 @@ class FabricRequiBillView(View):
         }
         return render(request, self.template_name, context)
     
+# Delete
+@login_required
+@allowed_users(allowed_roles=['admin'])
+def fabric_requi_delete(request, pk):
+    get_fabric_requi = get_object_or_404(FabricRequisitionBill, pk=pk)
     
-
-@method_decorator(login_required, name='dispatch')
-class FabricRequiDeleteView(SuccessMessageMixin, DeleteView):
-    model = FabricRequisitionBill
-    template_name = "fabric_requi/delete.html"
-    success_url = '/fabric_requi'
+    # Retrieve items associated with the fabric requisition
+    items = FabricRequisitionItem.objects.filter(billno=get_fabric_requi.billno)
+    for item in items:
+        stock = get_object_or_404(Stock, name=item.stock.name)
+        if not stock.is_deleted:
+            stock.quantity += item.quantity
+            stock.save()
     
-    def delete(self, *args, **kwargs):
-        self.object = self.get_object()
-        items = FabricRequisitionItem.objects.filter(billno=self.object.billno)
-        for item in items:
-            stock = get_object_or_404(Stock, name=item.stock.name)
-            if stock.is_deleted == False:
-                stock.quantity += item.quantity
-                stock.save()
-        messages.success(self.request, "Fabric items has been deleted successfully")
-        return super(FabricRequiDeleteView, self).delete(*args, **kwargs)
+    get_fabric_requi.delete()
+    messages.error(request, 'Fabric items has been deleted successfully')
+    return redirect('fabricr_read')

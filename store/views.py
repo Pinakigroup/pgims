@@ -179,23 +179,23 @@ class StoreBillView(View):
             # 'bill_base'     : self.bill_base,
         }
         return render(request, self.template_name, context)
+
     
-@method_decorator(login_required, name='dispatch')
-class StoreDeleteView(SuccessMessageMixin, DeleteView):
-    model = StoreBill
-    template_name = "store/delete.html"
-    success_url = '/store'
-    
-    def delete(self, *args, **kwargs):
-        self.object = self.get_object()
-        items = StoreItem.objects.filter(billno=self.object.billno)
-        for item in items:
-            stock = get_object_or_404(Stock, name=item.stock.name)
-            if stock.is_deleted == False:
-                stock.quantity -= item.quantity
-                stock.save()
-        messages.success(self.request, "Store item has been deleted successfully")
-        return super(StoreDeleteView, self).delete(*args, **kwargs)
+# Delete
+@login_required
+@allowed_users(allowed_roles=['admin'])
+def store_delete(request, pk):
+    get_store = get_object_or_404(StoreBill, pk=pk)
+    # Retrieve items associated with the store bill
+    items = StoreItem.objects.filter(billno=get_store.billno)
+    for item in items:
+        stock = get_object_or_404(Stock, name=item.stock.name)
+        if not stock.is_deleted:
+            stock.quantity -= item.quantity
+            stock.save()
+    get_store.delete()
+    messages.error(request, 'Store item has been deleted successfully')
+    return redirect('store_read')
     
     
 class StoreBillDetailView(APIView):

@@ -71,12 +71,6 @@ class PurchaseCreateView(View):
         }
         return render(request, self.template_name, context)    
     
-# Read
-# class PurchaseView(ListView):
-#     model = PurchaseBill 
-#     template_name = 'purchase_order/read.html'
-#     context_object_name = 'bills'
-#     ordering = ['-time']
     
 # Read
 @login_required
@@ -166,25 +160,23 @@ class PurchaseBillView(View):
             'billdetails'   : PurchaseBillDetails.objects.get(billno=billno),
             # 'bill_base'     : self.bill_base,
         }
-        return render(request, self.template_name, context)
-    
+        return render(request, self.template_name, context)    
 
-@method_decorator(login_required, name='dispatch')
-class PurchaseDeleteView(SuccessMessageMixin, DeleteView):
-    model = PurchaseBill
-    template_name = "purchase_order/delete.html"
-    success_url = '/purchase_order'
-    
-    def delete(self, *args, **kwargs):
-        self.object = self.get_object()
-        items = PurchaseItem.objects.filter(billno=self.object.billno)
-        for item in items:
-            stock = get_object_or_404(Stock, name=item.stock.name)
-            if stock.is_deleted == False:
-                # stock.quantity += item.quantity
-                stock.save()
-        messages.success(self.request, "Purchase Order has been deleted successfully")
-        return super(PurchaseDeleteView, self).delete(*args, **kwargs)
+
+# Delete
+@login_required
+@allowed_users(allowed_roles=['admin'])
+def purchase_delete(request, pk):
+    get_purchase = get_object_or_404(PurchaseBill, pk=pk)
+    # Retrieve items associated with the purchase
+    items = PurchaseItem.objects.filter(billno=get_purchase.billno)
+    for item in items:
+        stock = get_object_or_404(Stock, name=item.stock.name)
+        if not stock.is_deleted:
+            stock.save()
+    get_purchase.delete()
+    messages.success(request, 'Purchase Order has been deleted successfully')
+    return redirect('po_read')
 
 
 

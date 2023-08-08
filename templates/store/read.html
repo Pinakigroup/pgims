@@ -183,7 +183,7 @@
 												<i class="fadeIn animated bx bx-show-alt"></i>
 											</a>
 
-											<a class="ms-3" href="{% url 'store_delete' data.billno %}">
+											<a class="ms-3" href="{% url 'store_delete' data.billno %}" onclick="return confirm('Are you sure?');">
 												<i class='bx bxs-trash'></i>
 											</a>
 										</div>

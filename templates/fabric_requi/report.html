@@ -97,7 +97,6 @@
                                         <th>Cut Qty</th>
                                         <th>Cad Consumption</th>
                                         <th>Req Qty</th>
-										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -147,17 +146,6 @@
 												{{ item.uom }} 
                                             {% endfor %}
                                         </td>
-									   <td class="center">
-										<div class="d-flex order-actions">
-											<a class="" href="{% url 'fr_bill' data.billno %}">
-												<i class="fadeIn animated bx bx-show-alt"></i>
-											</a>
-
-											<a class="ms-3" href="{% url 'fr_delete' data.billno %}">
-												<i class='bx bxs-trash'></i>
-											</a>
-										</div>
-									   </td>
 									</tr>
 								 {% endfor %}
 								 {% if not bills %}

@@ -314,7 +314,7 @@ select:disabled{
 }
 [type=button],[type=reset],[type=submit],button{
     -webkit-appearance:button;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 [type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){
     cursor:pointer
@@ -1524,7 +1524,9 @@ progress{
     vertical-align:inherit
 }
 .table>thead{
-    vertical-align:bottom
+    vertical-align:bottom;
+    background-color: #57857c;
+    color: white;
 }
 .table-group-divider{
     border-top:2px solid currentcolor
@@ -3775,7 +3777,8 @@ textarea.form-control-lg{
 .card-body{
     flex:1 1 auto;
     padding:var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    color:var(--bs-card-color)
+    color:var(--bs-card-color);
+    background: #c1d9c5a1;
 }
 .card-title{
     margin-bottom:var(--bs-card-title-spacer-y)

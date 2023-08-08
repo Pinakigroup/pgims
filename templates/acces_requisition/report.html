@@ -95,7 +95,6 @@
                                         <th>Style</th>
 										<th>Items</th>										
                                         <th>Sold Qty</th>
-										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -115,18 +114,6 @@
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>
-                                        
-									   <td class="center">
-										<div class="d-flex order-actions">
-											<a class="" href="{% url 'ar_bill' data.billno %}">
-												<i class="fadeIn animated bx bx-show-alt"></i>
-											</a>
-
-											<a class="ms-3" href="{% url 'ar_delete' data.billno %}">
-												<i class='bx bxs-trash'></i>
-											</a>
-										</div>
-									   </td>
 									</tr>
 								 {% endfor %}
 								 {% if not bills %}

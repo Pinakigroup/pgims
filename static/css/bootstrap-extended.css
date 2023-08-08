@@ -53,7 +53,7 @@ a:hover {
 
 .form-control {
     color: #000000;
-    background-color: rgba(16, 181, 21, 0.158);
+    background-color: #fbfffc;
     border: 1px solid rgb(0 68 24 / 15%);
 }
 
@@ -67,7 +67,7 @@ a:hover {
 
 .form-control:disabled,
 .form-control[readonly] {
-	background-color: rgba(16, 181, 21, 0.158);
+	background-color: #fbfffc;
 }
 
 

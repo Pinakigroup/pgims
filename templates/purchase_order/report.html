@@ -85,7 +85,6 @@
                                         <th>Style No</th>
                                         <th>Items</th>
                                         <th>WO Qty</th>  
-										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -96,6 +95,7 @@
                                             <small style="color: #909494">Ph No : {{ data.phone }}</small> 
                                         </td> {% endcomment %}
 										<td>{{ data.fileno_po }}</td>
+										<td>{{ data.work_order }}</td>
                                         <td>{{ data.po_no }}</td>
 										<td>{{ data.style_no }}</td>
                                         <td>
@@ -108,16 +108,6 @@
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>
-									   <td class="center">
-										<div class="d-flex order-actions">
-											<a class="" href="{% url 'po_bill' data.billno %}">
-												<i class="fadeIn animated bx bx-show-alt"></i>
-											</a>
-											<a class="ms-3" href="{% url 'po_delete' data.billno %}">
-												<i class='bx bxs-trash'></i>
-											</a>
-										</div>
-									   </td>
 									</tr>
 								 {% endfor %}
 								 {% if not bills %}

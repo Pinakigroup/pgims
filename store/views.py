@@ -59,12 +59,11 @@ class StoreCreateView(LoginRequiredMixin, View):
 
                 # gets the stock item
                 stock = get_object_or_404(Stock, name=billitem.stock.name)         # gets the item
-                
                 # updates quantity in stock db
                 stock.quantity += billitem.quantity                               # updates quantity
-                
                 # saves bill item and stock
                 stock.save()
+                
                 billitem.save()
             messages.success(request, "Store items have been registered successfully")
             return redirect('store_read')

@@ -46,13 +46,13 @@
 						<i class="bx bx-grid-alt"></i>Supplier Table
 					</a>
 				</div>
-				{% comment %} <h4 class="mb-0 text-uppercase">Text Inputs</h4> {% endcomment %}
+				{% comment %} <h5 class="mb-0 text-uppercase">Text Inputs</h5> {% endcomment %}
 						
 				<hr/>
 				<div class="card">
 					<div class="card-body">
 						<form class="row g-3" method="POST">
-							<h4 class="mb-0 text-uppercase">General Detail</h4>
+							<h5 class="mb-0 text-uppercase">General Detail</h5>
 							{% csrf_token %}	
 
 							<div class="col-sm-6">
@@ -65,7 +65,7 @@
 									{{ form.supplier_name|as_crispy_field }}
 								</div>
 							</div>
-							<h4 class="mb-0 text-uppercase">Office Info</h4>
+							<h5 class="mb-0 text-uppercase">Office Info</h5>
 							<div class="col-sm-3">
 								<div class="controls">
 									{{ form.office_address|as_crispy_field }}
@@ -87,7 +87,7 @@
 								</div>
 							</div>
 
-							<h4 class="mb-0 text-uppercase">Factory Info</h4>
+							<h5 class="mb-0 text-uppercase">Factory Info</h5>
 							<div class="col-sm-3">
 								<div class="controls">
 									{{ form.factory_address|as_crispy_field }}
@@ -109,7 +109,7 @@
 								</div>
 							</div>
 
-							<h4 class="mb-0 text-uppercase">Vat Tax Info</h4>
+							<h5 class="mb-0 text-uppercase">Vat Tax Info</h5>
 							<div class="col-sm-4">
 								<div class="controls">
 									{{ form.vat_identi_no|as_crispy_field }}
@@ -126,7 +126,7 @@
 								</div>
 							</div>
 
-							<h4 class="mb-0 text-uppercase">Owner Info</h4>
+							<h5 class="mb-0 text-uppercase">Owner Info</h5>
 							<div class="col-sm-4">
 								<div class="controls">
 									{{ form.owner_name|as_crispy_field }}
@@ -143,7 +143,7 @@
 								</div>
 							</div>
 
-							<h4 class="mb-0 text-uppercase">First Contact</h4>
+							<h5 class="mb-0 text-uppercase">First Contact</h5>
 							<div class="col-sm-3">
 								<div class="controls">
 									{{ form.first_cp_name|as_crispy_field }}
@@ -165,7 +165,7 @@
 								</div>
 							</div>
 
-							<h4 class="mb-0 text-uppercase">Second Contact</h4>
+							<h5 class="mb-0 text-uppercase">Second Contact</h5>
 							<div class="col-sm-3">
 								<div class="controls">
 									{{ form.sec_cp_name|as_crispy_field }}
@@ -187,7 +187,7 @@
 								</div>
 							</div>
 
-							<h4 class="mb-0 text-uppercase">Payment Details</h4>
+							<h5 class="mb-0 text-uppercase">Payment Details</h5>
 							<div class="col-sm-6">
 								<div class="controls">
 									{{ form.account_name|as_crispy_field }}

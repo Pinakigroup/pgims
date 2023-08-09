@@ -102,6 +102,7 @@ def purchaseOrder_read(request):
 def woReport_read(request):
     form = PurchaseSearchForm(request.POST or None)
     bills = PurchaseBill.objects.all().order_by('-time')
+    abc = Stock.objects.all().order_by('-time')
     context = {
         'bills':bills,
         'form':form,
@@ -116,6 +117,7 @@ def woReport_read(request):
     context = {
         'bills':bills,
         'form':form,
+        'abc':abc,
     }
     return render(request, 'purchase_order/report.html', context)
 
@@ -179,7 +181,7 @@ def purchase_delete(request, pk):
     return redirect('po_read')
 
 
-
+@method_decorator(login_required, name='dispatch')
 class PurchaseBillDetailView(APIView):
     def get(self, request, pk):
         try:

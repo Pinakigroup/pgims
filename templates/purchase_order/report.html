@@ -84,10 +84,13 @@
                                         <th>PO NO</th>
                                         <th>Style No</th>
                                         <th>Items</th>
-                                        <th>WO Qty</th>  
+                                        <th>WO Qty</th>
 									</tr>
 								</thead>
 								<tbody>
+									{% for a in abc %}
+									<td>{{ a.quentity }}</td>
+									{% endfor %}
 									{% for data in bills %}
 									<tr>
                                         <td> <p>{{ data.billno }}</p> </td>

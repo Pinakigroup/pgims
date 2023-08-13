@@ -71,16 +71,20 @@ class PurchaseCreateView(View):
         }
         return render(request, self.template_name, context)    
     
-    
+
 # Read
 @login_required
 @allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
 def purchaseOrder_read(request):
     form = PurchaseSearchForm(request.POST or None)
     bills = PurchaseBill.objects.all().order_by('-time')
+    # abc = Stock.objects.all().order_by('id')
+    stock_datas = Stock.objects.all().order_by('-time')
+    print("Lplplplplp", stock_datas)
     context = {
         'bills':bills,
         'form':form,
+        'stock_datas':stock_datas,
     }
     if request.method == 'POST':
         bills = PurchaseBill.objects.filter(
@@ -92,6 +96,7 @@ def purchaseOrder_read(request):
     context = {
         'bills':bills,
         'form':form,
+        'stock_datas':stock_datas,
     }
     return render(request, 'purchase_order/read.html', context)
 
@@ -102,7 +107,6 @@ def purchaseOrder_read(request):
 def woReport_read(request):
     form = PurchaseSearchForm(request.POST or None)
     bills = PurchaseBill.objects.all().order_by('-time')
-    abc = Stock.objects.all().order_by('-time')
     context = {
         'bills':bills,
         'form':form,
@@ -117,7 +121,6 @@ def woReport_read(request):
     context = {
         'bills':bills,
         'form':form,
-        'abc':abc,
     }
     return render(request, 'purchase_order/report.html', context)
 

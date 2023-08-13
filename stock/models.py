@@ -6,6 +6,7 @@ from unit.models import Unit
 
 class Stock(models.Model):
     id = models.AutoField(primary_key=True)
+    time = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     name = models.CharField(max_length=30, unique=True)
     quantity = models.IntegerField(default=1, null=True)

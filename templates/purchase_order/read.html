@@ -80,6 +80,7 @@
 								<thead>
 									<tr>
 										<th>ID</th>
+										<th>Stock Qty</th>
 										<th>Supplier</th>
 										<th>Buyer</th>
                                         <th>Merchandiser</th>
@@ -109,6 +110,12 @@
                                         {% comment %} <td class=""> {{ data.name }} <br> 
                                             <small style="color: #909494">Ph No : {{ data.phone }}</small> 
                                         </td> {% endcomment %}
+										{% if data.billno %}
+											{% for stock_data in stock_datas %}
+												<td>{{ stock_data.quantity }}</td>
+											{% endfor %}
+										{% endif %}
+
                                         <td>{{ data.supplier }}</td>
                                         <td>{{ data.buyer_name }}</td>
 										<td>{{ data.merchandiser }}</td>

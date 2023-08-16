@@ -1,5 +1,5 @@
 {% extends 'base/index.html' %}
-{% block title %}read Work Order{% endblock title %}
+{% block title %}report Work Order{% endblock title %}
 {% block body %}
 {% load static %}		
         <!--start page wrapper -->
@@ -61,7 +61,7 @@
 
                 <div class="ms-auto">
                     <a href="/purchase_order/create/" class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Work Order</a>
-                    <a href="{% url 'po_read' %}" class="btn btn-dark radius-30 mt-2 mt-lg-0">Previous</a>
+                    <a href="{% url 'wo_read' %}" class="btn btn-dark radius-30 mt-2 mt-lg-0">Previous</a>
                 </div><br>
 				{% comment %} <h6 class="mb-0 text-uppercase">DataTable Import</h6> {% endcomment %}
 				{% if messages %}

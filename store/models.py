@@ -38,6 +38,7 @@ class StoreBill(models.Model):
     store_location = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.IntegerField(default=0, blank=True, null=True)
     remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname_store')
+    
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)  
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
@@ -50,17 +51,18 @@ class StoreBill(models.Model):
     def get_items_list(self):
         return StoreItem.objects.filter(billno=self)
         
-    # def get_total_price(self):
+    # def get_stock_qty(self):
     #     storeitems = StoreItem.objects.filter(billno=self)
     #     total = 0
     #     for item in storeitems:
-    #         total += item.totalprice
+    #         total += item.stock_qty
     #     return total
     
 class StoreItem(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
     quantity = models.IntegerField(default=1)
+    # stock_qty = models.IntegerField(default=1, null=True, blank=True)
     fabric_color = models.CharField(max_length=64, blank=True, null=True)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_store')
     size = models.CharField(max_length=64, null=True, blank=True)

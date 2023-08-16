@@ -61,8 +61,8 @@ class PurchaseCreateView(View):
                 # saves bill item and stock
                 stock.save()
                 billitem.save()
-            messages.success(request, "Purchased items have been create successfully")
-            return redirect('po_read')
+            messages.success(request, "Work Order items have been create successfully")
+            return redirect('wo_read')
         form = PurchaseForm(request.GET or None)
         formset = PurchaseItemFormset(request.GET or None)
         context = {
@@ -75,7 +75,7 @@ class PurchaseCreateView(View):
 # Read
 @login_required
 @allowed_users(allowed_roles=['admin', 'merchandiser', 'store'])
-def purchaseOrder_read(request):
+def wo_read(request):
     form = PurchaseSearchForm(request.POST or None)
     bills = PurchaseBill.objects.all().order_by('-time')
     # abc = Stock.objects.all().order_by('id')
@@ -180,8 +180,8 @@ def purchase_delete(request, pk):
         if not stock.is_deleted:
             stock.save()
     get_purchase.delete()
-    messages.success(request, 'Purchase Order has been deleted successfully')
-    return redirect('po_read')
+    messages.success(request, 'Work Order has been deleted successfully')
+    return redirect('wo_read')
 
 
 @method_decorator(login_required, name='dispatch')

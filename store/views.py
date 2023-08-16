@@ -61,6 +61,8 @@ class StoreCreateView(LoginRequiredMixin, View):
                 stock = get_object_or_404(Stock, name=billitem.stock.name)         # gets the item
                 # updates quantity in stock db
                 stock.quantity += billitem.quantity                               # updates quantity
+                
+                billitem.stock_qty = stock.quantity - billitem.quantity                            # updates quantity
                 # saves bill item and stock
                 stock.save()
                 

@@ -45,6 +45,7 @@ class PurchaseBill(models.Model):
 
     def get_total_price(self):
         purchaseitems = PurchaseItem.objects.filter(billno=self)
+        # stockitems = Stock.objects.filter(billno=self)
         total = 0
         for item in purchaseitems:
             total = total + item.totalprice
@@ -105,16 +106,16 @@ class PurchaseBill(models.Model):
 class PurchaseItem(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete = models.CASCADE, related_name='purchasebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='purchaseitem')
-    quantity = models.IntegerField(default=1, null=True, blank=True)
-    unit_price = models.IntegerField(default=1, null=True, blank=True)
-    totalprice = models.IntegerField(default=1, null=True, blank=True)
+    quantity = models.FloatField(default=1, null=True, blank=True)
+    unit_price = models.FloatField(default=1, null=True, blank=True)
+    totalprice = models.FloatField(default=1, null=True, blank=True)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_wos')
     size = models.CharField(max_length=64, null=True, blank=True)
     style = models.CharField(max_length=64, blank=True, null=True)
     color = models.CharField(max_length=64, blank=True, null=True)
+    
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
-    
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name

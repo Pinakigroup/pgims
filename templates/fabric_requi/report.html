@@ -92,7 +92,8 @@
                                         <th>WO No</th> 
                                         <th>Items</th>
 										<th>Style</th>
-                                        <th>Supply Qty</th>
+                                        <th>Issue Qty</th>
+										<th>Balance Qty</th>
                                         <th>Order Qty</th>
                                         <th>Cut Qty</th>
                                         <th>Cad Consumption</th>
@@ -125,6 +126,11 @@
 												{{ item.uom }}
                                             {% endfor %}
                                         </td>     
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.balance_quantity }} <br> 
+                                            {% endfor %}
+                                        </td> 
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.order_qty }} <br> 

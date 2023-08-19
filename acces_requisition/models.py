@@ -36,6 +36,7 @@ class AccesRequisitionBill(models.Model):
 
     def get_items_list(self):
         return AccesRequisitionItem.objects.filter(billno=self)
+    
         
 
 # contains the acces_requisition stocks made
@@ -43,6 +44,7 @@ class AccesRequisitionItem(models.Model):
     billno = models.ForeignKey(AccesRequisitionBill, on_delete = models.CASCADE, related_name='ar_billno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='ar_item')
     quantity = models.IntegerField(default=1, blank=True, null=True)
+    balance_quantity = models.IntegerField(default=0)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_a_issue')
     acces_color = models.CharField(max_length=64, blank=True, null=True)
     size = models.CharField(max_length=64, null=True, unique=True, blank=True)
@@ -52,6 +54,13 @@ class AccesRequisitionItem(models.Model):
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
+
+    # def get_balance_quantity(self):
+    #     return self.stock.quantity - self.sales_quantity
+    
+    def save(self, *args, **kwargs):
+        self.balance_quantity = self.stock.quantity - self.quantity
+        super(AccesRequisitionItem, self).save(*args, **kwargs)
     
 # contains the other details in the acces_requisition bill
 class AccesRequisitionBillDetails(models.Model):

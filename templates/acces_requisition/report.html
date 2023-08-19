@@ -94,7 +94,8 @@
                                         <th>WO No</th>
                                         <th>Style</th>
 										<th>Items</th>										
-                                        <th>Sold Qty</th>
+                                        <th>Issue Qty</th>
+                                        <th>Balance Qty</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -114,6 +115,11 @@
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.balance_quantity }} <br> 
+                                            {% endfor %}
+                                        </td> 
 									</tr>
 								 {% endfor %}
 								 {% if not bills %}

@@ -62,7 +62,7 @@ class StoreItem(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
     quantity = models.IntegerField(default=1)
-    # stock_qty = models.IntegerField(default=1, null=True, blank=True)
+    balance_quantity = models.IntegerField(default=0)
     fabric_color = models.CharField(max_length=64, blank=True, null=True)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_store')
     size = models.CharField(max_length=64, null=True, blank=True)
@@ -72,6 +72,10 @@ class StoreItem(models.Model):
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
+
+    def save(self, *args, **kwargs):
+        self.balance_quantity = self.stock.quantity + self.quantity
+        super(StoreItem, self).save(*args, **kwargs)
     
 class StoreBillDetails(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storedetailsbillno')

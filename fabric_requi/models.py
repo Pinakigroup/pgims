@@ -62,6 +62,7 @@ class FabricRequisitionItem(models.Model):
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='fr_item')
     # Supply QTY 
     quantity = models.IntegerField(default=1)
+    balance_quantity = models.IntegerField(default=0)
     UOM = (
         ('', 'Select'),
         ('miter', 'miter'),
@@ -80,6 +81,10 @@ class FabricRequisitionItem(models.Model):
 
     def __str__(self):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
+    
+    def save(self, *args, **kwargs):
+        self.balance_quantity = self.stock.quantity - self.quantity
+        super(FabricRequisitionItem, self).save(*args, **kwargs)
     
 # contains the other details in the fabric_requisition bill
 class FabricRequisitionBillDetails(models.Model):

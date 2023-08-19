@@ -80,7 +80,6 @@ def wo_read(request):
     bills = PurchaseBill.objects.all().order_by('-time')
     # abc = Stock.objects.all().order_by('id')
     stock_datas = Stock.objects.all().order_by('-time')
-    print("Lplplplplp", stock_datas)
     context = {
         'bills':bills,
         'form':form,

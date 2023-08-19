@@ -103,7 +103,8 @@
 										<th>Color</th>
 										<th>Size</th>
 										<th>Style</th>
-                                        <th>Sold Qty</th>
+                                        <th>Issue Qty</th>
+										<th>Balance Qty</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -151,6 +152,11 @@
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.balance_quantity }} <br> 
+                                            {% endfor %}
+                                        </td> 
 
 									   <td class="center">
 										<div class="d-flex order-actions">

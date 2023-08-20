@@ -43,8 +43,8 @@ class AccesRequisitionBill(models.Model):
 class AccesRequisitionItem(models.Model):
     billno = models.ForeignKey(AccesRequisitionBill, on_delete = models.CASCADE, related_name='ar_billno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='ar_item')
-    quantity = models.IntegerField(default=1, blank=True, null=True)
-    balance_quantity = models.IntegerField(default=0)
+    quantity = models.FloatField(default=1, blank=True, null=True)
+    balance_quantity = models.FloatField(default=0)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_a_issue')
     acces_color = models.CharField(max_length=64, blank=True, null=True)
     size = models.CharField(max_length=64, null=True, unique=True, blank=True)

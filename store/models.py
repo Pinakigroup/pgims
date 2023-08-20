@@ -61,8 +61,8 @@ class StoreBill(models.Model):
 class StoreItem(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
-    quantity = models.IntegerField(default=1)
-    balance_quantity = models.IntegerField(default=0)
+    quantity = models.FloatField(default=1)
+    balance_quantity = models.FloatField(default=0)
     fabric_color = models.CharField(max_length=64, blank=True, null=True)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_store')
     size = models.CharField(max_length=64, null=True, blank=True)

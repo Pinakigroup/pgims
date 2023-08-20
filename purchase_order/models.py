@@ -45,7 +45,6 @@ class PurchaseBill(models.Model):
 
     def get_total_price(self):
         purchaseitems = PurchaseItem.objects.filter(billno=self)
-        # stockitems = Stock.objects.filter(billno=self)
         total = 0
         for item in purchaseitems:
             total = total + item.totalprice

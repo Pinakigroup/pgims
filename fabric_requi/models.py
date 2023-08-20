@@ -61,8 +61,8 @@ class FabricRequisitionItem(models.Model):
     billno = models.ForeignKey(FabricRequisitionBill, on_delete = models.CASCADE, related_name='fr_billno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='fr_item')
     # Supply QTY 
-    quantity = models.IntegerField(default=1)
-    balance_quantity = models.IntegerField(default=0)
+    quantity = models.FloatField(default=1)
+    balance_quantity = models.FloatField(default=0)
     UOM = (
         ('', 'Select'),
         ('miter', 'miter'),
@@ -72,10 +72,10 @@ class FabricRequisitionItem(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_fabric_issue')
     style_no = models.CharField(max_length=64, blank=True, null=True)
     fab_color = models.CharField(max_length=64, blank=True, null=True)
-    order_qty = models.IntegerField(default=0, blank=True, null=True)
-    cutting_qty = models.IntegerField(default=0, blank=True, null=True)
+    order_qty = models.FloatField(default=0, blank=True, null=True)
+    cutting_qty = models.FloatField(default=0, blank=True, null=True)
     cad_consumption = models.CharField(max_length=64, blank=True, null=True)
-    requard_qty = models.IntegerField(default=0, blank=True, null=True)
+    requard_qty = models.FloatField(default=0, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

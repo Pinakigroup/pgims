@@ -28,7 +28,7 @@ class PurchaseBill(models.Model):
     work_order = models.CharField(max_length=64, default=generate_random_number)
     wo_date = models.DateField(default=date.today, null=True, blank=True)
     master_lc_sc = models.CharField(max_length=64, null=True, blank=True)
-    order_qty = models.IntegerField(default=0, blank=True, null=True)
+    order_qty = models.DecimalField(max_digits=9, decimal_places=2)
     remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname')
     
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -105,9 +105,9 @@ class PurchaseBill(models.Model):
 class PurchaseItem(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete = models.CASCADE, related_name='purchasebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='purchaseitem')
-    quantity = models.FloatField(default=1, null=True, blank=True)
-    unit_price = models.FloatField(default=1, null=True, blank=True)
-    totalprice = models.FloatField(default=1, null=True, blank=True)
+    quantity = models.DecimalField(max_digits=12, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=12, decimal_places=2)
+    totalprice = models.DecimalField(max_digits=12, decimal_places=2)    
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_wos')
     size = models.CharField(max_length=64, null=True, blank=True)
     style = models.CharField(max_length=64, blank=True, null=True)

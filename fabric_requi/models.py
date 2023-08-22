@@ -14,8 +14,8 @@ class FabricRequisitionBill(models.Model):
     billno = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now=True)
     
-    name = models.CharField(max_length=64, null=True, unique=True, blank=True)
-    buyer_name = models.CharField(max_length=64, null=True, unique=True, blank=True)
+    name = models.CharField(max_length=64, null=True, blank=True)
+    buyer_name = models.CharField(max_length=64, null=True, blank=True)
     
     # work_order = models.CharField(max_length=64, blank=False, null=True)
     
@@ -61,8 +61,8 @@ class FabricRequisitionItem(models.Model):
     billno = models.ForeignKey(FabricRequisitionBill, on_delete = models.CASCADE, related_name='fr_billno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='fr_item')
     # Supply QTY 
-    quantity = models.FloatField(default=1)
-    balance_quantity = models.FloatField(default=0)
+    quantity = models.DecimalField(max_digits=9, decimal_places=2)
+    balance_quantity = models.DecimalField(max_digits=9, decimal_places=2)
     UOM = (
         ('', 'Select'),
         ('miter', 'miter'),
@@ -72,10 +72,10 @@ class FabricRequisitionItem(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_fabric_issue')
     style_no = models.CharField(max_length=64, blank=True, null=True)
     fab_color = models.CharField(max_length=64, blank=True, null=True)
-    order_qty = models.FloatField(default=0, blank=True, null=True)
-    cutting_qty = models.FloatField(default=0, blank=True, null=True)
-    cad_consumption = models.CharField(max_length=64, blank=True, null=True)
-    requard_qty = models.FloatField(default=0, blank=True, null=True)
+    order_qty = models.DecimalField(max_digits=9, decimal_places=2)
+    cutting_qty = models.DecimalField(max_digits=9, decimal_places=2)
+    cad_consumption = models.DecimalField(max_digits=9, decimal_places=2)
+    requard_qty = models.DecimalField(max_digits=9, decimal_places=2)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

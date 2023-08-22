@@ -9,7 +9,7 @@ class Stock(models.Model):
     time = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False)
     name = models.CharField(max_length=30, unique=True)
-    quantity = models.IntegerField(default=1, null=True)
+    quantity = models.DecimalField(max_digits=9, decimal_places=2)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_stocks')
     is_deleted = models.BooleanField(default=False)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)

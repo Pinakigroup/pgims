@@ -17,15 +17,13 @@ class AccesRForm(forms.ModelForm):
         
     class Meta:
         model = AccesRequisitionBill
-        fields = ['name', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'line_no', 'card_no', 'date', 'supply_qty', 'remarks']
+        fields = ['name', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'unit_no', 'card_no', 'remarks']
         widgets = {
             'acces_wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'line_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'unit_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
-            'supply_qty' : forms.NumberInput(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
@@ -34,7 +32,7 @@ class AccesRForm(forms.ModelForm):
             'fileno_po': 'File No',
             'order_no': 'Order No',
             'style_no': 'Style No',
-            'line_no': 'Line No',
+            'unit_no': 'Unit No',
             'card_no': 'Card No',
         }
 # Goods Issuer add username 
@@ -62,11 +60,10 @@ class AccesRItemForm(forms.ModelForm):
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['acces_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['size'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['style'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['acces_color'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
         
-
 # formset used to render multiple 'AccesRequisitionItemForm'
 AccesRItemFormset = formset_factory(AccesRItemForm, extra=1)
 

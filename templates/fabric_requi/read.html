@@ -95,7 +95,7 @@
                                         <th>Order No</th>
                                         <th>File No</th>
                                         <th>Card No</th>
-                                        <th>Floor</th>
+                                        <th>Unit</th>
                                         <th>Date</th>
                                         <th>Items</th>
                                         <th>Unit</th>
@@ -125,7 +125,7 @@
                                         <td>{{ data.order_no }}</td>
                                         <td>{{ data.fileno_po }}</td>
                                         <td>{{ data.card_no }}</td>
-                                        <td>{{ data.floor }}</td>
+                                        <td>{{ data.unit }}</td>
                                         <td>{{ data.date|date:"d/m/Y" }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
@@ -135,7 +135,7 @@
 
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.unit }} <br> 
+                                                {{ item.uom }} <br> 
                                             {% endfor %}
                                         </td>
 
@@ -149,13 +149,7 @@
                                                 {{ item.fab_color }} <br> 
                                             {% endfor %}
                                         </td>
-
-                                        <td>
-                                            {% for item in data.get_items_list %} 
-                                                {{ item.quantity }}
-												{{ item.uom }}
-                                            {% endfor %}
-                                        </td>    
+ 
 										<td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.balance_quantity }} <br> 

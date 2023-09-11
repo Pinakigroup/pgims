@@ -8,7 +8,6 @@
 
     <title>{% block title %} {% endblock title %}</title>
 
-
 <!--favicon-->
 <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" />
 <!--plugins-->
@@ -17,8 +16,6 @@
 <link href="{% static 'plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
 <link href="{% static 'plugins/datatable/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" />
 <!-- loader-->
-
-
 
 <!-- Bootstrap CSS -->
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -255,7 +252,7 @@
                         </li>
                     </ul>
                 </li>
-            <li>
+                <li>
 
             {% endif %}
 
@@ -763,7 +760,7 @@
         $(document).ready(function() {
             var table = $('#example2').DataTable( {
                 lengthChange: false,
-                buttons: [ 'copy', 'excel', 'pdf', 'print']
+                buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print']
             } );
         
             table.buttons().container()

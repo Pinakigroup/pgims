@@ -96,7 +96,7 @@
 										<th>Order No</th>
 										<th>WO No</th>
 										<th>Style No</th>
-										<th>Line No</th>
+										<th>Unit No</th>
 										<th>Card No</th>
 										<th>Items</th>
 										<th>Unit</th>
@@ -119,7 +119,7 @@
                                         <td> <p>{{ data.acces_wo_no }}</p> </td>
                                         <td> <p>{{ data.style_no }}</p> </td>
                                         
-                                        <td> <p>{{ data.line_no }}</p> </td>
+                                        <td> <p>{{ data.unit_no }}</p> </td>
                                         <td> <p>{{ data.card_no }}</p> </td>
                                         </td>
                                         <td>
@@ -173,7 +173,7 @@
 								 {% endfor %}
 								 {% if not bills %}
 								 <tr>
-									 <td colspan="16" class="text-center">No Data available</td>
+									 <td colspan="17" class="text-center">No Data available</td>
 								 </tr>
 								 {% endif %}
 								</tbody>

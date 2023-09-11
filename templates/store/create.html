@@ -68,28 +68,28 @@
                         </div>
                     </div><br>
                     
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.work_order_store|as_crispy_field }}
                         </div>
                     </div><br>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.fileno_po|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.style_no|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.master_lc_sc|as_crispy_field }}
                         </div>
                     </div><br>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <div class="controls">
                             {{ form.buyer_name|as_crispy_field }}
                         </div>
@@ -99,24 +99,7 @@
                         <div class="controls">
                             {{ form.supplier|as_crispy_field }}
                         </div>
-                    </div><br>
-
-                    <div class="col-sm-4">
-                        <div class="controls">
-                            {{ form.lot_no|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    
-                    <div class="col-sm-4">
-                        <div class="controls">
-                            {{ form.pi_no|as_crispy_field }}
-                        </div>
-                    </div><br>
-                    <div class="col-sm-4">
-                        <div class="controls">
-                            {{ form.received_date|as_crispy_field }}
-                        </div>
-                    </div><br>                    
+                    </div><br>                                       
                     <div class="col-sm-4">
                         <div class="controls">
                             {{ form.store_location|as_crispy_field }}
@@ -127,14 +110,13 @@
                             {{ form.img_file|as_crispy_field }}
                         </div>
                     </div><br>
-                    {% comment %} <div class="col-sm-3">
+
+                    <div class="col-sm-4">
                         <div class="controls">
-                            {{ form.received_by|as_crispy_field }}
+                            {{ u_form.username|as_crispy_field }}
                         </div>
-                    </div><br> {% endcomment %}
-
-                    {{ u_form|crispy }}
-
+                    </div><br>
+                                        
                     {{ formset.management_form }}
 
                     <div class="panel-heading panel-heading-text">
@@ -145,14 +127,14 @@
                             <div class="panel-body">
                             {% for form in formset %}
                                 <div class="row form-row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-2">
                                         {{ form.stock.errors }}
-                                        <label class="panel-body-text">Stock:</label>
+                                        <label class="panel-body-text">Items:</label>
                                         {{ form.stock }}
                                     </div>
                                     
                                     <div class="form-group col-md-1">
-                                        <label class="panel-body-text">Unit:</label>
+                                        <label class="panel-body-text">UOM:</label>
                                         {{ form.unit }}
                                     </div>
                                     <div class="form-group col-md-1">
@@ -163,16 +145,27 @@
                                         <label class="panel-body-text">Style:</label>
                                         {{ form.style }}
                                     </div>
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-1">
                                         <label class="panel-body-text">Color:</label>
                                         {{ form.fabric_color }}
                                     </div>
-
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-1">
                                         {{ form.quantity.errors }}
-                                        <label class="panel-body-text">Quantity:</label>
+                                        <label class="panel-body-text">Work Order Qty:</label>
                                         {{ form.quantity }}
                                     </div>
+                                    <div class="form-group col-md-2">
+                                        {{ form.wo_quantity.errors }}
+                                        <label class="panel-body-text">Received Qty:</label>
+                                        {{ form.wo_quantity }}
+                                    </div>
+                                    
+                                    <div class="form-group col-md-2">
+                                        {{ form.today_received_qty.errors }}
+                                        <label class="panel-body-text">Today Received Qty:</label>
+                                        {{ form.today_received_qty }}
+                                    </div>
+                                    
                                     <div class="form-group col-md-1">
                                         <label class="panel-body-text" style="color: #000"></label>
                                         <button class="form-control btn btn-danger remove-form-row">-</button>
@@ -185,12 +178,6 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12">
-                            <div class="controls">
-                                {{ form.order_qty|as_crispy_field }}
-                            </div>
-                        </div><br>
-    
                         <div class="col-sm-12">
                             <div class="controls">
                                 {{ form.remarks|as_crispy_field }}
@@ -353,7 +340,6 @@
                         $('#id_master_lc_sc').val(response.master_lc_sc);
                         $('#id_buyer_name').val(response.buyer_name);
                         $('#id_supplier').val(response.supplier);
-                        $('#id_order_qty').val(response.order_qty);
                     }
                 });
             }

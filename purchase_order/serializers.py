@@ -6,4 +6,4 @@ class PurchaseBillSerializer(serializers.ModelSerializer):
     fileno_po = serializers.CharField(source='fileno_po.file')
     class Meta:
         model = PurchaseBill
-        fields = ['style_no', 'fileno_po', 'master_lc_sc', 'buyer_name', 'supplier', 'order_qty']
+        fields = ['style_no', 'fileno_po', 'master_lc_sc', 'buyer_name', 'supplier']

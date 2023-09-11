@@ -89,7 +89,6 @@
                                         <th width="15%">Total Purchased Price</th>
                                         <th width="10%">Purchased Date</th>
                                         <th width="25%">Actions</th> {% endcomment %}
-
 										<th>ID</th>
 										<th>Supplier</th>
                                         <th>Buyer</th>
@@ -99,11 +98,12 @@
                                         <th>MLC/SC</th>
                                         <th>Style</th>
                                         <th>File No</th>
-                                        <th>Lot No</th>
                                         <th>Items</th>
                                         <th>Unit</th>
-                                        <th>Qty</th>
+                                        <th>WO Qty</th>
+                                        <th>Received Qty</th>
                                         <th>Balance Qty</th>
+                                        <th>Today Received Qty</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -120,7 +120,6 @@
                                         <td>{{ data.master_lc_sc }}</td>
                                         <td>{{ data.style_no }}</td>
                                         <td>{{ data.fileno_po }}</td>
-                                        <td>{{ data.lot_no }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 
@@ -134,12 +133,22 @@
 
                                         <td>
                                             {% for item in data.get_items_list %} 
+                                                {{ item.wo_quantity }} <br> 
+                                            {% endfor %}
+                                        </td>     
+                                        <td>
+                                            {% for item in data.get_items_list %} 
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>     
 										<td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.balance_quantity }} <br> 
+                                            {% endfor %}
+                                        </td>  
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.today_received_qty }} <br> 
                                             {% endfor %}
                                         </td>  
 									</tr>

@@ -29,6 +29,7 @@ class StoreCreateView(LoginRequiredMixin, View):
         form = StoreForm(request.GET or None)
         formset = StoreItemFormset(request.GET or None)                       # renders an empty formset
         stocks = Stock.objects.filter(is_deleted=False)
+        
         u_form = UserUpdateForm(request.POST, instance=request.user)
         if u_form.is_valid():
             u_form.save()
@@ -77,20 +78,6 @@ class StoreCreateView(LoginRequiredMixin, View):
             'formset': formset,         
         }
         return render(request, self.template_name, context)    
-    
-
-# class StoreView(ListView):
-#     model = StoreBill 
-#     template_name = 'store/read.html'
-#     context_object_name = 'bills'
-#     ordering = ['-time']
-
-
-# class StoreReportView(ListView):
-#     model = StoreBill 
-#     template_name = 'store/report.html'
-#     context_object_name = 'bills'
-#     ordering = ['-time']
 
 # Read
 @login_required

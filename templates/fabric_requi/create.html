@@ -51,59 +51,53 @@
 				<div class="card">
 					<div class="card-body">
 
-
-                        
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
 
-								<div class="col-sm-12">
+								<div class="col-sm-4">
 									<div class="controls">
 										{{ form.name|as_crispy_field }}
 									</div>
 								</div><br>
-                                {{ u_form|crispy }}
-
-                                <div class="col-sm-3">
-									<div class="controls">
-										{{ form.work_order_fr|as_crispy_field }}
-									</div>
-								</div><br> 
-                                <div class="col-sm-3">
-									<div class="controls">
-										{{ form.fileno_po|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="col-sm-2">
-									<div class="controls">
-										{{ form.buyer_name|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-2">
-									<div class="controls">
-										{{ form.order_no|as_crispy_field }}
-									</div>
-								</div><br>
-
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
 									<div class="controls">
 										{{ form.card_no|as_crispy_field }}
 									</div>
 								</div><br>
 
+                                <div class="col-sm-4">
+                                    <div class="controls">
+                                        {{ u_form.username|as_crispy_field }}
+                                    </div>
+                                </div><br>
+
+                                <div class="col-sm-4">
+									<div class="controls">
+										{{ form.work_order_fr|as_crispy_field }}
+									</div>
+								</div><br> 
+                                <div class="col-sm-4">
+									<div class="controls">
+										{{ form.fileno_po|as_crispy_field }}
+									</div>
+								</div><br>
+								<div class="col-sm-4">
+									<div class="controls">
+										{{ form.buyer_name|as_crispy_field }}
+									</div>
+								</div><br>
                                 <div class="col-sm-6">
 									<div class="controls">
-										{{ form.floor|as_crispy_field }}
+										{{ form.order_no|as_crispy_field }}
+									</div>
+								</div><br>
+                                <div class="col-sm-6">
+									<div class="controls">
+										{{ form.unit|as_crispy_field }}
 									</div>
 								</div><br>
 
-                                <div class="col-sm-6">
-									<div class="controls">
-										{{ form.date|as_crispy_field }}
-									</div>
-								</div><br>
-
-{% comment %} 
-							<div class="form-actions">
+							{% comment %} <div class="form-actions">
 								<button type="submit" class="btn btn-light">Save changes</button>
 								<button type="reset" class="btn">Cancel</button>
 							</div> {% endcomment %}
@@ -117,37 +111,42 @@
                                         <div class="panel-body">
                                         {% for iform in formset %}
                                             <div class="row form-row">
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Stock:</label>
+                                                    <label class="panel-body-text">Items:</label>
                                                     {{ iform.stock }}
                                                 </div>
 
 
-                                                <div class="form-group col-md-2">
+                                                <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Unit:</label>
-                                                    {{ iform.unit }}
+                                                    <label class="panel-body-text">UOM:</label>
+                                                    {{ iform.uom }}
                                                 </div>
-                                                <div class="form-group col-md-2">
+                                                <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Style:</label>
                                                     {{ iform.style_no }}
                                                 </div>
-                                                <div class="form-group col-md-2">
+                                                <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Color:</label>
                                                     {{ iform.fab_color }}
                                                 </div>
-                                                <div class="form-group col-md-2">
+                                                <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Order Qty:</label>
                                                     {{ iform.order_qty }}
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Cutting Qty:</label>
                                                     {{ iform.cutting_qty }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Req Qty:</label>
+                                                    {{ iform.requard_qty }}
                                                 </div>
                                                 <div class="form-group col-md-2">
                                                     {{ iform.stock.errors }}
@@ -155,19 +154,9 @@
                                                     {{ iform.cad_consumption }}
                                                 </div>
                                                 <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Req Qty:</label>
-                                                    {{ iform.requard_qty }}
-                                                </div>
-                                                <div class="form-group col-md-2">
                                                     {{ iform.quantity.errors }}
                                                     <label class="panel-body-text">Supply Qty:</label>
                                                     {{ iform.quantity }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">UOM:</label>
-                                                    {{ iform.uom }}
                                                 </div>
                                                 <div class="form-group col-md-1">
                                                     <label class="panel-body-text" style="color: #000">.</label>
@@ -340,7 +329,6 @@
     });
 
 </script>
-
 
 
 <script>

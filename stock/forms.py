@@ -18,7 +18,7 @@ class StockForm(forms.ModelForm):
             'unit' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
-            'unit': 'Unit',
+            'unit': 'UOM',
         }
         
 class StockDateSearchForm(forms.ModelForm):

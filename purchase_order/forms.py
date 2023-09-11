@@ -4,6 +4,7 @@ from .models import PurchaseItem, PurchaseBillDetails, PurchaseBill
 from file.models import File
 from stock.models import Stock
 from django_select2.forms import ModelSelect2Widget
+from django.contrib.auth.models import User
 
 class PurchaseForm(forms.ModelForm):
     
@@ -20,23 +21,31 @@ class PurchaseForm(forms.ModelForm):
         widgets = {
             'fileno_po': ModelSelect2Widget(model=File, search_fields=['file__icontains'], attrs={'style': 'width: 100%'}),
             # 'file_no' : forms.Select(attrs = {'class' : 'textinput form-control'}),
-            'merchandiser' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'work_order' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'wo_date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
-            'order_qty' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
             'fileno_po': 'File No',
             'po_no': 'PO No',
             'work_order': 'Work Order',
-            'wo_date': 'Work Order Date',
-            'master_lc_sc': 'Master LC / Sales Contact',
+            'master_lc_sc': 'MLC/SC',
             'style_no': 'Style/Order NO',
-            'order_qty': 'Order Qty',
         }
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+        labels = {
+            'username': 'Merchandiser',
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Remove the default help_text
+        self.fields['username'].help_text = ''
 
 
 # form used to render a single stock item form
@@ -44,10 +53,6 @@ class PurchaseItemForm(forms.ModelForm):
     class Meta:
         model = PurchaseItem
         fields = ['stock', 'quantity', 'unit_price', 'unit', 'size', 'style', 'color']
-        labels = {
-            'stock': 'Goods Receiver',
-            'color': 'Goods Issuer',
-        }
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -56,9 +61,9 @@ class PurchaseItemForm(forms.ModelForm):
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['size'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['style'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
 
 
 # formset used to render multiple 'PurchaseItemForm'

@@ -54,49 +54,45 @@
 					<div class="card-body">
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
-
-								<div class="col-sm-12">
-									<div class="controls">
-										{{ form.name|as_crispy_field }}
-									</div>
-								</div><br>
-                                {{ u_form|crispy }}
-
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
 									<div class="controls">
 										{{ form.acces_wo_no|as_crispy_field }}
 									</div>
 								</div><br>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
 									<div class="controls">
 										{{ form.fileno_po|as_crispy_field }}
 									</div>
 								</div><br>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
 									<div class="controls">
 										{{ form.style_no|as_crispy_field }}
 									</div>
 								</div><br>
-                                
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
+									<div class="controls">
+										{{ form.name|as_crispy_field }}
+									</div>
+								</div><br>
+                                <div class="col-sm-4">
+									<div class="controls">
+										{{ form.card_no|as_crispy_field }}
+									</div>
+								</div><br>
+                                <div class="col-sm-4">
+                                    <div class="controls">
+                                        {{ u_form.username|as_crispy_field }}
+                                    </div>
+                                </div><br>
+                                <div class="col-sm-6">
 									<div class="controls">
 										{{ form.order_no|as_crispy_field }}
 									</div>
 								</div><br>
 
-                                <div class="col-sm-2">
+                                <div class="col-sm-6">
 									<div class="controls">
-										{{ form.line_no|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-2">
-									<div class="controls">
-										{{ form.card_no|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.date|as_crispy_field }}
+										{{ form.unit_no|as_crispy_field }}
 									</div>
 								</div><br>
 {% comment %} 
@@ -115,12 +111,12 @@
                                             <div class="row form-row">
                                                 <div class="form-group col-md-3">
                                                     {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Stock:</label>
+                                                    <label class="panel-body-text">Items:</label>
                                                     {{ iform.stock }}
                                                 </div>
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Unit:</label>
+                                                    <label class="panel-body-text">UOM:</label>
                                                     {{ iform.unit }}
                                                 </div>
                                                 <div class="form-group col-md-2">
@@ -158,11 +154,6 @@
                     
                     
                                 <br>
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.supply_qty|as_crispy_field }}
-									</div>
-								</div><br>
                                 <div class="col-sm-12">
 									<div class="controls">
 										{{ form.remarks|as_crispy_field }}

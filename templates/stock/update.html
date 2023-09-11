@@ -55,31 +55,29 @@
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
 
-								<div class="col-sm-12">
-									<div class="controls">
-										{{ form.category|as_crispy_field }}
-									</div>
-								</div><br>
-
-								<div class="col-sm-12">
-									<div class="controls">
-										{{ form.name|as_crispy_field }}
-									</div>
-								</div><br>
-
-								<div class="col-sm-12">
-									<div class="controls">
-										{{ form.quantity|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="col-sm-12">
-									<div class="controls">
-										{{ form.unit|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.category|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.name|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.quantity|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-12">
+								<div class="controls">
+									{{ form.unit|as_crispy_field }}
+								</div>
+							</div><br>
 
 							<div class="form-actions">
-								<button type="submit" class="btn btn-light">Update changes</button>
+								<button type="submit" class="btn btn-success">Update changes</button>
 								<button type="reset" class="btn">Cancel</button>
 							</div>
 						</form>

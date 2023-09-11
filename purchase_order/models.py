@@ -21,14 +21,12 @@ class PurchaseBill(models.Model):
     
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False, related_name='suppliersname')
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
-    merchandiser = models.ForeignKey(Merchandiser, on_delete=models.CASCADE, blank=False, related_name='merchandisersname')
     po_no = models.CharField(max_length=32, null=True, blank=True)
     fileno_po = models.ForeignKey(File, on_delete=models.CASCADE, blank=False, related_name='fileno_pos')
     style_no = models.CharField(max_length=32, null=True, blank=True)
     work_order = models.CharField(max_length=64, default=generate_random_number)
-    wo_date = models.DateField(default=date.today, null=True, blank=True)
+    wo_date = models.DateField(auto_now_add=True, auto_now=False)
     master_lc_sc = models.CharField(max_length=64, null=True, blank=True)
-    order_qty = models.DecimalField(max_digits=9, decimal_places=2)
     remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname')
     
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -109,7 +107,7 @@ class PurchaseItem(models.Model):
     unit_price = models.DecimalField(max_digits=12, decimal_places=2)
     totalprice = models.DecimalField(max_digits=12, decimal_places=2)    
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_wos')
-    size = models.CharField(max_length=64, null=True, blank=True)
+    size = models.CharField(max_length=64, blank=True, null=True)
     style = models.CharField(max_length=64, blank=True, null=True)
     color = models.CharField(max_length=64, blank=True, null=True)
     

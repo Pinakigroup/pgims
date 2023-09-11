@@ -17,15 +17,13 @@ class FabricRForm(forms.ModelForm):
         
     class Meta:
         model = FabricRequisitionBill
-        fields = ['name', 'buyer_name', 'work_order_fr', 'order_no', 'fileno_po', 'card_no', 'floor', 'date', 'remarks']
+        fields = ['name', 'buyer_name', 'work_order_fr', 'order_no', 'fileno_po', 'card_no', 'unit', 'remarks']
         widgets = {
             'work_order_fr': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
-
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
-            'floor' : forms.Select(attrs = {'class' : 'textinput form-control'}),
-            'date' : forms.TextInput(attrs = {'class' : 'textinput form-control', 'type': 'date'}),
+            'unit' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),
         }
         labels = {
@@ -35,10 +33,10 @@ class FabricRForm(forms.ModelForm):
             'order_no': 'Order No',
             'fileno_po': 'File No',
             'card_no': 'Card No',
-            'floor': 'Floor',
-            'date': 'Date',
+            'unit': 'Unit',
             'remarks': 'Remarks',
         }
+        
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -54,12 +52,16 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class FabricRItemForm(forms.ModelForm):
+
+    class Meta:
+        model = FabricRequisitionItem
+        fields = ['stock', 'quantity', 'uom', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'cad_consumption', 'requard_qty']
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
-        self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['uom'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['fab_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
@@ -67,9 +69,6 @@ class FabricRItemForm(forms.ModelForm):
         self.fields['cutting_qty'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['cad_consumption'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['requard_qty'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-    class Meta:
-        model = FabricRequisitionItem
-        fields = ['stock', 'quantity', 'unit', 'uom', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'cad_consumption', 'requard_qty']
 
 # formset used to render multiple 'FabricRequisitionItemForm'
 FabricRItemFormset = formset_factory(FabricRItemForm, extra=1)

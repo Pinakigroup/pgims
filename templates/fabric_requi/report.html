@@ -114,18 +114,11 @@
                                                 {{ item.stock.name }} <br> 
                                             {% endfor %}
                                         </td>
-
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.style_no }} <br> 
                                             {% endfor %}
                                         </td>
-                                        <td>
-                                            {% for item in data.get_items_list %} 
-                                                {{ item.quantity }}
-												{{ item.uom }}
-                                            {% endfor %}
-                                        </td>     
 										<td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.balance_quantity }} <br> 

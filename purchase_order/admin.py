@@ -9,8 +9,8 @@ admin.site.register(PurchaseBillDetails)
 
 @admin.register(PurchaseBill)
 class PurchaseBillAdmin(admin.ModelAdmin):
-    list_display = ('work_order', 'supplier', 'merchandiser', 'po_no', 'order_qty', 'remarks', 'created_at')
-    list_filter = ('supplier', 'merchandiser', 'remarks', 'created_at')
+    list_display = ('work_order', 'supplier', 'po_no', 'remarks', 'created_at')
+    list_filter = ('supplier', 'remarks', 'created_at')
     search_fields = ('work_order', 'po_no', 'buyer_name')
 
 @admin.register(PurchaseItem)

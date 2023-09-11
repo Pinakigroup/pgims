@@ -6,9 +6,9 @@ from django.utils.timezone import now
 from store_receiver.models import StoreReceiver
 from unit.models import Unit
 from datetime import date
+from django.utils import timezone
 
 # Create your models here.
-
 
 class FabricRequisitionBill(models.Model):
     billno = models.AutoField(primary_key=True)
@@ -26,19 +26,14 @@ class FabricRequisitionBill(models.Model):
         
     order_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
-    FLOOR = (
+    UNIT = (
         ('', 'Select'),
         ('1st', '1st'),
         ('2nd', '2nd'),
         ('3rd', '3rd'),
-        ('4th', '4th'),
-        ('5th', '5th'),
-        ('6th', '6th'),
-        ('7th', '7th'),
-        ('8th', '8th'),
     )
-    floor = models.CharField(max_length=64, null=True, blank=False, choices=FLOOR)
-    date = models.DateField(default=date.today, null=True, blank=True)
+    unit = models.CharField(max_length=64, null=True, blank=False, choices=UNIT)
+    date = models.DateField(auto_now_add=True, auto_now=False)
     remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname_fabric')
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -63,13 +58,7 @@ class FabricRequisitionItem(models.Model):
     # Supply QTY 
     quantity = models.DecimalField(max_digits=9, decimal_places=2)
     balance_quantity = models.DecimalField(max_digits=9, decimal_places=2)
-    UOM = (
-        ('', 'Select'),
-        ('miter', 'miter'),
-        ('yard', 'yard'),
-    )
-    uom = models.CharField(max_length=64, null=True, blank=False, choices=UOM)
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_fabric_issue')
+    uom = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='uom_of_fabric_issue')
     style_no = models.CharField(max_length=64, blank=True, null=True)
     fab_color = models.CharField(max_length=64, blank=True, null=True)
     order_qty = models.DecimalField(max_digits=9, decimal_places=2)

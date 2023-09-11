@@ -16,6 +16,7 @@ from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import PurchaseBillSerializer
+from .forms import UserUpdateForm
 # Create your views here.
 
 # used to generate a bill object and save items
@@ -28,10 +29,16 @@ class PurchaseCreateView(View):
         form = PurchaseForm(request.GET or None)
         formset = PurchaseItemFormset(request.GET or None)                       # renders an empty formset
         stocks = Stock.objects.filter(is_deleted=False)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+        else:
+            u_form = UserUpdateForm(instance=request.user)
         context = {
             'form'      : form,
             'formset'   : formset,
-            'stocks'    : stocks  
+            'stocks'    : stocks, 
+            'u_form'    : u_form,
         }                                                                        # sends the supplier and formset as context
         return render(request, self.template_name, context)
 

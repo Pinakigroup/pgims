@@ -95,7 +95,6 @@
                                         <th>IN/DC</th>
                                         <th>IN/DC No</th>
                                         <th>IN/DC Date</th>
-                                        <th>PI</th>
                                         <th>Received Date</th>
                                         <th>Received By</th>
                                         <th>Photo</th>
@@ -103,15 +102,16 @@
                                         <th>MLC/SC</th>
                                         <th>Style No</th>
                                         <th>File No</th>
-                                        <th>Lot No</th>
                                         <th>Fabric Color</th>
                                         <th>Fabric Detail</th>
                                         <th>Items</th>
                                         <th>Unit</th>
                                         <th>Style</th>
                                         <th>Size</th>
+                                        <th>WO Qty</th>
                                         <th>Qty</th>
                                         <th>Balance Qty</th>
+                                        <th>Today Received Qty</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -127,7 +127,6 @@
                                         <td>{{ data.report }}</td>
                                         <td>{{ data.report_no }}</td>
                                         <td>{{ data.report_date|date:"d/m/Y" }}</td>
-                                        <td>{{ data.pi_no }}</td>
                                         <td>{{ data.received_date|date:"d/m/Y" }}</td>
 										<td>{{ user.username }}</td> 
 										<td>
@@ -143,7 +142,6 @@
                                         <td>{{ data.master_lc_sc }}</td>
                                         <td>{{ data.style_no }}</td>
                                         <td>{{ data.fileno_po }}</td>
-                                        <td>{{ data.lot_no }}</td>
 										<td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.fabric_color }} <br> 
@@ -173,12 +171,22 @@
 
                                         <td>
                                             {% for item in data.get_items_list %} 
+                                                {{ item.wo_quantity }} <br> 
+                                            {% endfor %}
+                                        </td>     
+                                        <td>
+                                            {% for item in data.get_items_list %} 
                                                 {{ item.quantity }} <br> 
                                             {% endfor %}
                                         </td>     
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.balance_quantity }} <br> 
+                                            {% endfor %}
+                                        </td>     
+                                        <td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.today_received_qty }} <br> 
                                             {% endfor %}
                                         </td>     
 

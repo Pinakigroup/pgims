@@ -37,15 +37,15 @@
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>Buyer : </strong>{{ bill.buyer_name }}</span>
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>IN/DC : </strong>{{ bill.report }}</span>
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>IN/DC No : </strong>{{ bill.report_no }}</span>
-                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>IN/DC Date : </strong>{{ bill.report_date }}</span>
+                                                <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>IN/DC Date : </strong>{{ bill.report_date|date:"d/m/Y" }}</span>
                                                 <span style="font-size: 90%; padding-left: 10px;   display: block; text-align: left;"><strong>LOCATION : </strong>{{ bill.store_location }}</span>
                                             </div>
                                             <div class="col-md-6">
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>FILE No : </strong>{{ bill.fileno_po }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>WO : </strong>{{ bill.work_order_store }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>LC : </strong>{{ bill.master_lc_sc }}</span>
                                                 <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>STYLE : </strong>{{ bill.style_no }}</span>
-                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>FILE No : </strong>{{ bill.fileno_po }}</span>
-                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>DATE : </strong>{{ bill.time.date }}</span>
+                                                <span style="font-size: 90%; padding-left: 250px;   display: block; text-align: left;"><strong>DATE : </strong>{{ bill.time.date|date:"d/m/Y" }}</span>
                                             </div>
                                         </div>                                     
                                     </div>

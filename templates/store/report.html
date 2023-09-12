@@ -92,18 +92,18 @@
 										<th>ID</th>
 										<th>Supplier</th>
                                         <th>Buyer</th>
-                                        <th>IN/DC</th>
+                                        <th>Documents</th>
                                         <th>IN/DC Date</th>
+										<th>File No</th>
                                         <th>WO</th>
                                         <th>MLC/SC</th>
                                         <th>Style</th>
-                                        <th>File No</th>
                                         <th>Items</th>
                                         <th>Unit</th>
                                         <th>WO Qty</th>
-                                        <th>Received Qty</th>
+                                        <th>Recei Qty</th>
                                         <th>Balance Qty</th>
-                                        <th>Today Received Qty</th>
+                                        <th>Today Recei Qty</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -116,10 +116,10 @@
                                             <small style="color: #909494">{{ data.report_no }}</small> 
                                         </td>
                                         <td>{{ data.report_date|date:"d/m/Y" }}</td>
+										<td>{{ data.fileno_po }}</td>
                                         <td>{{ data.work_order_store }}</td>
                                         <td>{{ data.master_lc_sc }}</td>
                                         <td>{{ data.style_no }}</td>
-                                        <td>{{ data.fileno_po }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 
@@ -148,7 +148,7 @@
                                         </td>  
 										<td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.today_received_qty }} <br> 
+                                                {{ item.today_received_quantity }} <br> 
                                             {% endfor %}
                                         </td>  
 									</tr>

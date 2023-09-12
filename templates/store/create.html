@@ -116,7 +116,7 @@
                             {{ u_form.username|as_crispy_field }}
                         </div>
                     </div><br>
-                                        
+                    
                     {{ formset.management_form }}
 
                     <div class="panel-heading panel-heading-text">
@@ -132,9 +132,8 @@
                                         <label class="panel-body-text">Items:</label>
                                         {{ form.stock }}
                                     </div>
-                                    
                                     <div class="form-group col-md-1">
-                                        <label class="panel-body-text">UOM:</label>
+                                        <label class="panel-body-text">Unit:</label>
                                         {{ form.unit }}
                                     </div>
                                     <div class="form-group col-md-1">
@@ -150,22 +149,20 @@
                                         {{ form.fabric_color }}
                                     </div>
                                     <div class="form-group col-md-1">
+                                        {{ form.wo_quantity.errors }}
+                                        <label class="panel-body-text">WO Quantity:</label>
+                                        {{ form.wo_quantity }}
+                                    </div>
+                                    <div class="form-group col-md-2">
                                         {{ form.quantity.errors }}
-                                        <label class="panel-body-text">Work Order Qty:</label>
+                                        <label class="panel-body-text">Received Qty:</label>
                                         {{ form.quantity }}
                                     </div>
                                     <div class="form-group col-md-2">
-                                        {{ form.wo_quantity.errors }}
-                                        <label class="panel-body-text">Received Qty:</label>
-                                        {{ form.wo_quantity }}
-                                    </div>
-                                    
-                                    <div class="form-group col-md-2">
-                                        {{ form.today_received_qty.errors }}
+                                        {{ form.today_received_quantity.errors }}
                                         <label class="panel-body-text">Today Received Qty:</label>
-                                        {{ form.today_received_qty }}
+                                        {{ form.today_received_quantity }}
                                     </div>
-                                    
                                     <div class="form-group col-md-1">
                                         <label class="panel-body-text" style="color: #000"></label>
                                         <button class="form-control btn btn-danger remove-form-row">-</button>

@@ -7,7 +7,6 @@ from purchase_order.models import PurchaseBill
 from store_receiver.models import StoreReceiver
 from unit.models import Unit
 from datetime import date
-from django.db.models import F
 
 # Create your models here.
 
@@ -25,9 +24,12 @@ class StoreBill(models.Model):
     report = models.CharField(max_length=64, null=True, blank=False, choices=REPORT)
     report_no = models.CharField(max_length=64, null=True, blank=True)
     report_date = models.DateField(default=date.today, null=True, blank=True)
+    # Sonia Kater 
+    
     received_date = models.DateField(auto_now_add=True, auto_now=False)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
     work_order_store = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False, related_name='store_file_no')
+    
     master_lc_sc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     fileno_po = models.CharField(max_length=64, blank=False, null=True)
@@ -51,17 +53,17 @@ class StoreBill(models.Model):
     #     total = 0
     #     for item in storeitems:
     #         total += item.stock_qty
-    #     return total
+    #     return totalca
     
 class StoreItem(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
     wo_quantity = models.DecimalField(max_digits=12, decimal_places=2)
-    # quantity = received_qty
+    
     quantity = models.DecimalField(max_digits=12, decimal_places=2)
-
     balance_quantity = models.DecimalField(max_digits=12, decimal_places=2)
-    today_received_qty = models.DecimalField(max_digits=12, decimal_places=2)
+    
+    today_received_quantity = models.DecimalField(max_digits=12, decimal_places=2)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_store')
     size = models.CharField(max_length=64, null=True, blank=True)
     style = models.CharField(max_length=64, blank=True, null=True)
@@ -75,8 +77,7 @@ class StoreItem(models.Model):
     def save(self, *args, **kwargs):
         self.balance_quantity = self.stock.quantity + self.quantity
         super(StoreItem, self).save(*args, **kwargs)
-        
-
+    
 class StoreBillDetails(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storedetailsbillno')
     

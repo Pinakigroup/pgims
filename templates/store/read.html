@@ -92,26 +92,26 @@
 										<th>ID</th>
 										<th>Supplier</th>
                                         <th>Buyer</th>
+										<th>File No</th>
+										<th>WO</th>
                                         <th>IN/DC</th>
                                         <th>IN/DC No</th>
                                         <th>IN/DC Date</th>
+										<th>Received By</th>
                                         <th>Received Date</th>
-                                        <th>Received By</th>
-                                        <th>Photo</th>
-                                        <th>WO</th>
-                                        <th>MLC/SC</th>
+										<th>MLC/SC</th>
                                         <th>Style No</th>
-                                        <th>File No</th>
-                                        <th>Fabric Color</th>
-                                        <th>Fabric Detail</th>
+                                        <th>Photo</th>                                        
                                         <th>Items</th>
+										<th>Color</th>
                                         <th>Unit</th>
                                         <th>Style</th>
                                         <th>Size</th>
                                         <th>WO Qty</th>
-                                        <th>Qty</th>
+                                        <th>Received Qty</th>
                                         <th>Balance Qty</th>
                                         <th>Today Received Qty</th>
+										<th>Remarks</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -124,11 +124,15 @@
                                         </td> {% endcomment %}
                                         <td>{{ data.supplier }}</td>
                                         <td>{{ data.buyer_name }}</td>
+										<td>{{ data.fileno_po }}</td>
+										<td>{{ data.work_order_store }}</td>
                                         <td>{{ data.report }}</td>
                                         <td>{{ data.report_no }}</td>
                                         <td>{{ data.report_date|date:"d/m/Y" }}</td>
+										<td>{{ user.username }}</td>
                                         <td>{{ data.received_date|date:"d/m/Y" }}</td>
-										<td>{{ user.username }}</td> 
+										<td>{{ data.master_lc_sc }}</td>
+                                        <td>{{ data.style_no }}</td>
 										<td>
 											{% if data.img_file == ""  %}
 											No Image
@@ -138,19 +142,14 @@
 											  </a>
 											  {% endif %}
 										</td> 
-                                        <td>{{ data.work_order_store }}</td>
-                                        <td>{{ data.master_lc_sc }}</td>
-                                        <td>{{ data.style_no }}</td>
-                                        <td>{{ data.fileno_po }}</td>
-										<td>
-                                            {% for item in data.get_items_list %} 
-                                                {{ item.fabric_color }} <br> 
-                                            {% endfor %}
-                                        </td>
-                                        <td>{{ data.remarks }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 
+                                            {% endfor %}
+                                        </td>
+										<td>
+                                            {% for item in data.get_items_list %} 
+                                                {{ item.fabric_color }} <br> 
                                             {% endfor %}
                                         </td>
                                         <td>
@@ -186,10 +185,10 @@
                                         </td>     
                                         <td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.today_received_qty }} <br> 
+                                                {{ item.today_received_quantity }} <br> 
                                             {% endfor %}
                                         </td>     
-
+										<td>{{ data.remarks }}</td>
 									   <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="{% url 'store_bill' data.billno %}">

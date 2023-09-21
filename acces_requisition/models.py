@@ -22,6 +22,7 @@ class AccesRequisitionBill(models.Model):
     # file_no_ar = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='Acces_file_no')
     acces_wo_no = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='acces_wo_no')
     fileno_po = models.CharField(max_length=64, blank=False, null=True)
+    po_no = models.CharField(max_length=64, blank=False, null=True)
     unit_no = models.CharField(max_length=32, null=True, blank=True)
     card_no = models.CharField(max_length=32, null=True, blank=True)
     date = models.DateField(auto_now_add=True, auto_now=False)

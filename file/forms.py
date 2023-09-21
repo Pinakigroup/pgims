@@ -4,19 +4,27 @@ from .models import File
 class FileForm(forms.ModelForm):
     abc = forms.ChoiceField(choices=[('deferred', 'Deferred'), ('at_sight', 'At Sight')], label='Payment Terms')
     file = forms.CharField(label='File No', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'File No'}), required=True, error_messages={'required':'Must Enter a Correct File No'})
-    # xyz = forms.Select(label='Field 2', required=False)
     class Meta:
         model = File
-        fields = ('file', 'buyer_name', 'abc', 'xyz', 'master_lc_sc', 'exp_date_of_delivery')
+        fields = ('file', 'buyer_name', 'abc', 'xyz', 'master_lc_sc', 'style', 'sleve', 'size_range', 'po_no', 'quantity', 'fob_rate', 'amount', 'shipment_date', 'exp_date_of_delivery')
         widgets = {
-            # 'abc': forms.Select(attrs={'class':'form-control'}),
             'xyz': forms.Select(attrs={'class':'form-control'}),
             'master_lc_sc': forms.TextInput(attrs={'class':'form-control'}),
+            'style': forms.TextInput(attrs={'class':'form-control'}),
+            'sleve': forms.TextInput(attrs={'class':'form-control'}),
+            'size_range': forms.TextInput(attrs={'class':'form-control'}),
+            'po_no': forms.TextInput(attrs={'class':'form-control'}),
+            'quantity': forms.NumberInput(attrs={'id': 'id_quantity'}),
+            'fob_rate': forms.NumberInput(attrs={'id': 'id_fob_rate'}),
+            'amount': forms.NumberInput(attrs={'id': 'id_amount', 'readonly': 'readonly'}),
+            'shipment_date': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
             'exp_date_of_delivery': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
         labels = {
             'xyz': 'Day',
+            'fob_rate': 'FOB Rate',
+            'po_no': 'PO NO',
             'buyer_name': 'Buyer Name',
-            'master_lc_sc': 'Master LC/Sales Contact',
+            'master_lc_sc': 'MLC/SC',
             'exp_date_of_delivery': 'Expected Date of Delivery',
         }

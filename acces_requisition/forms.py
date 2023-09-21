@@ -17,11 +17,12 @@ class AccesRForm(forms.ModelForm):
         
     class Meta:
         model = AccesRequisitionBill
-        fields = ['name', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'unit_no', 'card_no', 'remarks']
+        fields = ['name', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'po_no', 'unit_no', 'card_no', 'remarks']
         widgets = {
             'acces_wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
+            'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'unit_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'remarks' : forms.Select(attrs = {'class' : 'textinput form-control'}),

@@ -52,43 +52,77 @@
 				<hr/>
 				<div class="card">
 					<div class="card-body">
-						<form method="POST" enctype="multipart/form-data">
+						<form method="POST" class="row g-3" enctype="multipart/form-data">
 							{% csrf_token %}	
-							<div class="form-row">
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.file|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.buyer_name|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.master_lc_sc|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.file|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-6">
+								<div class="controls">
+									{{ form.buyer_name|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.abc|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.abc|as_crispy_field }}
+								</div>
+							</div><br>
 
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.xyz|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="form-group col-md-12 mb-0">
-									<div class="controls">
-										{{ form.exp_date_of_delivery|as_crispy_field }}
-									</div>
-								</div><br>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.xyz|as_crispy_field }}
+								</div>
+							</div><br>
 
-							</div>
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.exp_date_of_delivery|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-3">
+								<div class="controls">
+									{{ form.master_lc_sc|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<h5>Master LC Details</h5>
+
+
+							<div class="col-sm-1">
+								<div class="controls">
+									{{ form.style|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-1">
+								<div class="controls">
+									{{ form.po_no|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.quantity|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.fob_rate|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.amount|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-2">
+								<div class="controls">
+									{{ form.shipment_date|as_crispy_field }}
+								</div>
+							</div><br>
 
 							<div class="form-actions">
 								<button type="submit" class="btn btn-success">Update changes</button>
@@ -138,4 +172,16 @@
       }
     });
   </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+	  $(document).ready(function() {
+		  $('#id_quantity, #id_fob_rate').on('input', function() {
+			  var quantity = parseFloat($('#id_quantity').val()) || 0;
+			  var fob_rate = parseFloat($('#id_fob_rate').val()) || 0;
+			  var amount = quantity * fob_rate;
+			  $('#id_amount').val(amount.toFixed(2));
+		  });
+	  });
+  </script>  
 {% endblock body %}

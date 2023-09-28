@@ -19,7 +19,7 @@ class PurchaseForm(forms.ModelForm):
         # fields = ['supplier', 'buyer_name', 'merchandiser', 'work_order', 'po_no', 'style', 'file_no', 'sale_contact', 'po_date', 'remarks']
         fields = '__all__'
         widgets = {
-            'fileno_po': ModelSelect2Widget(model=File, search_fields=['file__icontains'], attrs={'style': 'width: 100%'}),
+            'fileno_po': ModelSelect2Widget(model=File, search_fields=['file__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search File No'}),
             # 'file_no' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),

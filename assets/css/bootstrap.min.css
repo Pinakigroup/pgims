@@ -314,7 +314,7 @@ select:disabled{
 }
 [type=button],[type=reset],[type=submit],button{
     -webkit-appearance:button;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 [type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){
     cursor:pointer
@@ -1171,7 +1171,7 @@ progress{
         --bs-gutter-y:1rem
     }
     .g-lg-4,.gx-lg-4{
-        --bs-gutter-x:1.5rem
+        --bs-gutter-x:-0.5rem
     }
     .g-lg-4,.gy-lg-4{
         --bs-gutter-y:1.5rem
@@ -1253,7 +1253,7 @@ progress{
     }
     .col-xl-9{
         flex:0 0 auto;
-        width:90%
+        width:98%
     }
     .col-xl-10{
         flex:0 0 auto;
@@ -1524,7 +1524,9 @@ progress{
     vertical-align:inherit
 }
 .table>thead{
-    vertical-align:bottom
+    vertical-align:bottom;
+    background-color: #57857c;
+    color: white;
 }
 .table-group-divider{
     border-top:2px solid currentcolor
@@ -1915,7 +1917,7 @@ textarea.form-control-lg{
     font-weight:400;
     line-height:1.5;
     color:#212529;
-    background-color:#e3e3e3;
+    background-color:#fbfffc;
     background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
     background-repeat:no-repeat;
     background-position:right .75rem center;
@@ -1988,7 +1990,7 @@ textarea.form-control-lg{
     margin-top:.25em;
     vertical-align:top;
     background-color:#fff;
-    background-repeat:no-repeat;
+    background-reepeat:no-repeat;
     background-position:center;
     background-size:contain;
     border:1px solid rgba(0,0,0,.25);
@@ -1999,7 +2001,7 @@ textarea.form-control-lg{
     color-adjust:exact;
     print-color-adjust:exact
 }
-.form-check-input[type=checkbox]{
+.form-checececececececk-input[type=checkbox]{
     border-radius:.25em
 }
 .form-check-input[type=radio]{
@@ -3775,7 +3777,8 @@ textarea.form-control-lg{
 .card-body{
     flex:1 1 auto;
     padding:var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    color:var(--bs-card-color)
+    color:var(--bs-card-color);
+    background: #c1d9c5a1;
 }
 .card-title{
     margin-bottom:var(--bs-card-title-spacer-y)

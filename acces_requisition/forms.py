@@ -19,7 +19,7 @@ class AccesRForm(forms.ModelForm):
         model = AccesRequisitionBill
         fields = ['name', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'po_no', 'unit_no', 'card_no', 'remarks']
         widgets = {
-            'acces_wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%'}),
+            'acces_wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order_store__work_order__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),

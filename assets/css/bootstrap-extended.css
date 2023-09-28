@@ -1,7 +1,7 @@
 body {
 
     color: #000000;
-	background-color: #eee;
+	background-color: #cfcfcf;
  }
 
  .h1,
@@ -51,10 +51,10 @@ a:hover {
 }
 
 
-.form-control  {
+.form-control {
     color: #000000;
-	background-color: rgb(0 0 0 / 15%);
-    border: 1px solid rgb(255 255 255 / 15%);
+    background-color: #fbfffc;
+    border: 1px solid rgb(0 68 24 / 15%);
 }
 
 
@@ -67,7 +67,7 @@ a:hover {
 
 .form-control:disabled,
 .form-control[readonly] {
-	background-color: rgba(85, 156, 228, 0.22);
+	background-color: #fbfffc;
 }
 
 
@@ -107,7 +107,7 @@ a:hover {
 
 .btn-light {
     color: #ffffff;
-    background-color: #2D89EF;
+    background-color: #215187;
     border-color: #b3b3b3;
 }
 .btn-light:hover {

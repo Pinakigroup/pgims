@@ -67,7 +67,7 @@ class StoreItem(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_store')
     size = models.CharField(max_length=64, null=True, blank=True)
     style = models.CharField(max_length=64, blank=True, null=True)
-    fabric_color = models.CharField(max_length=64, blank=True, null=True)
+    color = models.CharField(max_length=64, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 

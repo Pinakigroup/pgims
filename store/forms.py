@@ -81,7 +81,7 @@ class UserUpdateForm(forms.ModelForm):
 class StoreItemForm(forms.ModelForm):
     class Meta:
         model = StoreItem
-        fields = ['stock', 'quantity', 'wo_quantity', 'today_received_quantity', 'unit', 'size', 'style', 'fabric_color']
+        fields = ['stock', 'quantity', 'wo_quantity', 'today_received_quantity', 'unit', 'size', 'style', 'color']
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -93,7 +93,7 @@ class StoreItemForm(forms.ModelForm):
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['fabric_color'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
         
 
 # formset used to render multiple 'StoreItemForm'

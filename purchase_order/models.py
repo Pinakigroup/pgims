@@ -115,7 +115,10 @@ class PurchaseItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
-        return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
+        return str(self.billno)
+    
+    # def __str__(self):
+    #     return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
     
     
 #contains the other details in the purchases bill

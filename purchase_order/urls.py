@@ -12,5 +12,5 @@ urlpatterns = [
     path("bill/<billno>", views.PurchaseBillView.as_view(), name="po_bill"),
     path('delete/<int:pk>/', views.purchase_delete, name='po_delete'), 
     # path('api/purchase/<int:pk>/', PurchaseBillDetailView.as_view(), name='person_detail'), 
-    path('purchase/<int:pk>/', PurchaseBillDetailView.as_view(), name='purchase_detail'),
+    path('purchase/<str:work_order>/', PurchaseBillDetailView.as_view(), name='purchase_detail'),
 ]

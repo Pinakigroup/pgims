@@ -116,6 +116,11 @@
                             {{ u_form.username|as_crispy_field }}
                         </div>
                     </div><br>
+                    <div class="col-sm-12">
+                        <div class="controls">
+                            {{ form.remarks|as_crispy_field }}
+                        </div>
+                    </div><br>
                     
                     {{ formset.management_form }}
 
@@ -174,13 +179,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-12">
-                            <div class="controls">
-                                {{ form.remarks|as_crispy_field }}
-                            </div>
-                        </div><br>
-
                     <br><!-- Log on to codeastro.com for more projects -->
 
                     <div class="align-middle">

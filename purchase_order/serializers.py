@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import PurchaseBill, PurchaseItem
+from .models import PurchaseBill
 
 class PurchaseBillSerializer(serializers.ModelSerializer):
     supplier = serializers.CharField(source='supplier.supplier_name')
@@ -10,7 +10,7 @@ class PurchaseBillSerializer(serializers.ModelSerializer):
         fields = ['style_no', 'fileno_po', 'master_lc_sc', 'buyer_name', 'supplier']
         
 
-class PurchaseItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PurchaseItem
-        fields = '__all__'
+# class PurchaseItemSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PurchaseItem
+#         fields = '__all__'

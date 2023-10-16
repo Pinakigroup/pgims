@@ -101,6 +101,12 @@
 									</div>
 								</div><br>
 
+                                <div class="col-sm-12">
+									<div class="controls">
+										{{ form.remarks|as_crispy_field }}
+									</div>
+								</div><br>
+
                             <div class="panel panel-default">
             
                                 {{ formset.management_form }}
@@ -150,16 +156,8 @@
                                                 <a href="#" class="add-form-row">+ Add More</a>
                                             </div>
                                         </div>
-                                    </div>
-                    
-                    
+                                    </div>    
                                 <br>
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.remarks|as_crispy_field }}
-									</div>
-								</div><br>
-
                                 <div class="align-middle">
                                     <button type="submit" class="btn btn-success">Save</button>
                                     <button type="reset" class="btn">Cancel</button>

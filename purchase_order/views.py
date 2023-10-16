@@ -15,7 +15,7 @@ from django.utils.decorators import method_decorator
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import PurchaseBillSerializer, PurchaseItemSerializer
+from .serializers import PurchaseBillSerializer
 from .forms import UserUpdateForm
 # Create your views here.
 
@@ -192,30 +192,30 @@ def purchase_delete(request, pk):
 
 @method_decorator(login_required, name='dispatch')
 class PurchaseBillDetailView(APIView):
-    # def get(self, request, pk):
+    def get(self, request, work_order):
+        try:
+            purchase = PurchaseBill.objects.get(work_order=work_order)
+            serializer = PurchaseBillSerializer(purchase)
+            return Response(serializer.data)
+        except PurchaseBill.DoesNotExist:
+            return Response(status=404)
+        
+        
+    #  def get(self, request, pk):
     #     try:
     #         purchase = PurchaseBill.objects.get(pk=pk)
     #         serializer = PurchaseBillSerializer(purchase)
-    #         return Response(serializer.data)
+
+    #         # Get related Purchase Items and serialize them
+    #         purchase_items = purchase.purchaseitem_set.all()  # Assuming your related name is 'purchaseitem_set'
+    #         purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)  # You need to create PurchaseItemSerializer
+
+    #         response_data = {
+    #             'purchase_bill': serializer.data,
+    #             'purchase_items': purchase_items_serializer.data,
+    #         }
+
+    #         return Response(response_data)
     #     except PurchaseBill.DoesNotExist:
-    #         return Response(status=404)
-    
-    
-    def get(self, request, pk):
-        try:
-            purchase = PurchaseBill.objects.get(pk=pk)
-            serializer = PurchaseBillSerializer(purchase)
-
-            # Get related Purchase Items and serialize them
-            purchase_items = purchase.purchasebillno.all()  # Assuming your related name is 'purchaseitem_set'
-            purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)  # You need to create PurchaseItemSerializer
-
-            response_data = {
-                'purchase_bill': serializer.data,
-                'purchase_items': purchase_items_serializer.data,
-            }
-
-            return Response(response_data)
-        except PurchaseBill.DoesNotExist:
-            # return Response(status=status.HTTP_404_NOT_FOUND)
-            return Response(status=404)
+    #         return Response(status=status.HTTP_404_NOT_FOUND)
+        

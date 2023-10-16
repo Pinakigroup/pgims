@@ -97,6 +97,12 @@
 									</div>
 								</div><br>
 
+                                <div class="col-sm-12">
+									<div class="controls">
+										{{ form.remarks|as_crispy_field }}
+									</div>
+								</div><br>
+
 							{% comment %} <div class="form-actions">
 								<button type="submit" class="btn btn-light">Save changes</button>
 								<button type="reset" class="btn">Cancel</button>
@@ -169,13 +175,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                <br>
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.remarks|as_crispy_field }}
-									</div>
-								</div><br>
-                                
+                                <br>                                
                                 <div class="align-middle">
                                     <button type="submit" class="btn btn-success">Save</button>
                                     <button type="reset" class="btn">Cancel</button>

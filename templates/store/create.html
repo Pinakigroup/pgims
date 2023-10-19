@@ -70,7 +70,7 @@
                     
                     <div class="col-sm-4">
                         <div class="controls">
-                            {{ form.work_order_store|as_crispy_field }}
+                            {{ form.work_order|as_crispy_field }}
                         </div>
                     </div><br>
 
@@ -303,11 +303,11 @@
 
 <script>
     $(document).ready(function() {
-        $('#id_work_order_store').select2({
+        $('#id_work_order').select2({
             placeholder: 'Select a File No',
             allowClear: true,
             ajax: {
-                url: '/purchase_order/purchase/' + $('#id_work_order_store').val() + '/',
+                url: '/purchase_order/purchase/' + $('#id_work_order').val() + '/',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {

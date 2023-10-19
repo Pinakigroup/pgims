@@ -9,7 +9,6 @@ class FileForm(forms.ModelForm):
         fields = ('file', 'buyer_name', 'abc', 'xyz', 'master_lc_sc', 'style', 'sleve', 'size_range', 'po_no', 'quantity', 'fob_rate', 'amount', 'shipment_date', 'exp_date_of_delivery')
         widgets = {
             'xyz': forms.Select(attrs={'class':'form-control'}),
-            'master_lc_sc': forms.TextInput(attrs={'class':'form-control'}),
             'style': forms.TextInput(attrs={'class':'form-control'}),
             'sleve': forms.TextInput(attrs={'class':'form-control'}),
             'size_range': forms.TextInput(attrs={'class':'form-control'}),

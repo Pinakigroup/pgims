@@ -28,7 +28,7 @@ class StoreBill(models.Model):
     
     received_date = models.DateField(auto_now_add=True, auto_now=False)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
-    work_order_store = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False, related_name='store_file_no')
+    work_order = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False, related_name='store_file_no')
     
     master_lc_sc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
@@ -40,7 +40,7 @@ class StoreBill(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
-        return str(self.work_order_store.work_order)
+        return str(self.work_order.work_order)
     
     # def __str__(self):
     #     return "Bill no: " + str(self.billno)

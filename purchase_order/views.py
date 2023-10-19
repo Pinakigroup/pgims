@@ -192,9 +192,9 @@ def purchase_delete(request, pk):
 
 @method_decorator(login_required, name='dispatch')
 class PurchaseBillDetailView(APIView):
-    def get(self, request, work_order):
+    def get(self, request, pk):
         try:
-            purchase = PurchaseBill.objects.get(work_order=work_order)
+            purchase = PurchaseBill.objects.get(pk=pk)
             serializer = PurchaseBillSerializer(purchase)
             return Response(serializer.data)
         except PurchaseBill.DoesNotExist:

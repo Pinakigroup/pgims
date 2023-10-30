@@ -87,13 +87,13 @@ class StoreItemForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
-        self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
+        # self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['wo_quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['today_received_quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
-        self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
+        # self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
+        # self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
+        # self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
         
 
 # formset used to render multiple 'StoreItemForm'

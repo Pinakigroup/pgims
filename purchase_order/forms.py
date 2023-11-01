@@ -56,8 +56,15 @@ class PurchaseItemForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
-        self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
+        
+        self.fields['stock'].widget = ModelSelect2Widget(
+            model=Stock,  # The model you want to search
+            search_fields=['name__icontains'],  # Fields to search for stock objects
+            attrs={'class': 'textinput form-control setprice stock', 'required': 'true'}
+        )
+        
+        # self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
+        # self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit_price'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})

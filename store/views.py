@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .serializers import StoreBillSerializer, StoreAccessoriesSerializer
+from .serializers import StoreBillSerializer, StoreItemSerializer, StoreAccessoriesSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .forms import UserUpdateForm
@@ -187,20 +187,60 @@ def store_delete(request, pk):
     
     
 class StoreBillDetailView(APIView):
+    # def get(self, request, pk):
+    #     try:
+    #         store = StoreBill.objects.get(pk=pk)
+    #         serializer = StoreBillSerializer(store)
+    #         return Response(serializer.data)
+    #     except StoreBill.DoesNotExist:
+    #         return Response(status=404)
+
     def get(self, request, pk):
         try:
             store = StoreBill.objects.get(pk=pk)
             serializer = StoreBillSerializer(store)
-            return Response(serializer.data)
+
+            # Get related Store Items and serialize them
+            store_items = store.storebillno.all()  # Assuming your related name is 'storeitem_set'
+            store_items_serializer = StoreItemSerializer(store_items, many=True)  # You need to create storeItemSerializer
+            
+            print("LPLPLPLPLPLPLPLP", store_items_serializer.data)
+            response_data = {
+                'store_bill': serializer.data,
+                'store_items': store_items_serializer.data,
+            }
+            print("Store Bill =", response_data)
+
+            return Response(response_data)
         except StoreBill.DoesNotExist:
             return Response(status=404)
         
         
 class StoreAccessoriesDetailView(APIView):
+    # def get(self, request, pk):
+    #     try:
+    #         accessories = StoreBill.objects.get(pk=pk)
+    #         serializer = StoreAccessoriesSerializer(accessories)
+    #         return Response(serializer.data)
+    #     except StoreBill.DoesNotExist:
+    #         return Response(status=404)
+    
     def get(self, request, pk):
         try:
-            accessories = StoreBill.objects.get(pk=pk)
-            serializer = StoreAccessoriesSerializer(accessories)
-            return Response(serializer.data)
+            store = StoreBill.objects.get(pk=pk)
+            serializer = StoreAccessoriesSerializer(store)
+
+            # Get related Store Items and serialize them
+            store_items = store.storebillno.all()  # Assuming your related name is 'storeitem_set'
+            store_items_serializer = StoreItemSerializer(store_items, many=True)  # You need to create storeItemSerializer
+            
+            print("LPLPLPLPLPLPLPLP", store_items_serializer.data)
+            response_data = {
+                'store_bill': serializer.data,
+                'store_items': store_items_serializer.data,
+            }
+            print("Store Bill =", response_data)
+
+            return Response(response_data)
         except StoreBill.DoesNotExist:
             return Response(status=404)

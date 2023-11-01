@@ -201,19 +201,21 @@ class PurchaseBillDetailView(APIView):
     #         return Response(status=404)
         
         
-     def get(self, request, work_order):
+     def get(self, request, pk):
         try:
-            purchase = PurchaseBill.objects.get(work_order=work_order)
+            purchase = PurchaseBill.objects.get(pk=pk)
             serializer = PurchaseBillSerializer(purchase)
 
             # Get related Purchase Items and serialize them
             purchase_items = purchase.purchasebillno.all()  # Assuming your related name is 'purchaseitem_set'
             purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)  # You need to create PurchaseItemSerializer
-
+            
+            print("LPLPLPLPLPLPLPLP", purchase_items_serializer.data)
             response_data = {
                 'purchase_bill': serializer.data,
                 'purchase_items': purchase_items_serializer.data,
             }
+            print("Purchase Bill =", response_data)
 
             return Response(response_data)
         except PurchaseBill.DoesNotExist:

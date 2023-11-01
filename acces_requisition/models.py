@@ -47,7 +47,7 @@ class AccesRequisitionItem(models.Model):
     quantity = models.DecimalField(max_digits=12, decimal_places=2)
     balance_quantity = models.DecimalField(max_digits=12, decimal_places=2)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_a_issue')
-    acces_color = models.CharField(max_length=64, blank=True, null=True)
+    color = models.CharField(max_length=64, blank=True, null=True)
     size = models.CharField(max_length=64, null=True, blank=True)
     style = models.CharField(max_length=64, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)

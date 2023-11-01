@@ -1,5 +1,5 @@
 {% extends 'base/index.html' %} 
-{% block title %}create Accessories Requi{% endblock title %} 
+{% block title %}create Fabric Requisition{% endblock title %} 
 {% block body %} 
 {% load crispy_forms_tags %}
 {% load static %}		
@@ -18,7 +18,7 @@
 								<i class="bx bx-home-alt"></i>
 							</a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Add New Accessories</li>
+						<li class="breadcrumb-item active" aria-current="page">Add New Fabric Requisition</li>
 					</ol>
 				</nav>
 			</div>
@@ -38,38 +38,23 @@
 				</div>
 			</div>
 		</div>
-		<!---end breadcrumb--->
+
 		<div class="row">
 			<div class="col-xl-9 mx-auto">
 				<div class="ms-auto">
-					<a href="{% url 'ar_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
-						<i class="bx bx-grid-alt"></i>Accessories Table
+					<a href="{% url 'fabricr_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
+						<i class="bx bx-grid-alt"></i>Fabric Requisition Table
 					</a>
 				</div>
-						{% comment %} 
-				<h6 class="mb-0 text-uppercase">Text Inputs</h6> {% endcomment %}
-						
+
 				<hr/>
 				<div class="card">
 					<div class="card-body">
+
 						<form class="row g-3" method="POST">
 							{% csrf_token %}	
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.acces_wo_no|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.fileno_po|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.style_no|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-4">
+
+								<div class="col-sm-4">
 									<div class="controls">
 										{{ form.name|as_crispy_field }}
 									</div>
@@ -79,25 +64,36 @@
 										{{ form.card_no|as_crispy_field }}
 									</div>
 								</div><br>
+
                                 <div class="col-sm-4">
                                     <div class="controls">
                                         {{ u_form.username|as_crispy_field }}
                                     </div>
                                 </div><br>
+
                                 <div class="col-sm-4">
+									<div class="controls">
+										{{ form.work_order_fr|as_crispy_field }}
+									</div>
+								</div><br> 
+                                <div class="col-sm-4">
+									<div class="controls">
+										{{ form.fileno_po|as_crispy_field }}
+									</div>
+								</div><br>
+								<div class="col-sm-4">
+									<div class="controls">
+										{{ form.buyer_name|as_crispy_field }}
+									</div>
+								</div><br>
+                                <div class="col-sm-6">
 									<div class="controls">
 										{{ form.order_no|as_crispy_field }}
 									</div>
 								</div><br>
-
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
 									<div class="controls">
-										{{ form.unit_no|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.po_no|as_crispy_field }}
+										{{ form.unit|as_crispy_field }}
 									</div>
 								</div><br>
 
@@ -107,43 +103,65 @@
 									</div>
 								</div><br>
 
+							{% comment %} <div class="form-actions">
+								<button type="submit" class="btn btn-light">Save changes</button>
+								<button type="reset" class="btn">Cancel</button>
+							</div> {% endcomment %}
+
                             <div class="panel panel-default">
             
                                 {{ formset.management_form }}
                                 <h4>Product Details</h4>
+                                
                                     <div id="stockitem"> 
                                         <div class="panel-body">
                                         {% for iform in formset %}
                                             <div class="row form-row">
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Items:</label>
                                                     {{ iform.stock }}
                                                 </div>
+
+
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">UOM:</label>
-                                                    {{ iform.unit }}
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Color:</label>
-                                                    {{ iform.color }}
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">SIZE:</label>
-                                                    {{ iform.size }}
+                                                    {{ iform.uom }}
                                                 </div>
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Style:</label>
-                                                    {{ iform.style }}
+                                                    {{ iform.style_no }}
                                                 </div>
-
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Color:</label>
+                                                    {{ iform.fab_color }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Order Qty:</label>
+                                                    {{ iform.order_qty }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Cutting Qty:</label>
+                                                    {{ iform.cutting_qty }}
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Req Qty:</label>
+                                                    {{ iform.requard_qty }}
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    {{ iform.stock.errors }}
+                                                    <label class="panel-body-text">Cad Consumption:</label>
+                                                    {{ iform.cad_consumption }}
+                                                </div>
                                                 <div class="form-group col-md-2">
                                                     {{ iform.quantity.errors }}
-                                                    <label class="panel-body-text">Quantity:</label>
+                                                    <label class="panel-body-text">Supply Qty:</label>
                                                     {{ iform.quantity }}
                                                 </div>
                                                 <div class="form-group col-md-1">
@@ -156,8 +174,8 @@
                                                 <a href="#" class="add-form-row">+ Add More</a>
                                             </div>
                                         </div>
-                                    </div>    
-                                <br>
+                                    </div>
+                                <br>                                
                                 <div class="align-middle">
                                     <button type="submit" class="btn btn-success">Save</button>
                                     <button type="reset" class="btn">Cancel</button>
@@ -166,7 +184,6 @@
                             </div>
 
 						</form>
-                        
                         {% if form.errors %}
                         {% for field in form %}
                             {% for error in field.errors %}										
@@ -184,7 +201,6 @@
                             </div>
                         {% endfor %}
                     {% endif %}
-
 					</div>
 				</div>
 			</div>
@@ -293,7 +309,7 @@
             var squantity = stocks[i].quantity;
             if(stock == pk) {
                 //checks if ordered stock is more than available stock
-                if(quantity > squantity){
+                if(quantity >= squantity){
                     quantity = quantity - 1;
                     if(quantity <= 1){
                         //no stocks are available. Attempts to delete field
@@ -317,11 +333,11 @@
 
 <script>
     $(document).ready(function() {
-        $('#id_acces_wo_no').select2({
+        $('#id_work_order_fr').select2({
             placeholder: 'Select a File',
             allowClear: true,
             ajax: {
-                url: '/store/store/accessories/' + $('#id_acces_wo_no').val() + '/',
+                url: '/store/store/' + $('#id_work_order_fr').val() + '/',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -338,33 +354,14 @@
             },
             minimumInputLength: 1
         }).on('change', function() {
-            var selectedWorkOrder = $(this).val();
-            if (selectedWorkOrder !== '') {
+            var selectedPerson = $(this).val();
+            if (selectedPerson !== '') {
                 $.ajax({
-                    url: '/store/store/accessories/' + selectedWorkOrder + '/',
+                    url: '/store/store/' + selectedPerson + '/',
                     type: 'GET',
                     success: function(response) {
-                        $('#id_fileno_po').val(response.store_bill.fileno_po);
-                        $('#id_style_no').val(response.store_bill.style_no);
-
-                        // Access and use store_items data
-                        var storeItems = response.store_items;
-                        //var arraydata = JSON.parse(storeItems);
-                        //console.log(arraydata);
-
-                        //var res=$.parseJSON(storeItems);
-                        jQuery.each(storeItems, function(index, value){
-                            //alert(value['quantity']);
-
-                            // $('#id_form-'+index+'-unit').val(value['quantity']); 
-                            // $('#id_form-'+index+'-wo_quantity').val(value['quantity']); 
-
-                            $('#id_form-'+index+'-style').val(value['style']);
-                            $('#id_form-'+index+'-color').val(value['color']);
-                            $('#id_form-'+index+'-size').val(value['size']);
-
-                            //console.log(value);
-                        });
+                        $('#id_fileno_po').val(response.fileno_po);
+                        $('#id_buyer_name').val(response.buyer_name);
                     }
                 });
             }

@@ -55,7 +55,7 @@ class FabricRItemForm(forms.ModelForm):
 
     class Meta:
         model = FabricRequisitionItem
-        fields = ['stock', 'quantity', 'uom', 'style_no', 'fab_color', 'order_qty', 'cutting_qty', 'cad_consumption', 'requard_qty']
+        fields = ['stock', 'quantity', 'uom', 'style', 'color', 'order_qty', 'cutting_qty', 'cad_consumption', 'requard_qty']
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -63,8 +63,8 @@ class FabricRItemForm(forms.ModelForm):
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['uom'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['style_no'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['fab_color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['style'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
+        self.fields['color'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['order_qty'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['cutting_qty'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['cad_consumption'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})

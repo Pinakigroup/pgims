@@ -53,7 +53,7 @@ class UserUpdateForm(forms.ModelForm):
 class AccesRItemForm(forms.ModelForm):
     class Meta:
         model = AccesRequisitionItem
-        fields = ['stock', 'quantity', 'unit', 'acces_color', 'size', 'style']
+        fields = ['stock', 'quantity', 'unit', 'color', 'size', 'style']
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -61,7 +61,7 @@ class AccesRItemForm(forms.ModelForm):
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
-        self.fields['acces_color'].widget.attrs.update({'class': 'textinput form-control'})
+        self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})
         

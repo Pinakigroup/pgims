@@ -132,12 +132,12 @@
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Style:</label>
-                                                    {{ iform.style_no }}
+                                                    {{ iform.style }}
                                                 </div>
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
                                                     <label class="panel-body-text">Color:</label>
-                                                    {{ iform.fab_color }}
+                                                    {{ iform.color }}
                                                 </div>
                                                 <div class="form-group col-md-1">
                                                     {{ iform.stock.errors }}
@@ -334,7 +334,7 @@
 <script>
     $(document).ready(function() {
         $('#id_work_order_fr').select2({
-            placeholder: 'Select a File',
+            placeholder: 'Select a Work Order',
             allowClear: true,
             ajax: {
                 url: '/store/store/' + $('#id_work_order_fr').val() + '/',
@@ -354,20 +354,40 @@
             },
             minimumInputLength: 1
         }).on('change', function() {
-            var selectedPerson = $(this).val();
-            if (selectedPerson !== '') {
+            var selectedWorkOrder = $(this).val();
+            if (selectedWorkOrder !== '') {
                 $.ajax({
-                    url: '/store/store/' + selectedPerson + '/',
+                    url: '/store/store/' + selectedWorkOrder + '/',
                     type: 'GET',
                     success: function(response) {
-                        $('#id_fileno_po').val(response.fileno_po);
-                        $('#id_buyer_name').val(response.buyer_name);
+                        // Update form fields with the received data
+                        $('#id_fileno_po').val(response.store_bill.fileno_po);
+                        $('#id_buyer_name').val(response.store_bill.buyer_name);
+                      
+                        // Access and use store_items data
+                        var storeItems = response.store_items;
+                        //var arraydata = JSON.parse(storeItems);
+                        //console.log(arraydata);
+
+                        //var res=$.parseJSON(storeItems);
+                        jQuery.each(storeItems, function(index, value){
+                            //alert(value['quantity']);
+
+                            // $('#id_form-'+index+'-unit').val(value['quantity']); 
+                            // $('#id_form-'+index+'-wo_quantity').val(value['quantity']); 
+                            // $('#id_form-'+index+'-size').val(value['size']);
+
+                            $('#id_form-'+index+'-style').val(value['style']);
+                            $('#id_form-'+index+'-color').val(value['color']);
+
+                            //console.log(value);
+                        });
                     }
                 });
             }
         });
     });
-    </script>
+</script>
 
 
 {% endblock body %}

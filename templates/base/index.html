@@ -32,7 +32,6 @@
 
 </head>
 <body class="bg-theme bg-theme2">
-
     <!--wrapper-->
     <div class="wrapper">
 
@@ -50,8 +49,6 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-
-        
         <li>
             <a href="{% url 'home' %}">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
@@ -60,15 +57,21 @@
             </a>
         </li>
         
-        {% for group in user.groups.all %}
-        {% if group.name == "merchandiser" %}
-                <li>
-                    <a href="{% url 'merchandiser_read' %}">
-                        <div class="parent-icon"><i class="lni lni-wheelchair"></i>
-                        </div>
-                        <div class="menu-title">Merchandiser</div>
-                    </a>
+        {% comment %} {% for group in user.groups.all %}
+        {% if group.name == "merchandiser" %} {% endcomment %}
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-grid-alt"></i>
+                </div>
+                <div class="menu-title">Merchandiser</div>
+            </a>
+            <ul>
+                <li> <a href="/merchandiser/create/"><i class="bx bx-right-arrow-alt"></i>Add Merchandiser</a>
                 </li>
+                <li> <a href="{% url 'merchandiser_read' %}"><i class="bx bx-right-arrow-alt"></i>Merchandiser List</a>
+                </li>
+            </ul>
+        </li>
                 <li>
                     <a href="{% url 'buyer_read' %}">
                         <div class="parent-icon"><i class="lni lni-users"></i>
@@ -91,7 +94,7 @@
                     </a>
                 </li>
 
-            {% elif group.name == "store" %}
+            {% comment %} {% elif group.name == "store" %} {% endcomment %}
                 <li>
                     <a href="{% url 'category_read' %}">
                         <div class="parent-icon"><i class='bx bx-grid-alt'></i>
@@ -145,6 +148,7 @@
                         <div class="menu-title">Store</div>
                     </a>
                 </li>
+                
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class='lni lni-spiner-solid'></i>
@@ -158,9 +162,8 @@
                         </li>
                     </ul>
                 </li>
-                <li>
 
-            {% else %}
+            {% comment %} {% else %} {% endcomment %}
             <li>
                 <a href="{% url 'category_read' %}">
                     <div class="parent-icon"><i class='bx bx-grid-alt'></i>
@@ -205,13 +208,21 @@
                     <div class="menu-title">Store</div>
                 </a>
             </li>
+
             <li>
-                <a href="{% url 'merchandiser_read' %}">
-                    <div class="parent-icon"><i class="lni lni-wheelchair"></i>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bx bx-grid-alt"></i>
                     </div>
                     <div class="menu-title">Merchandiser</div>
                 </a>
+                <ul>
+                    <li> <a href="/merchandiser/create/"><i class="bx bx-right-arrow-alt"></i>Add Merchandiser</a>
+                    </li>
+                    <li> <a href="{% url 'merchandiser_read' %}"><i class="bx bx-right-arrow-alt"></i>Merchandiser List</a>
+                    </li>
+                </ul>
             </li>
+
             <li>
                 <a href="{% url 'buyer_read' %}">
                     <div class="parent-icon"><i class="lni lni-users"></i>
@@ -253,11 +264,10 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-
+{% comment %} 
             {% endif %}
 
-        {% endfor %}
+        {% endfor %} {% endcomment %}
 
             {% comment %} <a href="https://codervent.com/dashtreme/documentation/index.html" target="_blank">
                 <div class="parent-icon"><i class="bx bx-folder"></i>
@@ -284,6 +294,7 @@
 							</marquee>
 						</div>
 					</div>
+
 					<div class="top-menu ms-auto">
 						<ul class="navbar-nav align-items-center">
 							<li class="nav-item mobile-search-icon">
@@ -329,7 +340,6 @@
 									</div>
 								</div>
 							</li>
-
 						</ul>
 					</div>
 					<div class="user-box dropdown">
@@ -396,11 +406,8 @@
         </footer>
         <!--end footer-->
 
-
     </div>
     <!--end wrapper-->
-
-
 
 
     <!--start switcher-->

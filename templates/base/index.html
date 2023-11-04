@@ -57,8 +57,8 @@
             </a>
         </li>
         
-        {% comment %} {% for group in user.groups.all %}
-        {% if group.name == "merchandiser" %} {% endcomment %}
+        {% for group in user.groups.all %}
+        {% if group.name == "merchandiser" %}
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bx bx-grid-alt"></i>
@@ -94,7 +94,7 @@
                     </a>
                 </li>
 
-            {% comment %} {% elif group.name == "store" %} {% endcomment %}
+            {% elif group.name == "store" %}
                 <li>
                     <a href="{% url 'category_read' %}">
                         <div class="parent-icon"><i class='bx bx-grid-alt'></i>
@@ -163,7 +163,7 @@
                     </ul>
                 </li>
 
-            {% comment %} {% else %} {% endcomment %}
+            {% else %}
             <li>
                 <a href="{% url 'category_read' %}">
                     <div class="parent-icon"><i class='bx bx-grid-alt'></i>
@@ -263,11 +263,10 @@
                         <li> <a href="{% url 'ar_read' %}"><i class="bx bx-right-arrow-alt"></i>Access Requisition</a>
                         </li>
                     </ul>
-                </li>
-{% comment %} 
+                </li> 
             {% endif %}
 
-        {% endfor %} {% endcomment %}
+        {% endfor %}
 
             {% comment %} <a href="https://codervent.com/dashtreme/documentation/index.html" target="_blank">
                 <div class="parent-icon"><i class="bx bx-folder"></i>
@@ -447,10 +446,6 @@
 		</div>
 	</div>
 	<!--end switcher-->
-
-
-
-
 
 
     <!--start js-->

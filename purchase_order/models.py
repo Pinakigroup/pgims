@@ -115,7 +115,7 @@ class PurchaseItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
-        return str(self.billno)
+        return str(self.billno.work_order)
     
     # def __str__(self):
     #     return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
@@ -129,7 +129,6 @@ class PurchaseBillDetails(models.Model):
     veh = models.CharField(max_length=50, blank=True, null=True)
     destination = models.CharField(max_length=50, blank=True, null=True)
     po = models.CharField(max_length=50, blank=True, null=True)
-    
     cgst = models.CharField(max_length=50, blank=True, null=True)
     sgst = models.CharField(max_length=50, blank=True, null=True)
     igst = models.CharField(max_length=50, blank=True, null=True)

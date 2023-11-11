@@ -31,7 +31,7 @@ class StoreForm(forms.ModelForm):
         # fields = ['supplier', 'buyer_name', 'report', 'report_no', 'report_date', 'received_by', 'received_date', 'img_file', 'work_order', 'lc', 'style_no', 'file_no_wo', 'remarks', 'store_location']
         fields = '__all__'
         widgets = {
-            'work_order': ModelSelect2Widget(model=PurchaseBill, search_fields=['work_order__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
+            'work_order': ModelSelect2Widget(model=PurchaseBill, search_fields=['work_order__icontains'], to_field_name="work_order", attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
 
             'report' : forms.Select(attrs = {'class' : 'textinput form-control'}),
             'report_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),

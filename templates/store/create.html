@@ -327,7 +327,8 @@
             },
             minimumInputLength: 1
         }).on('change', function() {
-            var selectedWorkOrder = $(this).val();
+            var selectedWorkOrder = $(this).text();
+            // console.log(work_order);
             if (selectedWorkOrder !== '') {
                 $.ajax({
                     url: '/purchase_order/purchase/' + selectedWorkOrder + '/',
@@ -365,5 +366,5 @@
 </script>
 
 
- 
+
 {% endblock body %}

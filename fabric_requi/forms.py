@@ -3,6 +3,7 @@ from django.forms import formset_factory
 from .models import FabricRequisitionBill, FabricRequisitionItem, FabricRequisitionBillDetails
 from stock.models import Stock
 from store.models import StoreBill
+from purchase_order.models import PurchaseBill
 from django_select2.forms import ModelSelect2Widget
 from django.contrib.auth.models import User
 
@@ -19,7 +20,8 @@ class FabricRForm(forms.ModelForm):
         model = FabricRequisitionBill
         fields = ['name', 'buyer_name', 'work_order_fr', 'order_no', 'fileno_po', 'card_no', 'unit', 'remarks']
         widgets = {
-            'work_order_fr': ModelSelect2Widget(model=StoreBill, search_fields=['work_order__work_order__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
+            'work_order_fr': ModelSelect2Widget(queryset=PurchaseBill.objects.all(), search_fields=['work_order__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
+            # 'work_order_fr': ModelSelect2Widget(model=StoreBill, search_fields=['work_order__work_order__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
             'buyer_name' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'card_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),

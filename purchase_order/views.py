@@ -193,48 +193,20 @@ def purchase_delete(request, pk):
 
 # @method_decorator(login_required, name='dispatch')
 class PurchaseBillDetailView(APIView):
-    # def get(self, request, pk):
-    #     try:
-    #         purchase = PurchaseBill.objects.get(pk=pk)
-    #         serializer = PurchaseBillSerializer(purchase)
-    #         return Response(serializer.data)
-    #     except PurchaseBill.DoesNotExist:
-    #         return Response(status=404)        
-    
-    def get(self, request, pk):
-        try:
-            purchase = PurchaseBill.objects.get(pk=pk)
-            serializer = PurchaseBillSerializer(purchase)
-
-            # Get related Purchase Items and serialize them
-            purchase_items = purchase.purchasebillno.all()  # Assuming your related name is 'purchaseitem_set'
-            purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)  # You need to create PurchaseItemSerializer
-            
-            response_data = {
-                'purchase_bill': serializer.data,
-                'purchase_items': purchase_items_serializer.data,
-            }
-            return Response(response_data)
-        except PurchaseBill.DoesNotExist:
-            return Response(status=404)
-    
-    # def get(self, request, work_order):
-    #     try:
-    #         # Find the PurchaseBill associated with the given work_order
-    #         purchase = PurchaseBill.objects.get(work_order=work_order)
-            
-    #         # Serialize the PurchaseBill
-    #         serializer = PurchaseBillSerializer(purchase)
-            
-    #         # Get related Purchase Items and serialize them
-    #         purchase_items = PurchaseItem.objects.filter(billno=purchase)
-    #         purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)
-
-    #         response_data = {
-    #             'purchase_bill': serializer.data,
-    #             'purchase_items': purchase_items_serializer.data,
-    #         }
-            
-    #         return Response(response_data)
-    #     except PurchaseBill.DoesNotExist:
-    #         return Response(status=404)
+    def get(self, request, work_order):
+        print("OOOOOOO", work_order)
+        # Find the PurchaseBill instance with the specified work_order
+        purchase_bill = PurchaseBill.objects.get(work_order=work_order)
+        # Serialize the PurchaseBill
+        purchase_bill_serializer = PurchaseBillSerializer(purchase_bill)
+        # Find the related PurchaseItem instances for this PurchaseBill
+        purchase_items = PurchaseItem.objects.filter(billno=purchase_bill)
+        # Serialize the related PurchaseItems
+        purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)
+        response_data = {
+            'purchase_bill': purchase_bill_serializer.data,
+            'purchase_items': purchase_items_serializer.data,
+        }
+        print('purchase_bill', purchase_bill_serializer.data)
+        print('purchase_items', purchase_items_serializer.data)
+        return Response(response_data)

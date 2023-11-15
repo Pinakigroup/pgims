@@ -81,7 +81,7 @@ class UserUpdateForm(forms.ModelForm):
 class StoreItemForm(forms.ModelForm):
     class Meta:
         model = StoreItem
-        fields = ['stock', 'quantity', 'wo_quantity', 'today_received_quantity', 'unit', 'size', 'style', 'color']
+        fields = ['stock', 'quantity', 'wo_quantity', 'received_quantity', 'unit', 'size', 'style', 'color']
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -89,7 +89,7 @@ class StoreItemForm(forms.ModelForm):
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['wo_quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
-        self.fields['today_received_quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
+        self.fields['received_quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['style'].widget.attrs.update({'class': 'textinput form-control'})

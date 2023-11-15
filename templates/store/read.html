@@ -173,21 +173,21 @@
                                                 {{ item.wo_quantity }} <br> 
                                             {% endfor %}
                                         </td>     
-                                        <td>
+										<td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.quantity }} <br> 
+                                                {{ item.received_quantity }} <br> 
                                             {% endfor %}
-                                        </td>     
+                                        </td>    
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.balance_quantity }} <br> 
                                             {% endfor %}
                                         </td>     
-                                        <td>
+										<td>
                                             {% for item in data.get_items_list %} 
-                                                {{ item.today_received_quantity }} <br> 
+                                                {{ item.quantity }} <br> 
                                             {% endfor %}
-                                        </td>     
+                                        </td>  
 										<td>{{ data.remarks }}</td>
 									   <td class="center">
 										<div class="d-flex order-actions">

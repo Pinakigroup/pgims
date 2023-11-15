@@ -12,6 +12,7 @@ from django.views.generic import (
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 from django.utils.decorators import method_decorator
+from django.forms.models import modelformset_factory
 
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
@@ -131,7 +132,6 @@ def woReport_read(request):
     }
     return render(request, 'purchase_order/report.html', context)
 
-
 # used to display the purchase bill object
 @method_decorator(login_required, name='dispatch')
 class PurchaseBillView(View):
@@ -194,19 +194,15 @@ def purchase_delete(request, pk):
 # @method_decorator(login_required, name='dispatch')
 class PurchaseBillDetailView(APIView):
     def get(self, request, work_order):
-        print("OOOOOOO", work_order)
-        # Find the PurchaseBill instance with the specified work_order
-        purchase_bill = PurchaseBill.objects.get(work_order=work_order)
-        # Serialize the PurchaseBill
-        purchase_bill_serializer = PurchaseBillSerializer(purchase_bill)
-        # Find the related PurchaseItem instances for this PurchaseBill
-        purchase_items = PurchaseItem.objects.filter(billno=purchase_bill)
-        # Serialize the related PurchaseItems
-        purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)
-        response_data = {
-            'purchase_bill': purchase_bill_serializer.data,
-            'purchase_items': purchase_items_serializer.data,
-        }
-        print('purchase_bill', purchase_bill_serializer.data)
-        print('purchase_items', purchase_items_serializer.data)
-        return Response(response_data)
+        try:
+            purchase_bill = PurchaseBill.objects.get(work_order=work_order)
+            purchase_bill_serializer = PurchaseBillSerializer(purchase_bill)
+            purchase_items = PurchaseItem.objects.filter(billno=purchase_bill)
+            purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)
+            response_data = {
+                'purchase_bill': purchase_bill_serializer.data,
+                'purchase_items': purchase_items_serializer.data,
+            }
+            return Response(response_data)
+        except Exception as e:
+            return Response(str(e), status=404)

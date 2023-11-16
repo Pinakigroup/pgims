@@ -9,6 +9,21 @@ class StoreBillSerializer(serializers.ModelSerializer):
         fields = ['fileno_po', 'buyer_name']
         
 class StoreItemSerializer(serializers.ModelSerializer):
+    stock = serializers.SerializerMethodField()
+    unit = serializers.SerializerMethodField()
+
+    def get_stock(self, instance):
+        return {
+            "id": instance.stock.id if instance.stock else '',
+            "name": instance.stock.name if instance.stock else ''
+        }
+
+    def get_unit(self, instance):
+        return {
+            "id": instance.unit.id if instance.unit else '',
+            "unit": instance.unit.unit if instance.unit else ''
+        }
+
     class Meta:
         model = StoreItem
         # fields = ['quantity', 'size', 'style', 'color']

@@ -345,7 +345,7 @@
             },
             minimumInputLength: 1
         }).on('change', function() {
-            var selectedWorkOrder = $(this).val();
+            var selectedWorkOrder = $(this).text();
             if (selectedWorkOrder !== '') {
                 $.ajax({
                     url: '/store/store/' + selectedWorkOrder + '/',

@@ -58,7 +58,7 @@ class StoreCreateView(LoginRequiredMixin, View):
         if form.is_valid() and formset.is_valid():
             # saves bill
             billobj = form.save(commit=False)
-            billobj.save() 
+            billobj.save()
 
             for form in formset:                                                   # for loop to save each individual form as its own object
                 # false saves the item and links bill to the item
@@ -202,9 +202,9 @@ class StoreBillDetailView(APIView):
     #     except StoreBill.DoesNotExist:
     #         return Response(status=404)
 
-    def get(self, request, pk):
+    def get(self, request, work_order):
         try:
-            store = StoreBill.objects.get(pk=pk)
+            store = StoreBill.objects.get(work_order__work_order=work_order)
             serializer = StoreBillSerializer(store)
 
             # Get related Store Items and serialize them

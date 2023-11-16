@@ -280,6 +280,7 @@
                         // Access and use purchase_items data
                         var purchaseItems = response.purchase_items;
                         var formContainer = $(".panel-body");
+                        var max_index = 1
                         jQuery.each(purchaseItems, function(index, value) {
                             // append purchase
                             var formRow = $('<div class="row form-row"></div>');
@@ -294,7 +295,9 @@
                             // Append rcv_quantity field to calculate to total rcv_quantity
                             formRow.append('<input type="text" class="textinput form-control received-qty" id="rcv_' + index + '_quantity" hidden disabled value="' + value.received_quantity + '">');
                             formContainer.append(formRow);
+                            max_index = index;
                         });
+                        $('#id_form-TOTAL_FORMS').val(max_index + 1);
 
                     }
                 });

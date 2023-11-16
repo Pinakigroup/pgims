@@ -348,6 +348,7 @@
 
                         //var res=$.parseJSON(storeItems);
                         var formContainer = $(".panel-body");
+                        var max_index = 1
                         jQuery.each(storeItems, function(index, value) {
                             //alert(value['quantity']);
                             var formRow = $('<div class="row form-row"></div>');
@@ -368,7 +369,9 @@
                             // $('#id_form-'+index+'-size').val(value['size']);
 
                             //console.log(value);
+                            max_index = index;
                         });
+                        $('#id_form-TOTAL_FORMS').val(max_index + 1);
                     }
                 });
             }

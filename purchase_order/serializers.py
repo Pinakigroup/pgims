@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+from store.models import StoreItem
 from .models import PurchaseBill, PurchaseItem
 
 class PurchaseBillSerializer(serializers.ModelSerializer):
@@ -35,3 +37,4 @@ class PurchaseItemSerializer(serializers.ModelSerializer):
         model = PurchaseItem
         # fields = ['quantity', 'size', 'style', 'color']
         fields = '__all__'
+

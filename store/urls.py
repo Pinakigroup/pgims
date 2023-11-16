@@ -12,5 +12,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.store_delete, name='store_delete'),
     
     path('store/<int:pk>/', StoreBillDetailView.as_view(), name='store_detail'),
-    path('store/accessories/<int:pk>/', StoreAccessoriesDetailView.as_view(), name='store_detail'),
+    path('store/accessories/<str:work_order>/', StoreAccessoriesDetailView.as_view(), name='store_detail'),
 ]

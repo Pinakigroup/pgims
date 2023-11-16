@@ -61,7 +61,12 @@ class AccesRItemForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
-        self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
+        
+        stock_quantity = Stock.objects.first()  # Get the first Stock instance
+        placeholder = stock_quantity.quantity if stock_quantity else 'Enter quantity'
+        self.fields['quantity'].widget.attrs['placeholder'] = placeholder
+            
+        # self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'true'})
         self.fields['unit'].widget.attrs.update({'class': 'textinput form-control', 'required': 'true'})
         self.fields['color'].widget.attrs.update({'class': 'textinput form-control'})
         self.fields['size'].widget.attrs.update({'class': 'textinput form-control'})

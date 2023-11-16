@@ -231,10 +231,8 @@
         if (el.id) el.id = el.id.replace(id_regex, replacement);
         if (el.name) el.name = el.name.replace(id_regex, replacement);
     }
-    
     //stores the total no of item forms
     var total = 1;
-
     function cloneMore(selector, prefix) {
         var newElement = $(selector).clone(true);
         //var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
@@ -288,10 +286,7 @@
         deleteForm('form', $(this));
         return false;
     });
-
-
     //updates the total price by multiplying 'price per item' and 'quantity' 
-
 </script>
 
 

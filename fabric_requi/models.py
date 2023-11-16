@@ -16,9 +16,7 @@ class FabricRequisitionBill(models.Model):
     
     name = models.CharField(max_length=64, null=True, blank=True)
     buyer_name = models.CharField(max_length=64, null=True, blank=True)
-    
     # work_order = models.CharField(max_length=64, blank=False, null=True)
-    
     work_order_fr = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='fabric_work_order')
     
     # file_no_store = models.ForeignKey(StoreBill, on_delete=models.CASCADE, blank=False, related_name='fabric_file_no')

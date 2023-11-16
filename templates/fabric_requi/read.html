@@ -132,13 +132,11 @@
                                                 {{ item.stock.name }} <br> 
                                             {% endfor %}
                                         </td>
-
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.uom }} <br> 
                                             {% endfor %}
                                         </td>
-
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.style }} <br> 
@@ -178,7 +176,7 @@
                                         </td> 
                                         <td>{{ data.remarks }}</td>
 
-									   <td class="center">
+									    <td class="center">
 										<div class="d-flex order-actions">
 											<a class="" href="{% url 'fr_bill' data.billno %}">
 												<i class="fadeIn animated bx bx-show-alt"></i>

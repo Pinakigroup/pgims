@@ -1,212 +1,188 @@
-{% extends 'base/index.html' %} 
-{% block title %}create Fabric Requisition{% endblock title %} 
-{% block body %} 
-{% load crispy_forms_tags %}
-{% load static %}		
+{% extends 'base/index.html' %} {% block title %}create Fabric Requisition{% endblock title %} {% block body %} {% load crispy_forms_tags %} {% load static %}
 
 <!--start page wrapper -->
 <div class="page-wrapper">
-	<div class="page-content">
-		<!--breadcrumb-->
-		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-			<div class="breadcrumb-title pe-3">Forms</div>
-			<div class="ps-3">
-				<nav aria-label="breadcrumb">
-					<ol class="breadcrumb mb-0 p-0">
-						<li class="breadcrumb-item">
-							<a href="#">
-								<i class="bx bx-home-alt"></i>
-							</a>
-						</li>
-						<li class="breadcrumb-item active" aria-current="page">Add New Fabric Requisition</li>
-					</ol>
-				</nav>
-			</div>
-			<div class="ms-auto">
-				<div class="btn-group">
-					<button type="button" class="btn btn-light">Settings</button>
-					<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+    <div class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Forms</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item">
+                            <a href="#">
+                                <i class="bx bx-home-alt"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Add New Fabric Requisition</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-light">Settings</button>
+                    <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
 						<span class="visually-hidden">Toggle Dropdown</span>
 					</button>
-					<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Separated link</a>
-					</div>
-				</div>
-			</div>
-		</div>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<div class="row">
-			<div class="col-xl-9 mx-auto">
-				<div class="ms-auto">
-					<a href="{% url 'fabricr_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
-						<i class="bx bx-grid-alt"></i>Fabric Requisition Table
-					</a>
-				</div>
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <div class="ms-auto">
+                    <a href="{% url 'fabricr_read' %}" class="btn btn-light radius-30 mt-2 mt-lg-0">
+                        <i class="bx bx-grid-alt"></i>Fabric Requisition Table
+                    </a>
+                </div>
 
-				<hr/>
-				<div class="card">
-					<div class="card-body">
+                <hr/>
+                <div class="card">
+                    <div class="card-body">
 
-						<form class="row g-3" method="POST">
-							{% csrf_token %}	
+                        <form class="row g-3" method="POST">
+                            {% csrf_token %}
 
-								<div class="col-sm-4">
-									<div class="controls">
-										{{ form.name|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.card_no|as_crispy_field }}
-									</div>
-								</div><br>
+                            <div class="col-sm-4">
+                                <div class="controls">
+                                    {{ form.name|as_crispy_field }}
+                                </div>
+                            </div><br>
+                            <div class="col-sm-4">
+                                <div class="controls">
+                                    {{ form.card_no|as_crispy_field }}
+                                </div>
+                            </div><br>
 
-                                <div class="col-sm-4">
-                                    <div class="controls">
-                                        {{ u_form.username|as_crispy_field }}
-                                    </div>
-                                </div><br>
+                            <div class="col-sm-4">
+                                <div class="controls">
+                                    {{ u_form.username|as_crispy_field }}
+                                </div>
+                            </div><br>
 
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.work_order_fr|as_crispy_field }}
-									</div>
-								</div><br> 
-                                <div class="col-sm-4">
-									<div class="controls">
-										{{ form.fileno_po|as_crispy_field }}
-									</div>
-								</div><br>
-								<div class="col-sm-4">
-									<div class="controls">
-										{{ form.buyer_name|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-6">
-									<div class="controls">
-										{{ form.order_no|as_crispy_field }}
-									</div>
-								</div><br>
-                                <div class="col-sm-6">
-									<div class="controls">
-										{{ form.unit|as_crispy_field }}
-									</div>
-								</div><br>
+                            <div class="col-sm-4">
+                                <div class="controls">
+                                    {{ form.work_order_fr|as_crispy_field }}
+                                </div>
+                            </div><br>
+                            <div class="col-sm-4">
+                                <div class="controls">
+                                    {{ form.fileno_po|as_crispy_field }}
+                                </div>
+                            </div><br>
+                            <div class="col-sm-4">
+                                <div class="controls">
+                                    {{ form.buyer_name|as_crispy_field }}
+                                </div>
+                            </div><br>
+                            <div class="col-sm-6">
+                                <div class="controls">
+                                    {{ form.order_no|as_crispy_field }}
+                                </div>
+                            </div><br>
+                            <div class="col-sm-6">
+                                <div class="controls">
+                                    {{ form.unit|as_crispy_field }}
+                                </div>
+                            </div><br>
 
-                                <div class="col-sm-12">
-									<div class="controls">
-										{{ form.remarks|as_crispy_field }}
-									</div>
-								</div><br>
-
-							{% comment %} <div class="form-actions">
-								<button type="submit" class="btn btn-light">Save changes</button>
-								<button type="reset" class="btn">Cancel</button>
-							</div> {% endcomment %}
-
+                            <div class="col-sm-12">
+                                <div class="controls">
+                                    {{ form.remarks|as_crispy_field }}
+                                </div>
+                            </div><br> {% comment %}
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-light">Save changes</button>
+                                <button type="reset" class="btn">Cancel</button>
+                            </div> {% endcomment %} {{ formset.management_form }}
                             <div class="panel panel-default">
-            
-                                {{ formset.management_form }}
                                 <h4>Product Details</h4>
-                                
-                                    <div id="stockitem"> 
-                                        <div class="panel-body">
-                                        {% for iform in formset %}
-                                            <div class="row form-row">
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Items:</label>
-                                                    {{ iform.stock }}
-                                                </div>
 
-
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">UOM:</label>
-                                                    {{ iform.uom }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Style:</label>
-                                                    {{ iform.style }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Color:</label>
-                                                    {{ iform.color }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Order Qty:</label>
-                                                    {{ iform.order_qty }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Cutting Qty:</label>
-                                                    {{ iform.cutting_qty }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Req Qty:</label>
-                                                    {{ iform.requard_qty }}
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.stock.errors }}
-                                                    <label class="panel-body-text">Cad Consumption:</label>
-                                                    {{ iform.cad_consumption }}
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    {{ iform.quantity.errors }}
-                                                    <label class="panel-body-text">Supply Qty:</label>
-                                                    {{ iform.quantity }}
-                                                </div>
-                                                <div class="form-group col-md-1">
-                                                    <label class="panel-body-text" style="color: #000">.</label>
-                                                    <button class="form-control btn btn-danger remove-form-row">-</button>
-                                                </div>
+                                <div id="stockitem">
+                                    <div class="panel-body">
+                                        <!-- {% for iform in formset %}
+                                        <div class="row form-row">
+                                            <div class="form-group col-md-1">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">Items:</label> {{ iform.stock }}
                                             </div>
-                                        {% endfor %}
-                                            <div style="text-align: right;">                    
-                                                <a href="#" class="add-form-row">+ Add More</a>
+
+
+                                            <div class="form-group col-md-1">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">UOM:</label> {{ iform.uom }}
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">Style:</label> {{ iform.style }}
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">Color:</label> {{ iform.color }}
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">Order Qty:</label> {{ iform.order_qty }}
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">Cutting Qty:</label> {{ iform.cutting_qty }}
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">Req Qty:</label> {{ iform.requard_qty }}
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                {{ iform.stock.errors }}
+                                                <label class="panel-body-text">Cad Consumption:</label> {{ iform.cad_consumption }}
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                {{ iform.quantity.errors }}
+                                                <label class="panel-body-text">Supply Qty:</label> {{ iform.quantity }}
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <label class="panel-body-text" style="color: #000">.</label>
+                                                <button class="form-control btn btn-danger remove-form-row">-</button>
                                             </div>
                                         </div>
+                                        {% endfor %} -->
+
+                                        <!-- <div style="text-align: right;">
+                                            <a href="#" class="add-form-row">+ Add More</a>
+                                        </div> -->
                                     </div>
-                                <br>                                
+                                </div>
+                                <br>
                                 <div class="align-middle">
                                     <button type="submit" class="btn btn-success">Save</button>
                                     <button type="reset" class="btn">Cancel</button>
                                 </div>
-                                
+
                             </div>
 
-						</form>
-                        {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}										
-                                <div class="alert alert-danger" role="alert">
-                                {{error}}
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    {% endif %}
-        
-                    {% if messages %}
-                        {% for message in  messages %}
-                            <div class="alert alert-{{message.tags}}" role="alert">
+                        </form>
+                        {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
+                        {% endfor %} {% endfor %} {% endif %} {% if messages %} {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}" role="alert">
                             {{message}}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-	<!--end row-->
-	</div>
+                        </div>
+                        {% endfor %} {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end row-->
+    </div>
 </div>
 <!--end page wrapper -->
 
@@ -215,7 +191,6 @@
 <script type="text/javascript" src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dialogbox.js' %}"></script>
 <script type="text/javascript">
-    
     //creates custom alert object
     var custom_alert = new custom_alert();
 
@@ -226,7 +201,7 @@
         if (el.id) el.id = el.id.replace(id_regex, replacement);
         if (el.name) el.name = el.name.replace(id_regex, replacement);
     }
-    
+
     //stores the total no of item forms
     var total = 1;
 
@@ -235,17 +210,22 @@
         //var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
         newElement.find(':input:not([type=button]):not([type=submit]):not([type=reset])').each(function() {
             var name = $(this).attr('name')
-            if(name) {
-                name = name.replace('-' + (total-1) + '-', '-' + total + '-');
+            if (name) {
+                name = name.replace('-' + (total - 1) + '-', '-' + total + '-');
                 var id = 'id_' + name;
-                $(this).attr({'name': name, 'id': id}).val('').removeAttr('checked');
+                $(this).attr({
+                    'name': name,
+                    'id': id
+                }).val('').removeAttr('checked');
             }
         });
         newElement.find('label').each(function() {
             var forValue = $(this).attr('for');
             if (forValue) {
-            forValue = forValue.replace('-' + (total-1) + '-', '-' + total + '-');
-            $(this).attr({'for': forValue});
+                forValue = forValue.replace('-' + (total - 1) + '-', '-' + total + '-');
+                $(this).attr({
+                    'for': forValue
+                });
             }
         });
         total++;
@@ -253,14 +233,14 @@
         $(selector).after(newElement);
         return false;
     }
-    
+
     function deleteForm(prefix, btn) {
         //var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
-        if (total > 1){
+        if (total > 1) {
             btn.closest('.form-row').remove();
             var forms = $('.form-row');
             $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
-            for (var i=0, formCount=forms.length; i<formCount; i++) {
+            for (var i = 0, formCount = forms.length; i < formCount; i++) {
                 $(forms.get(i)).find(':input').each(function() {
                     updateElementIndex(this, prefix, i);
                 });
@@ -271,14 +251,14 @@
         }
         return false;
     }
-    
-    $(document).on('click', '.add-form-row', function(e){
+
+    $(document).on('click', '.add-form-row', function(e) {
         e.preventDefault();
         cloneMore('.form-row:last', 'form');
         return false;
     });
-    
-    $(document).on('click', '.remove-form-row', function(e){
+
+    $(document).on('click', '.remove-form-row', function(e) {
         e.preventDefault();
         deleteForm('form', $(this));
         return false;
@@ -286,18 +266,27 @@
 
 
     //stores pk and quantity of all stocks into a js object 'stocks'
-    var stocks = [
-        {% for stock in stocks %}
-            {% if not forloop.first %},{% endif %}
+    var stocks = [{ %
+        for stock in stocks %
+    } { %
+        if not forloop.first %
+    }, { % endif %
+    } {
+        pk: {
             {
-                pk          : {{ stock.pk }},
-                quantity    : {{ stock.quantity }}
+                stock.pk
             }
-        {% endfor %}
-    ];
-    
+        },
+        quantity: {
+            {
+                stock.quantity
+            }
+        }
+    } { % endfor %
+    }];
+
     //updates the total price by multiplying 'price per item' and 'quantity' 
-    $(document).on('change', '.setprice', function(e){
+    $(document).on('change', '.setprice', function(e) {
         e.preventDefault();
         //gets the values
         var element = $(this);
@@ -307,27 +296,26 @@
         stocks.forEach(function(stockSummary, i) {
             var pk = stocks[i].pk;
             var squantity = stocks[i].quantity;
-            if(stock == pk) {
+            if (stock == pk) {
                 //checks if ordered stock is more than available stock
-                if(quantity >= squantity){
+                if (quantity >= squantity) {
                     quantity = quantity - 1;
-                    if(quantity <= 1){
+                    if (quantity <= 1) {
                         //no stocks are available. Attempts to delete field
                         custom_alert.render('Stocks are currently unavailable. Field will be removed;');
                         //Sets quantity to 0 as failsafe for when the total no of item forms are 1
                         element.parents('.form-row').find('.quantity').val(0);
                         deleteForm('form', element);
                     } else {
-                        element.parents('.form-row').find('.quantity').val(squantity-1);
+                        element.parents('.form-row').find('.quantity').val(squantity - 1);
                         quantity = squantity - 1;
                         custom_alert.render('Exceeded current stock available');
                     }
                 }
             }
-        });     
+        });
 
     });
-
 </script>
 
 
@@ -356,6 +344,8 @@
         }).on('change', function() {
             var selectedWorkOrder = $(this).val();
             if (selectedWorkOrder !== '') {
+                var formContainer = $(".panel-body");
+                formContainer.empty();
                 $.ajax({
                     url: '/store/store/' + selectedWorkOrder + '/',
                     type: 'GET',
@@ -363,26 +353,43 @@
                         // Update form fields with the received data
                         $('#id_fileno_po').val(response.store_bill.fileno_po);
                         $('#id_buyer_name').val(response.store_bill.buyer_name);
-                      
+
                         // Access and use store_items data
                         var storeItems = response.store_items;
                         //var arraydata = JSON.parse(storeItems);
                         //console.log(arraydata);
 
                         //var res=$.parseJSON(storeItems);
-                        jQuery.each(storeItems, function(index, value){
-                            //alert(value['quantity']);
-
-                            // $('#id_form-'+index+'-unit').val(value['quantity']); 
-                            // $('#id_form-'+index+'-wo_quantity').val(value['quantity']); 
-                            // $('#id_form-'+index+'-size').val(value['size']);
-
-                            $('#id_form-'+index+'-style').val(value['style']);
-                            $('#id_form-'+index+'-color').val(value['color']);
-
-                            //console.log(value);
+                        var max_index = 1
+                        jQuery.each(storeItems, function(index, value) {
+                            // append purchase
+                            var formRow = $('<div class="row form-row"></div>');
+                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Items:</label><select class="form-control" id="id_form-' + index + '-stock" name="form-' + index + '-stock" readonly><option selected value="' + value.stock.id + '">' + value.stock.name + '</option></select></div>');
+                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">UOM:</label><select class="form-control" id="id_form-' + index + '-uom" name="form-' + index + '-uom" readonly><option selected value="' + value.unit.id + '">' + value.unit.unit + '</option></select></div>');
+                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Style:</label><input type="text" class=" form-control" id="id_form-' + index + '-style" name="form-' + index + '-style" readonly value="' + (value.style !== null ? value.style : '') + '"></div>');
+                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Color:</label><input type="text" class=" form-control" id="id_form-' + index + '-color" name="form-' + index + '-color" readonly value="' + (value.color !== null ? value.color : '') + '"></div>');
+                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Order Qty:</label><input type="number" class=" form-control" id="id_form-' + index + '-order_qty" name="form-' + index + '-order_qty" readonly value="' + parseInt(value.wo_quantity) + '"></div>');
+                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Cutting Qty:</label><input type="number" class=" form-control" id="id_form-' + index + '-cutting_qty" name="form-' + index + '-cutting_qty" value=""></div>');
+                            formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Req Qty:<span class="asteriskField">*</span></label><input type="number" id="id_form-' + index + '-requard_qty" name="form-' + index + '-requard_qty" class=" form-control" value="" required></div>');
+                            formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Cad Consumption:<span class="asteriskField">*</span></label><input type="number" id="id_form-' + index + '-cad_consumption" name="form-' + index + '-cad_consumption" class=" form-control" value="" required"></div>');
+                            formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Supply Qty:<span class="asteriskField">*</span></label><input type="number" id="id_form-' + index + '-quantity" name="form-' + index + '-quantity" class="form-control" value="" placeholder="' + value.balance_quantity + '" required"></div>');
+                            // Append rcv_quantity field to calculate to total rcv_quantity
+                            formRow.append('<input type="text" class="textinput form-control received-qty" id="rcv_' + index + '_quantity" hidden disabled value="' + value.received_quantity + '">');
+                            formContainer.append(formRow);
+                            max_index = index;
                         });
+                        $('#id_form-TOTAL_FORMS').val(max_index + 1);
+                        // $('#id_form-'+index+'-unit').val(value['quantity']); 
+                        // $('#id_form-'+index+'-wo_quantity').val(value['quantity']); 
+                        // $('#id_form-'+index+'-size').val(value['size']);
+
+                        // $('#id_form-' + index + '-style').val(value['style']);
+                        // $('#id_form-' + index + '-color').val(value['color']);
+
+                        //console.log(value);
                     }
+                }).fail(function(jqXHR, textStatus, error) {
+                    alert(jqXHR.responseText)
                 });
             }
         });

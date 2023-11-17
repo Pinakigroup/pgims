@@ -17,6 +17,7 @@ from .serializers import StoreBillSerializer, StoreItemSerializer, StoreAccessor
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .forms import UserUpdateForm
+from django.db import transaction
 
 # Create your views here.
 
@@ -43,16 +44,22 @@ class StoreCreateView(LoginRequiredMixin, View):
         }                                                                        # sends the supplier and formset as context
         return render(request, self.template_name, context)
 
+    @transaction.atomic()
     def post(self, request):
-        form = StoreForm(request.POST, request.FILES)
+        work_order = request.POST["work_order"]
+        bill_obj = StoreBill.objects.filter(work_order=work_order).first()
+        if bill_obj:
+            form = StoreForm(request.POST, request.FILES, instance=bill_obj)
+        else:
+            form = StoreForm(request.POST, request.FILES)
         formset = StoreItemFormset(request.POST) 
         # recieves a post method for the formset
         
         if form.is_valid() and formset.is_valid():
             # saves bill
             billobj = form.save(commit=False)
-            billobj.save() 
-            
+            billobj.save()
+
             for form in formset:                                                   # for loop to save each individual form as its own object
                 # false saves the item and links bill to the item
                 billitem = form.save(commit=False)
@@ -75,7 +82,7 @@ class StoreCreateView(LoginRequiredMixin, View):
             formset = StoreItemFormset(request.GET or None)
         context = {
             'form': form,
-            'formset': formset,         
+            # 'formset': formset,
         }
         return render(request, self.template_name, context)    
 
@@ -187,30 +194,21 @@ def store_delete(request, pk):
     
     
 class StoreBillDetailView(APIView):
-    # def get(self, request, pk):
-    #     try:
-    #         store = StoreBill.objects.get(pk=pk)
-    #         serializer = StoreBillSerializer(store)
-    #         return Response(serializer.data)
-    #     except StoreBill.DoesNotExist:
-    #         return Response(status=404)
 
-    def get(self, request, pk):
+    def get(self, request, work_order):
         try:
-            store = StoreBill.objects.get(pk=pk)
+            store = StoreBill.objects.filter(billno=work_order).first()
             serializer = StoreBillSerializer(store)
-
+            if not store:
+                return Response("Bill not found for given work order", status=400)
             # Get related Store Items and serialize them
             store_items = store.storebillno.all()  # Assuming your related name is 'storeitem_set'
             store_items_serializer = StoreItemSerializer(store_items, many=True)  # You need to create storeItemSerializer
             
-            print("LPLPLPLPLPLPLPLP", store_items_serializer.data)
             response_data = {
                 'store_bill': serializer.data,
                 'store_items': store_items_serializer.data,
             }
-            print("Store Bill =", response_data)
-
             return Response(response_data)
         except StoreBill.DoesNotExist:
             return Response(status=404)
@@ -225,21 +223,20 @@ class StoreAccessoriesDetailView(APIView):
     #     except StoreBill.DoesNotExist:
     #         return Response(status=404)
     
-    def get(self, request, pk):
+    def get(self, request, work_order):
         try:
-            store = StoreBill.objects.get(pk=pk)
+            store = StoreBill.objects.filter(billno=work_order).first()
             serializer = StoreAccessoriesSerializer(store)
-
+            if not store:
+                return Response("Bill not found for given work order", 400)
             # Get related Store Items and serialize them
             store_items = store.storebillno.all()  # Assuming your related name is 'storeitem_set'
             store_items_serializer = StoreItemSerializer(store_items, many=True)  # You need to create storeItemSerializer
             
-            print("LPLPLPLPLPLPLPLP", store_items_serializer.data)
             response_data = {
                 'store_bill': serializer.data,
                 'store_items': store_items_serializer.data,
             }
-            print("Store Bill =", response_data)
 
             return Response(response_data)
         except StoreBill.DoesNotExist:

@@ -39,7 +39,12 @@ class AccesRCreateView(View):
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = AccesRForm(request.POST)
+        acces_wo_no = request.POST['acces_wo_no']
+        access_obj = AccesRequisitionBill.objects.filter(acces_wo_no=acces_wo_no).first()
+        if access_obj:
+            form = AccesRForm(request.POST, instance=access_obj)
+        else:
+            form = AccesRForm(request.POST)
         formset = AccesRItemFormset(request.POST)                                 # recieves a post method for the formset
         if form.is_valid() and formset.is_valid():
             # saves bill

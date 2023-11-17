@@ -11,6 +11,6 @@ urlpatterns = [
     path("bill/<billno>", views.StoreBillView.as_view(), name="store_bill"),
     path('delete/<int:pk>/', views.store_delete, name='store_delete'),
     
-    path('store/<int:pk>/', StoreBillDetailView.as_view(), name='store_detail'),
-    path('store/accessories/<int:pk>/', StoreAccessoriesDetailView.as_view(), name='store_detail'),
+    path('store/<int:work_order>/', StoreBillDetailView.as_view(), name='store_detail'),
+    path('store/accessories/<int:work_order>/', StoreAccessoriesDetailView.as_view(), name='store_detail'),
 ]

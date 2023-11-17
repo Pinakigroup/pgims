@@ -75,12 +75,25 @@ class PurchaseBill(models.Model):
         p = "AGD"+ po + str(self.work_order)
         lp = p.replace("ne", "")
         return lp
+
+    def create_work_order(self):
+        today = datetime.datetime.today().date()
+        year = str(today.year)[2:]
+        month = str(today.month)
+        last_obj = PurchaseBill.objects.last().order_by('-created_at')
+        if last_obj:
+            order_number = int(last_obj.work_order[-4:]) + 1
+        else:
+            order_number = PurchaseBill.objects.all().count() + 1
+        count = '{0}'.format(str(order_number).zfill(3))
+        month = '{0}'.format(str(month).zfill(2))
+        return f"{year}{month}{count}"
     
     
     def save(self, *args, **kwargs):
         if not self.pk:  # Only generate 'p' if the instance is being created
+            # self.work_order = self.create_work_order()
             self.work_order = generate_random_number()
-        self.work_order = self.wo_no()  # Compute the value of 'p'
         super().save(*args, **kwargs)
 
 

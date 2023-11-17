@@ -101,11 +101,8 @@
                                 <div class="controls">
                                     {{ form.remarks|as_crispy_field }}
                                 </div>
-                            </div><br>
-
+                            </div><br> {{ formset.management_form }}
                             <div class="panel panel-default">
-
-                                {{ formset.management_form }}
                                 <h4>Product Details</h4>
                                 <div id="stockitem">
                                     <div class="panel-body">
@@ -332,8 +329,10 @@
             },
             minimumInputLength: 1
         }).on('change', function() {
-            var selectedWorkOrder = $(this).text();
+            var selectedWorkOrder = $('#id_acces_wo_no').val();
             if (selectedWorkOrder !== '') {
+                var formContainer = $(".panel-body");
+                formContainer.empty();
                 $.ajax({
                     url: '/store/store/accessories/' + selectedWorkOrder + '/',
                     type: 'GET',
@@ -347,7 +346,6 @@
                         //console.log(arraydata);
 
                         //var res=$.parseJSON(storeItems);
-                        var formContainer = $(".panel-body");
                         var max_index = 1
                         jQuery.each(storeItems, function(index, value) {
                             //alert(value['quantity']);
@@ -357,7 +355,7 @@
                             formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Color:</label><input type="text" class=" form-control" id="id_form-' + index + '-color" name="form-' + index + '-color" readonly value="' + (value.color !== null ? value.color : '') + '"></div>');
                             formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Size:</label><input type="text" class=" form-control" id="id_form-' + index + '-size" name="form-' + index + '-size" readonly value="' + (value.size !== null ? value.size : '') + '"></div>');
                             formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Style:</label><input type="text" class=" form-control" id="id_form-' + index + '-style" name="form-' + index + '-style" readonly value="' + (value.style !== null ? value.style : '') + '"></div>');
-                            formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Quantity:</label><input type="number" class=" form-control" id="id_form-' + index + '-order_qty" name="form-' + index + '-order_qty" min="0" value="' + value.wo_quantity + '"></div>');
+                            formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Quantity:</label><input type="number" class=" form-control" id="id_form-' + index + '-quantity" name="form-' + index + '-quantity" min="0" value=""></div>');
                             // Append rcv_quantity field to calculate to total rcv_quantity
                             formContainer.append(formRow);
 
@@ -373,6 +371,8 @@
                         });
                         $('#id_form-TOTAL_FORMS').val(max_index + 1);
                     }
+                }).fail(function(jqXHR, textStatus, error) {
+                    alert(jqXHR.responseText)
                 });
             }
         });

@@ -101,11 +101,8 @@
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-light">Save changes</button>
                                 <button type="reset" class="btn">Cancel</button>
-                            </div> {% endcomment %}
-
+                            </div> {% endcomment %} {{ formset.management_form }}
                             <div class="panel panel-default">
-
-                                {{ formset.management_form }}
                                 <h4>Product Details</h4>
 
                                 <div id="stockitem">
@@ -345,8 +342,10 @@
             },
             minimumInputLength: 1
         }).on('change', function() {
-            var selectedWorkOrder = $(this).text();
+            var selectedWorkOrder = $(this).val();
             if (selectedWorkOrder !== '') {
+                var formContainer = $(".panel-body");
+                formContainer.empty();
                 $.ajax({
                     url: '/store/store/' + selectedWorkOrder + '/',
                     type: 'GET',
@@ -359,22 +358,21 @@
                         var storeItems = response.store_items;
                         //var arraydata = JSON.parse(storeItems);
                         //console.log(arraydata);
-                        var formContainer = $(".panel-body");
+
                         //var res=$.parseJSON(storeItems);
                         var max_index = 1
                         jQuery.each(storeItems, function(index, value) {
-                            console.log(value);
                             // append purchase
                             var formRow = $('<div class="row form-row"></div>');
                             formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Items:</label><select class="form-control" id="id_form-' + index + '-stock" name="form-' + index + '-stock" readonly><option selected value="' + value.stock.id + '">' + value.stock.name + '</option></select></div>');
                             formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">UOM:</label><select class="form-control" id="id_form-' + index + '-uom" name="form-' + index + '-uom" readonly><option selected value="' + value.unit.id + '">' + value.unit.unit + '</option></select></div>');
                             formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Style:</label><input type="text" class=" form-control" id="id_form-' + index + '-style" name="form-' + index + '-style" readonly value="' + (value.style !== null ? value.style : '') + '"></div>');
                             formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Color:</label><input type="text" class=" form-control" id="id_form-' + index + '-color" name="form-' + index + '-color" readonly value="' + (value.color !== null ? value.color : '') + '"></div>');
-                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Order Qty:</label><input type="number" class=" form-control" id="id_form-' + index + '-order_qty" name="form-' + index + '-order_qty" readonly value="' + value.wo_quantity + '"></div>');
+                            formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Order Qty:</label><input type="number" class=" form-control" id="id_form-' + index + '-order_qty" name="form-' + index + '-order_qty" readonly value="' + parseInt(value.wo_quantity) + '"></div>');
                             formRow.append('<div class="form-group col-md-1"><label class="panel-body-text">Cutting Qty:</label><input type="number" class=" form-control" id="id_form-' + index + '-cutting_qty" name="form-' + index + '-cutting_qty" value=""></div>');
                             formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Req Qty:<span class="asteriskField">*</span></label><input type="number" id="id_form-' + index + '-requard_qty" name="form-' + index + '-requard_qty" class=" form-control" value="" required></div>');
                             formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Cad Consumption:<span class="asteriskField">*</span></label><input type="number" id="id_form-' + index + '-cad_consumption" name="form-' + index + '-cad_consumption" class=" form-control" value="" required"></div>');
-                            formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Supply Qty:<span class="asteriskField">*</span></label><input type="number" id="id_form-' + index + '-quantity" name="form-' + index + '-quantity" class=" form-control" value="" required"></div>');
+                            formRow.append('<div class="form-group col-md-2"><label class="panel-body-text">Supply Qty:<span class="asteriskField">*</span></label><input type="number" id="id_form-' + index + '-quantity" name="form-' + index + '-quantity" class="form-control" value="" placeholder="' + value.balance_quantity + '" required"></div>');
                             // Append rcv_quantity field to calculate to total rcv_quantity
                             formRow.append('<input type="text" class="textinput form-control received-qty" id="rcv_' + index + '_quantity" hidden disabled value="' + value.received_quantity + '">');
                             formContainer.append(formRow);
@@ -390,6 +388,8 @@
 
                         //console.log(value);
                     }
+                }).fail(function(jqXHR, textStatus, error) {
+                    alert(jqXHR.responseText)
                 });
             }
         });

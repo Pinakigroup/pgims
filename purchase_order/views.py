@@ -195,7 +195,7 @@ def purchase_delete(request, pk):
 class PurchaseBillDetailView(APIView):
     def get(self, request, work_order):
         try:
-            purchase_bill = PurchaseBill.objects.get(work_order=work_order)
+            purchase_bill = PurchaseBill.objects.get(billno=work_order)
             purchase_bill_serializer = PurchaseBillSerializer(purchase_bill)
             purchase_items = PurchaseItem.objects.filter(billno=purchase_bill)
             purchase_items_serializer = PurchaseItemSerializer(purchase_items, many=True)

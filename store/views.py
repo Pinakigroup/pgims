@@ -205,13 +205,10 @@ class StoreBillDetailView(APIView):
             store_items = store.storebillno.all()  # Assuming your related name is 'storeitem_set'
             store_items_serializer = StoreItemSerializer(store_items, many=True)  # You need to create storeItemSerializer
             
-            print("LPLPLPLPLPLPLPLP", store_items_serializer.data)
             response_data = {
                 'store_bill': serializer.data,
                 'store_items': store_items_serializer.data,
             }
-            print("Store Bill =", response_data)
-
             return Response(response_data)
         except StoreBill.DoesNotExist:
             return Response(status=404)

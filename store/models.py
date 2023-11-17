@@ -7,6 +7,7 @@ from purchase_order.models import PurchaseBill
 from store_receiver.models import StoreReceiver
 from unit.models import Unit
 from datetime import date
+from django.db.models import Sum
 
 # Create your models here.
 
@@ -59,10 +60,8 @@ class StoreItem(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storebillno')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, related_name='storeitem')
     wo_quantity = models.DecimalField(max_digits=12, decimal_places=2)
-    
-    quantity = models.DecimalField(max_digits=12, decimal_places=2)
+    quantity = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     balance_quantity = models.DecimalField(max_digits=12, decimal_places=2)
-    
     received_quantity = models.DecimalField(max_digits=12, decimal_places=2)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, blank=False, related_name='unit_of_store')
     size = models.CharField(max_length=64, null=True, blank=True)
@@ -77,6 +76,14 @@ class StoreItem(models.Model):
     def save(self, *args, **kwargs):
         self.balance_quantity = self.stock.quantity + self.quantity
         super(StoreItem, self).save(*args, **kwargs)
+
+    @classmethod
+    def get_total_received_quantity(cls, work_order):
+        total_received_quantity = cls.objects.filter(billno__work_order=work_order).aggregate(
+            total_received=Sum('quantity')
+        )['total_received']
+        return total_received_quantity or 0
+    
     
 class StoreBillDetails(models.Model):
     billno = models.ForeignKey(StoreBill, on_delete = models.CASCADE, related_name='storedetailsbillno')

@@ -194,19 +194,13 @@ def store_delete(request, pk):
     
     
 class StoreBillDetailView(APIView):
-    # def get(self, request, pk):
-    #     try:
-    #         store = StoreBill.objects.get(pk=pk)
-    #         serializer = StoreBillSerializer(store)
-    #         return Response(serializer.data)
-    #     except StoreBill.DoesNotExist:
-    #         return Response(status=404)
 
     def get(self, request, work_order):
         try:
-            store = StoreBill.objects.get(work_order__work_order=work_order)
+            store = StoreBill.objects.filter(billno=work_order).first()
             serializer = StoreBillSerializer(store)
-
+            if not store:
+                return Response("Bill not found for given work order", status=400)
             # Get related Store Items and serialize them
             store_items = store.storebillno.all()  # Assuming your related name is 'storeitem_set'
             store_items_serializer = StoreItemSerializer(store_items, many=True)  # You need to create storeItemSerializer

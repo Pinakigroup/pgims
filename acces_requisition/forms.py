@@ -18,11 +18,10 @@ class AccesRForm(forms.ModelForm):
         
     class Meta:
         model = AccesRequisitionBill
-        fields = ['name', 'order_no', 'acces_wo_no', 'fileno_po', 'style_no', 'po_no', 'unit_no', 'card_no', 'remarks']
+        fields = ['name', 'acces_wo_no', 'fileno_po', 'style_no', 'po_no', 'unit_no', 'card_no', 'remarks']
         widgets = {
             # 'acces_wo_no': ModelSelect2Widget(queryset=PurchaseBill.objects.all(), search_fields=['work_order__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
             'acces_wo_no': ModelSelect2Widget(model=StoreBill, search_fields=['work_order__work_order__icontains'], attrs={'style': 'width: 100%', 'data-placeholder': 'Search Work Order No'}),
-            'order_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'style_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'po_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
             'unit_no' : forms.TextInput(attrs = {'class' : 'textinput form-control'}),
@@ -33,10 +32,10 @@ class AccesRForm(forms.ModelForm):
             'name': 'Goods Receiver',
             'acces_wo_no': 'Work Order No',
             'fileno_po': 'File No',
-            'order_no': 'Order No',
-            'style_no': 'Style No',
+            'style_no': 'Style/Order No',
             'unit_no': 'Unit No',
             'card_no': 'Card No',
+            'po_no': 'PO No',
         }
 # Goods Issuer add username 
 class UserUpdateForm(forms.ModelForm):

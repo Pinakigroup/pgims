@@ -30,7 +30,7 @@ class StoreBill(models.Model):
     received_date = models.DateField(auto_now_add=True, auto_now=False)
     img_file = models.ImageField(upload_to='store', default='blank.png', null=True, blank=True)
     work_order = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, blank=False, related_name='store_file_no')
-    
+    po_no = models.CharField(max_length=32, null=True, blank=True)
     master_lc_sc = models.CharField(max_length=64, blank=False, null=True)
     style_no = models.CharField(max_length=32, null=True, blank=True)
     fileno_po = models.CharField(max_length=64, blank=False, null=True)

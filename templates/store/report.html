@@ -98,6 +98,7 @@
                                         <th>WO</th>
                                         <th>MLC/SC</th>
                                         <th>Style</th>
+                                        <th>PO No</th>
                                         <th>Items</th>
                                         <th>Unit</th>
                                         <th>WO Qty</th>
@@ -120,6 +121,7 @@
                                         <td>{{ data.work_order }}</td>
                                         <td>{{ data.master_lc_sc }}</td>
                                         <td>{{ data.style_no }}</td>
+										<td>{{ data.po_no }}</td>
                                         <td>
                                             {% for item in data.get_items_list %} 
                                                 {{ item.stock.name }} <br> 

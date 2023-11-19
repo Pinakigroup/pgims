@@ -18,7 +18,6 @@ def generate_random_number():
 class PurchaseBill(models.Model):
     billno = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now=True)
-    
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, blank=False, related_name='suppliersname')
     buyer_name = models.CharField(max_length=64, blank=False, null=True)
     po_no = models.CharField(max_length=32, null=True, blank=True)

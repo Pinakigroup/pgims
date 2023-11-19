@@ -49,10 +49,10 @@ class StoreForm(forms.ModelForm):
             'report_no': 'Inv/DC No',
             'report_date': 'Inv/DC Date',
             'img_file': 'Photo',
-            
+            'po_no': 'PO No',
             'fileno_po': 'File No',
             'master_lc_sc': 'MLC/SC',
-            'style_no': 'Style No',
+            'style_no': 'Style/Order NO',
             # 'file_no_wo': 'File No',
             'product_item': 'Product Name',
             'fabric_color': 'Fabric Color',

@@ -101,6 +101,7 @@
                                         <th>Received Date</th>
 										<th>MLC/SC</th>
                                         <th>Style No</th>
+                                        <th>PO No</th>
                                         <th>Photo</th>                                        
                                         <th>Items</th>
 										<th>Color</th>
@@ -133,6 +134,7 @@
                                         <td>{{ data.received_date|date:"d/m/Y" }}</td>
 										<td>{{ data.master_lc_sc }}</td>
                                         <td>{{ data.style_no }}</td>
+                                        <td>{{ data.po_no }}</td>
 										<td>
 											{% if data.img_file == ""  %}
 											No Image

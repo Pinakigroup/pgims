@@ -8,11 +8,10 @@ from file.models import File
 from stock.models import Stock
 import datetime
 from datetime import date
+from django.utils import timezone
 import random
 # Create your models here.
 
-def generate_random_number():
-    return random.randint(100, 999)
 
 #contains the purchase bills made
 class PurchaseBill(models.Model):
@@ -23,7 +22,7 @@ class PurchaseBill(models.Model):
     po_no = models.CharField(max_length=32, null=True, blank=True)
     fileno_po = models.ForeignKey(File, on_delete=models.CASCADE, blank=False, related_name='fileno_pos')
     style_no = models.CharField(max_length=32, null=True, blank=True)
-    work_order = models.CharField(max_length=64, default=generate_random_number)
+    work_order = models.CharField(max_length=64, null=True, blank=True, unique=True)
     wo_date = models.DateField(auto_now_add=True, auto_now=False)
     master_lc_sc = models.CharField(max_length=64, null=True, blank=True)
     remarks = models.ForeignKey(Remarks, on_delete=models.CASCADE, blank=False, related_name='remarksname')
@@ -46,70 +45,24 @@ class PurchaseBill(models.Model):
         for item in purchaseitems:
             total = total + item.totalprice
         return total
-    
-    # Generate a uniq no
-    # def wo_no(self):               
-    #     ymdt = str(self.created_at)
-    #     ymd = ymdt[:10]
-    #     rep = ymd.replace("-", "")
-    #     po = rep[2:]
-    #     p = "AGD"+ po
-    #     return p
-    
-    # Generate a uniq no 
-    # def wo_no(self):               
-    #     ymdt = str(self.created_at)
-    #     ymd = ymdt[:10]
-    #     rep = ymd.replace("-", "")
-    #     po = rep[2:]
-    #     p = "AGD" + po + str(self.work_order)
-    #     lp = p.replace("ne", "")
-    #     return lp
-    
-    def wo_no(self):               
-        ymdt = str(self.created_at)
-        ymd = ymdt[:10]
-        rep = ymd.replace("-", "")
-        po = rep[2:]
-        p = "AGD"+ po + str(self.work_order)
-        lp = p.replace("ne", "")
-        return lp
 
-    def create_work_order(self):
-        today = datetime.datetime.today().date()
-        year = str(today.year)[2:]
-        month = str(today.month)
-        last_obj = PurchaseBill.objects.last().order_by('-created_at')
-        if last_obj:
-            order_number = int(last_obj.work_order[-4:]) + 1
-        else:
-            order_number = PurchaseBill.objects.all().count() + 1
-        count = '{0}'.format(str(order_number).zfill(3))
-        month = '{0}'.format(str(month).zfill(2))
-        return f"{year}{month}{count}"
-    
-    
     def save(self, *args, **kwargs):
-        if not self.pk:  # Only generate 'p' if the instance is being created
-            # self.work_order = self.create_work_order()
-            self.work_order = generate_random_number()
+        if not self.work_order:
+            # Generate a unique number based on date
+            today = timezone.now()
+            work_order_numbers = "{:04d}{:02d}{:02d}".format(today.year, today.month, today.day)
+            work_order_number = work_order_numbers[2:]
+            # Find the latest work order with the same date
+            latest_work_order = PurchaseBill.objects.filter(work_order__startswith=work_order_number).order_by('-work_order').first()
+            if latest_work_order:
+                # Extract the numeric part, increment it by 1, and append to the work_order_number
+                latest_order_number = int(latest_work_order.work_order[len(work_order_number):])
+                new_order_number = latest_order_number + 1
+                self.work_order = f"{work_order_number}{new_order_number:04d}"
+            else:
+                # If no previous work orders for the current date, start with 0001
+                self.work_order = f"{work_order_number}0001"
         super().save(*args, **kwargs)
-
-
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:  # Only generate 'p' value for new instances
-    #         ymdt = str(self.created_at)
-    #         ymd = ymdt[:10]
-    #         rep = ymd.replace("-", "")
-    #         po = rep[2:]
-    #         print("po:", self.created_at)
-    #         # self.work_order = "AGD" + po + str(self.work_order)
-    #         l = "AGD" + po + str(self.work_order)
-    #         lp = l.replace("ne", "")
-    #         self.work_order = lp
-    #     super().save(*args, **kwargs)
-
-
 
 #contains the purchase stocks made
 class PurchaseItem(models.Model):

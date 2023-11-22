@@ -76,20 +76,23 @@
 									{{ form.xyz|as_crispy_field }}
 								</div>
 							</div><br>
-
-							<div class="col-sm-4">
-								<div class="controls">
-									{{ form.exp_date_of_delivery|as_crispy_field }}
-								</div>
-							</div><br>
 							<div class="col-sm-3">
 								<div class="controls">
 									{{ form.master_lc_sc|as_crispy_field }}
 								</div>
 							</div><br>
-
+							<div class="col-sm-4">
+								<div class="controls">
+									{{ form.exp_date_of_delivery|as_crispy_field }}
+								</div>
+							</div><br>
 							<h5>Master LC Details</h5>
-
+							
+							<div class="col-sm-1">
+								<div class="controls">
+									{{ form.po_no|as_crispy_field }}
+								</div>
+							</div><br>
 
 							<div class="col-sm-1">
 								<div class="controls">
@@ -98,10 +101,21 @@
 							</div><br>
 							<div class="col-sm-1">
 								<div class="controls">
-									{{ form.po_no|as_crispy_field }}
+									{{ form.sleve|as_crispy_field }}
 								</div>
 							</div><br>
-							<div class="col-sm-2">
+							<div class="col-sm-1">
+								<div class="controls">
+									{{ form.color|as_crispy_field }}
+								</div>
+							</div><br>
+							<div class="col-sm-1">
+								<div class="controls">
+									{{ form.size_range|as_crispy_field }}
+								</div>
+							</div><br>
+
+							<div class="col-sm-1">
 								<div class="controls">
 									{{ form.quantity|as_crispy_field }}
 								</div>

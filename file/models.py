@@ -10,6 +10,7 @@ class File(models.Model):
     master_lc_sc = models.CharField(max_length=128, null=True, blank=True)
     style = models.CharField(max_length=128, null=True, blank=True)
     sleve = models.CharField(max_length=128, null=True, blank=True)
+    color = models.CharField(max_length=128, null=True, blank=True)
     size_range = models.CharField(max_length=128, null=True, blank=True)
     po_no = models.CharField(max_length=128, null=True, blank=True)
     quantity = models.DecimalField(max_digits=12, decimal_places=2)
